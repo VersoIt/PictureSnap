@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">PictureSnap</string>
+    <string name="search">Search by city, name, results</string>
+    <string name="review">Overview</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="photograph_fragment_home">Home</string>
+    <string name="unregistered_fragment_home">Home</string>
+    <string name="client_fragment_home">Home</string>
+    <string name="previous">Previous</string>
+
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
 </resources>

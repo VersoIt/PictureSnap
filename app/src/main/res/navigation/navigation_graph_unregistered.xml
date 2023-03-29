@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_unregistered"
+    app:startDestination="@id/unregisteredHome">
+    <fragment
+        android:id="@+id/unregisteredProfile"
+        android:name="ru.verso.picturesnap.presentation.fragments.unregistered.UnregisteredProfile"
+        android:label="fragment_unregistered_profile"
+        tools:layout="@layout/fragment_unregistered_profile" />
+
+    <fragment
+        android:id="@+id/unregisteredHome"
+        android:name="ru.verso.picturesnap.presentation.fragments.unregistered.UnregisteredHome"
+        android:label="fragment_unregistered_home"
+        tools:layout="@layout/fragment_unregistered_home" />
+</navigation>

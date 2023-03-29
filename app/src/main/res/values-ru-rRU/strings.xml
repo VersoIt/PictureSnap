@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PictureSnap</string>
+    <string name="search">Поиск по городу. имени, услуге</string>
+    <string name="review">Обзор</string>
+    <string name="home">Домой</string>
+    <string name="profile">Профиль</string>
+    <string name="photograph_fragment_home">Домой</string>
+    <string name="unregistered_fragment_home">Домой</string>
+    <string name="client_fragment_home">Домой</string>
+    <string name="previous">Предыдущий</string>
+</resources>
