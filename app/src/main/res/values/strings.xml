@@ -19,4 +19,7 @@
     <string name="confidential_and_secure">Confidential and secure</string>
     <string name="passwords_and_notifications">Your passwords and messages are protected encryption.</string>
     <string name="notifications_moment">You will be notified at the moment events (new booking, new message from the user).</string>
+
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign up</string>
 </resources>

@@ -10,4 +10,18 @@
         <item name="android:textSize">32sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="purpleTextButton">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="purpleTextButton.roundedPurpleButton">
+        <item name="android:background">@drawable/rectangle_purple_border_rounded_corners</item>
+    </style>
+
+    <style name="purpleTextButton.transparentButton">
+        <item name="android:background">@drawable/transparent</item>
+    </style>
+
 </resources>

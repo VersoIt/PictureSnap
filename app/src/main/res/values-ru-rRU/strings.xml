@@ -16,4 +16,6 @@
     <string name="confidential_and_secure">Конфиденциально и безопасно</string>
     <string name="passwords_and_notifications">Ваши пароли и сообщения защищены шифрованием.</string>
     <string name="notifications_moment">Вы будете в момент извещены о   событиях (Новая бронь, новое сообщение от пользователя).</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="log_in">Войти</string>
 </resources>
