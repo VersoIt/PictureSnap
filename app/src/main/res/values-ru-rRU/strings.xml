@@ -9,4 +9,11 @@
     <string name="unregistered_fragment_home">Домой</string>
     <string name="client_fragment_home">Домой</string>
     <string name="previous">Предыдущий</string>
+    <string name="welcome">Добро пожаловать</string>
+    <string name="user_solution">В приложении возможна  регистрация как клиентов, так и  фотографов, которые могут делиться  своим творчеством.</string>
+    <string name="user_solution_title">Решение за Вами</string>
+    <string name="data_view_and_notifications">Просмотр данных и уведомления</string>
+    <string name="confidential_and_secure">Конфиденциально и безопасно</string>
+    <string name="passwords_and_notifications">Ваши пароли и сообщения защищены шифрованием.</string>
+    <string name="notifications_moment">Вы будете в момент извещены о   событиях (Новая бронь, новое сообщение от пользователя).</string>
 </resources>

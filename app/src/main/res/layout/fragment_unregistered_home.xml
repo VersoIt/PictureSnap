@@ -10,11 +10,202 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
 
+        android:layout_marginVertical="35dp"
+        android:layout_marginHorizontal="13dp"
+
         android:background="@drawable/rectangle_white_rounded_corners"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/view_logo"
+
+            android:layout_width="0dp"
+            android:layout_height="128dp"
+
+            android:background="@drawable/ic_logo"
+
+            app:layout_constraintDimensionRatio="H, 1:1"
+
+            app:layout_constraintBottom_toTopOf="@id/text_welcome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/text_welcome"
+            style="@style/header_text"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/welcome"
+
+            app:layout_constraintBottom_toTopOf="@id/linearLayout_solution"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_logo" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_solution"
+
+            android:orientation="horizontal"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:gravity="center_vertical|center_horizontal"
+
+            app:layout_constraintTop_toBottomOf="@id/text_welcome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/linearLayout_notifications_view">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:layout_margin="20dp"
+
+                android:background="@drawable/ic_check_mark" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/linearLayout_notifications_view">
+
+                <TextView
+                    style="@style/caption_text"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/user_solution_title"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/user_solution"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_notifications_view"
+
+            android:orientation="horizontal"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:gravity="center_vertical|center_horizontal"
+
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_solution"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/linearLayout_confidentiality_view">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:layout_margin="20dp"
+
+                android:background="@drawable/ic_data_notifications_view" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    style="@style/caption_text"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/data_view_and_notifications"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/user_solution"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_confidentiality_view"
+
+            android:orientation="horizontal"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:gravity="center_vertical|center_horizontal"
+
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_notifications_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:layout_margin="20dp"
+
+                android:background="@drawable/ic_lock" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    style="@style/caption_text"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/confidential_and_secure"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/passwords_and_notifications"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

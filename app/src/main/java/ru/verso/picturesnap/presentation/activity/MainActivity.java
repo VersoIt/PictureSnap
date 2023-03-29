@@ -10,17 +10,17 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import ru.verso.picturesnap.R;
-import ru.verso.picturesnap.databinding.ActivityUnregisteredBinding;
+import ru.verso.picturesnap.databinding.ActivityMainBinding;
 
-public class UnregisteredActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    private ActivityUnregisteredBinding binding;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityUnregisteredBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         BottomNavigationView bottomNavigationView = binding.bottomNavigationViewMenu;

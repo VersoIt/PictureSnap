@@ -11,4 +11,12 @@
 
     <string name="profile">Profile</string>
     <string name="home">Home</string>
+    <string name="welcome">Welcome</string>
+
+    <string name="user_solution_title">Decision for you</string>
+    <string name="user_solution">In the application it is possible registration of both clients and photographers who can share with his creativity.</string>
+    <string name="data_view_and_notifications">Data View and Notifications</string>
+    <string name="confidential_and_secure">Confidential and secure</string>
+    <string name="passwords_and_notifications">Your passwords and messages are protected encryption.</string>
+    <string name="notifications_moment">You will be notified at the moment events (new booking, new message from the user).</string>
 </resources>
