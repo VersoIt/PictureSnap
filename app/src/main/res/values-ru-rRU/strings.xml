@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PictureSnap</string>
-    <string name="search">Поиск по городу. имени, услуге</string>
+    <string name="search">Поиск по городу, имени, услуге</string>
     <string name="review">Обзор</string>
     <string name="home">Домой</string>
     <string name="profile">Профиль</string>
@@ -18,4 +18,5 @@
     <string name="notifications_moment">Вы будете в момент извещены о   событиях (Новая бронь, новое сообщение от пользователя).</string>
     <string name="sign_up">Зарегистрироваться</string>
     <string name="log_in">Войти</string>
+    <string name="overview">Обзор</string>
 </resources>

@@ -2,8 +2,7 @@
     <string name="app_name">PictureSnap</string>
     <string name="search">Search by city, name, results</string>
     <string name="review">Overview</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <!-- Strings used for fragments for navigation -->
+
     <string name="photograph_fragment_home">Home</string>
     <string name="unregistered_fragment_home">Home</string>
     <string name="client_fragment_home">Home</string>
@@ -22,4 +21,5 @@
 
     <string name="log_in">Log in</string>
     <string name="sign_up">Sign up</string>
+    <string name="overview">Overview</string>
 </resources>

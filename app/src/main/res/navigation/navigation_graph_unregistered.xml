@@ -6,13 +6,13 @@
     app:startDestination="@id/unregisteredHome">
     <fragment
         android:id="@+id/unregisteredProfile"
-        android:name="ru.verso.picturesnap.presentation.fragments.unregistered.UnregisteredProfile"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredProfile"
         android:label="fragment_unregistered_profile"
         tools:layout="@layout/fragment_unregistered_profile" />
 
     <fragment
         android:id="@+id/unregisteredHome"
-        android:name="ru.verso.picturesnap.presentation.fragments.unregistered.UnregisteredHome"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredHome"
         android:label="fragment_unregistered_home"
         tools:layout="@layout/fragment_unregistered_home" />
 </navigation>

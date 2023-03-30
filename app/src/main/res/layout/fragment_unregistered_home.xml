@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragments.unregistered.UnregisteredHome">
+    tools:context=".presentation.fragments.client.UnregisteredHome">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -20,20 +20,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <View
+        <ImageView
             android:id="@+id/view_logo"
 
             android:layout_width="0dp"
             android:layout_height="128dp"
 
-            android:background="@drawable/ic_logo"
+            android:src="@drawable/ic_logo"
 
             app:layout_constraintBottom_toTopOf="@id/text_welcome"
 
             app:layout_constraintDimensionRatio="H, 1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:id="@+id/text_welcome"
@@ -66,13 +67,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_welcome">
 
-            <View
+            <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
 
                 android:layout_margin="20dp"
 
-                android:background="@drawable/ic_check_mark" />
+                android:src="@drawable/ic_check_mark"
+                android:contentDescription="@string/user_solution_title" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -117,13 +119,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout_solution">
 
-            <View
+            <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
 
                 android:layout_margin="20dp"
 
-                android:background="@drawable/ic_data_notifications_view" />
+                android:src="@drawable/ic_data_notifications_view"
+                android:contentDescription="@string/data_view_and_notifications" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -168,13 +171,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout_notifications_view">
 
-            <View
+            <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
 
                 android:layout_margin="20dp"
 
-                android:background="@drawable/ic_lock" />
+                android:src="@drawable/ic_lock"
+                android:contentDescription="@string/confidential_and_secure" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
