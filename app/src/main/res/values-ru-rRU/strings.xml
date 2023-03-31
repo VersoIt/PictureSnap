@@ -17,6 +17,13 @@
     <string name="passwords_and_notifications">Ваши пароли и сообщения защищены шифрованием.</string>
     <string name="notifications_moment">Вы будете в момент извещены о   событиях (Новая бронь, новое сообщение от пользователя).</string>
     <string name="sign_up">Зарегистрироваться</string>
-    <string name="log_in">Войти</string>
     <string name="overview">Обзор</string>
+    <string name="login">Войти</string>
+    <string name="authorization">Авторизация</string>
+    <string name="necessarily">Обязательно</string>
+    <string name="password">Пароль</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="i_am_client">Я клиент</string>
+    <string name="i_am_photograph">Я фотограф</string>
+    <string name="favourite">Избранные</string>
 </resources>

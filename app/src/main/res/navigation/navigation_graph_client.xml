@@ -12,7 +12,12 @@
 
     <fragment
         android:id="@+id/unregisteredHome"
-        android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredHome"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredWelcome"
         android:label="fragment_unregistered_home"
-        tools:layout="@layout/fragment_unregistered_home" />
+        tools:layout="@layout/fragment_unregistered_welcome" />
+    <fragment
+        android:id="@+id/favorites"
+        android:name="ru.verso.picturesnap.Favorites"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

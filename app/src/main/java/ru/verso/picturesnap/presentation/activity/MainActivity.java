@@ -1,5 +1,6 @@
 package ru.verso.picturesnap.presentation.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        BottomNavigationView bottomNavigationView = binding.bottomNavigationViewMenu;
-        NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView_controller);
-        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+        Intent intent = new Intent(this, ClientActivity.class);
+        startActivity(intent);
+
+        finish();
     }
 }

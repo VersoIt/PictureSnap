@@ -5,24 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_log_in"
+    <include
+        layout="@layout/layout_login_button"/>
 
-        style="@style/purpleTextButton.roundedPurpleButton"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:text="@string/log_in" />
-
-    <Button
-        android:id="@+id/button_sign_up"
-
-        style="@style/purpleTextButton.transparentButton"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:text="@string/sign_up" />
+    <include
+        layout="@layout/layout_signup_button"/>
 
 </LinearLayout>

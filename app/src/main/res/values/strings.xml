@@ -10,6 +10,7 @@
 
     <string name="profile">Profile</string>
     <string name="home">Home</string>
+    <string name="favourite">Favourite</string>
     <string name="welcome">Welcome</string>
 
     <string name="user_solution_title">Decision for you</string>
@@ -19,7 +20,16 @@
     <string name="passwords_and_notifications">Your passwords and messages are protected encryption.</string>
     <string name="notifications_moment">You will be notified at the moment events (new booking, new message from the user).</string>
 
-    <string name="log_in">Log in</string>
+    <string name="login">Login</string>
     <string name="sign_up">Sign up</string>
+    <string name="authorization">Authorization</string>
     <string name="overview">Overview</string>
+
+    <string name="email" translatable="false">Email</string>
+    <string name="necessarily">Necessarily</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password?</string>
+
+    <string name="i_am_client">I am client</string>
+    <string name="i_am_photograph">I am photograph</string>
 </resources>

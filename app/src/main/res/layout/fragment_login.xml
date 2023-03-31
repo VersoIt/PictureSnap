@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_inputFields"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.8"
+
+        app:layout_constraintBottom_toTopOf="@id/button_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView_header"
+            style="@style/header_text"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:text="@string/authorization"
+
+            app:layout_constraintBottom_toTopOf="@id/linearLayout_inputFields"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_inputFields"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_white_rounded_corners"
+
+            android:orientation="vertical"
+
+            app:layout_constraintBottom_toBottomOf="@id/textView_forgetPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_header">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+
+                android:orientation="horizontal"
+
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/caption_text"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_margin="12dp"
+
+                    android:text="@string/email" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:autofillHints="emailAddress"
+
+                    android:background="@drawable/transparent"
+
+                    android:hint="@string/necessarily"
+                    android:inputType="textEmailAddress"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="315dp"
+                android:layout_height="1dp"
+
+                android:layout_gravity="end"
+
+                android:background="@drawable/rectangle_grey_border_rounded_corners" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+
+                android:orientation="horizontal"
+
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/caption_text"
+                    android:layout_width="75dp"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_margin="12dp"
+                    android:text="@string/password" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:autofillHints="emailAddress"
+
+                    android:background="@drawable/transparent"
+
+                    android:hint="@string/necessarily"
+                    android:inputType="textEmailAddress"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_forgetPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+
+            android:text="@string/forgot_password"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_inputFields" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/button_login"
+        layout="@layout/layout_login_button"
+
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.8"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout_inputFields"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
