@@ -32,4 +32,8 @@
 
     <string name="i_am_client">I am client</string>
     <string name="i_am_photograph">I am photograph</string>
+
+    <string name="retry">Try again</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="connect_device">Connect your device and try again.</string>
 </resources>

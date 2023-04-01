@@ -26,4 +26,7 @@
     <string name="i_am_client">Я клиент</string>
     <string name="i_am_photograph">Я фотограф</string>
     <string name="favourite">Избранные</string>
+    <string name="retry">Повторить попытку</string>
+    <string name="no_internet_connection">Нет подключения к интернету</string>
+    <string name="connect_device">Подключите устройство к интернету и повторите попытку.</string>
 </resources>

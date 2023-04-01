@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 
 import ru.verso.picturesnap.R;
 
-public class UnregisteredToolbar extends Fragment {
+public class Favorites extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_unregistered_toolbar, container, false);
+        return inflater.inflate(R.layout.fragment_favorites, container, false);
     }
 }
