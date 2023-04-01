@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="caption_text">
+    <style name="captionText">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="header_text">
+    <style name="headerText">
         <item name="android:layout_margin">10dp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">32sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="headerText.topHeader">
+        <item name="android:layout_marginStart">30dp</item>
     </style>
 
     <style name="purpleTextButton">
@@ -24,11 +28,11 @@
     </style>
 
     <style name="whiteTextButton.purpleButton">
-        <item name="android:background">@drawable/rectangle_purple_rounded_corners</item>
+        <item name="android:background">@drawable/rect_purple</item>
     </style>
 
     <style name="purpleTextButton.roundedPurpleButton">
-        <item name="android:background">@drawable/rectangle_purple_border_rounded_corners</item>
+        <item name="android:background">@drawable/rect_purple_border</item>
     </style>
 
     <style name="search_text">
@@ -45,11 +49,15 @@
         <item name="android:paddingVertical">6dp</item>
         <item name="android:textColorHint">@color/grey</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:background">@drawable/rectangle_grey_border_rounded_corners</item>
+        <item name="android:background">@drawable/rect_grey</item>
     </style>
 
     <style name="purpleTextButton.transparentButton">
         <item name="android:background">@drawable/transparent</item>
+    </style>
+
+    <style name="dataInputField">
+        <item name="android:padding">16dp</item>
     </style>
 
 </resources>

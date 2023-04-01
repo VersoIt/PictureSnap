@@ -1,4 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="corner_radius">10dp</dimen>
+    <dimen name="header_margin_top">60dp</dimen>
 </resources>

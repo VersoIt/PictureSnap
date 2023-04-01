@@ -29,4 +29,9 @@
     <string name="retry">Повторить попытку</string>
     <string name="no_internet_connection">Нет подключения к интернету</string>
     <string name="connect_device">Подключите устройство к интернету и повторите попытку.</string>
+    <string name="bank_card_link">Привязка карты</string>
+    <string name="save">Сохранить</string>
+    <string name="bank_card">Карта</string>
+    <string name="bank_card_number">Номер карты</string>
+    <string name="month_and_year">Месяц/Год</string>
 </resources>

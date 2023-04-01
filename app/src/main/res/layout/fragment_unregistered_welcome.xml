@@ -6,7 +6,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectangle_white_rounded_corners"
+    android:background="@drawable/rect_white"
 
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/text_welcome"
-        style="@style/header_text"
+        style="@style/headerText"
 
         android:layout_width="wrap_content"
 
@@ -82,7 +82,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                style="@style/caption_text"
+                style="@style/captionText"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                style="@style/caption_text"
+                style="@style/captionText"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                style="@style/caption_text"
+                style="@style/captionText"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

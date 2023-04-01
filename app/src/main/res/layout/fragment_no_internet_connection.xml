@@ -23,7 +23,7 @@
         <TextView
             android:id="@+id/textView_no_connection"
 
-            style="@style/header_text"
+            style="@style/headerText"
             android:textStyle="normal"
 
             android:textAlignment="center"
@@ -42,7 +42,7 @@
         <TextView
             android:id="@+id/textView_error_description"
 
-            style="@style/caption_text"
+            style="@style/captionText"
 
             android:textAlignment="center"
             android:layout_margin="20dp"

@@ -36,4 +36,11 @@
     <string name="retry">Try again</string>
     <string name="no_internet_connection">No internet connection</string>
     <string name="connect_device">Connect your device and try again.</string>
+    <string name="bank_card_link">Linking a card</string>
+    <string name="bank_card">Card</string>
+
+    <string name="bank_card_number">Card number</string>
+    <string name="save">Save</string>
+    <string name="month_and_year">Month/Year</string>
+    <string name="CVC_CVV" translatable="false">CVC/CVV</string>
 </resources>
