@@ -32,7 +32,7 @@
 
         <LinearLayout
             android:id="@+id/linearLayout_inputFields"
-            style="@style/inputFields_container">
+            style="@style/fieldsContainer">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,13 +43,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    style="@style/captionText.labelForInput"
-                    android:layout_width="40dp"
+                    style="@style/standardText.labelForInput"
+                    android:layout_width="60dp"
 
                     android:text="@string/code" />
 
                 <EditText
-                    style="@style/inputField"
+                    style="@style/textField.input"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

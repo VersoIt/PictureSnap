@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            style="@style/purpleTextButton.roundedPurpleButton"
+            style="@style/standardText.purple.roundedPurpleBackground"
 
             android:text="@string/i_am_client"
 
@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            style="@style/whiteTextButton.purpleButton"
+            style="@style/standardText.white.purpleBackground"
             android:text="@string/i_am_photograph"
 
             app:layout_constraintWidth_default="percent"

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/button_signup"
 
-    style="@style/purpleTextButton.transparentButton"
+    style="@style/standardText.purple.transparentBackground"
 
     android:foreground="?attr/selectableItemBackgroundBorderless"
 

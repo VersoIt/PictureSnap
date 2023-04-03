@@ -61,4 +61,8 @@
     <string name="portfolio">Portfolio</string>
     <string name="about_photograph">About photograph</string>
     <string name="services">Services</string>
+
+    <string name="leave">Leave</string>
+    <string name="report">Report</string>
+    <string name="edit_name">Edit name</string>
 </resources>

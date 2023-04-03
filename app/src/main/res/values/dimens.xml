@@ -3,4 +3,7 @@
     <dimen name="corner_radius">10dp</dimen>
     <dimen name="base_elements_margin">60dp</dimen>
     <dimen name="layout_width_percent_block">0.85</dimen>
+    <dimen name="standardTextSize">16sp</dimen>
+    <dimen name="headerTextSize">32sp</dimen>
+    <dimen name="labelTextSize">16sp</dimen>
 </resources>

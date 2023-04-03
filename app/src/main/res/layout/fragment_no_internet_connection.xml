@@ -42,7 +42,7 @@
         <TextView
             android:id="@+id/textView_error_description"
 
-            style="@style/captionText"
+            style="@style/standardText"
 
             android:textAlignment="center"
             android:layout_margin="20dp"
@@ -62,7 +62,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_retry"
 
-        style="@style/purpleTextButton.roundedPurpleButton"
+        style="@style/standardText.purple.roundedPurpleBackground"
 
         android:layout_width="0dp"
         android:layout_height="wrap_content"

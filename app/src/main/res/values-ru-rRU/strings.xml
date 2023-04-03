@@ -52,4 +52,7 @@
     <string name="portfolio">Портфолио</string>
     <string name="about_photograph">О фотографе</string>
     <string name="services">Услуги</string>
+    <string name="leave">Выйти</string>
+    <string name="report">Пожаловаться</string>
+    <string name="edit_name">Изменить имя</string>
 </resources>

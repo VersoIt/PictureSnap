@@ -1,0 +1,80 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@drawable/rect_white"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/textField"
+
+        app:drawableStartCompat="@drawable/ic_email"
+        tools:text="email@gmail.com" />
+
+    <View style="@style/fieldSeparator" />
+
+    <TextView
+        style="@style/textField"
+
+        app:drawableStartCompat="@drawable/ic_smartphone"
+        tools:text="+7 (977) 112-01-18" />
+
+    <View style="@style/fieldSeparator" />
+
+    <TextView
+        style="@style/textField"
+
+        android:text="@string/working_days"
+        app:drawableEndCompat="@drawable/ic_keyboard_arrow_top"
+        app:drawableStartCompat="@drawable/ic_work_history" />
+
+    <View style="@style/fieldSeparator" />
+
+    <TextView
+        style="@style/textField"
+
+        app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+        app:drawableStartCompat="@drawable/ic_location_on"
+        tools:text="Москва, Проспект Вернадского 86, строение 1" />
+
+    <View style="@style/fieldSeparator" />
+
+    <TextView
+        style="@style/textField"
+
+        android:text="@string/services"
+        app:drawableEndCompat="@drawable/ic_keyboard_arrow_top"
+        app:drawableStartCompat="@drawable/ic_services" />
+
+    <View style="@style/fieldSeparator" />
+
+    <TextView
+        style="@style/textField"
+
+        android:text="@string/about_photograph"
+        app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+        app:drawableStartCompat="@drawable/ic_description" />
+
+    <View style="@style/fieldSeparator" />
+
+    <TextView
+        style="@style/textField"
+
+        android:text="@string/portfolio"
+        app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+        app:drawableStartCompat="@drawable/ic_portfolio" />
+
+    <View style="@style/fieldSeparator" />
+
+    <TextView
+        style="@style/textField"
+
+        android:text="@string/ratings_and_reviews"
+        app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+        app:drawableStartCompat="@drawable/ic_reviews" />
+
+</LinearLayout>

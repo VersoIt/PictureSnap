@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.AppCompatButton
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/button_login"
-
-    style="@style/standardText.purple.roundedPurpleBackground"
+    android:id="@+id/appCompatButton_report"
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    android:text="@string/login" />
+    android:background="@drawable/rect_white"
+    android:textColor="@android:color/holo_red_dark"
+
+    android:text="@string/leave" />

@@ -1,103 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="captionText">
+    <style name="standardText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/standardTextSize</item>
     </style>
 
-    <style name="inputField">
+    <style name="textField.input">
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:layout_marginHorizontal">0dp</item>
     </style>
 
-    <style name="captionText.labelForInput">
+    <style name="standardText.labelForInput">
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
-        <item name="android:layout_marginHorizontal">12dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:paddingStart">12dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-    </style>
-
-    <style name="headerText">
-        <item name="android:layout_margin">10dp</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">32sp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="fieldSeparator">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_gravity">end</item>
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginVertical">12dp</item>
+        <item name="android:layout_marginStart">12dp</item>
         <item name="android:background">@drawable/rect_grey</item>
     </style>
 
-    <style name="inputFields_container">
+    <style name="headerText">
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/headerTextSize</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="fieldsContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/rect_white</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:paddingVertical">12dp</item>
     </style>
 
-    <style name="profileTextField">
+    <style name="textField">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginHorizontal">12dp</item>
         <item name="android:drawablePadding">12dp</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
+        <item name="android:paddingVertical">12dp</item>
+    </style>
+
+    <style name="textField.bankCard">
+        <item name="android:padding">16dp</item>
     </style>
 
     <style name="headerText.topHeader">
         <item name="android:layout_marginStart">30dp</item>
     </style>
 
-    <style name="purpleTextButton">
+    <style name="standardText.purple">
         <item name="android:textColor">@color/primary</item>
-        <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="whiteTextButton">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="whiteTextButton.purpleButton">
+    <style name="standardText.white.purpleBackground">
         <item name="android:background">@drawable/rect_purple</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="purpleTextButton.roundedPurpleButton">
+    <style name="standardText.white">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="standardText.purple.roundedPurpleBackground">
         <item name="android:background">@drawable/rect_purple_border</item>
     </style>
 
-    <style name="searchText">
-        android:textSize="16sp"
-    </style>
-
-    <style name="search_field">
-        <item name="android:inputType">text</item>
+    <style name="textField.search">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">text</item>
         <item name="android:drawableStart">@drawable/ic_search</item>
-        <item name="android:drawablePadding">8dp</item>
-        <item name="android:paddingHorizontal">10dp</item>
+        <item name="android:paddingHorizontal">12dp</item>
         <item name="android:paddingVertical">6dp</item>
         <item name="android:textColorHint">@color/grey</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/standardTextSize</item>
         <item name="android:background">@drawable/rect_grey</item>
     </style>
 
-    <style name="purpleTextButton.transparentButton">
+    <style name="standardText.purple.transparentBackground">
         <item name="android:background">@drawable/transparent</item>
-    </style>
-
-    <style name="dataInputField">
-        <item name="android:padding">16dp</item>
     </style>
 
 </resources>

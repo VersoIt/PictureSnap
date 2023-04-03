@@ -42,7 +42,7 @@
 
     <EditText
         android:id="@+id/editText_search"
-        style="@style/search_field"
+        style="@style/textField.search"
 
         android:layout_marginVertical="10dp"
 

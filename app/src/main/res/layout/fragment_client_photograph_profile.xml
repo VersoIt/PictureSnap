@@ -51,41 +51,54 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_profile_name"
-        tools:text="@string/edit_name" />
+        tools:text="@string/write" />
 
     <include
         android:id="@+id/linearLayout_fieldsContainer"
-
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
         layout="@layout/layout_photograph_profile_fields"
 
-        android:layout_marginVertical="10dp"
-
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
-
-        app:layout_constraintBottom_toTopOf="@id/appCompatButton_report"
+        app:layout_constraintBottom_toTopOf="@id/button_book"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_write" />
+        app:layout_constraintTop_toBottomOf="@id/textView_write"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"/>
 
-    <include
-        layout="@layout/layout_leave_button"
-        android:id="@+id/appCompatButton_report"
-
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textView_report"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginVertical="10dp"
+        android:textColor="@android:color/holo_red_dark"
 
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
+        android:text="@string/report"
+
+        android:layout_marginVertical="4dp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout_fieldsContainer" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_book"
+        style="@style/standardText.purple.roundedPurpleBackground"
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
+
+        android:text="@string/book"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_report"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
