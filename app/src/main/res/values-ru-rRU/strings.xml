@@ -47,7 +47,7 @@
     <string name="book">Забронировать</string>
     <string name="dev">Руслан Лященко</string>
     <string name="keep_in_safe_place">Сохраните пароль в надежном месте!</string>
-    <string name="working_days">Рабочие дни</string>
+    <string name="work_days">Рабочие дни</string>
     <string name="ratings_and_reviews">Оценки и отзывы</string>
     <string name="portfolio">Портфолио</string>
     <string name="about_photograph">О фотографе</string>
@@ -55,4 +55,7 @@
     <string name="leave">Выйти</string>
     <string name="report">Пожаловаться</string>
     <string name="edit_name">Изменить имя</string>
+    <string name="link_card">Привязать карту</string>
+    <string name="change_password">Сменить пароль</string>
+    <string name="login_account">Войдите в аккаунт, чтобы забронировать фотосессию</string>
 </resources>

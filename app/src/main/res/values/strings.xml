@@ -56,7 +56,7 @@
     <string name="ready">Ready</string>
     <string name="write">Write</string>
     <string name="book">Book</string>
-    <string name="working_days">Working days</string>
+    <string name="work_days">Working days</string>
     <string name="ratings_and_reviews">Ratings and reviews</string>
     <string name="portfolio">Portfolio</string>
     <string name="about_photograph">About photograph</string>
@@ -65,4 +65,7 @@
     <string name="leave">Leave</string>
     <string name="report">Report</string>
     <string name="edit_name">Edit name</string>
+    <string name="link_card">Link card</string>
+    <string name="change_password">Change password</string>
+    <string name="login_account">Log in to book your photoshoot</string>
 </resources>

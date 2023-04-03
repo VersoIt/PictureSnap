@@ -1,9 +1,12 @@
 <androidx.appcompat.widget.AppCompatButton
+    style="?android:attr/borderlessButtonStyle"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/appCompatButton_report"
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
+    android:textAllCaps="false"
 
     android:background="@drawable/rect_white"
     android:textColor="@android:color/holo_red_dark"
