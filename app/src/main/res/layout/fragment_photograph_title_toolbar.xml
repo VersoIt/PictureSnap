@@ -53,8 +53,6 @@
         android:singleLine="true"
         android:ellipsize="end"
 
-        android:textStyle="bold"
-
         tools:text="Ковалева Ирина"
 
         app:layout_constraintBottom_toBottomOf="parent"

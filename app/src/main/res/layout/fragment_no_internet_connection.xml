@@ -70,11 +70,12 @@
         android:text="@string/retry"
 
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
+
+        android:layout_marginBottom="@dimen/base_elements_margin"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/constraintLayout_error_info"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

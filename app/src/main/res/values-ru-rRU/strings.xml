@@ -34,4 +34,22 @@
     <string name="bank_card">Карта</string>
     <string name="bank_card_number">Номер карты</string>
     <string name="month_and_year">Месяц/Год</string>
+    <string name="next">Далее</string>
+    <string name="password_recovery">Восстановление пароля</string>
+    <string name="enter_email">Введите ваш email</string>
+    <string name="enter_code">Введите код</string>
+    <string name="code">Код</string>
+    <string name="sent_code">Мы отправили код на почту</string>
+    <string name="new_password">Новый пароль</string>
+    <string name="creating_new_password">Создание нового пароля</string>
+    <string name="ready">Готово</string>
+    <string name="write">Написать</string>
+    <string name="book">Забронировать</string>
+    <string name="dev">Руслан Лященко</string>
+    <string name="keep_in_safe_place">Сохраните пароль в надежном месте!</string>
+    <string name="working_days">Рабочие дни</string>
+    <string name="ratings_and_reviews">Оценки и отзывы</string>
+    <string name="portfolio">Портфолио</string>
+    <string name="about_photograph">О фотографе</string>
+    <string name="services">Услуги</string>
 </resources>

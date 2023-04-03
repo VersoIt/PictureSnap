@@ -6,11 +6,51 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="inputField">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="captionText.labelForInput">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_marginHorizontal">12dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
     <style name="headerText">
         <item name="android:layout_margin">10dp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">32sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="fieldSeparator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginVertical">12dp</item>
+        <item name="android:background">@drawable/rect_grey</item>
+    </style>
+
+    <style name="inputFields_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/rect_white</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingVertical">12dp</item>
+    </style>
+
+    <style name="profileTextField">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal">12dp</item>
+        <item name="android:drawablePadding">12dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <style name="headerText.topHeader">
@@ -35,7 +75,7 @@
         <item name="android:background">@drawable/rect_purple_border</item>
     </style>
 
-    <style name="search_text">
+    <style name="searchText">
         android:textSize="16sp"
     </style>
 

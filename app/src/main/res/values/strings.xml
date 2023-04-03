@@ -2,6 +2,7 @@
     <string name="app_name">PictureSnap</string>
     <string name="search">Search by city, name, results</string>
     <string name="review">Overview</string>
+    <string name="dev">Ruslan Lyaschenko</string>
 
     <string name="photograph_fragment_home">Home</string>
     <string name="unregistered_fragment_home">Home</string>
@@ -32,6 +33,7 @@
 
     <string name="i_am_client">I am client</string>
     <string name="i_am_photograph">I am photograph</string>
+    <string name="keep_in_safe_place">Keep password in a safe place!</string>
 
     <string name="retry">Try again</string>
     <string name="no_internet_connection">No internet connection</string>
@@ -43,4 +45,20 @@
     <string name="save">Save</string>
     <string name="month_and_year">Month/Year</string>
     <string name="CVC_CVV" translatable="false">CVC/CVV</string>
+    <string name="next">Next</string>
+    <string name="password_recovery">Password recovery</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="enter_code">Enter code</string>
+    <string name="code">Code</string>
+    <string name="new_password">New password</string>
+    <string name="sent_code">We sent code to email</string>
+    <string name="creating_new_password">Creating a new password</string>
+    <string name="ready">Ready</string>
+    <string name="write">Write</string>
+    <string name="book">Book</string>
+    <string name="working_days">Working days</string>
+    <string name="ratings_and_reviews">Ratings and reviews</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="about_photograph">About photograph</string>
+    <string name="services">Services</string>
 </resources>

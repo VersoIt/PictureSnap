@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PhotographProfile">
+
+    <ImageView
+        android:id="@+id/imageView_avatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:scaleType="centerCrop"
+
+        android:background="@drawable/round_background"
+
+        android:contentDescription="@string/profile"
+        app:layout_constraintBottom_toTopOf="@id/textView_profile_name"
+        app:layout_constraintDimensionRatio="W, 1:1"
+
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.35" />
+
+    <TextView
+        android:id="@+id/textView_profile_name"
+        style="@style/headerText"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        tools:text="@string/dev"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_avatar"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout_info" />
+
+    <TextView
+        android:id="@+id/textView_write"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_profile_name"
+        tools:text="@string/write" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/rect_white"
+
+        android:orientation="vertical"
+        android:paddingVertical="12dp"
+
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_book"
+        app:layout_constraintTop_toBottomOf="@id/textView_write">
+
+        <TextView
+            style="@style/profileTextField"
+
+            app:drawableStartCompat="@drawable/ic_email"
+            tools:text="email@gmail.com" />
+
+        <View
+            style="@style/fieldSeparator" />
+
+        <TextView
+            style="@style/profileTextField"
+
+            app:drawableStartCompat="@drawable/ic_smartphone"
+            tools:text="+7 (977) 112-01-18" />
+
+        <View
+            style="@style/fieldSeparator" />
+
+        <TextView
+            style="@style/profileTextField"
+
+            app:drawableStartCompat="@drawable/ic_work_history"
+            app:drawableEndCompat="@drawable/ic_keyboard_arrow_top"
+            android:text="@string/working_days" />
+
+        <View
+            style="@style/fieldSeparator" />
+
+        <TextView
+            style="@style/profileTextField"
+
+            app:drawableStartCompat="@drawable/ic_location_on"
+            app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+            tools:text="Москва, Проспект Вернадского 86, строение 1" />
+
+        <View
+            style="@style/fieldSeparator" />
+
+        <TextView
+            style="@style/profileTextField"
+
+            app:drawableStartCompat="@drawable/ic_services"
+            app:drawableEndCompat="@drawable/ic_keyboard_arrow_top"
+            android:text="@string/services" />
+
+        <View
+            style="@style/fieldSeparator" />
+
+        <TextView
+            style="@style/profileTextField"
+
+            app:drawableStartCompat="@drawable/ic_description"
+            app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+            android:text="@string/about_photograph" />
+
+        <View
+            style="@style/fieldSeparator" />
+
+        <TextView
+            style="@style/profileTextField"
+
+            app:drawableStartCompat="@drawable/ic_portfolio"
+            app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+            android:text="@string/portfolio" />
+
+        <View
+            style="@style/fieldSeparator" />
+
+        <TextView
+            style="@style/profileTextField"
+
+            app:drawableStartCompat="@drawable/ic_reviews"
+            app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+            android:text="@string/ratings_and_reviews" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_book"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        style="@style/purpleTextButton.roundedPurpleButton"
+
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
+
+        android:text="@string/book"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_info" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

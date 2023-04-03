@@ -20,16 +20,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.8">
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block">
 
         <TextView
             android:id="@+id/textView_header"
             style="@style/headerText"
-
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
 
-            android:text="@string/authorization" />
+            android:layout_height="wrap_content"
+            android:text="@string/enter_code" />
 
         <LinearLayout
             android:id="@+id/linearLayout_inputFields"
@@ -45,41 +44,9 @@
 
                 <TextView
                     style="@style/captionText.labelForInput"
-                    android:layout_width="75dp"
+                    android:layout_width="40dp"
 
-                    android:text="@string/email" />
-
-                <EditText
-                    style="@style/inputField"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:autofillHints="emailAddress"
-                    android:background="@drawable/transparent"
-
-                    android:hint="@string/necessarily"
-                    android:inputType="textEmailAddress" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginStart="12dp"
-                style="@style/fieldSeparator" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:gravity="center"
-
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/captionText.labelForInput"
-                    android:layout_width="75dp"
-
-                    android:text="@string/password" />
+                    android:text="@string/code" />
 
                 <EditText
                     style="@style/inputField"
@@ -87,11 +54,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:autofillHints="password"
+                    android:autofillHints=""
                     android:background="@drawable/transparent"
 
                     android:hint="@string/necessarily"
-                    android:inputType="textPassword" />
+                    android:inputType="numberDecimal" />
 
             </LinearLayout>
 
@@ -104,23 +71,24 @@
 
             android:layout_margin="10dp"
 
-            android:text="@string/forgot_password"
+            android:text="@string/sent_code"
 
             android:textAlignment="center" />
+
 
     </LinearLayout>
 
     <include
         android:id="@+id/button_login"
-        layout="@layout/layout_login_button"
+        layout="@layout/layout_next_button"
 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
+        android:layout_marginBottom="@dimen/base_elements_margin"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-        android:layout_marginBottom="@dimen/base_elements_margin"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_default="percent"

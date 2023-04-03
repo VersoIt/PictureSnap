@@ -219,6 +219,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout_confidentiality_view"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.9" />
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
