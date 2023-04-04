@@ -58,4 +58,5 @@
     <string name="link_card">Привязать карту</string>
     <string name="change_password">Сменить пароль</string>
     <string name="login_account">Войдите в аккаунт, чтобы забронировать фотосессию</string>
+    <string name="menu">Меню</string>
 </resources>

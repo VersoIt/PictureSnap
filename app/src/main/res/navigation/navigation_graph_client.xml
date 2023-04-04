@@ -16,8 +16,8 @@
         android:label="fragment_unregistered_home"
         tools:layout="@layout/fragment_unregistered_welcome" />
     <fragment
-        android:id="@+id/favorites"
+        android:id="@+id/menu"
         android:name="ru.verso.picturesnap.presentation.fragments.client.Favorites"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_menu" />
 </navigation>

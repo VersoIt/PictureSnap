@@ -1,0 +1,49 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@drawable/rect_white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView_email"
+        style="@style/textField"
+
+        app:drawableStartCompat="@drawable/ic_email"
+        tools:text="email@gmail.com" />
+
+    <View style="@style/fieldSeparator" />
+
+    <TextView
+        android:id="@+id/textView_location"
+        style="@style/textField"
+
+        app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+        app:drawableStartCompat="@drawable/ic_location_on"
+        tools:text="Москва, Проспект Вернадского 86, строение 1" />
+
+    <View style="@style/fieldSeparator" />
+
+    <TextView
+        android:id="@+id/textView_link_bank_card"
+        style="@style/textField"
+
+        android:text="@string/link_card"
+        app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+        app:drawableStartCompat="@drawable/ic_credit_card" />
+
+    <View style="@style/fieldSeparator" />
+
+    <TextView
+        android:id="@+id/textView_changePassword"
+        style="@style/textField"
+
+        android:text="@string/change_password"
+        app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+        app:drawableStartCompat="@drawable/ic_lock" />
+
+</LinearLayout>

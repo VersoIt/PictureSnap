@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            style="@style/standardText.purple.roundedPurpleBackground"
+            style="@style/standardText.purple.purpleBorder"
 
             android:text="@string/i_am_client"
 

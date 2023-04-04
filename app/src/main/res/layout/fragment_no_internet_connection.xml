@@ -62,7 +62,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_retry"
 
-        style="@style/standardText.purple.roundedPurpleBackground"
+        style="@style/standardText.purple.purpleBorder"
 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
