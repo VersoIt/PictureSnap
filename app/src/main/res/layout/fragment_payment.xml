@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@id/textView_payment_header" />
 
     <include
-        android:id="@+id/appCompatButton_next"
+        android:id="@+id/appCompatButton_send"
         layout="@layout/layout_next_button"
 
         android:layout_width="0dp"

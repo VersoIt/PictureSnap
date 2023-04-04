@@ -7,7 +7,7 @@
     tools:context=".presentation.fragments.client.ServiceSelectionForClient">
 
     <TextView
-        android:id="@+id/textView_datetime_header"
+        android:id="@+id/textView_feedback_header"
         style="@style/headerText.largeMargin"
 
         android:layout_width="0dp"
@@ -30,7 +30,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_datetime_header" />
+        app:layout_constraintTop_toBottomOf="@id/textView_feedback_header" />
 
     <TextView
         android:id="@+id/textView_services_selection"
@@ -52,7 +52,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_datetime_header" />
+        app:layout_constraintTop_toBottomOf="@id/textView_feedback_header" />
 
     <TextView
         android:id="@+id/textView_hours_selection"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@id/textView_services_selection" />
 
     <include
-        android:id="@+id/appCompatButton_next"
+        android:id="@+id/appCompatButton_send"
         layout="@layout/layout_next_button"
 
         android:layout_width="0dp"

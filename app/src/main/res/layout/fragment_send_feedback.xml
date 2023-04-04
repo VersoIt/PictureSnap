@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragments.client.DatetimeSelectionForClient">
+    tools:context=".presentation.fragments.client.SendFeedback">
 
     <TextView
         android:id="@+id/textView_feedback_header"
@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
-        android:text="@string/datetime_selection"
+        android:text="@string/feedback"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,51 +32,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView_feedback_header" />
 
-    <TextView
-        android:id="@+id/textView_services_selection"
-        style="@style/textField.selection"
-
-        android:layout_width="0dp"
-
-        android:background="@drawable/rect_white"
+    <include
+        android:id="@+id/linearLayout_rating_selection"
+        layout="@layout/layout_stars_rating_selection"
 
         android:layout_marginTop="@dimen/large_margin"
 
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
-
-        android:text="@string/date_selection"
-        app:drawableEndCompat="@drawable/ic_keyboard_arrow_top"
-        app:drawableStartCompat="@drawable/ic_date"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_feedback_header" />
-
-    <TextView
-        android:id="@+id/textView_time_selection"
-        style="@style/textField.selection"
-
         android:layout_width="0dp"
-
-        android:layout_marginTop="@dimen/middle_margin"
-
-        android:text="@string/time_selection"
-        android:background="@drawable/rect_white"
+        android:layout_height="wrap_content"
 
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
 
-        app:drawableStartCompat="@drawable/ic_time"
-        app:drawableEndCompat="@drawable/ic_keyboard_arrow_bottom"
-
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_services_selection" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_feedback_header"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+
+        android:layout_marginTop="@dimen/small_margin"
+
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_rating_selection">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginVertical="@dimen/small_margin"
+
+            android:text="@string/description"/>
+
+        <EditText
+
+            android:padding="12dp"
+
+            android:autoSizeTextType="uniform"
+            android:minLines="8"
+
+            android:background="@drawable/rect_white"
+            android:hint="@string/describe_feedback"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:autofillHints=""
+            android:inputType="text" />
+
+    </LinearLayout>
 
     <include
         android:id="@+id/appCompatButton_send"
-        layout="@layout/layout_next_button"
+        layout="@layout/layout_send_button"
 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -84,7 +100,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@id/textView_time_selection"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />

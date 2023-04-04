@@ -71,4 +71,8 @@
     <string name="date_selection">Выберите дату</string>
     <string name="time_selection">Выберите подходящее время</string>
     <string name="total">Итого</string>
+    <string name="send">Отправить</string>
+    <string name="feedback">Отзыв</string>
+    <string name="description">Описание</string>
+    <string name="describe_feedback">Опишите кратко качество услуг мастера</string>
 </resources>
