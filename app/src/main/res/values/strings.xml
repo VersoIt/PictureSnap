@@ -69,4 +69,9 @@
     <string name="change_password">Change password</string>
     <string name="login_account">Log in to book your photoshoot</string>
     <string name="menu">Menu</string>
+    <string name="client_registration">Client registration</string>
+    <string name="contract">By clicking on the \"signup\" button, you agree to the processing of personal data.</string>
+    <string name="city">City</string>
+    <string name="first_name">Имя</string>
+    <string name="last_name">Фамилия</string>
 </resources>

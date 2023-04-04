@@ -59,4 +59,9 @@
     <string name="change_password">Сменить пароль</string>
     <string name="login_account">Войдите в аккаунт, чтобы забронировать фотосессию</string>
     <string name="menu">Меню</string>
+    <string name="client_registration">Регистрация - клиент</string>
+    <string name="contract">Нажимая на кнопку \"зарегистрироваться\" вы соглашаетесь на обработку персональных данных.</string>
+    <string name="city">Город</string>
+    <string name="first_name">Имя</string>
+    <string name="last_name">Фамилия</string>
 </resources>

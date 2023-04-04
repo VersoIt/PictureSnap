@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragments.client.ClientRegistration">
+
+    <LinearLayout
+        android:id="@+id/constraintLayout_inputFields"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/base_elements_margin"
+
+        android:orientation="vertical"
+
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.8">
+
+        <TextView
+            android:id="@+id/textView_header"
+            style="@style/headerText"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/client_registration" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_inputFields"
+            style="@style/fieldsContainer">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/standardText.labelForInput"
+                    android:layout_width="85dp"
+
+                    android:text="@string/first_name" />
+
+                <EditText
+                    style="@style/textField.input"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:autofillHints="name"
+                    android:background="@drawable/transparent"
+
+                    android:hint="@string/necessarily"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginStart="12dp"
+                style="@style/fieldSeparator" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/standardText.labelForInput"
+                    android:layout_width="85dp"
+
+                    android:text="@string/last_name" />
+
+                <EditText
+                    style="@style/textField.input"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:autofillHints="name"
+                    android:background="@drawable/transparent"
+
+                    android:hint="@string/necessarily"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginStart="12dp"
+                style="@style/fieldSeparator" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/standardText.labelForInput"
+                    android:layout_width="85dp"
+
+                    android:text="@string/email" />
+
+                <EditText
+                    style="@style/textField.input"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:autofillHints="emailAddress"
+                    android:background="@drawable/transparent"
+
+                    android:hint="@string/necessarily"
+                    android:inputType="textEmailAddress" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginStart="12dp"
+                style="@style/fieldSeparator" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/standardText.labelForInput"
+                    android:layout_width="85dp"
+
+                    android:text="@string/password" />
+
+                <EditText
+                    style="@style/textField.input"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:autofillHints="password"
+                    android:background="@drawable/transparent"
+
+                    android:hint="@string/necessarily"
+                    android:inputType="textPassword" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginStart="12dp"
+                style="@style/fieldSeparator" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/standardText.labelForInput"
+                    android:layout_width="85dp"
+
+                    android:text="@string/city" />
+
+                <EditText
+                    style="@style/textField.input"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:autofillHints=""
+                    android:background="@drawable/transparent"
+
+                    android:hint="@string/necessarily"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_forgetPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+
+            android:text="@string/contract"
+
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/button_signup"
+        layout="@layout/layout_signup_button"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginBottom="@dimen/base_elements_margin"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

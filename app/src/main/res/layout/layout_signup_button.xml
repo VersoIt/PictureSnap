@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button
+<androidx.appcompat.widget.AppCompatButton
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/button_signup"
 
-    style="@style/standardText.purple.transparentBackground"
+    style="@style/standardText.purple.purpleBorder"
 
     android:foreground="?attr/selectableItemBackgroundBorderless"
 
