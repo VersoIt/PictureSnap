@@ -72,6 +72,13 @@
     <string name="client_registration">Client registration</string>
     <string name="contract">By clicking on the \"signup\" button, you agree to the processing of personal data.</string>
     <string name="city">City</string>
-    <string name="first_name">Имя</string>
-    <string name="last_name">Фамилия</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="service_selection">Service selection</string>
+    <string name="service_select">Select service</string>
+    <string name="hours_select">Hours select</string>
+    <string name="datetime_selection">Date and time selection</string>
+    <string name="date_selection">Select date</string>
+    <string name="total">Total</string>
+    <string name="time_selection">Select time</string>
 </resources>

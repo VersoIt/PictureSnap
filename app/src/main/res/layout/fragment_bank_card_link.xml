@@ -25,7 +25,7 @@
 
             android:paddingHorizontal="10dp"
 
-            style="@style/headerText.topHeader"
+            style="@style/headerText.largeMargin"
 
             android:layout_margin="16dp"
 

@@ -8,4 +8,7 @@
     <dimen name="labelTextSize">16sp</dimen>
     <dimen name="margin_vertical_avatar">25dp</dimen>
     <dimen name="avatar_width_percent">0.35</dimen>
+    <dimen name="large_margin">50dp</dimen>
+    <dimen name="middle_margin">20dp</dimen>
+    <dimen name="small_margin">10dp</dimen>
 </resources>

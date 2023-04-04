@@ -64,4 +64,11 @@
     <string name="city">Город</string>
     <string name="first_name">Имя</string>
     <string name="last_name">Фамилия</string>
+    <string name="service_selection">Выбор услуги</string>
+    <string name="service_select">Выберите услугу</string>
+    <string name="hours_select">Выберите количество часов</string>
+    <string name="datetime_selection">Выбор даты и времени</string>
+    <string name="date_selection">Выберите дату</string>
+    <string name="time_selection">Выберите подходящее время</string>
+    <string name="total">Итого</string>
 </resources>

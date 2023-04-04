@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragments.client.DatetimeSelectionForClient">
+
+    <TextView
+        android:id="@+id/textView_datetime_header"
+        style="@style/headerText.largeMargin"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:text="@string/datetime_selection"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
+
+    <View
+        style="@style/fieldSeparator.header"
+
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_datetime_header" />
+
+    <TextView
+        android:id="@+id/textView_services_selection"
+        style="@style/textField.selection"
+
+        android:layout_width="0dp"
+
+        android:background="@drawable/rect_white"
+
+        android:layout_marginTop="@dimen/large_margin"
+
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
+
+        android:text="@string/date_selection"
+        app:drawableEndCompat="@drawable/ic_keyboard_arrow_top"
+        app:drawableStartCompat="@drawable/ic_date"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_datetime_header" />
+
+    <TextView
+        android:id="@+id/textView_time_selection"
+        style="@style/textField.selection"
+
+        android:layout_width="0dp"
+
+        android:layout_marginTop="@dimen/middle_margin"
+
+        android:text="@string/time_selection"
+        android:background="@drawable/rect_white"
+
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
+
+        app:drawableStartCompat="@drawable/ic_time"
+        app:drawableEndCompat="@drawable/ic_keyboard_arrow_bottom"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_services_selection" />
+
+    <include
+        android:id="@+id/appCompatButton_next"
+        layout="@layout/layout_next_button"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/textView_time_selection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
