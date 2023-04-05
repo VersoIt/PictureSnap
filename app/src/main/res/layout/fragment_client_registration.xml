@@ -7,7 +7,7 @@
     tools:context=".presentation.fragments.client.ClientRegistration">
 
     <LinearLayout
-        android:id="@+id/constraintLayout_inputFields"
+        android:id="@+id/linearLayout_input_fields_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
@@ -32,7 +32,7 @@
             android:text="@string/client_registration" />
 
         <LinearLayout
-            android:id="@+id/linearLayout_inputFields"
+            android:id="@+id/linearLayout_input_fields"
             style="@style/fieldsContainer">
 
             <LinearLayout
@@ -193,18 +193,24 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView_forgetPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_margin="10dp"
-
-            android:text="@string/contract"
-
-            android:textAlignment="center" />
-
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_forget_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        style="@style/additionText"
+
+        android:layout_margin="10dp"
+
+        android:text="@string/contract"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_input_fields_container"
+
+        android:textAlignment="center" />
 
     <include
         android:id="@+id/button_signup"
@@ -216,7 +222,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
-        android:layout_marginBottom="@dimen/base_elements_margin"
+        app:layout_constraintTop_toBottomOf="@id/textView_forget_password"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_default="percent"

@@ -60,7 +60,7 @@
     <string name="login_account">Войдите в аккаунт, чтобы забронировать фотосессию</string>
     <string name="menu">Меню</string>
     <string name="client_registration">Регистрация - клиент</string>
-    <string name="contract">Нажимая на кнопку \"зарегистрироваться\" вы соглашаетесь на обработку персональных данных.</string>
+    <string name="contract">Нажимая на кнопку \"Зарегистрироваться\" вы соглашаетесь на обработку персональных данных.</string>
     <string name="city">Город</string>
     <string name="first_name">Имя</string>
     <string name="last_name">Фамилия</string>
@@ -75,4 +75,20 @@
     <string name="feedback">Отзыв</string>
     <string name="description">Описание</string>
     <string name="describe_feedback">Опишите кратко качество услуг мастера</string>
+    <string name="photograph_signup">Регистрация - фотограф</string>
+    <string name="address">Адрес</string>
+    <string name="select_address">Выберите адрес на карте</string>
+    <string name="phone">Телефон</string>
+    <string name="days">Дни</string>
+    <string name="select_working_days">Выберите рабочие дни</string>
+    <string name="experience">Стаж</string>
+    <string name="one_year">1 год</string>
+    <string name="two_years">2 года</string>
+    <string name="three_years">3 года</string>
+    <string name="four_years">4 года</string>
+    <string name="five_years">5 года</string>
+    <string name="more_five_years">> 5 лет</string>
+    <string name="about_me">Обо мне</string>
+    <string name="write_about_you">Напишите вкратце о себе</string>
+    <string name="select_services">Выберите услуги</string>
 </resources>

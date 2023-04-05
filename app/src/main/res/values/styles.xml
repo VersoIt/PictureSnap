@@ -107,4 +107,8 @@
         <item name="android:background">@drawable/transparent</item>
     </style>
 
+    <style name="additionText">
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
 </resources>

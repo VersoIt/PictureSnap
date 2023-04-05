@@ -70,7 +70,7 @@
     <string name="login_account">Log in to book your photoshoot</string>
     <string name="menu">Menu</string>
     <string name="client_registration">Client registration</string>
-    <string name="contract">By clicking on the \"signup\" button, you agree to the processing of personal data.</string>
+    <string name="contract">By clicking on the \"Signup\" button, you agree to the processing of personal data.</string>
     <string name="city">City</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
@@ -85,4 +85,20 @@
     <string name="feedback">Feedback</string>
     <string name="description">Description</string>
     <string name="describe_feedback">Briefly describe the quality of services of the master</string>
+    <string name="photograph_signup">Sign up - photograph</string>
+    <string name="address">Address</string>
+    <string name="select_address">Choose an address on the map</string>
+    <string name="phone">Phone</string>
+    <string name="days">Days</string>
+    <string name="select_working_days">Select working days</string>
+    <string name="experience">Experience</string>
+    <string name="one_year">1 year</string>
+    <string name="two_years">2 years</string>
+    <string name="three_years">3 years</string>
+    <string name="four_years">4 years</string>
+    <string name="five_years">5 years</string>
+    <string name="more_five_years">> 5 years</string>
+    <string name="about_me">About me</string>
+    <string name="write_about_you">Write briefly about yourself</string>
+    <string name="select_services">Select services</string>
 </resources>

@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.common.NoInternetConnection">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout_error_info"
+    <LinearLayout
+        android:id="@+id/linearLayout_error_info"
 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+
+        android:orientation="vertical"
 
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.8"
@@ -18,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button_retry">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/textView_no_connection"
@@ -57,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@id/textView_no_connection"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_retry"
@@ -72,8 +74,7 @@
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
 
-        android:layout_marginBottom="@dimen/base_elements_margin"
-
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_error_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
