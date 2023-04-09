@@ -122,6 +122,7 @@
     </style>
 
     <style name="fieldsContainer.selection">
+        <item name="android:paddingHorizontal">10dp</item>
         <item name="android:paddingVertical">10dp</item>
     </style>
 

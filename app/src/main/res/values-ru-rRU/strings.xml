@@ -100,4 +100,14 @@
     <string name="wednesday">Среда</string>
     <string name="tuesday">Вторник</string>
     <string name="photoshoot_time_addition">Если вы не планируете проводить фотосесси в определенный день, просто выставьте время с 00:00 по 00:00.</string>
+    <string name="services_selection">Выбор услуг</string>
+    <string name="family_photo_session">Семейная фотосессия</string>
+    <string name="studio_photo_session">Студийная фотосессия</string>
+    <string name="subject_photo_session">Предметная фотосессия</string>
+    <string name="advertising_photo_session">Рекламная фотосессия</string>
+    <string name="pregnant_woman_photo_session">Фотосессия для беременных</string>
+    <string name="portrait_photo_session">Портретная фотосессия</string>
+    <string name="children_photo_session">Детская фотосессия</string>
+    <string name="rub_per_hour">руб/ч</string>
+    <string name="services_addition">Если вы не планируете проводить фотосесси по определенной услуге, просто выставьте ей цену в 0 руб/ч.</string>
 </resources>

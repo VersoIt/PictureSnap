@@ -112,5 +112,16 @@
     <string name="zero_time" translatable="false">00:00</string>
     <string name="double_point" translatable="false">:</string>
     <string name="photoshoot_time_addition">If you don\'t plan to shoot on a specific day, just set the time from 00:00 to 00:00.</string>
+    <string name="services_selection">Services selection</string>
+    <string name="family_photo_session">Family photo session</string>
+    <string name="portrait_photo_session">Portrait photo session</string>
+    <string name="children_photo_session">Children\'s photo session</string>
+    <string name="advertising_photo_session">Advertising photo session</string>
+    <string name="subject_photo_session">Subject photo session</string>
+    <string name="studio_photo_session">Studio photo session</string>
+    <string name="pregnant_woman_photo_session">Pregnant woman photo session</string>
+    <string name="rub_per_hour">rub/h</string>
+    <string name="zero" translatable="false">0</string>
+    <string name="services_addition">If you do not plan to conduct photo shoots for a particular service, simply set the price for it at 0 rubles per hour.</string>
 
 </resources>
