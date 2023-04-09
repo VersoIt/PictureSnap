@@ -91,4 +91,13 @@
     <string name="about_me">Обо мне</string>
     <string name="write_about_you">Напишите вкратце о себе</string>
     <string name="select_services">Выберите услуги</string>
+    <string name="working_days_selection">Выбор рабочих дней</string>
+    <string name="monday">Понедельник</string>
+    <string name="sunday">Воскресенье</string>
+    <string name="saturday">Суббота</string>
+    <string name="friday">Пятница</string>
+    <string name="thursday">Четверг</string>
+    <string name="wednesday">Среда</string>
+    <string name="tuesday">Вторник</string>
+    <string name="photoshoot_time_addition">Если вы не планируете проводить фотосесси в определенный день, просто выставьте время с 00:00 по 00:00.</string>
 </resources>

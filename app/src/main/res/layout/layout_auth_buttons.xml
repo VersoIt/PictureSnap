@@ -9,6 +9,6 @@
         layout="@layout/layout_login_button"/>
 
     <include
-        layout="@layout/layout_signup_button"/>
+        layout="@layout/layout_signup_button_without_borders"/>
 
 </LinearLayout>

@@ -101,4 +101,16 @@
     <string name="about_me">About me</string>
     <string name="write_about_you">Write briefly about yourself</string>
     <string name="select_services">Select services</string>
+    <string name="working_days_selection">Working days selection</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="zero_time" translatable="false">00:00</string>
+    <string name="double_point" translatable="false">:</string>
+    <string name="photoshoot_time_addition">If you don\'t plan to shoot on a specific day, just set the time from 00:00 to 00:00.</string>
+
 </resources>

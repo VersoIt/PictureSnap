@@ -50,20 +50,19 @@
     <include
         android:id="@+id/card_fields"
 
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
 
-        android:layout_margin="20dp"
+        android:layout_marginTop="@dimen/base_elements_margin"
 
         layout="@layout/layout_bank_card_input_fields"
 
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.9"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout_header"
-        app:layout_constraintBottom_toTopOf="@id/button_save"/>
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_header" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_save"
