@@ -1,4 +1,4 @@
-package ru.verso.picturesnap;
+package ru.verso.picturesnap.presentation.fragments.photograph;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class PhotographWorkingDaysSelection extends Fragment {
+import ru.verso.picturesnap.R;
+
+public class PhotographServicesSelection extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_photograph_working_days_selection, container, false);
+        return inflater.inflate(R.layout.fragment_photograph_services_selection, container, false);
     }
 }
