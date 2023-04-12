@@ -110,4 +110,5 @@
     <string name="children_photo_session">Детская фотосессия</string>
     <string name="rub_per_hour">руб/ч</string>
     <string name="services_addition">Если вы не планируете проводить фотосесси по определенной услуге, просто выставьте ей цену в 0 руб/ч.</string>
+    <string name="notifications">Уведомления</string>
 </resources>
