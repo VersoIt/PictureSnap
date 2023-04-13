@@ -126,5 +126,6 @@
     <string name="notifications">Notifications</string>
     <string name="upcoming_entries">Upcoming entries</string>
     <string name="developing">In developing</string>
+    <string name="not_signed">Log in or register to make it easier for you to search for photographers.</string>
 
 </resources>

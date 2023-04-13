@@ -7,7 +7,7 @@
     tools:context=".presentation.fragments.client.SendFeedback">
 
     <TextView
-        android:id="@+id/textView_feedback_header"
+        android:id="@+id/textView_services_header"
         style="@style/headerText.largeMargin"
 
         android:layout_width="0dp"
@@ -30,7 +30,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_feedback_header" />
+        app:layout_constraintTop_toBottomOf="@id/textView_services_header" />
 
     <include
         android:id="@+id/linearLayout_rating_selection"
@@ -46,7 +46,7 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_feedback_header"/>
+        app:layout_constraintTop_toBottomOf="@id/textView_services_header"/>
 
     <LinearLayout
         android:id="@+id/linearLayout_description"

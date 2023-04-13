@@ -113,4 +113,5 @@
     <string name="notifications">Уведомления</string>
     <string name="upcoming_entries">Ближайшие записи</string>
     <string name="developing">В разработке</string>
+    <string name="not_signed">Войдите или зарегестрируйтесь, чтобы Вам было проще искать фотографов.</string>
 </resources>
