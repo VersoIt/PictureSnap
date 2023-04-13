@@ -18,25 +18,28 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView_photograph_name"
+
             style="@style/standardText"
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
+
             android:textSize="20sp"
 
             android:ellipsize="end"
             android:singleLine="true"
 
-            tools:text="Скоро фотосессия!" />
+            tools:text="Иванов Иван!" />
 
         <TextView
+            android:text="@+id/textView_photograph_number"
             style="@style/additionText"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:textSize="20sp"
-            tools:text="10 февр. в 15:40" />
+            tools:text="+7 (977) 77-77-77" />
 
     </LinearLayout>
 
@@ -49,6 +52,13 @@
 
         android:orientation="horizontal"
         tools:ignore="UseCompoundDrawables">
+
+        <TextView
+            android:id="@+id/textView_photograph_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            tools:text="5/5" />
 
         <ImageView
             android:layout_width="50dp"
