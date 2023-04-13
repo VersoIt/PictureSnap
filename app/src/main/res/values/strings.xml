@@ -124,5 +124,6 @@
     <string name="zero" translatable="false">0</string>
     <string name="services_addition">If you do not plan to conduct photo shoots for a particular service, simply set the price for it at 0 rubles per hour.</string>
     <string name="notifications">Notifications</string>
+    <string name="upcoming_entries">Upcoming entries</string>
 
 </resources>
