@@ -123,4 +123,5 @@
     <string name="my_records">Мои записи</string>
     <string name="accepted">Принято</string>
     <string name="photograph">Фотограф</string>
+    <string name="address_selection">Выбор адреса</string>
 </resources>
