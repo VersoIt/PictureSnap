@@ -120,4 +120,7 @@
     <string name="clients_records">Записи клиентов</string>
     <string name="yandex_maps">Яндекс Карты</string>
     <string name="photo_session_address">Адресс фотосессий</string>
+    <string name="my_records">Мои записи</string>
+    <string name="accepted">Принято</string>
+    <string name="photograph">Фотограф</string>
 </resources>

@@ -133,5 +133,8 @@
     <string name="clients_records">Clients records</string>
     <string name="yandex_maps">Yandex Maps</string>
     <string name="photo_session_address">Photo session address</string>
+    <string name="my_records">My records</string>
+    <string name="accepted">Accepted</string>
+    <string name="photograph">Photograph</string>
 
 </resources>
