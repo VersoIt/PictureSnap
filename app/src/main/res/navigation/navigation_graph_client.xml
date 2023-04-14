@@ -3,21 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_unregistered"
-    app:startDestination="@id/unregisteredHome">
+    app:startDestination="@id/home">
     <fragment
-        android:id="@+id/unregisteredProfile"
+        android:id="@+id/profile"
         android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredProfile"
         android:label="fragment_unregistered_profile"
-        tools:layout="@layout/fragment_unregistered_profile" />
+        tools:layout="@layout/fragment_unregistered_profile" >
+        <action
+            android:id="@+id/action_profile_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_profile_to_userSelection"
+            app:destination="@id/userSelection" />
+    </fragment>
 
-    <fragment
-        android:id="@+id/unregisteredHome"
-        android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredWelcome"
-        android:label="fragment_unregistered_home"
-        tools:layout="@layout/fragment_unregistered_welcome" />
     <fragment
         android:id="@+id/menu"
         android:name="ru.verso.picturesnap.presentation.fragments.client.Favorites"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_menu" />
+    <fragment
+        android:id="@+id/home"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredMain"
+        android:label="fragment_unregistered_main"
+        tools:layout="@layout/fragment_unregistered_main" />
+    <fragment
+        android:id="@+id/login"
+        android:name="ru.verso.picturesnap.presentation.fragments.common.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/unregisteredToolbar"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredToolbar"
+        android:label="fragment_unregistered_toolbar"
+        tools:layout="@layout/fragment_unregistered_toolbar" />
+    <fragment
+        android:id="@+id/userSelection"
+        android:name="ru.verso.picturesnap.presentation.fragments.common.UserSelection"
+        android:label="fragment_user_selection"
+        tools:layout="@layout/fragment_user_selection" />
 </navigation>

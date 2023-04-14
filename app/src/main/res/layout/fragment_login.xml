@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragments.client.Login">
+    tools:context=".presentation.fragments.common.Login">
 
     <LinearLayout
         android:id="@+id/linearLayout_input_fields_container"
@@ -59,13 +59,15 @@
                     android:background="@drawable/transparent"
 
                     android:hint="@string/necessarily"
-                    android:inputType="textEmailAddress" />
+
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@color/hint" />
 
             </LinearLayout>
 
             <View
-                android:layout_marginStart="12dp"
-                style="@style/fieldSeparator" />
+                style="@style/fieldSeparator"
+                android:layout_marginStart="12dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,7 +93,9 @@
                     android:background="@drawable/transparent"
 
                     android:hint="@string/necessarily"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+
+                    android:textColorHint="@color/hint" />
 
             </LinearLayout>
 
@@ -123,8 +127,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@id/linearLayout_input_fields_container"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_input_fields_container"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
 

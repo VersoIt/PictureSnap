@@ -1,4 +1,4 @@
-package ru.verso.picturesnap.presentation.fragments.client;
+package ru.verso.picturesnap.presentation.fragments.common;
 
 import android.os.Bundle;
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragments.photograph.PhotographMain">
+    tools:context=".presentation.fragments.client.ClientSelectedService">
 
     <TextView
         android:id="@+id/textView_services_header"
@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
-        tools:text="Добрый вечер, Руслан!"
+        android:text="@string/you_selected"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,11 +33,12 @@
         app:layout_constraintTop_toBottomOf="@id/textView_services_header" />
 
     <TextView
-        android:id="@+id/textView_services_selection"
+        android:id="@+id/textView_time_selection"
         style="@style/textField.selection"
 
         android:layout_width="0dp"
 
+        android:text="@string/hours_select"
         android:background="@drawable/rect_white"
 
         app:layout_constraintWidth_default="percent"
@@ -45,14 +46,27 @@
 
         android:layout_marginTop="@dimen/large_margin"
 
-        android:text="@string/upcoming_entries"
+        app:drawableStartCompat="@drawable/ic_time"
         app:drawableEndCompat="@drawable/ic_keyboard_arrow_bottom"
-
-        app:drawableStartCompat="@drawable/ic_check_mark"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_services_header" />
+        app:layout_constraintTop_toBottomOf="@id/textView_services_header"   />
+
+    <include
+        android:id="@+id/appCompatButton_send"
+        layout="@layout/layout_next_button"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/textView_time_selection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package ru.verso.picturesnap;
+package ru.verso.picturesnap.presentation.fragments.client;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class PhotographMain extends Fragment {
+import ru.verso.picturesnap.R;
+
+public class ClientSelectedService extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_photograph_main, container, false);
+        return inflater.inflate(R.layout.fragment_client_selected_service, container, false);
     }
 }
