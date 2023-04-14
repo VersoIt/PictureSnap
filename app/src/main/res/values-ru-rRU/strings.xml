@@ -118,4 +118,6 @@
     <string name="photographs_in_your_city">Фотографы в вашем городе</string>
     <string name="you_selected">Вы выбрали: </string>
     <string name="clients_records">Записи клиентов</string>
+    <string name="yandex_maps">Яндекс Карты</string>
+    <string name="photo_session_address">Адресс фотосессий</string>
 </resources>
