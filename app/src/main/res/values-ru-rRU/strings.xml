@@ -124,4 +124,5 @@
     <string name="accepted">Принято</string>
     <string name="photograph">Фотограф</string>
     <string name="address_selection">Выбор адреса</string>
+    <string name="search_found">Поиск: </string>
 </resources>
