@@ -109,7 +109,7 @@
     </style>
 
     <style name="additionText">
-        <item name="android:textColor">@color/grey</item>
+        <item name="android:textColor">@color/search_hint_color</item>
         <item name="android:textAlignment">center</item>
         <item name="android:layout_marginTop">10dp</item>
     </style>
