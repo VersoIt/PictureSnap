@@ -25,7 +25,7 @@
     <string name="forgot_password">Забыли пароль?</string>
     <string name="i_am_client">Я клиент</string>
     <string name="i_am_photograph">Я фотограф</string>
-    <string name="favourite">Избранные</string>
+    <string name="favorite">Избранные</string>
     <string name="retry">Повторить попытку</string>
     <string name="no_internet_connection">Нет подключения к интернету</string>
     <string name="connect_device">Подключите устройство к интернету и повторите попытку.</string>
@@ -125,4 +125,5 @@
     <string name="photograph">Фотограф</string>
     <string name="address_selection">Выбор адреса</string>
     <string name="search_found">Поиск: </string>
+    <string name="settings">Настройки</string>
 </resources>

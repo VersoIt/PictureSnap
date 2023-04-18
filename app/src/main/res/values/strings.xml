@@ -11,7 +11,7 @@
 
     <string name="profile">Profile</string>
     <string name="home">Home</string>
-    <string name="favourite">Favourite</string>
+    <string name="favorite">Favourite</string>
     <string name="welcome">Welcome</string>
 
     <string name="user_solution_title">Decision for you</string>
@@ -138,5 +138,6 @@
     <string name="photograph">Photograph</string>
     <string name="address_selection">Address selection</string>
     <string name="search_found">Search: </string>
+    <string name="settings">Settings</string>
 
 </resources>

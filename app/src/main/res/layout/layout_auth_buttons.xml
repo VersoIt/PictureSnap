@@ -6,9 +6,11 @@
     android:layout_height="match_parent">
 
     <include
+        android:id="@+id/include_login_button"
         layout="@layout/layout_login_button"/>
 
     <include
+        android:id="@+id/include_signup_button"
         layout="@layout/layout_signup_button_without_borders"/>
 
 </LinearLayout>
