@@ -13,8 +13,17 @@
             android:id="@+id/action_unregisteredToolbar_to_clientToolbar"
             app:destination="@id/clientToolbar" />
         <action
-            android:id="@+id/action_unregisteredToolbar_to_photographToolbar"
-            app:destination="@id/photographToolbar" />
+            android:id="@+id/action_unregisteredToolbar_to_unregisteredToolbarBackable"
+            app:destination="@id/unregisteredToolbarBackable" />
+    </fragment>
+    <fragment
+        android:id="@+id/unregisteredToolbarBackable"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredToolbarBackable"
+        android:label="fragment_unregistered_toolbar_backable"
+        tools:layout="@layout/fragment_unregistered_toolbar_backable" >
+        <action
+            android:id="@+id/action_unregisteredToolbarBackable_to_unregisteredToolbar"
+            app:destination="@id/unregisteredToolbar" />
     </fragment>
     <fragment
         android:id="@+id/clientToolbar"
@@ -31,22 +40,5 @@
         <action
             android:id="@+id/action_clientToolbarBackable_to_clientToolbar"
             app:destination="@id/clientToolbar" />
-    </fragment>
-    <fragment
-        android:id="@+id/photographToolbar"
-        android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographToolbar"
-        android:label="PhotographToolbar" >
-        <action
-            android:id="@+id/action_photographToolbar_to_photographToolbarBackable"
-            app:destination="@id/photographToolbarBackable" />
-    </fragment>
-    <fragment
-        android:id="@+id/photographToolbarBackable"
-        android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographToolbarBackable"
-        android:label="fragment_photograph_toolbar_backable"
-        tools:layout="@layout/fragment_photograph_toolbar_backable" >
-        <action
-            android:id="@+id/action_photographToolbarBackable_to_photographToolbar"
-            app:destination="@id/photographToolbar" />
     </fragment>
 </navigation>

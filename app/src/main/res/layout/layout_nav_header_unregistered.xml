@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    android:padding="16dp"
+    android:background="@drawable/rect_white"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/imageView_logo"
+
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
+        android:layout_alignParentStart="true"
+        android:contentDescription="@string/app_name"
+        android:background="@drawable/round_background"
+
+        android:layout_marginVertical="20dp"
+        android:src="@drawable/ic_person_gray"/>
+
+    <View style="@style/fieldSeparator"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

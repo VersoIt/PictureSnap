@@ -23,7 +23,7 @@
 
         android:contentDescription="@string/app_name"
 
-        android:src="@drawable/ic_logo"
+        android:src="@mipmap/ic_launcher"
 
         app:layout_constraintBottom_toTopOf="@id/text_welcome"
         app:layout_constraintDimensionRatio="H, 1:1"

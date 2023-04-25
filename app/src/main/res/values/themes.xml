@@ -21,10 +21,8 @@
 
     </style>
 
-    <style name="Theme.PictureSnap.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/primary_dark</item>
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/primary</item>
     </style>
 
     <style name="Theme.PictureSnap.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

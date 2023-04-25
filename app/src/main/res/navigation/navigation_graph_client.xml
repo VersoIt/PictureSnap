@@ -25,15 +25,67 @@
         android:id="@+id/unregistered_home"
         android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredMain"
         android:label="fragment_unregistered_main"
-        tools:layout="@layout/fragment_unregistered_main" />
+        tools:layout="@layout/fragment_unregistered_main" >
+        <action
+            android:id="@+id/action_unregistered_home_to_favorites2"
+            app:destination="@id/favorites2" />
+    </fragment>
     <fragment
         android:id="@+id/login"
         android:name="ru.verso.picturesnap.presentation.fragments.common.Login"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_passwordRecover"
+            app:destination="@id/passwordRecover" />
+    </fragment>
     <fragment
         android:id="@+id/userSelection"
         android:name="ru.verso.picturesnap.presentation.fragments.common.UserSelection"
         android:label="fragment_user_selection"
-        tools:layout="@layout/fragment_user_selection" />
+        tools:layout="@layout/fragment_user_selection" >
+        <action
+            android:id="@+id/action_userSelection_to_photographRegistration"
+            app:destination="@id/photographRegistration" />
+        <action
+            android:id="@+id/action_userSelection_to_clientRegistration"
+            app:destination="@id/clientRegistration" />
+    </fragment>
+    <fragment
+        android:id="@+id/photographRegistration"
+        android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographRegistration"
+        android:label="fragment_photograph_registration"
+        tools:layout="@layout/fragment_photograph_registration" />
+    <fragment
+        android:id="@+id/clientRegistration"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.ClientRegistration"
+        android:label="fragment_client_registration"
+        tools:layout="@layout/fragment_client_registration" />
+    <fragment
+        android:id="@+id/passwordRecover"
+        android:name="ru.verso.picturesnap.presentation.fragments.common.PasswordRecover"
+        android:label="PasswordRecover" />
+    <fragment
+        android:id="@+id/favorites"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.Favorites"
+        android:label="Favorites" />
+    <fragment
+        android:id="@+id/client_main"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.ClientMain"
+        android:label="ClientMain" >
+        <action
+            android:id="@+id/action_client_main_to_favorites2"
+            app:destination="@id/favorites2" />
+    </fragment>
+    <fragment
+        android:id="@+id/favorites2"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.Favorites"
+        android:label="Favorites" >
+        <action
+            android:id="@+id/action_favorites2_to_unregistered_home"
+            app:destination="@id/unregistered_home" />
+        <action
+            android:id="@+id/action_favorites2_to_client_main"
+            app:destination="@id/client_main" />
+    </fragment>
 </navigation>

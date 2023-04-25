@@ -23,4 +23,7 @@
         tools:text="email@email.com"
         android:textSize="14sp"
         android:layout_marginBottom="16dp"/>
+
+    <View style="@style/fieldSeparator" />
+
 </LinearLayout>

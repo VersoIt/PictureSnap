@@ -4,29 +4,37 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.databinding.ActivityMainBinding;
+import ru.verso.picturesnap.presentation.viewmodel.MainActivityViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.MainActivityViewModelFactory;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        Intent intent = new Intent(this, ClientActivity.class);
-        startActivity(intent);
+        bindView();
+        navigateToSelectedActivityRole();
 
         finish();
+    }
+
+    private void bindView() {
+        ru.verso.picturesnap.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+    }
+
+    private void navigateToSelectedActivityRole() {
+        MainActivityViewModel viewModel = new ViewModelProvider(this, new MainActivityViewModelFactory(new RoleRepositoryImpl(this)))
+                .get(MainActivityViewModel.class);
+
+        Class<? extends AppCompatActivity> activityToNavigate = viewModel.getClassToNavigate();
+
+        Intent intent = new Intent(this, activityToNavigate);
+        startActivity(intent);
     }
 }

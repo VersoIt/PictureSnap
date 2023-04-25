@@ -32,12 +32,16 @@ public class UnregisteredProfile extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        NavController navController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView_content);
+        NavController contentNavController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView_content);
+
+        NavController toolbarNavController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView_tool_bar);
+        toolbarNavController.navigate(R.id.unregisteredToolbar);
 
         binding.linearLayoutAuthButtons.includeLoginButton.buttonLogin.setOnClickListener(v ->
-                navController.navigate(R.id.action_unregistered_profile_to_login));
+                contentNavController.navigate(R.id.action_unregistered_profile_to_login));
 
         binding.linearLayoutAuthButtons.includeSignupButton.buttonSignup.setOnClickListener(v ->
-                navController.navigate(R.id.action_profile_to_userSelection));
+                contentNavController.navigate(R.id.action_profile_to_userSelection));
+
     }
 }

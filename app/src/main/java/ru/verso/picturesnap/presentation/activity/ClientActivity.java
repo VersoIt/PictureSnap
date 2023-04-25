@@ -1,48 +1,59 @@
 package ru.verso.picturesnap.presentation.activity;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
-import androidx.navigation.NavHost;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.databinding.ActivityClientBinding;
+import ru.verso.picturesnap.domain.repository.RoleRepository;
 
 public class ClientActivity extends AppCompatActivity {
+
+    private ActivityClientBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityClientBinding binding = ActivityClientBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        RoleRepository.Role role = getRoleFromRepository(new RoleRepositoryImpl(this));
+        bindView();
 
+        NavController navController = getNavController();
+        bindByState(getStateByRole(role, navController));
+    }
+
+    private ClientState getStateByRole(RoleRepository.Role role,
+                                       NavController navController) {
+
+        if (role == RoleRepository.Role.CLIENT)
+            return new ClientRegisteredState(binding, navController);
+        else
+            return new UnregisteredState(binding, navController);
+    }
+
+    private void bindByState(ClientState state) {
+        state.bindBottomNavigationView();
+        state.bindNavigationViewMenu();
+    }
+
+    private NavController getNavController() {
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragmentContainerView_content);
 
         assert navHostFragment != null;
-        NavController navController = navHostFragment.getNavController();
-
-        binding.bottomNavigationViewMenu.setOnItemSelectedListener(item -> {
-            if (R.id.home == item.getItemId())
-                navController.navigate(R.id.unregistered_home);
-
-            if (R.id.profile == item.getItemId())
-                navController.navigate(R.id.unregistered_profile);
-
-            if (R.id.menu == item.getItemId())
-                binding.getRoot().openDrawer(GravityCompat.END);
-
-            return true;
-        });
+        return navHostFragment.getNavController();
     }
 
+    private void bindView() {
+        binding = ActivityClientBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+    }
+
+    private RoleRepository.Role getRoleFromRepository(RoleRepository repository) {
+        return repository.getRole();
+    }
 }

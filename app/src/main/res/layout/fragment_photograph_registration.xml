@@ -1,388 +1,396 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.fragments.common.Login">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout_input_fields_container"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="@dimen/base_elements_margin"
-
-        android:orientation="vertical"
-
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.8">
-
-        <TextView
-            android:id="@+id/textView_header"
-            style="@style/headerText"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="@string/photograph_signup" />
+        tools:context=".presentation.fragments.photograph.PhotographRegistration">
 
         <LinearLayout
-            android:id="@+id/linearLayout_input_fields"
-            style="@style/fieldsContainer">
+            android:id="@+id/linearLayout_input_fields_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/base_elements_margin"
+
+            android:orientation="vertical"
+
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.8">
+
+            <TextView
+                android:id="@+id/textView_header"
+                style="@style/headerText"
+
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:gravity="center"
+                android:text="@string/photograph_signup" />
 
-                android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/linearLayout_input_fields"
+                style="@style/fieldsContainer">
 
-                <TextView
-                    style="@style/standardText.labelForInput"
-                    android:layout_width="@dimen/photograph_registration_label_width"
-
-                    android:text="@string/first_name" />
-
-                <EditText
-                    style="@style/textField.input"
-
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:autofillHints="name"
-                    android:background="@drawable/transparent"
+                    android:gravity="center"
 
-                    android:hint="@string/necessarily"
-                    android:inputType="textPersonName" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        style="@style/standardText.labelForInput"
+                        android:layout_width="@dimen/photograph_registration_label_width"
 
-            <View
-                android:layout_marginStart="12dp"
-                style="@style/fieldSeparator" />
+                        android:text="@string/first_name" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                    <EditText
+                        style="@style/textField.input"
 
-                android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                android:orientation="horizontal">
+                        android:autofillHints="name"
+                        android:background="@drawable/transparent"
 
-                <TextView
-                    style="@style/standardText.labelForInput"
-                    android:layout_width="@dimen/photograph_registration_label_width"
+                        android:hint="@string/necessarily"
+                        android:inputType="textPersonName" />
 
-                    android:text="@string/last_name" />
+                </LinearLayout>
 
-                <EditText
-                    style="@style/textField.input"
+                <View
+                    android:layout_marginStart="12dp"
+                    style="@style/fieldSeparator" />
 
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:autofillHints="name"
-                    android:background="@drawable/transparent"
+                    android:gravity="center"
 
-                    android:hint="@string/necessarily"
-                    android:inputType="textPersonName" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        style="@style/standardText.labelForInput"
+                        android:layout_width="@dimen/photograph_registration_label_width"
 
-            <View
-                android:layout_marginStart="12dp"
-                style="@style/fieldSeparator" />
+                        android:text="@string/last_name" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                    <EditText
+                        style="@style/textField.input"
 
-                android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                android:orientation="horizontal">
+                        android:autofillHints="name"
+                        android:background="@drawable/transparent"
 
-                <TextView
-                    style="@style/standardText.labelForInput"
-                    android:layout_width="@dimen/photograph_registration_label_width"
+                        android:hint="@string/necessarily"
+                        android:inputType="textPersonName" />
 
-                    android:text="@string/email" />
+                </LinearLayout>
 
-                <EditText
-                    style="@style/textField.input"
+                <View
+                    android:layout_marginStart="12dp"
+                    style="@style/fieldSeparator" />
 
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:autofillHints="emailAddress"
-                    android:background="@drawable/transparent"
+                    android:gravity="center"
 
-                    android:hint="@string/necessarily"
-                    android:inputType="textEmailAddress" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        style="@style/standardText.labelForInput"
+                        android:layout_width="@dimen/photograph_registration_label_width"
 
-            <View
-                android:layout_marginStart="12dp"
-                style="@style/fieldSeparator" />
+                        android:text="@string/email" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                    <EditText
+                        style="@style/textField.input"
 
-                android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                android:orientation="horizontal">
+                        android:autofillHints="emailAddress"
+                        android:background="@drawable/transparent"
 
-                <TextView
-                    style="@style/standardText.labelForInput"
-                    android:layout_width="@dimen/photograph_registration_label_width"
+                        android:hint="@string/necessarily"
+                        android:inputType="textEmailAddress" />
 
-                    android:text="@string/password" />
+                </LinearLayout>
 
-                <EditText
-                    style="@style/textField.input"
+                <View
+                    android:layout_marginStart="12dp"
+                    style="@style/fieldSeparator" />
 
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:autofillHints="password"
-                    android:background="@drawable/transparent"
+                    android:gravity="center"
 
-                    android:hint="@string/necessarily"
-                    android:inputType="textPassword" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        style="@style/standardText.labelForInput"
+                        android:layout_width="@dimen/photograph_registration_label_width"
 
-            <View
-                android:layout_marginStart="12dp"
-                style="@style/fieldSeparator" />
+                        android:text="@string/password" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                    <EditText
+                        style="@style/textField.input"
 
-                android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                android:orientation="horizontal">
+                        android:autofillHints="password"
+                        android:background="@drawable/transparent"
 
-                <TextView
-                    style="@style/standardText.labelForInput"
-                    android:layout_width="@dimen/photograph_registration_label_width"
+                        android:hint="@string/necessarily"
+                        android:inputType="textPassword" />
 
-                    android:text="@string/address" />
+                </LinearLayout>
 
-                <TextView
-                    style="@style/textField.input"
+                <View
+                    android:layout_marginStart="12dp"
+                    style="@style/fieldSeparator" />
 
-                    android:paddingEnd="10dp"
-                    android:paddingStart="0dp"
-
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:background="@drawable/transparent"
-                    app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+                    android:gravity="center"
 
-                    android:hint="@string/select_address" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        style="@style/standardText.labelForInput"
+                        android:layout_width="@dimen/photograph_registration_label_width"
 
-            <View
-                android:layout_marginStart="12dp"
-                style="@style/fieldSeparator" />
+                        android:text="@string/address" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                    <TextView
+                        style="@style/textField.input"
 
-                android:gravity="center"
+                        android:paddingEnd="10dp"
+                        android:paddingStart="0dp"
 
-                android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                <TextView
-                    style="@style/standardText.labelForInput"
-                    android:layout_width="@dimen/photograph_registration_label_width"
+                        android:background="@drawable/transparent"
+                        app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
 
-                    android:text="@string/phone" />
+                        android:hint="@string/select_address" />
 
-                <EditText
-                    style="@style/textField.input"
+                </LinearLayout>
 
+                <View
+                    android:layout_marginStart="12dp"
+                    style="@style/fieldSeparator" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:autofillHints="phone"
-                    android:background="@drawable/transparent"
+                    android:gravity="center"
 
-                    android:hint="@string/necessarily"
-                    android:inputType="phone" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        style="@style/standardText.labelForInput"
+                        android:layout_width="@dimen/photograph_registration_label_width"
 
-            <View
-                android:layout_marginStart="12dp"
-                style="@style/fieldSeparator" />
+                        android:text="@string/phone" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                    <EditText
+                        style="@style/textField.input"
 
-                android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                android:orientation="horizontal">
+                        android:autofillHints="phone"
+                        android:background="@drawable/transparent"
 
-                <TextView
-                    style="@style/standardText.labelForInput"
-                    android:layout_width="@dimen/photograph_registration_label_width"
+                        android:hint="@string/necessarily"
+                        android:inputType="phone" />
 
-                    android:text="@string/days" />
+                </LinearLayout>
 
-                <TextView
-                    style="@style/textField.input"
+                <View
+                    android:layout_marginStart="12dp"
+                    style="@style/fieldSeparator" />
 
-                    android:paddingEnd="10dp"
-                    android:paddingStart="0dp"
-
-                    app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
-
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:background="@drawable/transparent"
+                    android:gravity="center"
 
-                    android:hint="@string/select_working_days" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        style="@style/standardText.labelForInput"
+                        android:layout_width="@dimen/photograph_registration_label_width"
 
-            <View
-                android:layout_marginStart="12dp"
-                style="@style/fieldSeparator" />
+                        android:text="@string/days" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                    <TextView
+                        style="@style/textField.input"
 
-                android:gravity="center"
+                        android:paddingEnd="10dp"
+                        android:paddingStart="0dp"
 
-                android:orientation="horizontal">
+                        app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
 
-                <TextView
-                    style="@style/standardText.labelForInput"
-                    android:layout_width="@dimen/photograph_registration_label_width"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                    android:text="@string/experience" />
+                        android:background="@drawable/transparent"
 
-                <TextView
-                    style="@style/textField.input"
+                        android:hint="@string/select_working_days" />
 
+                </LinearLayout>
+
+                <View
+                    android:layout_marginStart="12dp"
+                    style="@style/fieldSeparator" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:paddingEnd="10dp"
-                    android:paddingStart="0dp"
+                    android:gravity="center"
 
-                    android:background="@drawable/transparent"
+                    android:orientation="horizontal">
 
-                    app:drawableEndCompat="@drawable/ic_keyboard_arrow_bottom"
+                    <TextView
+                        style="@style/standardText.labelForInput"
+                        android:layout_width="@dimen/photograph_registration_label_width"
 
-                    android:text="@string/one_year" />
+                        android:text="@string/experience" />
 
-            </LinearLayout>
+                    <TextView
+                        style="@style/textField.input"
 
-            <View
-                android:layout_marginStart="12dp"
-                style="@style/fieldSeparator" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                        android:paddingEnd="10dp"
+                        android:paddingStart="0dp"
 
-                android:gravity="center"
+                        android:background="@drawable/transparent"
 
-                android:orientation="horizontal">
+                        app:drawableEndCompat="@drawable/ic_keyboard_arrow_bottom"
 
-                <TextView
-                    style="@style/standardText.labelForInput"
-                    android:layout_width="@dimen/photograph_registration_label_width"
+                        android:text="@string/one_year" />
 
-                    android:text="@string/about_me" />
+                </LinearLayout>
 
-                <EditText
-                    style="@style/textField.input"
+                <View
+                    android:layout_marginStart="12dp"
+                    style="@style/fieldSeparator" />
 
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:background="@drawable/transparent"
+                    android:gravity="center"
 
-                    android:minLines="1"
+                    android:orientation="horizontal">
 
-                    android:hint="@string/write_about_you"
-                    android:inputType="text"
-                    android:autofillHints="" />
+                    <TextView
+                        style="@style/standardText.labelForInput"
+                        android:layout_width="@dimen/photograph_registration_label_width"
 
-            </LinearLayout>
+                        android:text="@string/about_me" />
 
-            <View
-                android:layout_marginStart="12dp"
-                style="@style/fieldSeparator" />
+                    <EditText
+                        style="@style/textField.input"
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                android:gravity="center"
+                        android:background="@drawable/transparent"
 
-                android:orientation="horizontal">
+                        android:minLines="1"
 
-                <TextView
-                    style="@style/standardText.labelForInput"
-                    android:layout_width="@dimen/photograph_registration_label_width"
+                        android:hint="@string/write_about_you"
+                        android:inputType="text"
+                        android:autofillHints="" />
 
-                    android:text="@string/services" />
+                </LinearLayout>
 
-                <TextView
-                    style="@style/textField.input"
+                <View
+                    android:layout_marginStart="12dp"
+                    style="@style/fieldSeparator" />
 
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:paddingEnd="10dp"
-                    android:paddingStart="0dp"
+                    android:gravity="center"
 
-                    app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+                    android:orientation="horizontal">
 
-                    android:autofillHints="name"
-                    android:background="@drawable/transparent"
+                    <TextView
+                        style="@style/standardText.labelForInput"
+                        android:layout_width="@dimen/photograph_registration_label_width"
 
-                    android:hint="@string/select_services" />
+                        android:text="@string/services" />
+
+                    <TextView
+                        style="@style/textField.input"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:paddingEnd="10dp"
+                        android:paddingStart="0dp"
+
+                        app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+
+                        android:autofillHints="name"
+                        android:background="@drawable/transparent"
+
+                        android:hint="@string/select_services" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <include
+            android:id="@+id/button_login"
+            layout="@layout/layout_signup_button"
 
-    <include
-        android:id="@+id/button_login"
-        layout="@layout/layout_signup_button"
+            android:layout_marginVertical="30dp"
 
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout_input_fields_container"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_input_fields_container"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

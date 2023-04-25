@@ -8,12 +8,16 @@
         <item name="android:textSize">@dimen/standard_text_size</item>
     </style>
 
+    <style name="Theme.PictureSnap.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="theme">@style/Theme.PictureSnap</item>
+    </style>
+
     <style name="textField.input">
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
         <item name="android:textSize">18sp</item>
         <item name="android:paddingVertical">12dp</item>
-        <item name="android:layout_marginHorizontal">0dp</item>
+        <item name="android:layout_marginHorizontal">2dp</item>
     </style>
 
     <style name="standardText.labelForInput">
