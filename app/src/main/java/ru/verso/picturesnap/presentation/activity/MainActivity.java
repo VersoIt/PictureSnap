@@ -4,14 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.databinding.ActivityMainBinding;
 import ru.verso.picturesnap.presentation.viewmodel.MainActivityViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.MainActivityViewModelFactory;
+import ru.verso.picturesnap.presentation.viewmodel.factory.MainActivityViewModelFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

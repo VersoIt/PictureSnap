@@ -14,6 +14,8 @@ public class FirstTimeWentRepositoryImpl implements FirstTimeWentRepository {
     private final SharedPreferences.Editor editor;
     private final SharedPreferences sharedPreferences;
 
+    private static final boolean DEFAULT_VALUE = true;
+
     public FirstTimeWentRepositoryImpl(Context context) {
         sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_PATH, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -21,12 +23,12 @@ public class FirstTimeWentRepositoryImpl implements FirstTimeWentRepository {
 
     @Override
     public boolean isFirst() {
-        return sharedPreferences.getInt(FIRST_WENT_KEY, 0) == 0;
+        return sharedPreferences.getBoolean(FIRST_WENT_KEY, DEFAULT_VALUE);
     }
 
     @Override
     public void setVisited() {
-        editor.putInt(FIRST_WENT_KEY, 1);
+        editor.putBoolean(FIRST_WENT_KEY, false);
         editor.apply();
     }
 }

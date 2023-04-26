@@ -3,7 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_unregistered"
-    app:startDestination="@id/unregistered_home">
+    app:startDestination="@id/unregistered_main">
+    <fragment
+        android:id="@+id/unregistered_welcome"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredWelcome"
+        android:label="layout_unregistered_welcome"
+        tools:layout="@layout/fragment_unregistered_welcome" >
+        <action
+            android:id="@+id/action_unregistered_welcome_to_userSelection"
+            app:destination="@id/user_selection" />
+        <action
+            android:id="@+id/action_unregistered_welcome_to_login"
+            app:destination="@id/login" />
+    </fragment>
     <fragment
         android:id="@+id/unregistered_profile"
         android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredProfile"
@@ -18,17 +30,23 @@
             app:destination="@id/login" />
         <action
             android:id="@+id/action_profile_to_userSelection"
-            app:destination="@id/userSelection" />
+            app:destination="@id/user_selection" />
     </fragment>
 
     <fragment
-        android:id="@+id/unregistered_home"
+        android:id="@+id/unregistered_main"
         android:name="ru.verso.picturesnap.presentation.fragments.client.UnregisteredMain"
         android:label="fragment_unregistered_main"
         tools:layout="@layout/fragment_unregistered_main" >
         <action
-            android:id="@+id/action_unregistered_home_to_favorites2"
-            app:destination="@id/favorites2" />
+            android:id="@+id/action_unregistered_home_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_unregistered_home_to_userSelection"
+            app:destination="@id/user_selection" />
+        <action
+            android:id="@+id/action_unregistered_home_to_unregistered_profile"
+            app:destination="@id/unregistered_profile" />
     </fragment>
     <fragment
         android:id="@+id/login"
@@ -40,7 +58,7 @@
             app:destination="@id/passwordRecover" />
     </fragment>
     <fragment
-        android:id="@+id/userSelection"
+        android:id="@+id/user_selection"
         android:name="ru.verso.picturesnap.presentation.fragments.common.UserSelection"
         android:label="fragment_user_selection"
         tools:layout="@layout/fragment_user_selection" >
@@ -66,26 +84,23 @@
         android:name="ru.verso.picturesnap.presentation.fragments.common.PasswordRecover"
         android:label="PasswordRecover" />
     <fragment
+        android:id="@+id/client_main"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.ClientMain"
+        android:label="ClientMain" />
+    <fragment
         android:id="@+id/favorites"
         android:name="ru.verso.picturesnap.presentation.fragments.client.Favorites"
         android:label="Favorites" />
     <fragment
-        android:id="@+id/client_main"
-        android:name="ru.verso.picturesnap.presentation.fragments.client.ClientMain"
-        android:label="ClientMain" >
+        android:id="@+id/settings"
+        android:name="ru.verso.picturesnap.presentation.fragments.common.Settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
         <action
-            android:id="@+id/action_client_main_to_favorites2"
-            app:destination="@id/favorites2" />
-    </fragment>
-    <fragment
-        android:id="@+id/favorites2"
-        android:name="ru.verso.picturesnap.presentation.fragments.client.Favorites"
-        android:label="Favorites" >
+            android:id="@+id/action_settings_to_unregistered_home"
+            app:destination="@id/unregistered_main" />
         <action
-            android:id="@+id/action_favorites2_to_unregistered_home"
-            app:destination="@id/unregistered_home" />
-        <action
-            android:id="@+id/action_favorites2_to_client_main"
+            android:id="@+id/action_settings_to_client_main"
             app:destination="@id/client_main" />
     </fragment>
 </navigation>

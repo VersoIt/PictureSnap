@@ -44,7 +44,7 @@
             android:layout_marginTop="@dimen/large_margin"
 
             tools:listitem="@layout/layout_photograph_service"
-            tools:itemCount="6"
+            tools:itemCount="2"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,6 @@
             app:layout_constraintTop_toBottomOf="@id/textView_services_header"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"/>
-
 
         <TextView
             android:id="@+id/textView_addition"
@@ -66,9 +65,48 @@
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recyclerView_services"
+            app:layout_constraintTop_toBottomOf="@id/recyclerView_photographs_in_city"
 
             android:text="@string/not_signed"/>
+
+        <TextView
+            android:id="@+id/textView_photographs_in_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textSize="22sp"
+
+            android:layout_marginTop="@dimen/large_margin"
+
+            android:text="@string/photographs_in_city"
+
+            app:layout_constraintTop_toBottomOf="@id/recyclerView_services"
+            app:layout_constraintStart_toStartOf="@id/recyclerView_photographs_in_city" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:background="@drawable/rect_white"
+            android:id="@+id/recyclerView_photographs_in_city"
+
+            android:layout_marginTop="10dp"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            tools:listitem="@layout/layout_favorite_photograph"
+            tools:itemCount="1"
+
+            android:paddingHorizontal="20dp"
+
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_photographs_in_city"
+
+            android:orientation="vertical">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
         <include
             android:id="@+id/linearLayout_auth_buttons"

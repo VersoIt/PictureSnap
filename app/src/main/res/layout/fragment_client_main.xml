@@ -359,7 +359,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="@string/photographs_in_your_city"/>
+                android:text="@string/photographs_in_city"/>
 
             <androidx.recyclerview.widget.RecyclerView
 

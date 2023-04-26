@@ -35,7 +35,7 @@ public class UnregisteredProfile extends Fragment {
         NavController contentNavController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView_content);
 
         NavController toolbarNavController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView_tool_bar);
-        toolbarNavController.navigate(R.id.unregisteredToolbar);
+        toolbarNavController.navigate(R.id.unregisteredToolbarBackable);
 
         binding.linearLayoutAuthButtons.includeLoginButton.buttonLogin.setOnClickListener(v ->
                 contentNavController.navigate(R.id.action_unregistered_profile_to_login));

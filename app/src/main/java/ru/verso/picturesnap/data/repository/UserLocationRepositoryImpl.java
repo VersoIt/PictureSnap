@@ -21,7 +21,7 @@ public class UserLocationRepositoryImpl implements UserLocationRepository {
 
     @Override
     public String getLocation() {
-        return sharedPreferences.getString(LOCATION_KEY, null);
+        return sharedPreferences.getString(LOCATION_KEY, DEFAULT_VALUE);
     }
 
     @Override

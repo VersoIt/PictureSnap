@@ -2,6 +2,7 @@ package ru.verso.picturesnap.data.storage.room.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Insert;
 import androidx.room.Query;
 
 import java.util.List;
@@ -26,5 +27,8 @@ public interface PhotographDAO {
     LiveData<List<PhotographEntity>> getPhotographsContainsLastName(String lastName);
 
     @Query("SELECT * FROM PhotographEntity WHERE location LIKE :location")
-    LiveData<List<PhotographEntity>> getPhotographsContainsLocation(String location);
+    LiveData<List<PhotographEntity>> getPhotographsByLocation(String location);
+
+    @Insert
+    void addPhotograph(PhotographEntity photograph);
 }

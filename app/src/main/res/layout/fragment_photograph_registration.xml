@@ -325,7 +325,9 @@
 
                         android:background="@drawable/transparent"
 
-                        android:minLines="1"
+                        android:singleLine="false"
+                        android:paddingEnd="10dp"
+                        android:paddingStart="0dp"
 
                         android:hint="@string/write_about_you"
                         android:inputType="text"

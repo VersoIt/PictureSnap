@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.fragment.app.FragmentContainerView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragmentContainerView_bottom_sheet_content"
+
+    android:layout_height="match_parent"
+    android:background="@drawable/bottomsheet_background"
+    android:layout_width="match_parent"
+
+    android:name="androidx.navigation.fragment.NavHostFragment"
+
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    app:navGraph="@navigation/navigation_graph_client">
+
+</androidx.fragment.app.FragmentContainerView>

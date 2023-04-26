@@ -91,7 +91,7 @@ public class ClientRegisteredState implements ClientState {
 
             if (menuItem.getItemId() == R.id.nav_logout) {
                 navController.popBackStack();
-                navController.navigate(R.id.unregistered_home);
+                navController.navigate(R.id.unregistered_main);
                 binding.getRoot().closeDrawer(GravityCompat.END);
 
                 setActiveButtonMenu(MenuTypes.FAVORITES);
@@ -100,6 +100,11 @@ public class ClientRegisteredState implements ClientState {
 
             return false;
         });
+    }
+
+    @Override
+    public int getMainFragmentId() {
+        return R.id.client_main;
     }
 
     private void setActiveButtonMenu(MenuTypes menu) {

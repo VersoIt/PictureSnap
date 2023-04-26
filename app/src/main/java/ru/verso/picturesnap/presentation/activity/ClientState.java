@@ -5,4 +5,6 @@ public interface ClientState {
     void bindBottomNavigationView();
 
     void bindNavigationViewMenu();
+
+    int getMainFragmentId();
 }

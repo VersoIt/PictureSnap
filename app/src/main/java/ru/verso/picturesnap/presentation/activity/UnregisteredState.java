@@ -32,7 +32,7 @@ public class UnregisteredState implements ClientState {
     public void bindBottomNavigationView() {
         binding.bottomNavigationViewMenu.setOnItemSelectedListener(item -> {
             if (R.id.home == item.getItemId()) {
-                setFragmentMenu(R.id.unregistered_home, MenuTypes.HOME);
+                setFragmentMenu(R.id.unregistered_main, MenuTypes.HOME);
                 return true;
             }
 
@@ -77,7 +77,7 @@ public class UnregisteredState implements ClientState {
 
             if (menuItem.getItemId() == R.id.nav_home) {
                 navController.popBackStack();
-                navController.navigate(R.id.unregistered_home);
+                navController.navigate(R.id.unregistered_main);
                 setActiveButtonMenu(MenuTypes.HOME);
 
                 closeDrawer();
@@ -95,8 +95,21 @@ public class UnregisteredState implements ClientState {
                 return true;
             }
 
+            if (menuItem.getItemId() == R.id.nav_settings) {
+                navController.navigate(R.id.settings);
+
+                closeDrawer();
+
+                return true;
+            }
+
             return false;
         });
+    }
+
+    @Override
+    public int getMainFragmentId() {
+        return R.id.unregistered_main;
     }
 
     private void setActiveButtonMenu(MenuTypes menu) {

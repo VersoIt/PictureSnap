@@ -4,16 +4,22 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.LayoutPhotographServiceBinding;
 import ru.verso.picturesnap.domain.models.PhotographService;
 
 public class PhotographServicesAdapter extends ListAdapter<PhotographService, PhotographServiceViewHolder> {
 
-    public PhotographServicesAdapter(@NonNull DiffUtil.ItemCallback<PhotographService> diffCallback) {
+    private final NavController navController;
+
+    public PhotographServicesAdapter(@NonNull DiffUtil.ItemCallback<PhotographService> diffCallback, NavController navController) {
         super(diffCallback);
+
+        this.navController = navController;
     }
 
     @NonNull
@@ -30,9 +36,7 @@ public class PhotographServicesAdapter extends ListAdapter<PhotographService, Ph
         PhotographService current = getItem(position);
         holder.bind(current);
 
-        holder.itemView.setOnClickListener(view -> {
-
-        });
+        holder.itemView.setOnClickListener(view -> navController.navigate(R.id.action_unregistered_home_to_unregistered_profile));
     }
 
     public static class PhotographServiceDiff extends DiffUtil.ItemCallback<PhotographService> {

@@ -1,0 +1,42 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@drawable/rect_white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+
+        <TextView
+            style="@style/textField"
+
+            android:layout_weight="1"
+
+            app:drawableStartCompat="@drawable/ic_notifications_purple"
+            android:singleLine="false"
+            android:text="@string/notifications"
+            android:layout_width="0dp" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchCompat_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:thumbTint="@color/primary"
+
+            android:layout_marginHorizontal="10dp"
+
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>

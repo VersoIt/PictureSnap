@@ -84,12 +84,28 @@ public abstract class AppDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase database) {
             super.onCreate(database);
 
-            databaseWriteExecutor.execute(() -> INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("children_photo_session", "child")));
-            databaseWriteExecutor.execute(() -> INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("advertising_photo_session", "advertisement")));
-            databaseWriteExecutor.execute(() -> INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("family_photo_session", "family")));
-            databaseWriteExecutor.execute(() -> INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("portrait_photo_session", "portrait")));
-            databaseWriteExecutor.execute(() -> INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("pregnant_woman_photo_session", "pregnant")));
-            databaseWriteExecutor.execute(() -> INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("subject_photo_session", "subject")));
+            databaseWriteExecutor.execute(() -> {
+                INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("children_photo_session", "child"));
+                INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("advertising_photo_session", "advertisement"));
+                INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("family_photo_session", "family"));
+            });
+
+            databaseWriteExecutor.execute(() -> {
+                INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("portrait_photo_session", "portrait"));
+                INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("pregnant_woman_photo_session", "pregnant"));
+                INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("subject_photo_session", "subject"));
+            });
+
+            databaseWriteExecutor.execute(() -> {
+
+                PhotographEntity.Builder firstBuilder = new PhotographEntity.Builder();
+                PhotographEntity first = firstBuilder.setName("Иван", "Иванов").setDescription("Добро пожаловать!").setLocation("Москва, Проспект Вернадского, 76").setEmail("email@email.com").setExperience(1).setBankCardId(312).setPhoneNumber("+7 (777) 777-77-77").create();
+                PhotographEntity.Builder secondBuilder = new PhotographEntity.Builder();
+                PhotographEntity second = secondBuilder.setName("Ирина", "Иванова").setDescription("Добро пожаловать!").setLocation("Москва, Проспект Вернадского, 76").setEmail("email_email@email.com").setExperience(2).setBankCardId(312).setPhoneNumber("+7 (777) 777-77-77").create();
+
+                INSTANCE.photographDAO().addPhotograph(first);
+                INSTANCE.photographDAO().addPhotograph(second);
+            });
         }
 
         @Override
