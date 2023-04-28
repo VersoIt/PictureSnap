@@ -14,10 +14,15 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.SettingsRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentSettingsBinding;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
+import ru.verso.picturesnap.domain.usecase.GetApplicationSettingsDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
+import ru.verso.picturesnap.domain.usecase.UpdateApplicationSettingsUseCase;
 import ru.verso.picturesnap.presentation.viewmodel.SettingsViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.factory.SettingsViewModelFactory;
 
@@ -40,8 +45,12 @@ public class Settings extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         settingsViewModel = new ViewModelProvider(this, new SettingsViewModelFactory(
-                new SettingsRepositoryImpl(requireActivity().getApplicationContext()),
-                new RoleRepositoryImpl(requireActivity().getApplicationContext())))
+                new GetApplicationSettingsDataUseCase(new SettingsRepositoryImpl(requireContext())),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()),
+                        new RoleRepositoryImpl(requireContext()),
+                        new FirstTimeWentRepositoryImpl(requireContext())),
+                new UpdateApplicationSettingsUseCase(new SettingsRepositoryImpl(requireContext()))
+                ))
                 .get(SettingsViewModel.class);
 
         binding.settingsFields.switchCompatNotifications.setOnCheckedChangeListener((compoundButton, isChecked) -> {

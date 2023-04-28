@@ -34,22 +34,30 @@ public class PhotographEntity {
     public int experience;
 
     @ColumnInfo
+    public float rating;
+
+    @ColumnInfo
     public String description;
+
+    @ColumnInfo
+    public String avatarPath;
 
     public PhotographEntity() {
     }
 
     public Photograph mapToDomain() {
         Photograph.Builder builder = new Photograph.Builder();
-        builder.setName(firstName, lastName)
+
+        return builder.setName(firstName, lastName)
                 .setDescription(description)
                 .setEmail(email)
                 .setExperience(experience)
                 .setBankCardId(id)
                 .setPhoneNumber(phoneNumber)
-                .setLocation(location);
-
-        return builder.create();
+                .setLocation(location)
+                .setId(id)
+                .setRating(rating)
+                .setAvatarPath(avatarPath).create();
     }
 
     public static class Builder {
@@ -77,6 +85,11 @@ public class PhotographEntity {
 
         public Builder setEmail(String email) {
             photograph.email = email;
+            return this;
+        }
+
+        public Builder setRating(float rating) {
+            photograph.rating = rating;
             return this;
         }
 

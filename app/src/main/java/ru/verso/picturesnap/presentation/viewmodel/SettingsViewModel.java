@@ -6,28 +6,36 @@ import androidx.lifecycle.ViewModel;
 
 import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.repository.SettingsRepository;
+import ru.verso.picturesnap.domain.usecase.GetApplicationSettingsDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
+import ru.verso.picturesnap.domain.usecase.UpdateApplicationSettingsUseCase;
 
 public class SettingsViewModel extends ViewModel {
 
-    private final SettingsRepository settingsRepository;
+    private final GetApplicationSettingsDataUseCase getApplicationSettingsDataUseCase;
 
-    private final RoleRepository roleRepository;
+    private final GetUserDataUseCase getUserDataUseCase;
 
     private final MutableLiveData<Boolean> notificationsState;
 
-    public SettingsViewModel(SettingsRepository settingsRepository, RoleRepository roleRepository) {
-        this.settingsRepository = settingsRepository;
-        notificationsState = new MutableLiveData<>(settingsRepository.getState());
-        this.roleRepository = roleRepository;
+    private final UpdateApplicationSettingsUseCase updateApplicationSettingsUseCase;
+
+    public SettingsViewModel(GetApplicationSettingsDataUseCase getApplicationSettingsDataUseCase,
+                             GetUserDataUseCase getUserDataUseCase,
+                             UpdateApplicationSettingsUseCase updateApplicationSettingsUseCase) {
+        this.getApplicationSettingsDataUseCase = getApplicationSettingsDataUseCase;
+        notificationsState = new MutableLiveData<>(getApplicationSettingsDataUseCase.getNotificationsState());
+        this.getUserDataUseCase = getUserDataUseCase;
+        this.updateApplicationSettingsUseCase = updateApplicationSettingsUseCase;
     }
 
     public void enableNotifications() {
-        settingsRepository.enableNotifications();
+        updateApplicationSettingsUseCase.enableNotifications();
         notificationsState.setValue(true);
     }
 
     public void disableNotifications() {
-        settingsRepository.disableNotifications();
+        updateApplicationSettingsUseCase.disableNotifications();
         notificationsState.setValue(false);
     }
 
@@ -36,6 +44,6 @@ public class SettingsViewModel extends ViewModel {
     }
 
     public RoleRepository.Role getUserRole() {
-        return roleRepository.getRole();
+        return getUserDataUseCase.getRole();
     }
 }

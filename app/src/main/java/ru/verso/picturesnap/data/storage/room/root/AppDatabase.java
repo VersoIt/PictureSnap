@@ -27,11 +27,12 @@ import ru.verso.picturesnap.data.storage.room.entity.FavoriteEntity;
 import ru.verso.picturesnap.data.storage.room.entity.FeedbackEntity;
 import ru.verso.picturesnap.data.storage.room.entity.PhotographEntity;
 import ru.verso.picturesnap.data.storage.room.entity.PhotographServiceEntity;
-import ru.verso.picturesnap.data.storage.room.entity.WorkingDaysEntity;
+import ru.verso.picturesnap.data.storage.room.entity.WorkingDayEntity;
+import ru.verso.picturesnap.domain.models.WorkingDay;
 
 @Database(entities = {PhotographServiceEntity.class,
         PhotographEntity.class,
-        WorkingDaysEntity.class,
+        WorkingDayEntity.class,
         FeedbackEntity.class,
         FavoriteEntity.class,
         ClientEntity.class,
@@ -62,16 +63,18 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
 
+    public static final String DATABASE_NAME = "picturesnap_database";
+
     public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    AppDatabase.class, "picturesnap_database")
+                                    AppDatabase.class, DATABASE_NAME)
                             .addCallback(callback)
                             .build();
 
-                    context.deleteDatabase("picturesnap_database");
+                    // context.deleteDatabase(DATABASE_NAME);
                 }
             }
         }
@@ -91,6 +94,16 @@ public abstract class AppDatabase extends RoomDatabase {
             });
 
             databaseWriteExecutor.execute(() -> {
+                WorkingDayEntity.Builder workingDay = new WorkingDayEntity.Builder();
+                workingDay
+                        .setDayId(2)
+                        .setMinuteStart(10)
+                        .setMinuteEnd(30)
+                        .setHourStart(10)
+                        .setHourEnd(20)
+                        .setPhotographId(1);
+
+                INSTANCE.workingDaysDAO().addWorkingDay(workingDay.create());
                 INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("portrait_photo_session", "portrait"));
                 INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("pregnant_woman_photo_session", "pregnant"));
                 INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("subject_photo_session", "subject"));
@@ -99,9 +112,9 @@ public abstract class AppDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
 
                 PhotographEntity.Builder firstBuilder = new PhotographEntity.Builder();
-                PhotographEntity first = firstBuilder.setName("Иван", "Иванов").setDescription("Добро пожаловать!").setLocation("Москва, Проспект Вернадского, 76").setEmail("email@email.com").setExperience(1).setBankCardId(312).setPhoneNumber("+7 (777) 777-77-77").create();
+                PhotographEntity first = firstBuilder.setName("Иван", "Иванов").setDescription("Добро пожаловать!").setLocation("Москва, Проспект Вернадского, 76").setEmail("email@email.com").setExperience(1).setBankCardId(312).setPhoneNumber("+7 (777) 777-77-77").setRating(4.5f).create();
                 PhotographEntity.Builder secondBuilder = new PhotographEntity.Builder();
-                PhotographEntity second = secondBuilder.setName("Ирина", "Иванова").setDescription("Добро пожаловать!").setLocation("Москва, Проспект Вернадского, 76").setEmail("email_email@email.com").setExperience(2).setBankCardId(312).setPhoneNumber("+7 (777) 777-77-77").create();
+                PhotographEntity second = secondBuilder.setName("Ирина", "Иванова").setDescription("Добро пожаловать!").setLocation("Москва, Проспект Вернадского, 76").setEmail("email_email@email.com").setExperience(2).setBankCardId(312).setPhoneNumber("+7 (777) 777-77-77").setRating(3.3f).create();
 
                 INSTANCE.photographDAO().addPhotograph(first);
                 INSTANCE.photographDAO().addPhotograph(second);

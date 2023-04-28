@@ -11,10 +11,18 @@
         tools:layout="@layout/fragment_unregistered_welcome" >
         <action
             android:id="@+id/action_unregistered_welcome_to_userSelection"
-            app:destination="@id/user_selection" />
+            app:destination="@id/user_selection"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_unregistered_welcome_to_login"
-            app:destination="@id/login" />
+            app:destination="@id/login"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/unregistered_profile"
@@ -22,15 +30,19 @@
         android:label="fragment_unregistered_profile"
         tools:layout="@layout/fragment_unregistered_profile" >
         <action
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             android:id="@+id/action_unregistered_profile_to_login"
-            app:destination="@id/login" />
+            app:destination="@id/login"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_profile_to_userSelection"
-            app:destination="@id/user_selection" />
+            app:destination="@id/user_selection"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -40,13 +52,32 @@
         tools:layout="@layout/fragment_unregistered_main" >
         <action
             android:id="@+id/action_unregistered_home_to_login"
-            app:destination="@id/login" />
+            app:destination="@id/login"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_unregistered_home_to_userSelection"
-            app:destination="@id/user_selection" />
+            app:destination="@id/user_selection"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_unregistered_home_to_unregistered_profile"
-            app:destination="@id/unregistered_profile" />
+            app:destination="@id/unregistered_profile"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_unregistered_main_to_photograph_profile_from_unregistered"
+            app:destination="@id/photograph_profile_from_unregistered"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/login"
@@ -55,7 +86,11 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_login_to_passwordRecover"
-            app:destination="@id/passwordRecover" />
+            app:destination="@id/passwordRecover"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/user_selection"
@@ -64,10 +99,18 @@
         tools:layout="@layout/fragment_user_selection" >
         <action
             android:id="@+id/action_userSelection_to_photographRegistration"
-            app:destination="@id/photographRegistration" />
+            app:destination="@id/photographRegistration"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_userSelection_to_clientRegistration"
-            app:destination="@id/clientRegistration" />
+            app:destination="@id/clientRegistration"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/photographRegistration"
@@ -84,11 +127,15 @@
         android:name="ru.verso.picturesnap.presentation.fragments.common.PasswordRecover"
         android:label="PasswordRecover" />
     <fragment
+        android:id="@+id/photograph_profile_from_unregistered"
+        android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographProfileFromUnregistered"
+        android:label="PhotographProfileFromUnregistered" />
+    <fragment
         android:id="@+id/client_main"
         android:name="ru.verso.picturesnap.presentation.fragments.client.ClientMain"
         android:label="ClientMain" />
     <fragment
-        android:id="@+id/favorites"
+        android:id="@+id/favorites_fragment"
         android:name="ru.verso.picturesnap.presentation.fragments.client.Favorites"
         android:label="Favorites" />
     <fragment
@@ -98,9 +145,22 @@
         tools:layout="@layout/fragment_settings" >
         <action
             android:id="@+id/action_settings_to_unregistered_home"
-            app:destination="@id/unregistered_main" />
+            app:destination="@id/unregistered_main"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_settings_to_client_main"
-            app:destination="@id/client_main" />
+            app:destination="@id/client_main"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+    <fragment
+        android:id="@+id/photograph_working_days_from_client"
+        android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographWorkingDaysFromClient"
+        android:label="fragment_photograph_working_days_from_client_bottomsheet"
+        tools:layout="@layout/fragment_photograph_working_days_from_client_bottomsheet" />
 </navigation>

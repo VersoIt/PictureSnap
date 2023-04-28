@@ -6,25 +6,34 @@ import androidx.lifecycle.ViewModelProvider;
 
 import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.repository.SettingsRepository;
+import ru.verso.picturesnap.domain.usecase.GetApplicationSettingsDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
+import ru.verso.picturesnap.domain.usecase.UpdateApplicationSettingsUseCase;
 import ru.verso.picturesnap.presentation.viewmodel.SettingsViewModel;
 
 public class SettingsViewModelFactory implements ViewModelProvider.Factory {
 
     @NonNull
-    private final SettingsRepository settingsRepository;
+    private final GetApplicationSettingsDataUseCase getApplicationSettingsDataUseCase;
 
     @NonNull
-    private final RoleRepository roleRepository;
+    private final GetUserDataUseCase getUserDataUseCase;
 
-    public SettingsViewModelFactory(@NonNull SettingsRepository repository, @NonNull RoleRepository roleRepository) {
-        this.settingsRepository = repository;
-        this.roleRepository = roleRepository;
+    @NonNull
+    private final UpdateApplicationSettingsUseCase updateApplicationSettingsUseCase;
+
+    public SettingsViewModelFactory(@NonNull GetApplicationSettingsDataUseCase getApplicationSettingsDataUseCase,
+                                    @NonNull GetUserDataUseCase getUserDataUseCase,
+                                    @NonNull UpdateApplicationSettingsUseCase updateApplicationSettingsUseCase) {
+        this.getApplicationSettingsDataUseCase = getApplicationSettingsDataUseCase;
+        this.getUserDataUseCase = getUserDataUseCase;
+        this.updateApplicationSettingsUseCase = updateApplicationSettingsUseCase;
     }
 
     @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new SettingsViewModel(settingsRepository, roleRepository);
+        return (T) new SettingsViewModel(getApplicationSettingsDataUseCase, getUserDataUseCase, updateApplicationSettingsUseCase);
     }
 }

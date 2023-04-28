@@ -16,24 +16,7 @@ import ru.verso.picturesnap.domain.repository.ClientRepository;
 
 public class ClientRepositoryImpl implements ClientRepository {
 
-    private final LiveData<List<PhotographServiceEntity>> photographServiceEntities;
-
     public ClientRepositoryImpl(Application application) {
         AppDatabase database = AppDatabase.getDatabase(application);
-
-        PhotographServiceDAO photographServiceDAO = database.photographServiceDAO();
-        photographServiceEntities = photographServiceDAO.getAllServices();
-    }
-
-    @Override
-    public LiveData<List<PhotographService>> getPhotographServices() {
-        return mapPhotographServiceEntityToDomain(photographServiceEntities);
-    }
-
-    private LiveData<List<PhotographService>> mapPhotographServiceEntityToDomain(LiveData<List<PhotographServiceEntity>> entity) {
-        return Transformations.map(
-                entity,
-                (values) -> values.stream().map(PhotographServiceEntity::mapToDomain).collect(Collectors.toList())
-        );
     }
 }

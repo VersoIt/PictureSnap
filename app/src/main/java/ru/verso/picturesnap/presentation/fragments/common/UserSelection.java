@@ -31,9 +31,6 @@ public class UserSelection extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         NavController contentNavController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView_content);
-        NavController toolbarNavController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView_tool_bar);
-
-        toolbarNavController.navigate(R.id.unregisteredToolbarBackable);
 
         binding.buttonClient.setOnClickListener(v ->
                 contentNavController.navigate(R.id.action_userSelection_to_clientRegistration));

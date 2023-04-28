@@ -2,6 +2,8 @@ package ru.verso.picturesnap.domain.models;
 
 public class Photograph {
 
+    private int id;
+
     private String firstName;
 
     private String lastName;
@@ -14,9 +16,57 @@ public class Photograph {
 
     private String phoneNumber;
 
+    private float rating;
+
     private int experience;
 
     private String description;
+
+    private String avatarPath;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getBankCardId() {
+        return bankCardId;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public float getRating() {
+        return rating;
+    }
 
     public static class Builder {
 
@@ -36,13 +86,28 @@ public class Photograph {
             return photograph;
         }
 
+        public Builder setAvatarPath(String avatarPath) {
+            photograph.avatarPath = avatarPath;
+            return this;
+        }
+
         public Builder setEmail(String email) {
             photograph.email = email;
             return this;
         }
 
+        public Builder setRating(float rating) {
+            photograph.rating = rating;
+            return this;
+        }
+
         public Builder setBankCardId(int id) {
             photograph.bankCardId = id;
+            return this;
+        }
+
+        public Builder setId(int id) {
+            photograph.id = id;
             return this;
         }
 

@@ -4,21 +4,21 @@ import ru.verso.picturesnap.domain.repository.FirstTimeWentRepository;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.repository.UserLocationRepository;
 
-public class OperationUserDataUseCase {
-
-    private final RoleRepository roleRepository;
+public class UpdateUserDataUseCase {
 
     private final UserLocationRepository userLocationRepository;
 
     private final FirstTimeWentRepository firstTimeWentRepository;
 
-    public OperationUserDataUseCase(RoleRepository roleRepository,
-                                    UserLocationRepository locationRepository,
-                                    FirstTimeWentRepository firstTimeWentRepository) {
+    private final RoleRepository roleRepository;
 
-        this.roleRepository = roleRepository;
+    public UpdateUserDataUseCase(RoleRepository roleRepository,
+                                 UserLocationRepository locationRepository,
+                                 FirstTimeWentRepository firstTimeWentRepository) {
+
         this.userLocationRepository = locationRepository;
         this.firstTimeWentRepository = firstTimeWentRepository;
+        this.roleRepository = roleRepository;
     }
 
     public String getLocation() {
@@ -33,12 +33,8 @@ public class OperationUserDataUseCase {
         userLocationRepository.setLocation(location);
     }
 
-    public RoleRepository.Role getCurrentRole() {
-        return roleRepository.getRole();
-    }
-
-    public boolean isFirstCome() {
-        return firstTimeWentRepository.isFirst();
+    public void setRole(RoleRepository.Role role) {
+        roleRepository.updateRole(role);
     }
 
     public void setVisited() {

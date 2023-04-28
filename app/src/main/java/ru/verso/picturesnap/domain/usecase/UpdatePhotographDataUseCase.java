@@ -7,17 +7,13 @@ import java.util.List;
 import ru.verso.picturesnap.domain.models.Photograph;
 import ru.verso.picturesnap.domain.repository.PhotographRepository;
 
-public class OperationPhotographDataUseCase {
+public class UpdatePhotographDataUseCase {
 
     private final PhotographRepository photographRepository;
 
-    public OperationPhotographDataUseCase(PhotographRepository photographRepository) {
+    public UpdatePhotographDataUseCase(PhotographRepository photographRepository) {
 
         this.photographRepository = photographRepository;
-    }
-
-    public LiveData<List<Photograph>> getPhotographsByLocation(String location) {
-        return photographRepository.getPhotographsByLocation(location);
     }
 
 }

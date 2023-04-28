@@ -4,5 +4,5 @@ public interface SettingsRepository {
 
     void enableNotifications();
     void disableNotifications();
-    boolean getState();
+    boolean getNotificationsState();
 }

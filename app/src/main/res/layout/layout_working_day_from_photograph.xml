@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="horizontal">
+
+    <TextView
+        style="@style/textField"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:width="140dp"
+        android:text="@string/monday" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            style="@style/selectionInputField"
+
+            android:text="@string/zero_time" />
+
+        <TextView
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:layout_marginHorizontal="10dp"
+
+            android:text="@string/double_point"
+            android:textColor="@color/grey" />
+
+        <TextView
+            style="@style/selectionInputField"
+
+            android:text="@string/zero_time" />
+
+    </LinearLayout>
+</LinearLayout>

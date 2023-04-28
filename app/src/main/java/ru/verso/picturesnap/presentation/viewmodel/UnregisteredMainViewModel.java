@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
+import ru.verso.picturesnap.domain.models.Photograph;
 import ru.verso.picturesnap.domain.models.PhotographService;
-import ru.verso.picturesnap.domain.repository.ClientRepository;
-import ru.verso.picturesnap.domain.repository.UserLocationRepository;
+import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
+import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
 
 public class UnregisteredMainViewModel extends ViewModel {
 
@@ -16,22 +18,34 @@ public class UnregisteredMainViewModel extends ViewModel {
 
     private final MutableLiveData<String> location;
 
-    private final UserLocationRepository locationRepository;
+    private final GetUserDataUseCase getUserDataUseCase;
 
-    public UnregisteredMainViewModel(ClientRepository clientRepository, UserLocationRepository locationRepository) {
-        services = clientRepository.getPhotographServices();
-        this.locationRepository = locationRepository;
+    private final LiveData<List<Photograph>> photographsInCity;
 
-        location = new MutableLiveData<>(locationRepository.getLocation());
+    private final UpdateUserDataUseCase updateUserDataUseCase;
+
+    public UnregisteredMainViewModel(GetPhotographDataUseCase getPhotographDataUseCase,
+                                     GetUserDataUseCase getUserDataUseCase,
+                                     UpdateUserDataUseCase updateUserDataUseCase) {
+        services = getPhotographDataUseCase.getPhotographServices();
+        this.getUserDataUseCase = getUserDataUseCase;
+        photographsInCity = getPhotographDataUseCase.getPhotographsByLocation(getUserDataUseCase.getLocation());
+
+        location = new MutableLiveData<>(getUserDataUseCase.getLocation());
+        this.updateUserDataUseCase = updateUserDataUseCase;
     }
 
     public void setLocation(String location) {
-        locationRepository.setLocation(location);
+        updateUserDataUseCase.setLocation(location);
     }
 
     public LiveData<String> getLocation() {
-        this.location.setValue(locationRepository.getLocation());
+        this.location.setValue(getUserDataUseCase.getLocation());
         return location;
+    }
+
+    public LiveData<List<Photograph>> getPhotographsInCity() {
+        return photographsInCity;
     }
 
     public LiveData<List<PhotographService>> getServices() {

@@ -7,5 +7,8 @@ import java.util.List;
 import ru.verso.picturesnap.domain.models.PhotographService;
 
 public interface ClientRepository {
-    LiveData<List<PhotographService>> getPhotographServices();
+
+    // TODO: получение клиента по id
+
+    // LiveData<List<PhotographService>> getAllPhotographServices();
 }

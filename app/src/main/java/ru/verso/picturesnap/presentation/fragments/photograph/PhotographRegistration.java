@@ -27,7 +27,6 @@ public class PhotographRegistration extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        NavController toolbarNavController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView_tool_bar);
-        toolbarNavController.navigate(R.id.unregisteredToolbarBackable);
+
     }
 }

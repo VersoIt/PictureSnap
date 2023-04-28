@@ -12,16 +12,19 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
@@ -30,8 +33,13 @@ import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.ActivityClientBinding;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
-import ru.verso.picturesnap.domain.usecase.OperationPhotographDataUseCase;
-import ru.verso.picturesnap.domain.usecase.OperationUserDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
+import ru.verso.picturesnap.domain.usecase.UpdatePhotographDataUseCase;
+import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
+import ru.verso.picturesnap.presentation.activity.states.ClientActivityState;
+import ru.verso.picturesnap.presentation.activity.states.RegisteredActivityState;
+import ru.verso.picturesnap.presentation.activity.states.UnregisteredActivityState;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
 import ru.verso.picturesnap.presentation.viewmodel.ClientActivityViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.factory.ClientActivityViewModelFactory;
@@ -44,31 +52,18 @@ public class ClientActivity extends AppCompatActivity implements LocationListene
 
     private ClientActivityViewModel viewModel;
 
-    private static final String NO_LOCATION = "";
-
-    private NavController navController;
-
     private LocationManager locationManager;
-
-    private ClientState state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         bindView();
 
-        viewModel = new ViewModelProvider(this, new ClientActivityViewModelFactory(
-                new OperationUserDataUseCase(
-                        new RoleRepositoryImpl(this),
-                        new UserLocationRepositoryImpl(this),
-                        new FirstTimeWentRepositoryImpl(this)
-                ),
-                new OperationPhotographDataUseCase(
-                        new PhotographRepositoryImpl(this.getApplication()))))
-                .get(ClientActivityViewModel.class);
+        setSupportActionBar(binding.toolbar);
 
-        RoleRepository.Role role = viewModel.getCurrentRole();
+        viewModel = getViewModel();
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.overview);
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         saveCity(locationManager);
@@ -78,23 +73,46 @@ public class ClientActivity extends AppCompatActivity implements LocationListene
             viewModel.setVisited();
         }
 
-        navController = getNavController();
-        state = getStateByRole(role, navController);
-        bindByState(state);
+        NavController navController = getNavController();
+        setUpMenus(navController, viewModel);
     }
 
-    private ClientState getStateByRole(RoleRepository.Role role,
-                                       NavController navController) {
+    private ClientActivityViewModel getViewModel() {
+        return new ViewModelProvider(this, new ClientActivityViewModelFactory(
+                new UpdateUserDataUseCase(new RoleRepositoryImpl(getApplicationContext()),
+                        new UserLocationRepositoryImpl(getApplicationContext()),
+                        new FirstTimeWentRepositoryImpl(getApplicationContext()))
+                , new GetUserDataUseCase(new UserLocationRepositoryImpl(getApplicationContext()),
+                new RoleRepositoryImpl(getApplicationContext()),
+                new FirstTimeWentRepositoryImpl(getApplicationContext())),
+                new UpdatePhotographDataUseCase(new PhotographRepositoryImpl(getApplicationContext())),
+                new GetPhotographDataUseCase(new PhotographRepositoryImpl(getApplicationContext()))))
+                .get(ClientActivityViewModel.class);
+    }
 
-        if (role == RoleRepository.Role.CLIENT)
-            return new ClientRegisteredState(binding, navController);
+    private void setUpMenus(NavController navController, ClientActivityViewModel viewModel) {
+        RoleRepository.Role role = viewModel.getCurrentRole();
+        ClientActivityState clientActivityState = getActivityStateByRole(navController, role);
+        clientActivityState.createBottomNavigationMenu();
+        clientActivityState.createLeftMenu();
+        setupToolbar();
+    }
+
+    private ClientActivityState getActivityStateByRole(NavController navController, RoleRepository.Role role) {
+
+        if (role == RoleRepository.Role.UNREGISTERED)
+            return new UnregisteredActivityState(binding, navController);
         else
-            return new UnregisteredState(binding, navController);
+            return new RegisteredActivityState();
     }
 
-    private void bindByState(ClientState state) {
-        state.bindBottomNavigationView();
-        state.bindNavigationViewMenu();
+    private void setupToolbar() {
+        DrawerLayout drawerLayout = binding.drawerLayout;
+        Toolbar toolbar = binding.toolbar;
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.overview, R.string.overview);
+
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
     private NavController getNavController() {
@@ -104,7 +122,6 @@ public class ClientActivity extends AppCompatActivity implements LocationListene
         assert navHostFragment != null;
         return navHostFragment.getNavController();
     }
-
     private void bindView() {
         binding = ActivityClientBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -121,8 +138,6 @@ public class ClientActivity extends AppCompatActivity implements LocationListene
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                navController.popBackStack();
-                navController.navigate(state.getMainFragmentId());
                 saveCity(locationManager);
             } else {
                 Toast.makeText(this, getResources().getText(R.string.city_data_not_received), Toast.LENGTH_SHORT).show();

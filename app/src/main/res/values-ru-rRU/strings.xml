@@ -115,7 +115,7 @@
     <string name="developing">В разработке</string>
     <string name="not_signed">Войдите или зарегестрируйтесь, чтобы Вам было проще искать фотографов.</string>
     <string name="my_entries">Мои записи</string>
-    <string name="photographs_in_city">Фотографы в городе</string>
+    <string name="photographs_in_your_city">Фотографы в Вашем городе</string>
     <string name="you_selected">Вы выбрали: </string>
     <string name="clients_records">Записи клиентов</string>
     <string name="yandex_maps">Яндекс Карты</string>

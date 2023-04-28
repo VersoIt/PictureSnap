@@ -4,15 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;
 
 import ru.verso.picturesnap.domain.repository.RoleRepository;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.presentation.activity.ClientActivity;
 import ru.verso.picturesnap.presentation.activity.PhotographActivity;
 
 public class MainActivityViewModel extends ViewModel {
 
-    private final RoleRepository repository;
+    private final GetUserDataUseCase getUserDataUseCase;
 
-    public MainActivityViewModel(RoleRepository repository) {
-        this.repository = repository;
+    public MainActivityViewModel(GetUserDataUseCase getUserDataUseCase) {
+        this.getUserDataUseCase = getUserDataUseCase;
     }
 
     public Class<? extends AppCompatActivity> getClassToNavigate() {
@@ -30,6 +31,6 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     public RoleRepository.Role getRole() {
-        return repository.getRole();
+        return getUserDataUseCase.getCurrentRole();
     }
 }

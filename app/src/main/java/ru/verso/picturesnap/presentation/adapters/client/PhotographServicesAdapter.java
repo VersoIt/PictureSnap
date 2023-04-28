@@ -18,7 +18,6 @@ public class PhotographServicesAdapter extends ListAdapter<PhotographService, Ph
 
     public PhotographServicesAdapter(@NonNull DiffUtil.ItemCallback<PhotographService> diffCallback, NavController navController) {
         super(diffCallback);
-
         this.navController = navController;
     }
 

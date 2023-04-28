@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.ActivityMainBinding;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.presentation.viewmodel.MainActivityViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.factory.MainActivityViewModelFactory;
 
@@ -30,7 +33,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     private void navigateToSelectedActivityRole() {
-        MainActivityViewModel viewModel = new ViewModelProvider(this, new MainActivityViewModelFactory(new RoleRepositoryImpl(this)))
+        MainActivityViewModel viewModel = new ViewModelProvider(this, new MainActivityViewModelFactory(new GetUserDataUseCase(
+                new UserLocationRepositoryImpl(this.getApplicationContext()),
+                new RoleRepositoryImpl(getApplicationContext()),
+                new FirstTimeWentRepositoryImpl(getApplicationContext()))))
                 .get(MainActivityViewModel.class);
 
         Class<? extends AppCompatActivity> activityToNavigate = viewModel.getClassToNavigate();

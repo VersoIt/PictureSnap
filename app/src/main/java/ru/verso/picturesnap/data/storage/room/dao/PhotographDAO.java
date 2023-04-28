@@ -15,7 +15,7 @@ public interface PhotographDAO {
     LiveData<List<PhotographEntity>> getPhotographByName(String name);
 
     @Query("SELECT * FROM PhotographEntity WHERE id = :id")
-    PhotographEntity getPhotographById(int id);
+    LiveData<PhotographEntity> getPhotographById(int id);
 
     @Query("SELECT * FROM PhotographEntity")
     LiveData<List<PhotographEntity>> getAllPhotographs();
@@ -26,7 +26,7 @@ public interface PhotographDAO {
     @Query("SELECT * FROM PhotographEntity WHERE lastName LIKE :lastName")
     LiveData<List<PhotographEntity>> getPhotographsContainsLastName(String lastName);
 
-    @Query("SELECT * FROM PhotographEntity WHERE location LIKE :location")
+    @Query("SELECT * FROM PhotographEntity WHERE location LIKE '%' || :location || '%'")
     LiveData<List<PhotographEntity>> getPhotographsByLocation(String location);
 
     @Insert

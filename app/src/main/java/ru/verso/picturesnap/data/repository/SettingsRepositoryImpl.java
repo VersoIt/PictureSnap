@@ -34,7 +34,7 @@ public class SettingsRepositoryImpl implements SettingsRepository {
     }
 
     @Override
-    public boolean getState() {
+    public boolean getNotificationsState() {
         return sharedPreferences.getBoolean(NOTIFICATIONS_KEY, DEFAULT);
     }
 }
