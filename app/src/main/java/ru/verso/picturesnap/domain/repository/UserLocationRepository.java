@@ -1,10 +1,10 @@
 package ru.verso.picturesnap.domain.repository;
 
+import ru.verso.picturesnap.domain.models.Location;
+
 public interface UserLocationRepository {
 
-    String DEFAULT_VALUE = "Москва";
+    Location getLocation();
 
-    String getLocation();
-
-    void setLocation(String location);
+    void setLocation(double latitude, double longitude);
 }

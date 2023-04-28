@@ -25,7 +25,10 @@ public class PhotographEntity {
     public int bankCardId;
 
     @ColumnInfo
-    public String location;
+    public float latitude;
+
+    @ColumnInfo
+    public float longitude;
 
     @ColumnInfo
     public String phoneNumber;
@@ -54,10 +57,11 @@ public class PhotographEntity {
                 .setExperience(experience)
                 .setBankCardId(id)
                 .setPhoneNumber(phoneNumber)
-                .setLocation(location)
+                .setLocation(latitude, longitude)
                 .setId(id)
                 .setRating(rating)
-                .setAvatarPath(avatarPath).create();
+                .setAvatarPath(avatarPath)
+                .create();
     }
 
     public static class Builder {
@@ -88,6 +92,12 @@ public class PhotographEntity {
             return this;
         }
 
+        public Builder setLocation(float latitude, float longitude) {
+            photograph.latitude = latitude;
+            photograph.longitude = longitude;
+            return this;
+        }
+
         public Builder setRating(float rating) {
             photograph.rating = rating;
             return this;
@@ -95,11 +105,6 @@ public class PhotographEntity {
 
         public Builder setBankCardId(int id) {
             photograph.bankCardId = id;
-            return this;
-        }
-
-        public Builder setLocation(String location) {
-            photograph.location = location;
             return this;
         }
 

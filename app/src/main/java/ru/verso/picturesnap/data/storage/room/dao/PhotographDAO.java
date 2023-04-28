@@ -11,7 +11,8 @@ import ru.verso.picturesnap.data.storage.room.entity.PhotographEntity;
 
 @Dao
 public interface PhotographDAO {
-    @Query("SELECT * FROM PhotographEntity WHERE firstName = :name")
+
+    @Query("SELECT * FROM PhotographEntity WHERE firstName + lastName LIKE :name")
     LiveData<List<PhotographEntity>> getPhotographByName(String name);
 
     @Query("SELECT * FROM PhotographEntity WHERE id = :id")
@@ -25,9 +26,6 @@ public interface PhotographDAO {
 
     @Query("SELECT * FROM PhotographEntity WHERE lastName LIKE :lastName")
     LiveData<List<PhotographEntity>> getPhotographsContainsLastName(String lastName);
-
-    @Query("SELECT * FROM PhotographEntity WHERE location LIKE '%' || :location || '%'")
-    LiveData<List<PhotographEntity>> getPhotographsByLocation(String location);
 
     @Insert
     void addPhotograph(PhotographEntity photograph);

@@ -11,8 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.data.repository.WorkingDaysRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentPhotographProfileFromUnregisteredBinding;
+import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.models.Photograph;
 import ru.verso.picturesnap.domain.usecase.GetPhotographWorkingDaysUseCase;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
@@ -40,7 +42,7 @@ public class PhotographProfileFromUnregistered extends Fragment {
         photographProfileViewModel.getPhotograph().observe(getViewLifecycleOwner(), photograph -> {
             updateName(photograph.getFirstName(), photograph.getLastName());
             updateEmail(photograph.getEmail());
-            updateLocation(photograph.getLocation());
+            updateLocation(new Location(photograph.getLatitude(), photograph.getLongitude()));
             updateWorkingDays(photograph);
         });
     }
@@ -58,8 +60,15 @@ public class PhotographProfileFromUnregistered extends Fragment {
         binding.linearLayoutFieldsContainer.textViewEmail.setText(email);
     }
 
-    private void updateLocation(String location) {
-        binding.linearLayoutFieldsContainer.textViewLocation.setText(location);
+    private void updateLocation(Location location) {
+        binding.linearLayoutFieldsContainer.textViewLocation.setText(
+                convertGeoCoordinatesToString(
+                        location.getLatitude(),
+                        location.getLongitude()));
+    }
+
+    private String convertGeoCoordinatesToString(double latitude, double longitude) {
+        return "fucker";
     }
 
     private void updateServices() {

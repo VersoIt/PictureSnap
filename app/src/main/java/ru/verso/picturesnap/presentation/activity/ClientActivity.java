@@ -3,8 +3,6 @@ package ru.verso.picturesnap.presentation.activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -21,9 +19,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 import ru.verso.picturesnap.R;
@@ -84,9 +79,7 @@ public class ClientActivity extends AppCompatActivity implements LocationListene
                         new FirstTimeWentRepositoryImpl(getApplicationContext()))
                 , new GetUserDataUseCase(new UserLocationRepositoryImpl(getApplicationContext()),
                 new RoleRepositoryImpl(getApplicationContext()),
-                new FirstTimeWentRepositoryImpl(getApplicationContext())),
-                new UpdatePhotographDataUseCase(new PhotographRepositoryImpl(getApplicationContext())),
-                new GetPhotographDataUseCase(new PhotographRepositoryImpl(getApplicationContext()))))
+                new FirstTimeWentRepositoryImpl(getApplicationContext()))))
                 .get(ClientActivityViewModel.class);
     }
 
@@ -129,8 +122,8 @@ public class ClientActivity extends AppCompatActivity implements LocationListene
 
     @Override
     public void onLocationChanged(Location location) {
-        viewModel.setLocation(getCityFromLocation(location.getLatitude(),
-                location.getLongitude()));
+        viewModel.setUserLocation(location.getLatitude(),
+                location.getLongitude());
     }
 
     @Override
@@ -155,30 +148,10 @@ public class ClientActivity extends AppCompatActivity implements LocationListene
 
         int LOCATION_MIN_TIME_UPDATE = 360_000;
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_MIN_TIME_UPDATE, 0, this);
-
         Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         if (lastKnownLocation != null) {
-            viewModel.setLocation(getCityFromLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude()));
-            getCityFromLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+            viewModel.setUserLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
         }
-    }
-
-    private String getCityFromLocation(double latitude, double longitude) {
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        StringBuilder cityName = new StringBuilder();
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addresses.size() > 0) {
-                Address address = addresses.get(0);
-                for (int idxNum = 0; idxNum < address.getMaxAddressLineIndex(); ++idxNum) {
-                    cityName.append(address.getAddressLine(idxNum));
-                }
-                cityName = new StringBuilder(address.getLocality());
-            }
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
-        return cityName.toString();
     }
 
     public void showBottomSheetDialog() {

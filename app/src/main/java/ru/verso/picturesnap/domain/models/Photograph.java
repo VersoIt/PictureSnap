@@ -12,7 +12,9 @@ public class Photograph {
 
     private int bankCardId;
 
-    private String location;
+    private double latitude;
+
+    private double longitude;
 
     private String phoneNumber;
 
@@ -40,12 +42,20 @@ public class Photograph {
         return email;
     }
 
+    public void setLocation() {
+
+    }
+
     public int getBankCardId() {
         return bankCardId;
     }
 
-    public String getLocation() {
-        return location;
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 
     public String getPhoneNumber() {
@@ -111,8 +121,9 @@ public class Photograph {
             return this;
         }
 
-        public Builder setLocation(String location) {
-            photograph.location = location;
+        public Builder setLocation(double latitude, double longitude) {
+            photograph.latitude = latitude;
+            photograph.longitude = longitude;
             return this;
         }
 

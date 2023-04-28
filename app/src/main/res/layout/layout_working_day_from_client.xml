@@ -35,7 +35,7 @@
 
             android:layout_marginHorizontal="10dp"
 
-            android:text="@string/double_point"
+            android:text="@string/time_separator"
             android:textColor="@color/grey" />
 
         <TextView

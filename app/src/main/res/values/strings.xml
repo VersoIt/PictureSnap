@@ -140,5 +140,6 @@
     <string name="search_found">Search: </string>
     <string name="settings">Settings</string>
     <string name="city_data_not_received">City data not received</string>
+    <string name="time_separator" translatable="false">-</string>
 
 </resources>

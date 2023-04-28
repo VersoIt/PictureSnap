@@ -1,5 +1,6 @@
 package ru.verso.picturesnap.domain.usecase;
 
+import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.repository.FirstTimeWentRepository;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.repository.UserLocationRepository;
@@ -29,7 +30,7 @@ public class GetUserDataUseCase {
         return firstTimeWentRepository.isFirst();
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return userLocationRepository.getLocation();
     }
 

@@ -112,9 +112,9 @@ public abstract class AppDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
 
                 PhotographEntity.Builder firstBuilder = new PhotographEntity.Builder();
-                PhotographEntity first = firstBuilder.setName("Иван", "Иванов").setDescription("Добро пожаловать!").setLocation("Москва, Проспект Вернадского, 76").setEmail("email@email.com").setExperience(1).setBankCardId(312).setPhoneNumber("+7 (777) 777-77-77").setRating(4.5f).create();
+                PhotographEntity first = firstBuilder.setName("Иван", "Иванов").setDescription("Добро пожаловать!").setLocation(55.661445f, 37.477049f).setEmail("email@email.com").setExperience(1).setBankCardId(312).setPhoneNumber("+7 (777) 777-77-77").setRating(4.5f).create();
                 PhotographEntity.Builder secondBuilder = new PhotographEntity.Builder();
-                PhotographEntity second = secondBuilder.setName("Ирина", "Иванова").setDescription("Добро пожаловать!").setLocation("Москва, Проспект Вернадского, 76").setEmail("email_email@email.com").setExperience(2).setBankCardId(312).setPhoneNumber("+7 (777) 777-77-77").setRating(3.3f).create();
+                PhotographEntity second = secondBuilder.setName("Ирина", "Иванова").setDescription("Добро пожаловать!").setLocation(55.661445f, 37.477049f).setEmail("email_email@email.com").setExperience(2).setBankCardId(312).setPhoneNumber("+7 (777) 777-77-77").setRating(3.3f).create();
 
                 INSTANCE.photographDAO().addPhotograph(first);
                 INSTANCE.photographDAO().addPhotograph(second);

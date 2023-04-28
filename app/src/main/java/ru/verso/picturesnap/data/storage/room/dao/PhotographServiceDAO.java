@@ -11,6 +11,7 @@ import ru.verso.picturesnap.data.storage.room.entity.PhotographServiceEntity;
 
 @Dao
 public interface PhotographServiceDAO {
+
     @Query("SELECT * FROM PhotographServiceEntity")
     LiveData<List<PhotographServiceEntity>> getAllServices();
 

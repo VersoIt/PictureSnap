@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
+import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.models.Photograph;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
@@ -15,39 +16,25 @@ import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
 
 public class ClientActivityViewModel extends ViewModel {
 
-    private final MutableLiveData<String> location;
+    private final MutableLiveData<Location> location;
 
     private final UpdateUserDataUseCase updateUserDataUseCase;
 
-    private final LiveData<List<Photograph>> photographsByLocation;
-
-    private final GetPhotographDataUseCase getPhotographDataUseCase;
-
     private final GetUserDataUseCase getUserDataUseCase;
 
-    private final UpdatePhotographDataUseCase updatePhotographDataUseCase;
 
     public ClientActivityViewModel(UpdateUserDataUseCase updateUserDataUseCase,
-                                   GetUserDataUseCase getUserDataUseCase,
-                                   UpdatePhotographDataUseCase updatePhotographDataUseCase,
-                                   GetPhotographDataUseCase getPhotographDataUseCase) {
+                                   GetUserDataUseCase getUserDataUseCase) {
 
         this.updateUserDataUseCase = updateUserDataUseCase;
         this.getUserDataUseCase = getUserDataUseCase;
-        this.getPhotographDataUseCase = getPhotographDataUseCase;
-        this.updatePhotographDataUseCase = updatePhotographDataUseCase;
 
         location = new MutableLiveData<>(updateUserDataUseCase.getLocation());
-        photographsByLocation = getPhotographDataUseCase.getPhotographsByLocation(location.getValue());
     }
 
-    public void setLocation(String location) {
-        updateUserDataUseCase.setLocation(location);
-        this.location.setValue(location);
-    }
-
-    public LiveData<List<Photograph>> getPhotographsByLocation() {
-        return photographsByLocation;
+    public void setUserLocation(double latitude, double longitude) {
+        updateUserDataUseCase.setLocation(latitude, longitude);
+        this.location.setValue(new Location(latitude, longitude));
     }
 
     public boolean isFirst() {

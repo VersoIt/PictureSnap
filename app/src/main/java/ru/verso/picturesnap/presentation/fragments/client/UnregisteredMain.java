@@ -26,6 +26,7 @@ import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentUnregisteredMainBinding;
 import ru.verso.picturesnap.domain.models.Photograph;
+import ru.verso.picturesnap.domain.models.PhotographService;
 import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
@@ -60,11 +61,14 @@ public class UnregisteredMain extends Fragment {
         bindButtons(navController);
         createPhotographServicesList(navController);
         createPhotographsInCityList(navController);
+
+        viewModel.getAllPhotographs().observe(requireActivity(), photographs -> viewModel.updatePhotographsInCity(photographs));
     }
 
     private UnregisteredMainViewModel getViewModel() {
         return new ViewModelProvider(this,
                 new UnregisteredMainViewModelFactory(
+                        requireActivity().getApplication(),
                         new GetPhotographDataUseCase(new PhotographRepositoryImpl(this.requireActivity().getApplication())),
                         new GetUserDataUseCase(new UserLocationRepositoryImpl(this.requireActivity().getApplicationContext()),
                                 new RoleRepositoryImpl(requireActivity().getApplicationContext()),

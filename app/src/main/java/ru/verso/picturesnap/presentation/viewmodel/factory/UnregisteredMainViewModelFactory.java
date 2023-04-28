@@ -1,5 +1,8 @@
 package ru.verso.picturesnap.presentation.viewmodel.factory;
 
+import android.app.Application;
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,9 +20,13 @@ public class UnregisteredMainViewModelFactory implements ViewModelProvider.Facto
 
     private final UpdateUserDataUseCase updateUserDataUseCase;
 
-    public UnregisteredMainViewModelFactory(GetPhotographDataUseCase getPhotographDataUseCase,
+    private final Application context;
+
+    public UnregisteredMainViewModelFactory(Application context,
+                                            GetPhotographDataUseCase getPhotographDataUseCase,
                                             GetUserDataUseCase getUserDataUseCase,
                                             UpdateUserDataUseCase updateUserDataUseCase) {
+        this.context = context;
         this.getPhotographDataUseCase = getPhotographDataUseCase;
         this.getUserDataUseCase = getUserDataUseCase;
         this.updateUserDataUseCase = updateUserDataUseCase;
@@ -29,6 +36,6 @@ public class UnregisteredMainViewModelFactory implements ViewModelProvider.Facto
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new UnregisteredMainViewModel(getPhotographDataUseCase, getUserDataUseCase, updateUserDataUseCase);
+        return (T) new UnregisteredMainViewModel(context, getPhotographDataUseCase, getUserDataUseCase, updateUserDataUseCase);
     }
 }

@@ -1,5 +1,6 @@
 package ru.verso.picturesnap.domain.usecase;
 
+import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.repository.FirstTimeWentRepository;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.repository.UserLocationRepository;
@@ -21,16 +22,12 @@ public class UpdateUserDataUseCase {
         this.roleRepository = roleRepository;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return userLocationRepository.getLocation();
     }
 
-    public void setLocation(String location) {
-        if (location.isEmpty()) {
-            userLocationRepository.setLocation(userLocationRepository.DEFAULT_VALUE);
-            return;
-        }
-        userLocationRepository.setLocation(location);
+    public void setLocation(double latitude, double longitude) {
+        userLocationRepository.setLocation(latitude, longitude);
     }
 
     public void setRole(RoleRepository.Role role) {
