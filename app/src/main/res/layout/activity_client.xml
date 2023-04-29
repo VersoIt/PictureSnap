@@ -30,17 +30,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavigationView_menu"
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+            android:layout_height="wrap_content">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerView_content"
@@ -57,6 +47,16 @@
                 app:layout_constraintTop_toTopOf="parent"
 
                 app:navGraph="@navigation/navigation_graph_client" />
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView_menu"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

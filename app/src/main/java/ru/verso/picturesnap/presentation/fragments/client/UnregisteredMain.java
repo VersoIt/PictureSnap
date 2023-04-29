@@ -11,13 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.List;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
@@ -25,16 +20,13 @@ import ru.verso.picturesnap.data.repository.PhotographRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentUnregisteredMainBinding;
-import ru.verso.picturesnap.domain.models.Photograph;
-import ru.verso.picturesnap.domain.models.PhotographService;
 import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
-import ru.verso.picturesnap.presentation.activity.ClientActivity;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographServicesAdapter;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographsInCityAdapter;
-import ru.verso.picturesnap.presentation.viewmodel.UnregisteredMainViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.factory.UnregisteredMainViewModelFactory;
+import ru.verso.picturesnap.presentation.activity.viewmodel.UnregisteredMainViewModel;
+import ru.verso.picturesnap.presentation.factory.UnregisteredMainViewModelFactory;
 
 public class UnregisteredMain extends Fragment {
 

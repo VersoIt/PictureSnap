@@ -1,11 +1,11 @@
-package ru.verso.picturesnap.presentation.viewmodel.factory;
+package ru.verso.picturesnap.presentation.factory;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import ru.verso.picturesnap.domain.usecase.GetPhotographWorkingDaysUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.WorkingDaysViewModel;
+import ru.verso.picturesnap.presentation.activity.viewmodel.WorkingDaysViewModel;
 
 public class WorkingDaysViewModelFactory implements ViewModelProvider.Factory {
 

@@ -1,4 +1,4 @@
-package ru.verso.picturesnap.presentation.viewmodel;
+package ru.verso.picturesnap.presentation.activity.viewmodel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;

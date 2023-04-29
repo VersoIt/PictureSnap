@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import ru.verso.picturesnap.R;
@@ -23,8 +22,8 @@ import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.usecase.GetApplicationSettingsDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateApplicationSettingsUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.SettingsViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.factory.SettingsViewModelFactory;
+import ru.verso.picturesnap.presentation.activity.viewmodel.SettingsViewModel;
+import ru.verso.picturesnap.presentation.factory.SettingsViewModelFactory;
 
 public class Settings extends Fragment {
 

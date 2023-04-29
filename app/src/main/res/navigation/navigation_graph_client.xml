@@ -129,7 +129,15 @@
     <fragment
         android:id="@+id/photograph_profile_from_unregistered"
         android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographProfileFromUnregistered"
-        android:label="PhotographProfileFromUnregistered" />
+        android:label="PhotographProfileFromUnregistered" >
+        <action
+            android:id="@+id/action_photograph_profile_from_unregistered_to_photoSessionAddress"
+            app:destination="@id/photoSessionAddress"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
     <fragment
         android:id="@+id/client_main"
         android:name="ru.verso.picturesnap.presentation.fragments.client.ClientMain"
@@ -163,4 +171,8 @@
         android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographWorkingDaysFromClient"
         android:label="fragment_photograph_working_days_from_client_bottomsheet"
         tools:layout="@layout/fragment_photograph_working_days_from_client_bottomsheet" />
+    <fragment
+        android:id="@+id/photoSessionAddress"
+        android:name="ru.verso.picturesnap.presentation.fragments.common.PhotoSessionAddress"
+        android:label="PhotoSessionAddress" />
 </navigation>

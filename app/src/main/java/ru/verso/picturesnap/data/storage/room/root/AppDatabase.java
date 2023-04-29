@@ -74,7 +74,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             .addCallback(callback)
                             .build();
 
-                    // context.deleteDatabase(DATABASE_NAME);
+                    //context.deleteDatabase(DATABASE_NAME);
                 }
             }
         }

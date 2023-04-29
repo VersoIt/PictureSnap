@@ -1,15 +1,13 @@
-package ru.verso.picturesnap.presentation.viewmodel.factory;
+package ru.verso.picturesnap.presentation.factory;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import ru.verso.picturesnap.domain.repository.RoleRepository;
-import ru.verso.picturesnap.domain.repository.SettingsRepository;
 import ru.verso.picturesnap.domain.usecase.GetApplicationSettingsDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateApplicationSettingsUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.SettingsViewModel;
+import ru.verso.picturesnap.presentation.activity.viewmodel.SettingsViewModel;
 
 public class SettingsViewModelFactory implements ViewModelProvider.Factory {
 

@@ -1,12 +1,11 @@
-package ru.verso.picturesnap.presentation.viewmodel.factory;
+package ru.verso.picturesnap.presentation.factory;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.MainActivityViewModel;
+import ru.verso.picturesnap.presentation.activity.viewmodel.MainActivityViewModel;
 
 public class MainActivityViewModelFactory implements ViewModelProvider.Factory {
 

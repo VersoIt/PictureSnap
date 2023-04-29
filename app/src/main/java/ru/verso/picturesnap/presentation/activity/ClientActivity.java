@@ -23,21 +23,18 @@ import java.util.Objects;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
-import ru.verso.picturesnap.data.repository.PhotographRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.ActivityClientBinding;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
-import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
-import ru.verso.picturesnap.domain.usecase.UpdatePhotographDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
 import ru.verso.picturesnap.presentation.activity.states.ClientActivityState;
 import ru.verso.picturesnap.presentation.activity.states.RegisteredActivityState;
 import ru.verso.picturesnap.presentation.activity.states.UnregisteredActivityState;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
-import ru.verso.picturesnap.presentation.viewmodel.ClientActivityViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.factory.ClientActivityViewModelFactory;
+import ru.verso.picturesnap.presentation.activity.viewmodel.ClientActivityViewModel;
+import ru.verso.picturesnap.presentation.factory.ClientActivityViewModelFactory;
 
 public class ClientActivity extends AppCompatActivity implements LocationListener {
 

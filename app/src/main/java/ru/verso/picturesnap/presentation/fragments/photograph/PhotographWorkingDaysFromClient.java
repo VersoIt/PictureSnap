@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,16 +18,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import java.util.Objects;
 
 import ru.verso.picturesnap.databinding.FragmentPhotographWorkingDaysFromClientBottomsheetBinding;
-import ru.verso.picturesnap.presentation.adapters.client.PhotographsInCityAdapter;
 import ru.verso.picturesnap.presentation.adapters.photograph.WorkingDaysFromUnregisteredAdapter;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
-import ru.verso.picturesnap.presentation.viewmodel.WorkingDaysViewModel;
+import ru.verso.picturesnap.presentation.activity.viewmodel.WorkingDaysViewModel;
 
 public class PhotographWorkingDaysFromClient extends Fragment {
 
     private FragmentPhotographWorkingDaysFromClientBottomsheetBinding binding;
-
-    private WorkingDaysViewModel workingDaysViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -49,7 +45,7 @@ public class PhotographWorkingDaysFromClient extends Fragment {
             Objects.requireNonNull(bottomSheetDialogFragment).dismiss();
         });
 
-        workingDaysViewModel = getWorkingDaysViewModel();
+        WorkingDaysViewModel workingDaysViewModel = getWorkingDaysViewModel();
         createWorkingDaysList(workingDaysViewModel);
     }
 

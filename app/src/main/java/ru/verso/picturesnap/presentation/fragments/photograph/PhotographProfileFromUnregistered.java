@@ -9,22 +9,29 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+
+import java.util.Objects;
 
 import ru.verso.picturesnap.R;
-import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.data.repository.WorkingDaysRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentPhotographProfileFromUnregisteredBinding;
 import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.models.Photograph;
 import ru.verso.picturesnap.domain.usecase.GetPhotographWorkingDaysUseCase;
+import ru.verso.picturesnap.presentation.activity.viewmodel.PhotoSessionAddressViewModel;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
-import ru.verso.picturesnap.presentation.viewmodel.PhotographProfileViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.WorkingDaysViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.factory.WorkingDaysViewModelFactory;
+import ru.verso.picturesnap.presentation.activity.viewmodel.PhotographProfileViewModel;
+import ru.verso.picturesnap.presentation.activity.viewmodel.WorkingDaysViewModel;
+import ru.verso.picturesnap.presentation.factory.WorkingDaysViewModelFactory;
+import ru.verso.picturesnap.utils.LocationCoordinator;
 
 public class PhotographProfileFromUnregistered extends Fragment {
 
     private FragmentPhotographProfileFromUnregisteredBinding binding;
+
+    private NavController navController;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -45,6 +52,8 @@ public class PhotographProfileFromUnregistered extends Fragment {
             updateLocation(new Location(photograph.getLatitude(), photograph.getLongitude()));
             updateWorkingDays(photograph);
         });
+
+        navController = getNavController();
     }
 
     private PhotographProfileViewModel getPhotographProfileViewModel() {
@@ -61,14 +70,23 @@ public class PhotographProfileFromUnregistered extends Fragment {
     }
 
     private void updateLocation(Location location) {
-        binding.linearLayoutFieldsContainer.textViewLocation.setText(
-                convertGeoCoordinatesToString(
-                        location.getLatitude(),
-                        location.getLongitude()));
+
+        binding.linearLayoutFieldsContainer.textViewLocation.setText(LocationCoordinator.getFullAddress(requireContext(), location.getLatitude(), location.getLongitude()));
+
+        binding.linearLayoutFieldsContainer.textViewLocation.setOnClickListener(view -> {
+            navController.navigate(R.id.action_photograph_profile_from_unregistered_to_photoSessionAddress);
+            sendPhotoSessionLocationToLocationFragment(location);
+        });
     }
 
     private String convertGeoCoordinatesToString(double latitude, double longitude) {
-        return "fucker";
+        return LocationCoordinator.getCityNameByLocation(getContext(), latitude, longitude);
+    }
+
+    private void sendPhotoSessionLocationToLocationFragment(Location location) {
+        new ViewModelProvider(requireActivity())
+                .get(PhotoSessionAddressViewModel.class)
+                .putPhotoSessionAddress(location);
     }
 
     private void updateServices() {
@@ -77,6 +95,11 @@ public class PhotographProfileFromUnregistered extends Fragment {
 
     private void updateAboutPhotographButton() {
 
+    }
+
+    private NavController getNavController() {
+        NavHostFragment navHostFragment = (NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView_content);
+        return Objects.requireNonNull(navHostFragment).getNavController();
     }
 
     private void updateWorkingDays(Photograph photograph) {

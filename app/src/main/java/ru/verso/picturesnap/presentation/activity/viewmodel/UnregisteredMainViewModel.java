@@ -1,4 +1,4 @@
-package ru.verso.picturesnap.presentation.viewmodel;
+package ru.verso.picturesnap.presentation.activity.viewmodel;
 
 import android.app.Application;
 import android.content.Context;
@@ -23,6 +23,7 @@ import ru.verso.picturesnap.domain.models.PhotographService;
 import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
+import ru.verso.picturesnap.utils.LocationCoordinator;
 
 public class UnregisteredMainViewModel extends ViewModel {
 
@@ -57,11 +58,11 @@ public class UnregisteredMainViewModel extends ViewModel {
     }
 
     private List<Photograph> getPhotographsByLocation(List<Photograph> photographs, Location userLocation) {
-        String userCity = getCityNameByLocation(userLocation.getLatitude(), userLocation.getLongitude());
+        String userCity = LocationCoordinator.getCityNameByLocation(context, userLocation.getLatitude(), userLocation.getLongitude());
 
         return Objects.requireNonNull(photographs)
                 .stream().filter(p ->
-                        getCityNameByLocation(p.getLatitude(),
+                        LocationCoordinator.getCityNameByLocation(context, p.getLatitude(),
                                 p.getLongitude()).contains(
                                 userCity))
                 .collect(Collectors.toList());
@@ -69,24 +70,6 @@ public class UnregisteredMainViewModel extends ViewModel {
 
     public void updatePhotographsInCity(List<Photograph> photographs) {
         photographsInCity.setValue(getPhotographsByLocation(photographs, getUserDataUseCase.getLocation()));
-    }
-
-    private String getCityNameByLocation(double latitude, double longitude) {
-        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
-        StringBuilder cityName = new StringBuilder();
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addresses.size() > 0) {
-                Address address = addresses.get(0);
-                for (int idxNum = 0; idxNum < address.getMaxAddressLineIndex(); ++idxNum)
-                    cityName.append(address.getAddressLine(idxNum));
-
-                cityName = new StringBuilder(address.getLocality());
-            }
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
-        return cityName.toString();
     }
 
     public LiveData<Location> getLocation() {
