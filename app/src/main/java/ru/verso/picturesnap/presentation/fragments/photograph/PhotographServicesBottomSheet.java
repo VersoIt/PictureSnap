@@ -19,7 +19,6 @@ import java.util.Objects;
 
 import ru.verso.picturesnap.databinding.FragmentPhotographServicesBottomSheetBinding;
 import ru.verso.picturesnap.presentation.adapters.client.ServicesFromClientAdapter;
-import ru.verso.picturesnap.presentation.adapters.photograph.WorkingDaysFromClientAdapter;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
 import ru.verso.picturesnap.presentation.viewmodel.ServicesViewModel;
 
@@ -61,7 +60,7 @@ public class PhotographServicesBottomSheet extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        viewModel.getPhotographServicesById().observe(getViewLifecycleOwner(), adapter::submitList);
+        viewModel.getPhotographServices().observe(getViewLifecycleOwner(), adapter::submitList);
     }
 
     private ServicesViewModel getViewModel() {

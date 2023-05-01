@@ -19,11 +19,15 @@ public class ServicesViewModel extends ViewModel {
         this.getPhotographDataUseCase = getPhotographDataUseCase;
     }
 
+    public LiveData<List<ServiceProvision>> getPhotographServiceProvisions() {
+        return getPhotographDataUseCase.getPhotographServiceProvisions(photographId);
+    }
+
     public void putPhotographId(int photographId) {
         this.photographId = photographId;
     }
 
-    public LiveData<List<PhotographService>> getPhotographServicesById() {
+    public LiveData<List<PhotographService>> getPhotographServices() {
         return getPhotographDataUseCase.getPhotographServicesById(photographId);
     }
 }

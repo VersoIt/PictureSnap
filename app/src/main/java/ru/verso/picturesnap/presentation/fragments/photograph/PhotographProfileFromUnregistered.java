@@ -59,6 +59,7 @@ public class PhotographProfileFromUnregistered extends Fragment {
             updateWorkingDays(photograph);
             updateServices(photograph);
             updateAboutPhotographButton(photograph);
+            updatePortfolio(navController);
         });
 
         navController = getNavController();
@@ -98,8 +99,9 @@ public class PhotographProfileFromUnregistered extends Fragment {
     }
 
     private void updateServices(Photograph photograph) {
+        sendPhotographIdToServicesDialog(photograph.getId());
+
         binding.linearLayoutFieldsContainer.textViewServices.setOnClickListener(view -> {
-            sendPhotographIdToServicesDialog(photograph.getId());
             showBottomSheetDialog(R.id.photographServicesBottomSheet);
         });
     }
@@ -145,6 +147,11 @@ public class PhotographProfileFromUnregistered extends Fragment {
                         new PhotographRepositoryImpl(getContext()))))
                 .get(ServicesViewModel.class)
                 .putPhotographId(photographId);
+    }
+
+    private void updatePortfolio(NavController navController) {
+        binding.linearLayoutFieldsContainer.textViewPortfolio.setOnClickListener(view ->
+                navController.navigate(R.id.action_photograph_profile_from_unregistered_to_photographPortfolioFromUnregistered));
     }
 
     public void showBottomSheetDialog(int fragmentId) {

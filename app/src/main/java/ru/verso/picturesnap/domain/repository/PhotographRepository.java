@@ -17,4 +17,6 @@ public interface PhotographRepository {
     LiveData<Photograph> getPhotographById(int id);
 
     LiveData<List<PhotographService>> getPhotographServicesById(int photographId);
+
+    LiveData<List<ServiceProvision>> getPhotographServiceProvisions(int photographId);
 }

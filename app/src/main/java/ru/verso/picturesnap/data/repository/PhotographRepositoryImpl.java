@@ -10,9 +10,11 @@ import java.util.stream.Collectors;
 
 import ru.verso.picturesnap.data.storage.room.entity.PhotographEntity;
 import ru.verso.picturesnap.data.storage.room.entity.PhotographServiceEntity;
+import ru.verso.picturesnap.data.storage.room.entity.ServiceProvisionEntity;
 import ru.verso.picturesnap.data.storage.room.root.AppDatabase;
 import ru.verso.picturesnap.domain.models.Photograph;
 import ru.verso.picturesnap.domain.models.PhotographService;
+import ru.verso.picturesnap.domain.models.ServiceProvision;
 import ru.verso.picturesnap.domain.repository.PhotographRepository;
 
 public class PhotographRepositoryImpl implements PhotographRepository {
@@ -48,6 +50,15 @@ public class PhotographRepositoryImpl implements PhotographRepository {
         return Transformations.map(
                 entity,
                 values -> values.stream().map(PhotographServiceEntity::mapToDomain).collect(Collectors.toList())
+        );
+    }
+
+    @Override
+    public LiveData<List<ServiceProvision>> getPhotographServiceProvisions(int photographId) {
+        LiveData<List<ServiceProvisionEntity>> provisions = appDatabase.serviceProvisionDAO().getPhotographServiceProvisions(photographId);
+        return Transformations.map(
+                provisions,
+                values -> values.stream().map(ServiceProvisionEntity::mapToDomain).collect(Collectors.toList())
         );
     }
 

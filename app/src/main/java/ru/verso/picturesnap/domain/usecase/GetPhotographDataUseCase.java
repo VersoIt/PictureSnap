@@ -32,4 +32,8 @@ public class GetPhotographDataUseCase {
     public LiveData<List<PhotographService>> getPhotographServicesById(int photographId) {
         return repository.getPhotographServicesById(photographId);
     }
+
+    public LiveData<List<ServiceProvision>> getPhotographServiceProvisions(int id) {
+        return repository.getPhotographServiceProvisions(id);
+    }
 }
