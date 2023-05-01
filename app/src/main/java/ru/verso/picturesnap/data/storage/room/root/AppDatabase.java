@@ -18,6 +18,7 @@ import ru.verso.picturesnap.data.storage.room.dao.FavoritesDAO;
 import ru.verso.picturesnap.data.storage.room.dao.FeedbackDAO;
 import ru.verso.picturesnap.data.storage.room.dao.PhotographDAO;
 import ru.verso.picturesnap.data.storage.room.dao.PhotographServiceDAO;
+import ru.verso.picturesnap.data.storage.room.dao.ServiceProvisionEntityDAO;
 import ru.verso.picturesnap.data.storage.room.dao.WorkingDaysDAO;
 import ru.verso.picturesnap.data.storage.room.entity.BankCardClientEntity;
 import ru.verso.picturesnap.data.storage.room.entity.BankCardPhotographEntity;
@@ -27,8 +28,8 @@ import ru.verso.picturesnap.data.storage.room.entity.FavoriteEntity;
 import ru.verso.picturesnap.data.storage.room.entity.FeedbackEntity;
 import ru.verso.picturesnap.data.storage.room.entity.PhotographEntity;
 import ru.verso.picturesnap.data.storage.room.entity.PhotographServiceEntity;
+import ru.verso.picturesnap.data.storage.room.entity.ServiceProvisionEntity;
 import ru.verso.picturesnap.data.storage.room.entity.WorkingDayEntity;
-import ru.verso.picturesnap.domain.models.WorkingDay;
 
 @Database(entities = {PhotographServiceEntity.class,
         PhotographEntity.class,
@@ -37,6 +38,7 @@ import ru.verso.picturesnap.domain.models.WorkingDay;
         FavoriteEntity.class,
         ClientEntity.class,
         BankCardPhotographEntity.class,
+        ServiceProvisionEntity.class,
         BankCardClientEntity.class,
         CreateFlag.class}, version = 1, exportSchema = false)
 
@@ -46,6 +48,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public abstract PhotographServiceDAO photographServiceDAO();
+
+    public abstract ServiceProvisionEntityDAO serviceProvisionDAO();
 
     public abstract PhotographDAO photographDAO();
 
@@ -74,7 +78,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             .addCallback(callback)
                             .build();
 
-                    //context.deleteDatabase(DATABASE_NAME);
+                    context.deleteDatabase(DATABASE_NAME);
                 }
             }
         }
@@ -107,6 +111,9 @@ public abstract class AppDatabase extends RoomDatabase {
                 INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("portrait_photo_session", "portrait"));
                 INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("pregnant_woman_photo_session", "pregnant"));
                 INSTANCE.photographServiceDAO().addNewService(new PhotographServiceEntity("subject_photo_session", "subject"));
+                INSTANCE.serviceProvisionDAO().addServiceProvisionEntity(new ServiceProvisionEntity(0, 1, 1, 50000));
+                INSTANCE.serviceProvisionDAO().addServiceProvisionEntity(new ServiceProvisionEntity(0, 1, 2, 50000));
+                INSTANCE.serviceProvisionDAO().addServiceProvisionEntity(new ServiceProvisionEntity(0, 1, 3, 25000));
             });
 
             databaseWriteExecutor.execute(() -> {

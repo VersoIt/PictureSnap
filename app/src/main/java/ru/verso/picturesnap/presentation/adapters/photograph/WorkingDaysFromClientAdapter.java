@@ -11,9 +11,9 @@ import ru.verso.picturesnap.databinding.LayoutWorkingDayFromClientBinding;
 import ru.verso.picturesnap.domain.models.PhotographService;
 import ru.verso.picturesnap.domain.models.WorkingDay;
 
-public class WorkingDaysFromUnregisteredAdapter extends ListAdapter<WorkingDay, WorkingDayFromClientViewHolder> {
+public class WorkingDaysFromClientAdapter extends ListAdapter<WorkingDay, WorkingDayFromClientViewHolder> {
 
-    public WorkingDaysFromUnregisteredAdapter(@NonNull DiffUtil.ItemCallback<WorkingDay> diffCallback) {
+    public WorkingDaysFromClientAdapter(@NonNull DiffUtil.ItemCallback<WorkingDay> diffCallback) {
         super(diffCallback);
     }
 

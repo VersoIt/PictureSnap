@@ -33,7 +33,7 @@ import ru.verso.picturesnap.presentation.activity.states.ClientActivityState;
 import ru.verso.picturesnap.presentation.activity.states.RegisteredActivityState;
 import ru.verso.picturesnap.presentation.activity.states.UnregisteredActivityState;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
-import ru.verso.picturesnap.presentation.activity.viewmodel.ClientActivityViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.ClientActivityViewModel;
 import ru.verso.picturesnap.presentation.factory.ClientActivityViewModelFactory;
 
 public class ClientActivity extends AppCompatActivity implements LocationListener {

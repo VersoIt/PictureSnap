@@ -6,7 +6,6 @@ import android.content.res.Resources;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.LayoutPhotographServiceBinding;
 import ru.verso.picturesnap.domain.models.PhotographService;
 

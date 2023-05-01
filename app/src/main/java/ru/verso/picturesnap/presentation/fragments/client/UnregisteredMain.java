@@ -25,7 +25,7 @@ import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographServicesAdapter;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographsInCityAdapter;
-import ru.verso.picturesnap.presentation.activity.viewmodel.UnregisteredMainViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.UnregisteredMainViewModel;
 import ru.verso.picturesnap.presentation.factory.UnregisteredMainViewModelFactory;
 
 public class UnregisteredMain extends Fragment {

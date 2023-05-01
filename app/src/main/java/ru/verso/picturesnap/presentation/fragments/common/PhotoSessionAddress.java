@@ -1,44 +1,33 @@
 package ru.verso.picturesnap.presentation.fragments.common;
 
 import android.graphics.Color;
-import android.graphics.PointF;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.map.CameraPosition;
-import com.yandex.mapkit.map.IconStyle;
 import com.yandex.mapkit.map.MapObjectCollection;
 import com.yandex.mapkit.map.PlacemarkMapObject;
 import com.yandex.mapkit.map.TextStyle;
 import com.yandex.runtime.image.ImageProvider;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.FragmentPhotoSessionAddressBinding;
-import ru.verso.picturesnap.domain.models.Location;
-import ru.verso.picturesnap.presentation.activity.viewmodel.PhotoSessionAddressViewModel;
-import ru.verso.picturesnap.utils.LocationCoordinator;
+import ru.verso.picturesnap.presentation.viewmodel.PhotoSessionAddressViewModel;
+import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
 
 public class PhotoSessionAddress extends Fragment {
 

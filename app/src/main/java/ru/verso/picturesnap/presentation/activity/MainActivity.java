@@ -12,7 +12,7 @@ import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.ActivityMainBinding;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
-import ru.verso.picturesnap.presentation.activity.viewmodel.MainActivityViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.MainActivityViewModel;
 import ru.verso.picturesnap.presentation.factory.MainActivityViewModelFactory;
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {

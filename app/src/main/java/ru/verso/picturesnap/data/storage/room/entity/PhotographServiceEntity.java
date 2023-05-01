@@ -19,6 +19,9 @@ public class PhotographServiceEntity {
     @ColumnInfo
     public String iconPath;
 
+    @ColumnInfo
+    public int cost;
+
     @Ignore
     public PhotographServiceEntity(String name, String iconPath) {
         this.name = name;
@@ -29,6 +32,6 @@ public class PhotographServiceEntity {
     }
 
     public PhotographService mapToDomain() {
-        return new PhotographService(name, iconPath);
+        return new PhotographService(name, iconPath, cost);
     }
 }

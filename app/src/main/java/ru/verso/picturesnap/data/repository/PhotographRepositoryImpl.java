@@ -42,6 +42,15 @@ public class PhotographRepositoryImpl implements PhotographRepository {
         );
     }
 
+    @Override
+    public LiveData<List<PhotographService>> getPhotographServicesById(int photographId) {
+        LiveData<List<PhotographServiceEntity>> entity = appDatabase.photographServiceDAO().getServicesOfPhotograph(photographId);
+        return Transformations.map(
+                entity,
+                values -> values.stream().map(PhotographServiceEntity::mapToDomain).collect(Collectors.toList())
+        );
+    }
+
     private LiveData<List<PhotographService>> mapPhotographServicesToDomain(LiveData<List<PhotographServiceEntity>> entity) {
         return Transformations.map(
                 entity,

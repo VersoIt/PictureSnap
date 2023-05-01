@@ -6,6 +6,7 @@ import java.util.List;
 
 import ru.verso.picturesnap.domain.models.Photograph;
 import ru.verso.picturesnap.domain.models.PhotographService;
+import ru.verso.picturesnap.domain.models.ServiceProvision;
 
 public interface PhotographRepository {
 
@@ -14,4 +15,6 @@ public interface PhotographRepository {
     LiveData<List<PhotographService>> getAllPhotographServices();
 
     LiveData<Photograph> getPhotographById(int id);
+
+    LiveData<List<PhotographService>> getPhotographServicesById(int photographId);
 }

@@ -17,19 +17,21 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.Objects;
 
-import ru.verso.picturesnap.databinding.FragmentPhotographWorkingDaysFromClientBottomsheetBinding;
+import ru.verso.picturesnap.databinding.FragmentPhotographServicesBottomSheetBinding;
+import ru.verso.picturesnap.presentation.adapters.client.ServicesFromClientAdapter;
 import ru.verso.picturesnap.presentation.adapters.photograph.WorkingDaysFromClientAdapter;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
-import ru.verso.picturesnap.presentation.viewmodel.WorkingDaysViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.ServicesViewModel;
 
-public class PhotographWorkingDaysFromClient extends Fragment {
+public class PhotographServicesBottomSheet extends Fragment {
 
-    private FragmentPhotographWorkingDaysFromClientBottomsheetBinding binding;
+    private FragmentPhotographServicesBottomSheetBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentPhotographWorkingDaysFromClientBottomsheetBinding.inflate(inflater, container, false);
+
+        binding = FragmentPhotographServicesBottomSheetBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -45,24 +47,25 @@ public class PhotographWorkingDaysFromClient extends Fragment {
             Objects.requireNonNull(bottomSheetDialogFragment).dismiss();
         });
 
-        WorkingDaysViewModel workingDaysViewModel = getWorkingDaysViewModel();
-        createWorkingDaysList(workingDaysViewModel);
+        ServicesViewModel servicesViewModel = getViewModel();
+        createServicesList(servicesViewModel);
     }
 
-    private void createWorkingDaysList(WorkingDaysViewModel workingDaysViewModel) {
-        RecyclerView recyclerView = binding.recyclerViewWorkingDaysContainer;
+    private void createServicesList(ServicesViewModel viewModel) {
+        RecyclerView recyclerView = binding.recyclerViewServicesContainer;
 
-        final WorkingDaysFromClientAdapter adapter = new WorkingDaysFromClientAdapter(
-                new WorkingDaysFromClientAdapter.WorkingDayDiff()
+        final ServicesFromClientAdapter adapter = new ServicesFromClientAdapter(
+                new ServicesFromClientAdapter.ServicesDiff()
         );
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        workingDaysViewModel.getWorkingDays().observe(getViewLifecycleOwner(), adapter::submitList);
+        viewModel.getPhotographServicesById().observe(getViewLifecycleOwner(), adapter::submitList);
     }
 
-    private WorkingDaysViewModel getWorkingDaysViewModel() {
-        return new ViewModelProvider(requireActivity()).get(WorkingDaysViewModel.class);
+    private ServicesViewModel getViewModel() {
+
+        return new ViewModelProvider(requireActivity()).get(ServicesViewModel.class);
     }
 }

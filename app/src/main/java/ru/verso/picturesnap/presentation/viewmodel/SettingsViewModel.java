@@ -1,4 +1,4 @@
-package ru.verso.picturesnap.presentation.activity.viewmodel;
+package ru.verso.picturesnap.presentation.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -12,8 +12,6 @@ import ru.verso.picturesnap.domain.usecase.UpdateApplicationSettingsUseCase;
 
 public class SettingsViewModel extends ViewModel {
 
-    private final GetApplicationSettingsDataUseCase getApplicationSettingsDataUseCase;
-
     private final GetUserDataUseCase getUserDataUseCase;
 
     private final MutableLiveData<Boolean> notificationsState;
@@ -23,7 +21,6 @@ public class SettingsViewModel extends ViewModel {
     public SettingsViewModel(GetApplicationSettingsDataUseCase getApplicationSettingsDataUseCase,
                              GetUserDataUseCase getUserDataUseCase,
                              UpdateApplicationSettingsUseCase updateApplicationSettingsUseCase) {
-        this.getApplicationSettingsDataUseCase = getApplicationSettingsDataUseCase;
         notificationsState = new MutableLiveData<>(getApplicationSettingsDataUseCase.getNotificationsState());
         this.getUserDataUseCase = getUserDataUseCase;
         this.updateApplicationSettingsUseCase = updateApplicationSettingsUseCase;

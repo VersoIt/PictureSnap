@@ -31,10 +31,11 @@ public class PhotographPortfolio extends Fragment {
     private final String[] data = {"first", "second", "third"};
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_photograph_portfolio, container, false);
+
+        binding = FragmentPhotographPortfolioBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override

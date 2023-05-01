@@ -17,4 +17,11 @@ public interface PhotographServiceDAO {
 
     @Insert
     void addNewService(PhotographServiceEntity service);
+
+    @Query("SELECT PhotographServiceEntity.id, PhotographServiceEntity.name, PhotographServiceEntity.iconPath, ServiceProvisionEntity.cost " +
+            "FROM PhotographServiceEntity " +
+            "JOIN ServiceProvisionEntity " +
+            "ON ServiceProvisionEntity.serviceId = PhotographServiceEntity.id " +
+            "WHERE ServiceProvisionEntity.photographId = :photographId")
+    LiveData<List<PhotographServiceEntity>> getServicesOfPhotograph(int photographId);
 }

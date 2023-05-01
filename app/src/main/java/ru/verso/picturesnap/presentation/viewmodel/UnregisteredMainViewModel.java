@@ -1,19 +1,12 @@
-package ru.verso.picturesnap.presentation.activity.viewmodel;
+package ru.verso.picturesnap.presentation.viewmodel;
 
 import android.app.Application;
-import android.content.Context;
-import android.location.Address;
-import android.location.Geocoder;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -23,7 +16,7 @@ import ru.verso.picturesnap.domain.models.PhotographService;
 import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
-import ru.verso.picturesnap.utils.LocationCoordinator;
+import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
 
 public class UnregisteredMainViewModel extends ViewModel {
 

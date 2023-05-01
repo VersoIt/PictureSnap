@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.PhotographProfileViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.ServicesViewModel;
 
-public class PhotographProfileViewModelFactory implements ViewModelProvider.Factory {
+public class ServicesViewModelFactory implements ViewModelProvider.Factory {
 
     private final GetPhotographDataUseCase getPhotographDataUseCase;
 
-    public PhotographProfileViewModelFactory(GetPhotographDataUseCase getPhotographDataUseCase) {
+    public ServicesViewModelFactory(GetPhotographDataUseCase getPhotographDataUseCase) {
         this.getPhotographDataUseCase = getPhotographDataUseCase;
     }
 
@@ -19,6 +19,6 @@ public class PhotographProfileViewModelFactory implements ViewModelProvider.Fact
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T)new PhotographProfileViewModel(getPhotographDataUseCase);
+        return (T) new ServicesViewModel(getPhotographDataUseCase);
     }
 }

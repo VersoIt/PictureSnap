@@ -1,4 +1,4 @@
-package ru.verso.picturesnap.utils;
+package ru.verso.picturesnap.presentation.utils;
 
 import android.content.Context;
 import android.location.Address;
