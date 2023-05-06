@@ -181,7 +181,15 @@
     <fragment
         android:id="@+id/favorites_fragment"
         android:name="ru.verso.picturesnap.presentation.fragments.client.Favorites"
-        android:label="Favorites" />
+        android:label="Favorites" >
+        <action
+            android:id="@+id/action_favorites_fragment_to_photograph_profile_from_unregistered"
+            app:destination="@id/photograph_profile_from_unregistered"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
     <fragment
         android:id="@+id/settings"
         android:name="ru.verso.picturesnap.presentation.fragments.common.Settings"
@@ -190,10 +198,7 @@
         <action
             android:id="@+id/action_settings_to_unregistered_home"
             app:destination="@id/unregistered_main"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+/>
         <action
             android:id="@+id/action_settings_to_client_main"
             app:destination="@id/client_main"

@@ -23,7 +23,7 @@
             android:contentDescription="@string/profile"
 
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toTopOf="@id/textView_profile_name"
+            app:layout_constraintBottom_toTopOf="@id/linearLayout_profile_name"
             app:layout_constraintDimensionRatio="W, 1:1"
 
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,21 +33,38 @@
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="@dimen/avatar_width_percent" />
 
-        <TextView
-            android:id="@+id/textView_profile_name"
-            style="@style/headerText"
-
-            android:textAlignment="center"
-
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayout_profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            app:layout_constraintBottom_toTopOf="@id/linearLayout_fieldsContainer"
+            android:gravity="center"
 
-            app:layout_constraintTop_toBottomOf="@+id/imageView_avatar"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="@string/dev" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/linearLayout_fieldsContainer"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_avatar">
+
+            <TextView
+                android:id="@+id/textView_profile_name"
+                style="@style/headerText"
+
+                android:textAlignment="center"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                tools:text="@string/dev" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_favorite"
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:background="@drawable/ic_favorite" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <include
             android:id="@+id/linearLayout_fieldsContainer"
@@ -64,7 +81,7 @@
             app:layout_constraintBottom_toTopOf="@id/textView_report"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView_profile_name" />
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_profile_name" />
 
         <TextView
             android:id="@+id/textView_report"

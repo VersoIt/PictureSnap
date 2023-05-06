@@ -149,5 +149,6 @@
     <string name="invalid_address">Неверный адрес</string>
     <string name="select_service_prices">Выберите цены для услуг</string>
     <string name="no_feedbacks">No feedbacks</string>
+    <string name="nothing_here">There is nothing here yet…</string>
 
 </resources>

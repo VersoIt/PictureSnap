@@ -1,33 +1,40 @@
 package ru.verso.picturesnap.presentation.fragments.photograph;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import java.util.List;
 import java.util.Objects;
 
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.FavoritesRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentPhotographProfileFromUnregisteredBinding;
 import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.models.Photograph;
+import ru.verso.picturesnap.domain.usecase.GetFavoritesDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetFeedbackDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
 import ru.verso.picturesnap.presentation.factory.AboutPhotographFromClientViewModelFactory;
+import ru.verso.picturesnap.presentation.factory.FavoritesViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.FeedbackViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.ServicesViewModelFactory;
 import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
 import ru.verso.picturesnap.presentation.viewmodel.AboutPhotographFromClientViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.FavoritesViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.FeedbackViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.PhotoSessionAddressViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.PhotographProfileViewModel;
@@ -61,6 +68,7 @@ public class PhotographProfileFromUnregistered extends Fragment {
             updatePortfolio(navController);
             updateFeedbacks(navController);
             sendPhotographIdToFeedbacksFragment(photograph.getId());
+            updateFavoriteButton(photograph, getFavoritesViewModel());
         });
 
         navController = getNavController();
@@ -77,6 +85,33 @@ public class PhotographProfileFromUnregistered extends Fragment {
 
     private void updateEmail(String email) {
         binding.linearLayoutFieldsContainer.textViewEmail.setText(email);
+    }
+
+    private void updateFavoriteButton(Photograph photograph, FavoritesViewModel viewModel) {
+
+        viewModel.getAllFavorites().observe(getViewLifecycleOwner(), photographs -> {
+
+            binding.buttonFavorite.setOnClickListener(view -> {
+                if (isFavorite(photograph, photographs)) {
+                    binding.buttonFavorite.setBackgroundDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_not_favorite));
+                    viewModel.deleteFavorite(photograph);
+                } else {
+                    binding.buttonFavorite.setBackgroundDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite));
+                    viewModel.addFavorite(photograph);
+                }
+            });
+
+            if (isFavorite(photograph, photographs)) {
+                binding.buttonFavorite.setBackgroundDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite));
+                return;
+            }
+
+            binding.buttonFavorite.setBackgroundDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_not_favorite));
+        });
+    }
+
+    private boolean isFavorite(Photograph photograph, List<Photograph> photographs) {
+        return photographs.stream().anyMatch(p -> p.getId().equals(photograph.getId()));
     }
 
     private void updateLocation(Location location) {
@@ -113,6 +148,14 @@ public class PhotographProfileFromUnregistered extends Fragment {
         binding.linearLayoutFieldsContainer.textViewServices.setOnClickListener(view -> {
             showBottomSheetDialog(R.id.photographServicesBottomSheet);
         });
+    }
+
+    private FavoritesViewModel getFavoritesViewModel() {
+
+        return new ViewModelProvider(requireActivity(), new FavoritesViewModelFactory(
+                new GetFavoritesDataUseCase(
+                        new FavoritesRepositoryImpl(requireContext()))))
+                .get(FavoritesViewModel.class);
     }
 
     private void updateAboutPhotographButton(Photograph photograph) {

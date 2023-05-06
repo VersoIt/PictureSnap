@@ -13,11 +13,9 @@ import java.util.concurrent.Executors;
 
 import ru.verso.picturesnap.data.storage.room.dao.FavoritesDAO;
 import ru.verso.picturesnap.data.storage.room.entity.CreateFlag;
-import ru.verso.picturesnap.data.storage.room.entity.FavoriteEntity;
+import ru.verso.picturesnap.data.storage.room.entity.PhotographEntity;
 
-@Database(entities = {
-        FavoriteEntity.class,
-        CreateFlag.class}, version = 1, exportSchema = false)
+@Database(entities = {PhotographEntity.class, CreateFlag.class}, version = 1, exportSchema = false)
 
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -38,8 +36,6 @@ public abstract class AppDatabase extends RoomDatabase {
                                     AppDatabase.class, DATABASE_NAME)
                             .addCallback(callback)
                             .build();
-
-                    context.deleteDatabase(DATABASE_NAME);
                 }
             }
         }

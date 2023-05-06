@@ -50,7 +50,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:background="@drawable/rect_white"
-        android:id="@+id/linearLayout_fieldsContainer"
+        android:id="@+id/recyclerView_favorites"
 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -61,6 +61,9 @@
         android:paddingHorizontal="20dp"
 
         android:layout_marginTop="@dimen/large_margin"
+
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

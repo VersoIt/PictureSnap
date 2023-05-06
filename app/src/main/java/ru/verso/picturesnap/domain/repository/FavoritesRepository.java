@@ -8,7 +8,9 @@ import ru.verso.picturesnap.domain.models.Photograph;
 
 public interface FavoritesRepository {
 
-    LiveData<List<Photograph>> getFavoritesOf(int clientId);
+    LiveData<List<Photograph>> getAllFavorites();
 
-    LiveData<Photograph> findPhotographById();
+    void addFavorite(Photograph photograph);
+
+    void deleteFavorite(Photograph photograph);
 }
