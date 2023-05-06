@@ -55,6 +55,7 @@
                         android:text="@string/first_name" />
 
                     <EditText
+                        android:id="@+id/editText_first_name"
                         style="@style/textField.input"
 
                         android:layout_width="match_parent"
@@ -87,6 +88,7 @@
                         android:text="@string/last_name" />
 
                     <EditText
+                        android:id="@+id/editText_last_name"
                         style="@style/textField.input"
 
                         android:layout_width="match_parent"
@@ -119,6 +121,7 @@
                         android:text="@string/email" />
 
                     <EditText
+                        android:id="@+id/editText_email"
                         style="@style/textField.input"
 
                         android:layout_width="match_parent"
@@ -151,6 +154,40 @@
                         android:text="@string/password" />
 
                     <EditText
+                        android:id="@+id/editText_password"
+                        style="@style/textField.input"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:autofillHints="password"
+                        android:background="@drawable/transparent"
+
+                        android:hint="@string/necessarily"
+                        android:inputType="textPassword" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginStart="12dp"
+                    style="@style/fieldSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/standardText.labelForInput"
+                        android:layout_width="@dimen/photograph_registration_label_width"
+
+                        android:text="@string/confirm_password" />
+
+                    <EditText
+                        android:id="@+id/editText_confirm_password"
                         style="@style/textField.input"
 
                         android:layout_width="match_parent"
@@ -183,6 +220,7 @@
                         android:text="@string/address" />
 
                     <TextView
+                        android:id="@+id/textView_address"
                         style="@style/textField.input"
 
                         android:paddingEnd="10dp"
@@ -217,6 +255,7 @@
                         android:text="@string/phone" />
 
                     <EditText
+                        android:id="@+id/editText_phone_number"
                         style="@style/textField.input"
 
                         android:layout_width="match_parent"
@@ -246,57 +285,19 @@
                         style="@style/standardText.labelForInput"
                         android:layout_width="@dimen/photograph_registration_label_width"
 
-                        android:text="@string/days" />
-
-                    <TextView
-                        style="@style/textField.input"
-
-                        android:paddingEnd="10dp"
-                        android:paddingStart="0dp"
-
-                        app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:background="@drawable/transparent"
-
-                        android:hint="@string/select_working_days" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_marginStart="12dp"
-                    style="@style/fieldSeparator" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:gravity="center"
-
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/standardText.labelForInput"
-                        android:layout_width="@dimen/photograph_registration_label_width"
-
                         android:text="@string/experience" />
 
-                    <TextView
+                    <Spinner
+                        android:id="@+id/spinner_experience"
                         style="@style/textField.input"
+
+                        android:dropDownVerticalOffset="58dp"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
                         android:paddingEnd="10dp"
-                        android:paddingStart="0dp"
-
-                        android:background="@drawable/transparent"
-
-                        app:drawableEndCompat="@drawable/ic_keyboard_arrow_bottom"
-
-                        android:text="@string/one_year" />
+                        android:paddingStart="0dp" />
 
                 </LinearLayout>
 
@@ -319,6 +320,7 @@
                         android:text="@string/about_me" />
 
                     <EditText
+                        android:id="@+id/editText_about"
                         style="@style/textField.input"
 
                         android:layout_width="match_parent"
@@ -355,6 +357,7 @@
                         android:text="@string/services" />
 
                     <TextView
+                        android:id="@+id/textView_services"
                         style="@style/textField.input"
 
                         android:layout_width="match_parent"
@@ -368,7 +371,7 @@
                         android:autofillHints="name"
                         android:background="@drawable/transparent"
 
-                        android:hint="@string/select_services" />
+                        android:hint="@string/select_service_prices" />
 
                 </LinearLayout>
 
@@ -377,7 +380,7 @@
         </LinearLayout>
 
         <include
-            android:id="@+id/button_login"
+            android:id="@+id/button_registration"
             layout="@layout/layout_signup_button"
 
             android:layout_marginVertical="30dp"

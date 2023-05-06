@@ -38,4 +38,8 @@ public class Location {
 
         return false;
     }
+
+    public boolean isInvalid() {
+        return latitude == 0 && longitude == 0;
+    }
 }

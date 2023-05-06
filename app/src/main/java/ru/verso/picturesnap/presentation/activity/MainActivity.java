@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;

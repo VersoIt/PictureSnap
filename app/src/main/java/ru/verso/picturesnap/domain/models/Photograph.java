@@ -2,15 +2,13 @@ package ru.verso.picturesnap.domain.models;
 
 public class Photograph {
 
-    private int id;
+    private String id;
 
     private String firstName;
 
     private String lastName;
 
     private String email;
-
-    private int bankCardId;
 
     private double latitude;
 
@@ -26,7 +24,7 @@ public class Photograph {
 
     private String avatarPath;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -40,14 +38,6 @@ public class Photograph {
 
     public String getEmail() {
         return email;
-    }
-
-    public void setLocation() {
-
-    }
-
-    public int getBankCardId() {
-        return bankCardId;
     }
 
     public double getLatitude() {
@@ -76,6 +66,9 @@ public class Photograph {
 
     public float getRating() {
         return rating;
+    }
+
+    public Photograph() {
     }
 
     public static class Builder {
@@ -111,12 +104,7 @@ public class Photograph {
             return this;
         }
 
-        public Builder setBankCardId(int id) {
-            photograph.bankCardId = id;
-            return this;
-        }
-
-        public Builder setId(int id) {
+        public Builder setId(String id) {
             photograph.id = id;
             return this;
         }

@@ -7,13 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import ru.verso.picturesnap.databinding.LayoutPhotographServiceBinding;
 import ru.verso.picturesnap.databinding.LayoutServiceFromClientBinding;
-import ru.verso.picturesnap.domain.models.PhotographService;
+import ru.verso.picturesnap.domain.models.PhotographPresentationService;
 
-public class ServicesFromClientAdapter extends ListAdapter<PhotographService, ServiceFromClientViewHolder> {
+public class ServicesFromClientAdapter extends ListAdapter<PhotographPresentationService, ServiceFromClientViewHolder> {
 
-    public ServicesFromClientAdapter(@NonNull DiffUtil.ItemCallback<PhotographService> diffCallback) {
+    public ServicesFromClientAdapter(@NonNull DiffUtil.ItemCallback<PhotographPresentationService> diffCallback) {
         super(diffCallback);
     }
 
@@ -31,15 +30,15 @@ public class ServicesFromClientAdapter extends ListAdapter<PhotographService, Se
         holder.bind(getItem(position));
     }
 
-    public static class ServicesDiff extends DiffUtil.ItemCallback<PhotographService> {
+    public static class ServicesDiff extends DiffUtil.ItemCallback<PhotographPresentationService> {
 
         @Override
-        public boolean areItemsTheSame(@NonNull PhotographService oldItem, @NonNull PhotographService newItem) {
+        public boolean areItemsTheSame(@NonNull PhotographPresentationService oldItem, @NonNull PhotographPresentationService newItem) {
             return oldItem == newItem;
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull PhotographService oldItem, @NonNull PhotographService newItem) {
+        public boolean areContentsTheSame(@NonNull PhotographPresentationService oldItem, @NonNull PhotographPresentationService newItem) {
             return oldItem.getName().equals(newItem.getName());
         }
     }

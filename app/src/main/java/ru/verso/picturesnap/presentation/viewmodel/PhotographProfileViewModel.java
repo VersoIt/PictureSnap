@@ -10,7 +10,7 @@ public class PhotographProfileViewModel extends ViewModel {
 
     private final GetPhotographDataUseCase getPhotographDataUseCase;
 
-    private int id;
+    private String id;
 
     public PhotographProfileViewModel(GetPhotographDataUseCase getPhotographDataUseCase) {
         this.getPhotographDataUseCase = getPhotographDataUseCase;
@@ -20,7 +20,7 @@ public class PhotographProfileViewModel extends ViewModel {
         return getPhotographDataUseCase.getPhotographById(id);
     }
 
-    public void putId(int id) {
+    public void putId(String id) {
         this.id = id;
     }
 }

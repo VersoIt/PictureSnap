@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">PictureSnap</string>
-    <string name="search">Search by city, name, results</string>
+    <string name="search">Search</string>
     <string name="review">Overview</string>
     <string name="dev">Ruslan Lyaschenko</string>
 
@@ -57,7 +57,7 @@
     <string name="write">Write</string>
     <string name="book">Book</string>
     <string name="work_days">Working days</string>
-    <string name="ratings_and_reviews">Ratings and reviews</string>
+    <string name="ratings_and_feedbacks">Ratings and reviews</string>
     <string name="portfolio">Portfolio</string>
     <string name="about_photograph">About photograph</string>
     <string name="services">Services</string>
@@ -141,5 +141,13 @@
     <string name="settings">Settings</string>
     <string name="city_data_not_received">City data not received</string>
     <string name="time_separator" translatable="false">-</string>
+    <string name="out_of_5">out of 5</string>
+    <string name="fill_input">Fill in the input fields</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="passwords_not_equals">Passwords not equals</string>
+    <string name="address_example">Москва, Проспект Вернадского, 74</string>
+    <string name="invalid_address">Неверный адрес</string>
+    <string name="select_service_prices">Выберите цены для услуг</string>
+    <string name="no_feedbacks">No feedbacks</string>
 
 </resources>

@@ -17,10 +17,10 @@ public class PortfolioImagesFragment extends Fragment {
 
     private FragmentImagesBinding binding;
 
-    private final int photographId;
+    private final String serviceId;
 
-    public PortfolioImagesFragment(int photographId) {
-        this.photographId = photographId;
+    public PortfolioImagesFragment(String serviceId) {
+        this.serviceId = serviceId;
     }
 
     @Override
@@ -35,6 +35,6 @@ public class PortfolioImagesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.text.setText("" + photographId);
+        binding.text.setText("" + serviceId);
     }
 }

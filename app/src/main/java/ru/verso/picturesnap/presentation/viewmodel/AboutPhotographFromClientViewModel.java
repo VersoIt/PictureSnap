@@ -10,13 +10,13 @@ public class AboutPhotographFromClientViewModel extends ViewModel {
 
     private final GetPhotographDataUseCase getPhotographDataUseCase;
 
-    private int photographId;
+    private String photographId;
 
     public AboutPhotographFromClientViewModel(GetPhotographDataUseCase getPhotographDataUseCase) {
         this.getPhotographDataUseCase = getPhotographDataUseCase;
     }
 
-    public void putPhotographId(int id) {
+    public void putPhotographId(String id) {
         this.photographId = id;
     }
 

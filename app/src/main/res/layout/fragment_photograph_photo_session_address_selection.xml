@@ -5,7 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_white"
-    tools:context=".presentation.fragments.common.BankCardLink">
+    tools:context=".presentation.fragments.photograph.PhotographPhotoSessionAddressSelection">
+
+    <LinearLayout
+        android:id="@+id/linearLayout_address_info_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:minHeight="400dp"
+
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="3"
+
+        android:orientation="vertical"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_search"
+        app:layout_constraintBottom_toTopOf="@id/layout_ready_button">
+
+        <com.yandex.mapkit.mapview.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:background="@drawable/rect_white" />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/layout_ready_button"
+
+        layout="@layout/layout_ready_button"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginVertical="@dimen/small_margin"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_address_info_container"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
 
     <LinearLayout
         android:id="@+id/linearLayout_header"
@@ -13,7 +58,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="@dimen/base_elements_margin"
+        android:background="@color/white"
 
         android:orientation="vertical"
 
@@ -39,91 +84,42 @@
             android:paddingHorizontal="10dp"
             android:text="@string/address_selection" />
 
-        <View
-            android:id="@+id/view_line"
-
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@drawable/rect_grey" />
-
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout_address_info_container"
-        android:layout_width="0dp"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayout_search"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="@dimen/large_margin"
+        android:background="@color/white"
 
-        android:orientation="vertical"
-
-        android:background="@drawable/rect_white"
-
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
-
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout_header">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_header">
 
-        <View
+        <EditText
+            android:id="@+id/editText_address_search"
+            style="@style/textField.input"
+
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="match_parent"
 
-            android:background="@drawable/rect_white" />
+            android:layout_marginHorizontal="5dp"
 
-        <TextView
+            android:layout_weight="1"
+            android:background="@drawable/rect_white"
+            android:autofillHints=""
+            android:hint="@string/address_example"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/button_search"
+            android:text="@string/search"
+            android:layout_marginHorizontal="5dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content"/>
 
-            android:layout_marginTop="20dp"
-
-            android:layout_marginHorizontal="20dp"
-
-            tools:text="@string/address"/>
-
-        <TextView
-            android:id="@+id/textView_address_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="20dp"
-
-            android:textColor="@color/search_hint_color"
-
-            tools:text="Проспект Вернадского, 26к1"/>
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView_yandex_maps_logo"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-
-        android:contentDescription="@string/yandex_maps"
-        android:layout_marginVertical="10dp"
-
-        android:src="@drawable/ic_yandex_maps"
-
-        app:layout_constraintEnd_toEndOf="@id/linearLayout_address_info_container"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout_address_info_container"/>
-
-    <include
-        android:id="@+id/layout_ready_button"
-
-        layout="@layout/layout_ready_button"
-
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView_yandex_maps_logo"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

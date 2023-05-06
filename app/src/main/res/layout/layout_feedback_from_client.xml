@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/rect_white"
+    android:padding="10dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView_owner_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textStyle="bold"
+                android:ellipsize="end"
+
+                android:maxWidth="200dp"
+                android:singleLine="true"
+
+                tools:text="Екатерина Смирнова"/>
+
+            <TextView
+                android:id="@+id/textView_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:textColor="@color/black_gray"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:ellipsize="end"
+
+                tools:text="02.05.2022"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayout_stars"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+
+            tools:itemCount="5"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/layout_rating_star"
+
+            android:layout_marginVertical="5dp"/>
+
+        <TextView
+            android:id="@+id/textView_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            tools:text="Довольна работой мастера. Алена ответственно подошла к заданию, предложила свои идеи для фотосессии, которые могли бы подойти под типаж моей внешности, помогла с подбором образа, локации, собрала ответственную команду, дала рекомендации по позированию. Идея, которая сначала казалась сложной для реализации, была воплощена быстро и качеств"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>

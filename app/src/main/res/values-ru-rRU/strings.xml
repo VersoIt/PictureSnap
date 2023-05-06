@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PictureSnap</string>
-    <string name="search">Поиск по городу, имени, услуге</string>
+    <string name="search">Поиск</string>
     <string name="review">Обзор</string>
     <string name="home">Домой</string>
     <string name="profile">Профиль</string>
@@ -48,7 +48,7 @@
     <string name="dev">Руслан Лященко</string>
     <string name="keep_in_safe_place">Сохраните пароль в надежном месте!</string>
     <string name="work_days">Рабочие дни</string>
-    <string name="ratings_and_reviews">Оценки и отзывы</string>
+    <string name="ratings_and_feedbacks">Оценки и отзывы</string>
     <string name="portfolio">Портфолио</string>
     <string name="about_photograph">О фотографе</string>
     <string name="services">Услуги</string>
@@ -127,4 +127,12 @@
     <string name="search_found">Поиск: </string>
     <string name="settings">Настройки</string>
     <string name="city_data_not_received">Данные о городе не получены</string>
+    <string name="out_of_5">из 5</string>
+    <string name="fill_input">Заполните все поля ввода</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="passwords_not_equals">Пароли не совпадают</string>
+    <string name="address_example">Москва, Проспект Вернадского, 74</string>
+    <string name="invalid_address">Неверный адрес</string>
+    <string name="select_service_prices">Выберите цены для услуг</string>
+    <string name="no_feedbacks">Отзывы отсутствуют</string>
 </resources>

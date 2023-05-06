@@ -15,23 +15,23 @@ import androidx.navigation.fragment.NavHostFragment;
 import java.util.Objects;
 
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographRepositoryImpl;
-import ru.verso.picturesnap.data.repository.WorkingDaysRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentPhotographProfileFromUnregisteredBinding;
 import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.models.Photograph;
+import ru.verso.picturesnap.domain.usecase.GetFeedbackDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
-import ru.verso.picturesnap.domain.usecase.GetPhotographWorkingDaysUseCase;
-import ru.verso.picturesnap.presentation.factory.AboutPhotographFromClientViewModelFactory;
-import ru.verso.picturesnap.presentation.factory.ServicesViewModelFactory;
-import ru.verso.picturesnap.presentation.viewmodel.AboutPhotographFromClientViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.PhotoSessionAddressViewModel;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
+import ru.verso.picturesnap.presentation.factory.AboutPhotographFromClientViewModelFactory;
+import ru.verso.picturesnap.presentation.factory.FeedbackViewModelFactory;
+import ru.verso.picturesnap.presentation.factory.ServicesViewModelFactory;
+import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
+import ru.verso.picturesnap.presentation.viewmodel.AboutPhotographFromClientViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.FeedbackViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.PhotoSessionAddressViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.PhotographProfileViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.ServicesViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.WorkingDaysViewModel;
-import ru.verso.picturesnap.presentation.factory.WorkingDaysViewModelFactory;
-import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
 
 public class PhotographProfileFromUnregistered extends Fragment {
 
@@ -56,10 +56,11 @@ public class PhotographProfileFromUnregistered extends Fragment {
             updateName(photograph.getFirstName(), photograph.getLastName());
             updateEmail(photograph.getEmail());
             updateLocation(new Location(photograph.getLatitude(), photograph.getLongitude()));
-            updateWorkingDays(photograph);
             updateServices(photograph);
             updateAboutPhotographButton(photograph);
             updatePortfolio(navController);
+            updateFeedbacks(navController);
+            sendPhotographIdToFeedbacksFragment(photograph.getId());
         });
 
         navController = getNavController();
@@ -98,6 +99,14 @@ public class PhotographProfileFromUnregistered extends Fragment {
                 .putPhotoSessionAddress(location);
     }
 
+    private void sendPhotographIdToFeedbacksFragment(String id) {
+        new ViewModelProvider(requireActivity(),
+                new FeedbackViewModelFactory(
+                        new GetFeedbackDataUseCase(
+                                new FeedbackRepositoryImpl())))
+                .get(FeedbackViewModel.class).putPhotographId(id);
+    }
+
     private void updateServices(Photograph photograph) {
         sendPhotographIdToServicesDialog(photograph.getId());
 
@@ -118,33 +127,18 @@ public class PhotographProfileFromUnregistered extends Fragment {
         return Objects.requireNonNull(navHostFragment).getNavController();
     }
 
-    private void sendPhotographIdToAboutPhotographViewModel(int photographId) {
+    private void sendPhotographIdToAboutPhotographViewModel(String photographId) {
         new ViewModelProvider(requireActivity(), new AboutPhotographFromClientViewModelFactory(
                 new GetPhotographDataUseCase(
-                        new PhotographRepositoryImpl(getContext()))))
+                        new PhotographRepositoryImpl())))
                 .get(AboutPhotographFromClientViewModel.class)
                 .putPhotographId(photographId);
     }
 
-    private void updateWorkingDays(Photograph photograph) {
-        binding.linearLayoutFieldsContainer.textViewWorkDays.setOnClickListener(view -> {
-            sendPhotographIdToWorkingDaysDialog(photograph.getId());
-            showBottomSheetDialog(R.id.photograph_working_days_from_client);
-        });
-    }
-
-    private void sendPhotographIdToWorkingDaysDialog(int photographId) {
-        new ViewModelProvider(requireActivity(), new WorkingDaysViewModelFactory(
-                new GetPhotographWorkingDaysUseCase(
-                        new WorkingDaysRepositoryImpl(getContext()))))
-                .get(WorkingDaysViewModel.class)
-                .putPhotographId(photographId);
-    }
-
-    private void sendPhotographIdToServicesDialog(int photographId) {
+    private void sendPhotographIdToServicesDialog(String photographId) {
         new ViewModelProvider(requireActivity(), new ServicesViewModelFactory(
                 new GetPhotographDataUseCase(
-                        new PhotographRepositoryImpl(getContext()))))
+                        new PhotographRepositoryImpl())))
                 .get(ServicesViewModel.class)
                 .putPhotographId(photographId);
     }
@@ -152,6 +146,12 @@ public class PhotographProfileFromUnregistered extends Fragment {
     private void updatePortfolio(NavController navController) {
         binding.linearLayoutFieldsContainer.textViewPortfolio.setOnClickListener(view ->
                 navController.navigate(R.id.action_photograph_profile_from_unregistered_to_photographPortfolioFromUnregistered));
+    }
+
+    private void updateFeedbacks(NavController navController) {
+
+        binding.linearLayoutFieldsContainer.textViewFeedbacks.setOnClickListener(view ->
+                navController.navigate(R.id.action_photograph_profile_from_unregistered_to_feedbackFromUnregistered));
     }
 
     public void showBottomSheetDialog(int fragmentId) {

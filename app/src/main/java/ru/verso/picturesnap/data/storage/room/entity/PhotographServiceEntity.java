@@ -30,8 +30,4 @@ public class PhotographServiceEntity {
 
     public PhotographServiceEntity() {
     }
-
-    public PhotographService mapToDomain() {
-        return new PhotographService(name, iconPath, cost);
-    }
 }

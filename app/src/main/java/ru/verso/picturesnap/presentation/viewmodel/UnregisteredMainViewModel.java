@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -51,6 +52,9 @@ public class UnregisteredMainViewModel extends ViewModel {
     }
 
     private List<Photograph> getPhotographsByLocation(List<Photograph> photographs, Location userLocation) {
+        if (userLocation.getLatitude() == 0 && userLocation.getLongitude() == 0)
+            return new ArrayList<>();
+
         String userCity = LocationCoordinator.getCityNameByLocation(context, userLocation.getLatitude(), userLocation.getLongitude());
 
         return Objects.requireNonNull(photographs)

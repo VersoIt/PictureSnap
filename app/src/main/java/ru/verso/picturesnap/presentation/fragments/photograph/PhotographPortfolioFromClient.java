@@ -24,17 +24,16 @@ import java.util.List;
 import java.util.Objects;
 
 import ru.verso.picturesnap.databinding.FragmentPhotographPortfolioFromClientBinding;
-import ru.verso.picturesnap.domain.models.PhotographService;
-import ru.verso.picturesnap.domain.models.ServiceProvision;
+import ru.verso.picturesnap.domain.models.PhotographPresentationService;
 import ru.verso.picturesnap.presentation.viewmodel.ServicesViewModel;
 
 public class PhotographPortfolioFromClient extends Fragment {
 
     private FragmentPhotographPortfolioFromClientBinding binding;
 
-    private LiveData<List<PhotographService>> photographServices;
+    private LiveData<List<PhotographPresentationService>> photographServices;
 
-    private LiveData<List<ServiceProvision>> photographServiceProvisions;
+    private LiveData<List<PhotographPresentationService>> photographServiceProvisions;
 
     private static int synchronizeCount = 0;
     private static final int SYNCHRONIZE_END_AMOUNT = 2;
@@ -54,7 +53,7 @@ public class PhotographPortfolioFromClient extends Fragment {
         ServicesViewModel servicesViewModel = getPhotographServicesViewModel();
 
         photographServices = servicesViewModel.getPhotographServices();
-        photographServiceProvisions = servicesViewModel.getPhotographServiceProvisions();
+        photographServiceProvisions = servicesViewModel.getPhotographServices();
 
         photographServices.observe(getViewLifecycleOwner(), services ->
                 synchronizeLives());

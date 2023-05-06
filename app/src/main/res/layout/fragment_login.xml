@@ -51,6 +51,7 @@
                     android:text="@string/email" />
 
                 <EditText
+                    android:id="@+id/editText_email"
                     style="@style/textField.input"
 
                     android:layout_width="match_parent"
@@ -85,6 +86,7 @@
                     android:text="@string/password" />
 
                 <EditText
+                    android:id="@+id/editText_password"
                     style="@style/textField.input"
 
                     android:layout_width="match_parent"

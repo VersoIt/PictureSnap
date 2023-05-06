@@ -2,22 +2,26 @@ package ru.verso.picturesnap.domain.models;
 
 public class PhotographService {
 
-    private final String name;
-    private final String iconPath;
-    private final int cost;
+    private String id;
+    private String name;
+    private String iconPath;
 
-    public PhotographService(String name, String iconPath, int cost) {
+    public PhotographService(String id, String name, String iconPath) {
+        this.id = id;
         this.name = name;
         this.iconPath = iconPath;
-        this.cost = cost;
+    }
+
+    public PhotographService() {
+
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
         return name;
-    }
-
-    public int getCost() {
-        return cost;
     }
 
     public String getIconPath() {

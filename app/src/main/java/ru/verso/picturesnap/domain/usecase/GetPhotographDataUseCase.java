@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import ru.verso.picturesnap.domain.models.Photograph;
+import ru.verso.picturesnap.domain.models.PhotographPresentationService;
 import ru.verso.picturesnap.domain.models.PhotographService;
-import ru.verso.picturesnap.domain.models.ServiceProvision;
 import ru.verso.picturesnap.domain.repository.PhotographRepository;
 
 public class GetPhotographDataUseCase {
@@ -25,15 +25,11 @@ public class GetPhotographDataUseCase {
         return repository.getAllPhotographs();
     }
 
-    public LiveData<Photograph> getPhotographById(int id) {
+    public LiveData<Photograph> getPhotographById(String id) {
         return repository.getPhotographById(id);
     }
 
-    public LiveData<List<PhotographService>> getPhotographServicesById(int photographId) {
+    public LiveData<List<PhotographPresentationService>> getPhotographServicesById(String photographId) {
         return repository.getPhotographServicesById(photographId);
-    }
-
-    public LiveData<List<ServiceProvision>> getPhotographServiceProvisions(int id) {
-        return repository.getPhotographServiceProvisions(id);
     }
 }

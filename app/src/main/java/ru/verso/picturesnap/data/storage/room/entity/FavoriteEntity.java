@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import ru.verso.picturesnap.domain.models.Favorite;
+
 @Entity
 public class FavoriteEntity {
 
@@ -17,5 +19,9 @@ public class FavoriteEntity {
     public int photographId;
 
     public FavoriteEntity() {
+    }
+
+    public Favorite mapToDomain() {
+        return new Favorite(id, photographId, clientId);
     }
 }

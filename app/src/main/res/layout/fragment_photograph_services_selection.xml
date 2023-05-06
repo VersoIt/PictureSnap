@@ -1,456 +1,479 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary_white"
-    tools:context=".presentation.fragments.common.BankCardLink">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout_header"
-
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="@dimen/base_elements_margin"
-
-        android:orientation="vertical"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <TextView
-            android:id="@+id/textView_header"
-
-            android:paddingHorizontal="10dp"
-
-            style="@style/headerText.largeMargin"
-
-            android:layout_margin="16dp"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="@string/services_selection"
-
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp" />
-
-        <View
-            android:id="@+id/view_line"
-
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@drawable/rect_grey" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/fieldsContainer.selection"
-
-        android:id="@+id/linearLayout_input_fields_container"
-        android:background="@drawable/rect_white"
-
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="@dimen/base_elements_margin"
-        android:orientation="vertical"
-
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout_header">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary_white"
+        tools:context=".presentation.fragments.common.BankCardLink">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout_header"
+
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/base_elements_margin"
+
+            android:orientation="vertical"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
-                style="@style/textField"
+                android:id="@+id/textView_header"
 
-                android:width="140dp"
+                android:paddingHorizontal="10dp"
 
-                android:text="@string/family_photo_session"
-                android:singleLine="false"
+                style="@style/headerText.largeMargin"
+
+                android:layout_margin="16dp"
 
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
 
-            <LinearLayout
-                android:gravity="center"
+                android:text="@string/services_selection"
+
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp" />
+
+            <View
+                android:id="@+id/view_line"
 
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="1dp"
+                android:background="@drawable/rect_grey" />
 
-                <EditText
-                    style="@style/selectionInputField"
+        </LinearLayout>
 
-                    android:minWidth="60dp"
-                    android:maxWidth="100dp"
+        <LinearLayout
+            style="@style/fieldsContainer.selection"
 
-                    android:textAlignment="center"
+            android:id="@+id/linearLayout_input_fields_container"
+            android:background="@drawable/rect_white"
 
-                    android:singleLine="true"
-                    android:hint="@string/zero"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
 
-                    android:inputType="numberDecimal"
+            android:layout_marginTop="@dimen/base_elements_margin"
+            android:orientation="vertical"
 
-                    android:autofillHints="" />
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_header">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
 
                 <TextView
-                    style="@style/standardText"
+                    style="@style/textField"
 
-                    android:layout_marginStart="10dp"
+                    android:width="140dp"
 
-                    android:text="@string/rub_per_hour" />
+                    android:text="@string/family_photo_session"
+                    android:singleLine="false"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:gravity="center"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/editText_family_price"
+                        style="@style/selectionInputField"
+
+                        android:autofillHints=""
+                        android:hint="@string/zero"
+
+                        android:inputType="numberDecimal"
+
+                        android:maxWidth="100dp"
+                        android:minWidth="60dp"
+
+                        android:minHeight="48dp"
+
+                        android:singleLine="true"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        style="@style/standardText"
+
+                        android:layout_marginStart="10dp"
+
+                        android:text="@string/rub_per_hour" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textField"
+
+                    android:width="140dp"
+
+                    android:singleLine="false"
+
+                    android:text="@string/portrait_photo_session"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:gravity="center"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/editText_portrait_price"
+                        style="@style/selectionInputField"
+
+                        android:autofillHints=""
+                        android:hint="@string/zero"
+
+                        android:inputType="numberDecimal"
+
+                        android:maxWidth="100dp"
+                        android:minWidth="60dp"
+
+                        android:minHeight="48dp"
+
+                        android:singleLine="true"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        style="@style/standardText"
+
+                        android:layout_marginStart="10dp"
+
+                        android:text="@string/rub_per_hour" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textField"
+
+                    android:maxWidth="140dp"
+
+                    android:width="140dp"
+
+                    android:singleLine="false"
+
+                    android:text="@string/pregnant_woman_photo_session"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:gravity="center"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/editText_pregnant_price"
+                        style="@style/selectionInputField"
+
+                        android:autofillHints=""
+                        android:hint="@string/zero"
+
+                        android:inputType="numberDecimal"
+
+                        android:maxWidth="100dp"
+                        android:minWidth="60dp"
+
+                        android:minHeight="48dp"
+
+                        android:singleLine="true"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        style="@style/standardText"
+
+                        android:layout_marginStart="10dp"
+
+                        android:text="@string/rub_per_hour" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textField"
+
+                    android:maxWidth="140dp"
+
+                    android:width="140dp"
+
+                    android:singleLine="false"
+
+                    android:text="@string/children_photo_session"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:gravity="center"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/editText_child_price"
+                        style="@style/selectionInputField"
+
+                        android:autofillHints=""
+                        android:hint="@string/zero"
+
+                        android:inputType="numberDecimal"
+
+                        android:maxWidth="100dp"
+                        android:minWidth="60dp"
+
+                        android:minHeight="48dp"
+
+                        android:singleLine="true"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        style="@style/standardText"
+
+                        android:layout_marginStart="10dp"
+
+                        android:text="@string/rub_per_hour" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textField"
+
+                    android:maxWidth="140dp"
+
+                    android:text="@string/advertising_photo_session"
+
+                    android:singleLine="false"
+
+                    android:width="140dp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:gravity="center"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/editText_advertisement_price"
+                        style="@style/selectionInputField"
+
+                        android:autofillHints=""
+                        android:hint="@string/zero"
+
+                        android:inputType="numberDecimal"
+
+                        android:maxWidth="100dp"
+                        android:minWidth="60dp"
+
+                        android:minHeight="48dp"
+                        android:singleLine="true"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        style="@style/standardText"
+
+                        android:layout_marginStart="10dp"
+
+                        android:text="@string/rub_per_hour" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textField"
+
+                    android:maxWidth="140dp"
+
+                    android:text="@string/subject_photo_session"
+
+                    android:singleLine="false"
+
+                    android:width="140dp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:gravity="center"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/editText_objective_price"
+                        style="@style/selectionInputField"
+
+                        android:autofillHints=""
+                        android:hint="@string/zero"
+
+                        android:inputType="numberDecimal"
+
+                        android:maxWidth="100dp"
+                        android:minWidth="60dp"
+
+                        android:minHeight="48dp"
+
+                        android:singleLine="true"
+                        android:textAlignment="center"
+                        android:textColorHint="#616161" />
+
+                    <TextView
+                        style="@style/standardText"
+
+                        android:layout_marginStart="10dp"
+
+                        android:text="@string/rub_per_hour" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textField"
+
+                    android:maxWidth="140dp"
+
+                    android:text="@string/studio_photo_session"
+
+                    android:singleLine="false"
+
+                    android:width="140dp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:gravity="center"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/editText_studio_price"
+                        style="@style/selectionInputField"
+
+                        android:autofillHints=""
+                        android:hint="@string/zero"
+
+                        android:inputType="numberDecimal"
+
+                        android:maxWidth="100dp"
+                        android:minWidth="60dp"
+
+                        android:minHeight="48dp"
+
+                        android:singleLine="true"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        style="@style/standardText"
+
+                        android:layout_marginStart="10dp"
+
+                        android:text="@string/rub_per_hour" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:orientation="horizontal">
 
             <TextView
-                style="@style/textField"
+                android:id="@+id/textView_addition"
+                style="@style/additionText"
 
-                android:width="140dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
 
-                android:singleLine="false"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
 
-                android:text="@string/portrait_photo_session"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout_input_fields_container"
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:text="@string/services_addition"/>
 
-            <LinearLayout
-                android:gravity="center"
+        <include
+            layout="@layout/layout_ready_button"
 
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_marginTop="10dp"
 
-                <EditText
-                    style="@style/selectionInputField"
+            android:id="@+id/layout_ready_button"
 
-                    android:minWidth="60dp"
-                    android:maxWidth="100dp"
-
-                    android:textAlignment="center"
-
-                    android:singleLine="true"
-                    android:hint="@string/zero"
-
-                    android:inputType="numberDecimal"
-
-                    android:autofillHints="" />
-
-                <TextView
-                    style="@style/standardText"
-
-                    android:layout_marginStart="10dp"
-
-                    android:text="@string/rub_per_hour" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:orientation="horizontal">
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
 
-            <TextView
-                style="@style/textField"
+            app:layout_constraintTop_toBottomOf="@id/textView_addition"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-                android:maxWidth="140dp"
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                android:width="140dp"
-
-                android:singleLine="false"
-
-                android:text="@string/pregnant_woman_photo_session"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <LinearLayout
-                android:gravity="center"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    style="@style/selectionInputField"
-
-                    android:minWidth="60dp"
-                    android:maxWidth="100dp"
-
-                    android:textAlignment="center"
-
-                    android:singleLine="true"
-                    android:hint="@string/zero"
-
-                    android:inputType="numberDecimal"
-
-                    android:autofillHints="" />
-
-                <TextView
-                    style="@style/standardText"
-
-                    android:layout_marginStart="10dp"
-
-                    android:text="@string/rub_per_hour" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/textField"
-
-                android:maxWidth="140dp"
-
-                android:width="140dp"
-
-                android:singleLine="false"
-
-                android:text="@string/children_photo_session"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <LinearLayout
-                android:gravity="center"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    style="@style/selectionInputField"
-
-                    android:minWidth="60dp"
-                    android:maxWidth="100dp"
-
-                    android:textAlignment="center"
-
-                    android:singleLine="true"
-                    android:hint="@string/zero"
-
-                    android:inputType="numberDecimal"
-
-                    android:autofillHints="" />
-
-                <TextView
-                    style="@style/standardText"
-
-                    android:layout_marginStart="10dp"
-
-                    android:text="@string/rub_per_hour" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/textField"
-
-                android:maxWidth="140dp"
-
-                android:text="@string/advertising_photo_session"
-
-                android:singleLine="false"
-
-                android:width="140dp"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <LinearLayout
-                android:gravity="center"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    style="@style/selectionInputField"
-
-                    android:minWidth="60dp"
-                    android:maxWidth="100dp"
-
-                    android:textAlignment="center"
-
-                    android:singleLine="true"
-                    android:hint="@string/zero"
-
-                    android:inputType="numberDecimal"
-                    android:autofillHints="" />
-
-                <TextView
-                    style="@style/standardText"
-
-                    android:layout_marginStart="10dp"
-
-                    android:text="@string/rub_per_hour" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/textField"
-
-                android:maxWidth="140dp"
-
-                android:text="@string/subject_photo_session"
-
-                android:singleLine="false"
-
-                android:width="140dp"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <LinearLayout
-                android:gravity="center"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    style="@style/selectionInputField"
-
-                    android:minWidth="60dp"
-                    android:maxWidth="100dp"
-
-                    android:textAlignment="center"
-
-                    android:singleLine="true"
-                    android:hint="@string/zero"
-
-                    android:inputType="numberDecimal"
-
-                    android:autofillHints="" />
-
-                <TextView
-                    style="@style/standardText"
-
-                    android:layout_marginStart="10dp"
-
-                    android:text="@string/rub_per_hour" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/textField"
-
-                android:maxWidth="140dp"
-
-                android:text="@string/studio_photo_session"
-
-                android:singleLine="false"
-
-                android:width="140dp"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <LinearLayout
-                android:gravity="center"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    style="@style/selectionInputField"
-
-                    android:minWidth="60dp"
-                    android:maxWidth="100dp"
-
-                    android:textAlignment="center"
-
-                    android:singleLine="true"
-                    android:hint="@string/zero"
-
-                    android:inputType="numberDecimal"
-
-                    android:autofillHints="" />
-
-                <TextView
-                    style="@style/standardText"
-
-                    android:layout_marginStart="10dp"
-
-                    android:text="@string/rub_per_hour" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView_addition"
-        style="@style/additionText"
-
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout_input_fields_container"
-
-        android:text="@string/services_addition"/>
-
-    <include
-        layout="@layout/layout_ready_button"
-
-        android:id="@+id/layout_ready_button"
-
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
-
-        app:layout_constraintTop_toBottomOf="@id/textView_addition"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

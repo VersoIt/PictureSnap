@@ -1,3 +1,4 @@
+
 package ru.verso.picturesnap.presentation.adapters.client;
 
 import android.view.LayoutInflater;
@@ -54,7 +55,7 @@ public class PhotographsInCityAdapter extends ListAdapter<Photograph, Photograph
 
     private PhotographProfileViewModel getPhotographViewModel() {
         return new ViewModelProvider(viewModelOwner, new PhotographProfileViewModelFactory(new GetPhotographDataUseCase(
-                new PhotographRepositoryImpl(viewModelOwner.getApplicationContext()))))
+                new PhotographRepositoryImpl())))
                 .get(PhotographProfileViewModel.class);
     }
 
@@ -67,7 +68,7 @@ public class PhotographsInCityAdapter extends ListAdapter<Photograph, Photograph
 
         @Override
         public boolean areContentsTheSame(@NonNull Photograph oldItem, @NonNull Photograph newItem) {
-            return oldItem.getId() == newItem.getId();
+            return oldItem.getId().equals(newItem.getId());
         }
     }
 }

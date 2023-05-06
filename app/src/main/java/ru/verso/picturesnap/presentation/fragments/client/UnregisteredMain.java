@@ -61,7 +61,7 @@ public class UnregisteredMain extends Fragment {
         return new ViewModelProvider(this,
                 new UnregisteredMainViewModelFactory(
                         requireActivity().getApplication(),
-                        new GetPhotographDataUseCase(new PhotographRepositoryImpl(this.requireActivity().getApplication())),
+                        new GetPhotographDataUseCase(new PhotographRepositoryImpl()),
                         new GetUserDataUseCase(new UserLocationRepositoryImpl(this.requireActivity().getApplicationContext()),
                                 new RoleRepositoryImpl(requireActivity().getApplicationContext()),
                                 new FirstTimeWentRepositoryImpl(requireActivity().getApplicationContext())),
@@ -98,7 +98,13 @@ public class UnregisteredMain extends Fragment {
         recyclerView.setAdapter(photographsInCityAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        viewModel.getPhotographsInCity().observe(getViewLifecycleOwner(), photographsInCityAdapter::submitList);
+        viewModel.getPhotographsInCity().observe(getViewLifecycleOwner(), photographs -> {
+            if (photographs.size() > 0) {
+                binding.textViewPhotographsInCity.setVisibility(View.VISIBLE);
+                binding.recyclerViewPhotographsInCity.setVisibility(View.VISIBLE);
+                photographsInCityAdapter.submitList(photographs);
+            }
+        });
     }
 
     private void createPhotographServicesList(NavController navController) {
@@ -109,6 +115,12 @@ public class UnregisteredMain extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        viewModel.getServices().observe(getViewLifecycleOwner(), adapter::submitList);
+        viewModel.getServices().observe(getViewLifecycleOwner(), services -> {
+            if (services.size() > 0) {
+                binding.progressBar.setVisibility(View.GONE);
+                binding.recyclerViewServices.setVisibility(View.VISIBLE);
+                adapter.submitList(services);
+            }
+        });
     }
 }
