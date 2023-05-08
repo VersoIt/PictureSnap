@@ -26,7 +26,7 @@ import java.util.Objects;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.FragmentPhotoSessionAddressBinding;
-import ru.verso.picturesnap.presentation.viewmodel.PhotoSessionAddressViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotoSessionAddressViewModel;
 import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
 
 public class PhotoSessionAddress extends Fragment {

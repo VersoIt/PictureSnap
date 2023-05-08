@@ -1,4 +1,4 @@
-package ru.verso.picturesnap.presentation.viewmodel;
+package ru.verso.picturesnap.presentation.viewmodel.unregistered;
 
 import android.app.Application;
 
@@ -17,6 +17,7 @@ import ru.verso.picturesnap.domain.models.PhotographService;
 import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
+import ru.verso.picturesnap.presentation.app.PictureSnapApp;
 import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
 
 public class UnregisteredMainViewModel extends ViewModel {
@@ -62,6 +63,7 @@ public class UnregisteredMainViewModel extends ViewModel {
                         LocationCoordinator.getCityNameByLocation(context, p.getLatitude(),
                                 p.getLongitude()).contains(
                                 userCity))
+                .limit(PictureSnapApp.PHOTOGRAPH_IN_CITY_LIST_LIMIT)
                 .collect(Collectors.toList());
     }
 

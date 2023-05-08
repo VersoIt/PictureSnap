@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +14,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.FragmentAboutPhotographFromClientBinding;
-import ru.verso.picturesnap.presentation.viewmodel.AboutPhotographFromClientViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.AboutPhotographFromClientViewModel;
 
 public class AboutPhotographFromClient extends Fragment {
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import ru.verso.picturesnap.domain.usecase.GetFeedbackDataUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.FeedbackViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
 
 public class FeedbackViewModelFactory implements ViewModelProvider.Factory {
 

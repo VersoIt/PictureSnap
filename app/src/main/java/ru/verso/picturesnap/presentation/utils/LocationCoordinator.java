@@ -4,6 +4,9 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -40,6 +43,8 @@ public class LocationCoordinator {
                 result.append(address.getThoroughfare());
                 result.append(", ");
                 result.append(address.getSubThoroughfare());
+                if (result.toString().contains("null"))
+                    return getCityNameByLocation(context, latitude, longitude);
                 return result.toString();
             }
         } catch (IOException e) {
@@ -49,19 +54,26 @@ public class LocationCoordinator {
         return "";
     }
 
-    public static Location getLocationByString(Context context, String location) {
-        Geocoder geocoder = new Geocoder(context);
-        try {
-            List<Address> addresses = geocoder.getFromLocationName(location, 1);
-            if (addresses.size() > 0) {
-                    Address address = addresses.get(0);
-                    return new Location(address.getLatitude(), address.getLongitude());
-            }
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
+    public static LiveData<Location> getLocationByString(Context context, String location) {
+        MutableLiveData<Location> mutableLiveData = new MutableLiveData<>();
 
-        return new Location(0, 0);
+        new Thread(() -> {
+            Geocoder geocoder = new Geocoder(context);
+            try {
+                List<Address> addresses = geocoder.getFromLocationName(location, 1);
+                if (addresses.size() > 0) {
+                    Address address = addresses.get(0);
+                    mutableLiveData.postValue(new Location(address.getLatitude(), address.getLongitude()));
+                    return;
+                }
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+
+            mutableLiveData.postValue(new Location(0, 0));
+        }).start();
+
+        return mutableLiveData;
     }
 }

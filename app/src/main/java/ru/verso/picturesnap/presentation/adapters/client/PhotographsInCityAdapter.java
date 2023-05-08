@@ -16,7 +16,7 @@ import ru.verso.picturesnap.data.repository.PhotographRepositoryImpl;
 import ru.verso.picturesnap.databinding.LayoutPhotographInCityBinding;
 import ru.verso.picturesnap.domain.models.Photograph;
 import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.PhotographProfileViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographProfileViewModel;
 import ru.verso.picturesnap.presentation.factory.PhotographProfileViewModelFactory;
 
 public class PhotographsInCityAdapter extends ListAdapter<Photograph, PhotographInCityViewHolder> {

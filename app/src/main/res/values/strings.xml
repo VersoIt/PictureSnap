@@ -150,5 +150,12 @@
     <string name="select_service_prices">Выберите цены для услуг</string>
     <string name="no_feedbacks">No feedbacks</string>
     <string name="nothing_here">There is nothing here yet…</string>
+    <string name="wrong_data">Wrong data</string>
+    <string name="prices_selected">Prices selected</string>
+    <string name="wrong_enter_phone_number">Phone number entered incorrectly</string>
+    <string name="wrong_enter_email">Email entered incorrectly</string>
+    <string name="short_password">Short password</string>
+    <string name="invalid_first_name">Invalid first name</string>
+    <string name="invalid_last_name">Invalid last name</string>
 
 </resources>

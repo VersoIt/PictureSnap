@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.AboutPhotographFromClientViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.AboutPhotographFromClientViewModel;
 
 public class AboutPhotographFromClientViewModelFactory implements ViewModelProvider.Factory {
 

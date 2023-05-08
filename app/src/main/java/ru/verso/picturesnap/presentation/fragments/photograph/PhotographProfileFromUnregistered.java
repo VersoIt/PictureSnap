@@ -1,7 +1,6 @@
 package ru.verso.picturesnap.presentation.fragments.photograph;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +32,12 @@ import ru.verso.picturesnap.presentation.factory.FavoritesViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.FeedbackViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.ServicesViewModelFactory;
 import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
-import ru.verso.picturesnap.presentation.viewmodel.AboutPhotographFromClientViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.FavoritesViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.FeedbackViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.PhotoSessionAddressViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.PhotographProfileViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.ServicesViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.AboutPhotographFromClientViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.FavoritesViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotoSessionAddressViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographProfileViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.ServicesViewModel;
 
 public class PhotographProfileFromUnregistered extends Fragment {
 
@@ -145,9 +144,7 @@ public class PhotographProfileFromUnregistered extends Fragment {
     private void updateServices(Photograph photograph) {
         sendPhotographIdToServicesDialog(photograph.getId());
 
-        binding.linearLayoutFieldsContainer.textViewServices.setOnClickListener(view -> {
-            showBottomSheetDialog(R.id.photographServicesBottomSheet);
-        });
+        binding.linearLayoutFieldsContainer.textViewServices.setOnClickListener(view -> showBottomSheetDialog(R.id.photographServicesBottomSheet));
     }
 
     private FavoritesViewModel getFavoritesViewModel() {

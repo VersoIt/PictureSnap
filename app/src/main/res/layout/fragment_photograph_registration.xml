@@ -371,7 +371,7 @@
                         android:autofillHints="name"
                         android:background="@drawable/transparent"
 
-                        android:hint="@string/select_service_prices" />
+                        tools:hint="@string/select_service_prices" />
 
                 </LinearLayout>
 

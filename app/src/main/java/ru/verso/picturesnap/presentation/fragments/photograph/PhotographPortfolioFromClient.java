@@ -25,7 +25,7 @@ import java.util.Objects;
 
 import ru.verso.picturesnap.databinding.FragmentPhotographPortfolioFromClientBinding;
 import ru.verso.picturesnap.domain.models.PhotographPresentationService;
-import ru.verso.picturesnap.presentation.viewmodel.ServicesViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.ServicesViewModel;
 
 public class PhotographPortfolioFromClient extends Fragment {
 

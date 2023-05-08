@@ -20,6 +20,26 @@ public class PhotographPresentationService {
     public PhotographPresentationService() {
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPhotographId(String photographId) {
+        this.photographId = photographId;
+    }
+
+    public void setServiceId(String serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPhotographId() {
         return photographId;
     }

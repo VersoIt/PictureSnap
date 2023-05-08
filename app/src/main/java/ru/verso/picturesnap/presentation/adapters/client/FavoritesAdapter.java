@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.LayoutFavoritePhotographBinding;
 import ru.verso.picturesnap.domain.models.Photograph;
-import ru.verso.picturesnap.presentation.viewmodel.PhotographProfileViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographProfileViewModel;
 
 public class FavoritesAdapter extends ListAdapter<Photograph, PhotographViewHolder> {
 

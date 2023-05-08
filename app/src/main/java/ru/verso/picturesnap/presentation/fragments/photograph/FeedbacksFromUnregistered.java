@@ -8,23 +8,18 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import java.util.List;
-import java.util.Objects;
 
-import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentFeedbackFromUnregisteredBinding;
 import ru.verso.picturesnap.domain.models.Feedback;
-import ru.verso.picturesnap.domain.usecase.GetFeedbackDataUseCase;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographFeedbacksAdapter;
-import ru.verso.picturesnap.presentation.factory.FeedbackViewModelFactory;
-import ru.verso.picturesnap.presentation.viewmodel.FeedbackViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.PhotographProfileViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographProfileViewModel;
 
 public class FeedbacksFromUnregistered extends Fragment {
 

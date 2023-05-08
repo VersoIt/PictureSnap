@@ -20,7 +20,7 @@ import java.util.Objects;
 import ru.verso.picturesnap.databinding.FragmentPhotographServicesBottomSheetBinding;
 import ru.verso.picturesnap.presentation.adapters.client.ServicesFromClientAdapter;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
-import ru.verso.picturesnap.presentation.viewmodel.ServicesViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.ServicesViewModel;
 
 public class PhotographServicesBottomSheet extends Fragment {
 

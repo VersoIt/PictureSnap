@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.UnregisteredMainViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.UnregisteredMainViewModel;
 
 public class UnregisteredMainViewModelFactory implements ViewModelProvider.Factory {
 

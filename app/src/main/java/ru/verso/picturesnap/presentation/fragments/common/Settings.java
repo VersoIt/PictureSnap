@@ -22,7 +22,7 @@ import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.usecase.GetApplicationSettingsDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateApplicationSettingsUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.SettingsViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.SettingsViewModel;
 import ru.verso.picturesnap.presentation.factory.SettingsViewModelFactory;
 
 public class Settings extends Fragment {

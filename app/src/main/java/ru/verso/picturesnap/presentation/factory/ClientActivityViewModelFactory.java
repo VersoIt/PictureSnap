@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.ClientActivityViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.ClientActivityViewModel;
 
 public class ClientActivityViewModelFactory implements ViewModelProvider.Factory {
 

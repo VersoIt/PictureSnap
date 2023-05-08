@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import ru.verso.picturesnap.domain.usecase.GetFavoritesDataUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.FavoritesViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.FavoritesViewModel;
 
 public class FavoritesViewModelFactory implements ViewModelProvider.Factory {
 

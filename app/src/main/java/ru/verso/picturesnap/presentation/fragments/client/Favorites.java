@@ -23,8 +23,8 @@ import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
 import ru.verso.picturesnap.presentation.adapters.client.FavoritesAdapter;
 import ru.verso.picturesnap.presentation.factory.FavoritesViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.PhotographProfileViewModelFactory;
-import ru.verso.picturesnap.presentation.viewmodel.FavoritesViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.PhotographProfileViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.FavoritesViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographProfileViewModel;
 
 public class Favorites extends Fragment {
 
