@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/rect_white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginVertical="10dp"
+    android:padding="10dp"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -16,7 +18,7 @@
         android:orientation="horizontal"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView_photographer_logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -28,7 +30,7 @@
             android:background="@drawable/round_background"
             android:contentDescription="@string/app_name" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_photographer_name"
             style="@style/standardText"
 
@@ -50,8 +52,9 @@
 
             tools:text="@string/photographer" />
 
-    </LinearLayout>
-    <TextView
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView_photo_session_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,7 +68,7 @@
 
         tools:text="@string/portrait_photo_session"/>
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView_photo_session_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,7 +82,7 @@
 
         tools:text="С 10:00 - 12:00"/>
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView_photo_session_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,20 +91,26 @@
 
         tools:text="6 апреля"/>
 
-    <TextView
+    <View
+        android:id="@+id/view_line"
+
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/rect_grey" />
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:textColor="@color/primary"
-        android:textStyle="bold"
-
         android:textSize="26sp"
 
         android:gravity="center"
 
         tools:text="@string/accepted"
 
-        android:layout_marginVertical="20dp" />
+        android:layout_marginVertical="10dp" />
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

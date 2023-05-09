@@ -5,19 +5,18 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Objects;
-
-import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.FragmentClientMyRecordsBinding;
+import ru.verso.picturesnap.presentation.viewmodel.client.ClientPhotographersOfSelectedServiceViewModel;
 
-public class ClientMyRecords extends Fragment {
+public class ClientRecords extends Fragment {
+
+    private ClientPhotographersOfSelectedServiceViewModel clientRecordsViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -31,12 +30,14 @@ public class ClientMyRecords extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        NavController navController = getNavController();
+        ClientPhotographersOfSelectedServiceViewModel viewModel = getViewModel();
     }
 
-    private NavController getNavController() {
-        NavHostFragment navHostFragment = (NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView_content);
+    private void createListOfPhotographers() {
 
-        return Objects.requireNonNull(navHostFragment).getNavController();
+    }
+
+    private ClientPhotographersOfSelectedServiceViewModel getViewModel() {
+        return new ViewModelProvider(requireActivity()).get(ClientPhotographersOfSelectedServiceViewModel.class);
     }
 }

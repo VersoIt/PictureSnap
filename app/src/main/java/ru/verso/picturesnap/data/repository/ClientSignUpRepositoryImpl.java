@@ -82,6 +82,7 @@ public class ClientSignUpRepositoryImpl implements ClientSignUpRepository {
     private void createClient(Client client, String clientId) {
         DatabaseReference clientReference = databaseReference.child(PictureSnapApp.FIREBASE_CLIENT_PATH);
         client.setId(clientId);
+        client.setImagePath(PictureSnapApp.UNSELECTED_IMAGE_CLIENT_PATH);
         clientReference.child(clientId).setValue(client);
     }
 }

@@ -25,6 +25,7 @@ import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographerServicesAdapter;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographersInCityAdapter;
+import ru.verso.picturesnap.presentation.adapters.client.PhotographersInCityFromRegisteredClientAdapter;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.UnregisteredMainViewModel;
 import ru.verso.picturesnap.presentation.factory.UnregisteredMainViewModelFactory;
 
@@ -91,7 +92,7 @@ public class UnregisteredMain extends Fragment {
     public void createPhotographersInCityList(NavController navController) {
         RecyclerView recyclerView = binding.recyclerViewPhotographersInCity;
 
-        final PhotographersInCityAdapter photographersInCityAdapter = new PhotographersInCityAdapter(new PhotographersInCityAdapter.PhotographerInCityDiff(),
+        final PhotographersInCityAdapter photographersInCityAdapter = new PhotographersInCityAdapter(new PhotographersInCityFromRegisteredClientAdapter.PhotographerInCityDiff(),
                 navController,
                 this.requireActivity());
 
@@ -99,7 +100,7 @@ public class UnregisteredMain extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         viewModel.getPhotographersInCity().observe(getViewLifecycleOwner(), photographers -> {
-            if (photographers.size() > 0) {
+            if (photographers != null && photographers.size() > 0) {
                 binding.textViewPhotographersInCity.setVisibility(View.VISIBLE);
                 binding.recyclerViewPhotographersInCity.setVisibility(View.VISIBLE);
                 photographersInCityAdapter.submitList(photographers);
@@ -116,7 +117,7 @@ public class UnregisteredMain extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         viewModel.getServices().observe(getViewLifecycleOwner(), services -> {
-            if (services.size() > 0) {
+            if (services != null && services.size() > 0) {
                 binding.progressBar.setVisibility(View.GONE);
                 binding.recyclerViewServices.setVisibility(View.VISIBLE);
                 adapter.submitList(services);

@@ -90,6 +90,11 @@ public class PhotographerEntity {
             return this;
         }
 
+        public Builder setAvatarPath(String avatarPath) {
+            photographer.avatarPath = avatarPath;
+            return this;
+        }
+
         public Builder setLocation(double latitude, double longitude) {
             photographer.latitude = latitude;
             photographer.longitude = longitude;

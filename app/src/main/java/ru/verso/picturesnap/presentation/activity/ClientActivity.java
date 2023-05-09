@@ -99,7 +99,7 @@ public class ClientActivity extends AppCompatActivity {
         if (role == RoleRepository.Role.UNREGISTERED)
             return new UnregisteredActivityState(binding, navController);
         else
-            return new RegisteredActivityState();
+            return new RegisteredActivityState(binding, navController);
     }
 
     private void setupToolbar() {

@@ -82,6 +82,7 @@ public class PhotographerSignUpRepositoryImpl implements PhotographerSignUpRepos
     private void createPhotographer(Photographer photographer, String photographerId) {
         DatabaseReference photographerReference = databaseReference.child(PictureSnapApp.FIREBASE_PHOTOGRAPH_PATH);
         photographer.setId(photographerId);
+        photographer.setAvatarPath(PictureSnapApp.FIREBASE_PHOTOGRAPH_PATH);
         photographerReference.child(photographerId).setValue(photographer);
     }
 

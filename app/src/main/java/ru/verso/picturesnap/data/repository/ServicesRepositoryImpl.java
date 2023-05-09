@@ -47,7 +47,7 @@ public class ServicesRepositoryImpl implements ServicesRepository {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("NONENONE", "FUCKER");
+
             }
         });
 

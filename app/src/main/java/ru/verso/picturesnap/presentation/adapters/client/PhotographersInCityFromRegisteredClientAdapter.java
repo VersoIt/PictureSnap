@@ -13,43 +13,46 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
-import ru.verso.picturesnap.databinding.LayoutPhotographerBinding;
+import ru.verso.picturesnap.databinding.LayoutPhotographerWithPhoneNumberBinding;
 import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
-import ru.verso.picturesnap.presentation.factory.PhotographerProfileViewModelFactory;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
+import ru.verso.picturesnap.presentation.factory.PhotographerProfileViewModelFactory;
 
-public class PhotographersInCityAdapter extends ListAdapter<Photographer, PhotographerViewHolder> {
+public class PhotographersInCityFromRegisteredClientAdapter extends ListAdapter<Photographer, PhotographerWithPhoneNumberViewHolder> {
 
     private final NavController navController;
 
     private final FragmentActivity viewModelOwner;
 
-    public PhotographersInCityAdapter(@NonNull DiffUtil.ItemCallback<Photographer> diffCallback, NavController navController, FragmentActivity viewModelOwner) {
+    private final int fragmentAction;
+
+    public PhotographersInCityFromRegisteredClientAdapter(@NonNull DiffUtil.ItemCallback<Photographer> diffCallback, NavController navController, FragmentActivity viewModelOwner, int fragmentAction) {
         super(diffCallback);
 
         this.navController = navController;
         this.viewModelOwner = viewModelOwner;
+        this.fragmentAction = fragmentAction;
     }
 
     @NonNull
     @Override
-    public PhotographerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PhotographerWithPhoneNumberViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        LayoutPhotographerBinding binding = LayoutPhotographerBinding.inflate(layoutInflater, parent, false);
+        LayoutPhotographerWithPhoneNumberBinding binding = LayoutPhotographerWithPhoneNumberBinding.inflate(layoutInflater, parent, false);
 
-        return new PhotographerViewHolder(binding);
+        return new PhotographerWithPhoneNumberViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PhotographerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PhotographerWithPhoneNumberViewHolder holder, int position) {
         Photographer current = getItem(position);
         PhotographerProfileViewModel photographerProfileViewModel = getPhotographerViewModel();
         holder.bind(current);
 
         holder.itemView.setOnClickListener(view -> {
             photographerProfileViewModel.putId(current.getId());
-            navController.navigate(R.id.action_unregistered_main_to_photographer_profile_from_unregistered);
+            navController.navigate(fragmentAction);
         });
     }
 

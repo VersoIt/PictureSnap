@@ -4,31 +4,17 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.NavController;
-import androidx.recyclerview.widget.DiffUtil.ItemCallback;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.LayoutPhotographerBinding;
 import ru.verso.picturesnap.domain.models.Photographer;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
+import ru.verso.picturesnap.domain.models.PhotographerService;
 
-public class FavoritesAdapter extends ListAdapter<Photographer, PhotographerViewHolder> {
+public class PhotographersAdapter extends ListAdapter<Photographer, PhotographerViewHolder> {
 
-    private final NavController navController;
-
-    private final PhotographerProfileViewModel photographerProfileViewModel;
-
-    public FavoritesAdapter(@NonNull ItemCallback<Photographer> diffCallback, NavController navController, PhotographerProfileViewModel photographerProfileViewModel) {
+    public PhotographersAdapter(@NonNull DiffUtil.ItemCallback<Photographer> diffCallback) {
         super(diffCallback);
-
-        this.navController = navController;
-        this.photographerProfileViewModel = photographerProfileViewModel;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
     }
 
     @NonNull
@@ -41,15 +27,16 @@ public class FavoritesAdapter extends ListAdapter<Photographer, PhotographerView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PhotographerViewHolder holder, int position) {
-        holder.bind(getItem(position));
-        holder.itemView.setOnClickListener(view -> {
-            photographerProfileViewModel.putId(getItem(position).getId());
-            navController.navigate(R.id.action_favorites_fragment_to_photographer_profile_from_unregistered);
-        });
+    public long getItemId(int position) {
+        return position;
     }
 
-    public static class DiffUtil extends ItemCallback<Photographer> {
+    @Override
+    public void onBindViewHolder(@NonNull PhotographerViewHolder holder, int position) {
+        holder.bind(getItem(position));
+    }
+
+    public static class PhotographerDiff extends DiffUtil.ItemCallback<Photographer> {
 
         @Override
         public boolean areItemsTheSame(@NonNull Photographer oldItem, @NonNull Photographer newItem) {

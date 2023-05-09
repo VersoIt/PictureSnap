@@ -23,6 +23,7 @@ import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.FavoritesRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
+import ru.verso.picturesnap.databinding.FragmentPhotographerProfileFromClientBinding;
 import ru.verso.picturesnap.databinding.FragmentPhotographerProfileFromUnregisteredBinding;
 import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.models.Photographer;
@@ -35,6 +36,7 @@ import ru.verso.picturesnap.presentation.factory.FavoritesViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.FeedbackViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.ServicesViewModelFactory;
 import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
+import ru.verso.picturesnap.presentation.utils.StringConverter;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.AboutPhotographerFromClientViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FavoritesViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
@@ -42,9 +44,9 @@ import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotoSessionAddr
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.ServicesViewModel;
 
-public class PhotographerProfileFromUnregistered extends Fragment {
+public class PhotographerProfileFromClient extends Fragment {
 
-    private FragmentPhotographerProfileFromUnregisteredBinding binding;
+    private FragmentPhotographerProfileFromClientBinding binding;
 
     private NavController navController;
 
@@ -52,7 +54,7 @@ public class PhotographerProfileFromUnregistered extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FragmentPhotographerProfileFromUnregisteredBinding.inflate(inflater, container, false);
+        binding = FragmentPhotographerProfileFromClientBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -62,6 +64,7 @@ public class PhotographerProfileFromUnregistered extends Fragment {
 
         PhotographerProfileViewModel photographerProfileViewModel = getPhotographerProfileViewModel();
         photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> {
+            updatePhoneNumber(photographer);
             updateName(photographer.getFirstName(), photographer.getLastName());
             updateEmail(photographer.getEmail());
             updateLocation(new Location(photographer.getLatitude(), photographer.getLongitude()));
@@ -99,6 +102,10 @@ public class PhotographerProfileFromUnregistered extends Fragment {
         binding.linearLayoutFieldsContainer.textViewEmail.setText(email);
     }
 
+    private void updatePhoneNumber(Photographer photographer) {
+        binding.linearLayoutFieldsContainer.textViewPhoneNumber.setText(StringConverter.convertPhoneNumberToConvenientFormat(photographer.getPhoneNumber()));
+    }
+
     private void updateFavoriteButton(Photographer photographer, FavoritesViewModel viewModel) {
 
         viewModel.getAllFavorites().observe(getViewLifecycleOwner(), photographers -> {
@@ -131,7 +138,7 @@ public class PhotographerProfileFromUnregistered extends Fragment {
         binding.linearLayoutFieldsContainer.textViewLocation.setText(LocationCoordinator.getFullAddress(requireContext(), location.getLatitude(), location.getLongitude()));
 
         binding.linearLayoutFieldsContainer.textViewLocation.setOnClickListener(view -> {
-            navController.navigate(R.id.action_photographer_profile_from_unregistered_to_photoSessionAddress);
+            navController.navigate(R.id.action_photographerProfileFromClient_to_photoSessionAddress);
             sendPhotoSessionLocationToLocationFragment(location);
         });
     }
@@ -166,9 +173,9 @@ public class PhotographerProfileFromUnregistered extends Fragment {
     }
 
     private void updateAboutPhotographerButton(Photographer photographer) {
-        binding.linearLayoutFieldsContainer.textViewPhotographer.setOnClickListener(view -> {
+        binding.linearLayoutFieldsContainer.textViewAboutPhotographer.setOnClickListener(view -> {
             sendPhotographerIdToAboutPhotographerViewModel(photographer.getId());
-            navController.navigate(R.id.action_photographer_profile_from_unregistered_to_aboutPhotographerFromClient);
+            navController.navigate(R.id.action_photographerProfileFromClient_to_aboutPhotographerFromClient);
         });
     }
 
@@ -196,7 +203,7 @@ public class PhotographerProfileFromUnregistered extends Fragment {
     private void updatePortfolio(NavController navController) {
 
         binding.linearLayoutFieldsContainer.textViewPortfolio.setOnClickListener(view ->
-                navController.navigate(R.id.action_photographer_profile_from_unregistered_to_photographerPortfolioFromUnregistered));
+                navController.navigate(R.id.action_photographerProfileFromClient_to_photographerPortfolioFromUnregistered));
     }
 
     private void updateFeedbacks(NavController navController) {

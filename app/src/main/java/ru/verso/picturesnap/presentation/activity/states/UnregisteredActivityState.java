@@ -58,6 +58,7 @@ public class UnregisteredActivityState implements ClientActivityState {
 
     @Override
     public void createLeftMenu() {
+
         binding.navigationViewMenu.inflateMenu(R.menu.unregistered_left);
         binding.navigationViewMenu.getHeaderView(0).setOnClickListener(view -> {
             navController.navigate(R.id.unregistered_profile);

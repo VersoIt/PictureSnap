@@ -1,386 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_white"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".presentation.fragments.client.ClientMain">
+    tools:context="ru.verso.picturesnap.presentation.fragments.client.UnregisteredMain">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/textView_my_notes"
-            style="@style/textField.selection"
-
-            android:layout_width="0dp"
-            android:background="@drawable/rect_white"
-
-            app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
-
-            android:layout_marginTop="@dimen/large_margin"
-
-            android:text="@string/my_entries"
-            app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
-
-            app:drawableStartCompat="@drawable/ic_check_mark"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView_services_header"
-            style="@style/headerText.largeMargin"
-
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:text="@string/services"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@id/textView_my_notes"
-            app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
-
-        <View
-            style="@style/fieldSeparator.header"
-
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView_services_header" />
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout_services_container"
-            style="@style/headerText.largeMargin"
-
-            android:layout_marginTop="@dimen/large_margin"
+            android:id="@+id/linearLayout_header"
 
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/base_elements_margin"
 
             android:orientation="vertical"
 
-            android:text="@string/services"
-
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@id/textView_services_header"
->
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_family_photo_session"
-
-                android:gravity="center_vertical"
-
-                android:layout_marginVertical="5dp"
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/service_button_size">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-
-                    android:background="@drawable/rect_white"
-
-                    android:contentDescription="@string/family_photo_session"
-                    android:foreground="@color/transparent_black"
-
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/family" />
-
-                <TextView
-                    style="@style/headerText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentBottom="true"
-
-                    android:gravity="center"
-                    android:layout_gravity="center"
-
-                    android:text="@string/family_photo_session"
-
-                    android:textColor="@color/white" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_portrait_photo_session"
-
-                android:gravity="center_vertical"
-
-                android:layout_marginVertical="5dp"
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/service_button_size">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/service_button_size"
-
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-
-                    android:background="@drawable/rect_white"
-
-                    android:contentDescription="@string/family_photo_session"
-                    android:foreground="@color/transparent_black"
-
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/portrait" />
-
-                <TextView
-                    style="@style/headerText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentBottom="true"
-
-                    android:gravity="center"
-                    android:layout_gravity="center"
-
-                    android:text="@string/portrait_photo_session"
-
-                    android:textColor="@color/white" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_pregnant_photo_session"
-
-                android:gravity="center_vertical"
-
-                android:layout_marginVertical="5dp"
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/service_button_size">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/service_button_size"
-
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-
-                    android:background="@drawable/rect_white"
-
-                    android:contentDescription="@string/family_photo_session"
-                    android:foreground="@color/transparent_black"
-
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/pregnant" />
-
-                <TextView
-                    style="@style/headerText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentBottom="true"
-
-                    android:gravity="center"
-                    android:layout_gravity="center"
-
-                    android:text="@string/pregnant_woman_photo_session"
-
-                    android:textColor="@color/white" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_children_photo_session"
-
-                android:gravity="center_vertical"
-
-                android:layout_marginVertical="5dp"
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/service_button_size">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-
-                    android:background="@drawable/rect_white"
-
-                    android:contentDescription="@string/family_photo_session"
-                    android:foreground="@color/transparent_black"
-
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/child" />
-
-                <TextView
-                    style="@style/headerText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:gravity="center"
-                    android:layout_gravity="center"
-
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentBottom="true"
-
-                    android:text="@string/children_photo_session"
-
-                    android:textColor="@color/white" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_advertisement_photo_session"
-
-                android:gravity="center_vertical"
-
-                android:layout_marginVertical="5dp"
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/service_button_size">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-
-                    android:background="@drawable/rect_white"
-
-                    android:contentDescription="@string/family_photo_session"
-                    android:foreground="@color/transparent_black"
-
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/advertisement" />
-
-                <TextView
-                    style="@style/headerText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:gravity="center"
-                    android:layout_gravity="center"
-
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentBottom="true"
-
-                    android:text="@string/advertising_photo_session"
-
-                    android:textColor="@color/white" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_subject_photo_session"
-
-                android:gravity="center_vertical"
-
-                android:layout_marginVertical="5dp"
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/service_button_size">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-
-                    android:background="@drawable/rect_white"
-
-                    android:contentDescription="@string/family_photo_session"
-                    android:foreground="@color/transparent_black"
-
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/subject" />
-
-                <TextView
-                    style="@style/headerText"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-
-                    android:gravity="center"
-                    android:layout_gravity="center"
-
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentBottom="true"
-
-                    android:text="@string/subject_photo_session"
-
-                    android:textColor="@color/white" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            app:layout_constraintTop_toBottomOf="@id/linearLayout_services_container"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-
-            app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
-
-            android:orientation="vertical">
+            app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
-                style="@style/standardText"
+                android:id="@+id/textView_header"
 
-                android:layout_marginHorizontal="10dp"
+                android:paddingHorizontal="10dp"
 
-                android:paddingVertical="5dp"
+                style="@style/headerText.largeMargin"
 
-                android:layout_marginTop="20dp"
-
-                android:textSize="20sp"
+                android:layout_margin="16dp"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="@string/photographers_in_your_city"/>
+                android:text="@string/services"
 
-            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp" />
 
-                android:paddingHorizontal="20dp"
+            <View
+                android:id="@+id/view_line"
 
-                android:background="@drawable/rect_white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                tools:listitem="@layout/layout_photographer"
-
-                tools:itemCount="3"
-
-                android:orientation="vertical">
-
-            </androidx.recyclerview.widget.RecyclerView>
+                android:layout_height="1dp"
+                android:background="@drawable/rect_grey" />
 
         </LinearLayout>
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+
+            android:gravity="center"
+
+            android:orientation="vertical"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_header"
+
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block">
+
+            <TextView
+                android:id="@+id/textView_my_records"
+                style="@style/textField.selection"
+
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+
+                android:layout_width="match_parent"
+                android:background="@drawable/rect_white"
+
+                android:layout_marginTop="@dimen/large_margin"
+
+                android:text="@string/my_records"
+                app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+                app:drawableStartCompat="@drawable/ic_check_mark" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="10dp"
+                android:indeterminate="true"
+
+                android:progressTint="@color/primary"
+
+                android:progressTintMode="src_in" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_services"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="@dimen/large_margin"
+
+                android:visibility="gone"
+
+                tools:itemCount="2"
+                tools:listitem="@layout/layout_photographer_service" />
+
+            <TextView
+                android:id="@+id/textView_photographers_in_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="@dimen/large_margin"
+
+                android:text="@string/photographers_in_your_city"
+
+                android:textSize="22sp"
+
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_photographers_in_city"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="10dp"
+
+                android:layout_marginTop="10dp"
+
+                android:background="@drawable/rect_white"
+                android:orientation="vertical"
+
+                android:paddingHorizontal="20dp"
+                android:visibility="gone"
+                tools:itemCount="1"
+
+                tools:listitem="@layout/layout_photographer_with_phone_number">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

@@ -34,17 +34,23 @@ public class LocationCoordinator {
     }
 
     public static String getFullAddress(Context context, double latitude, double longitude) {
+        final String INCORRECT_ADDRESS = "null, null";
+        final String COMMA = ", ";
+
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         StringBuilder result = new StringBuilder();
         try {
             List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
             if (addressList != null) {
                 Address address = addressList.get(0);
+
                 result.append(address.getThoroughfare());
-                result.append(", ");
+                result.append(COMMA);
                 result.append(address.getSubThoroughfare());
-                if (result.toString().contains("null"))
+
+                if (result.toString().equals(INCORRECT_ADDRESS))
                     return getCityNameByLocation(context, latitude, longitude);
+
                 return result.toString();
             }
         } catch (IOException e) {

@@ -50,6 +50,7 @@ public class FavoritesRepositoryImpl implements FavoritesRepository {
                 .setDescription(photographer.getDescription())
                 .setEmail(photographer.getEmail())
                 .setId(photographer.getId())
+                .setAvatarPath(photographer.getAvatarPath())
                 .setLocation(photographer.getLatitude(), photographer.getLongitude())
                 .create();
     }

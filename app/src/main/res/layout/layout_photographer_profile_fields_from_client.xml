@@ -74,6 +74,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/textView_feedbacks"
             style="@style/textField"
             android:layout_width="match_parent"
 

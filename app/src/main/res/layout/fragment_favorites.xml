@@ -49,13 +49,12 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="@drawable/rect_white"
         android:id="@+id/recyclerView_favorites"
 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
-        tools:listitem="@layout/layout_favorite_photographer"
+        tools:listitem="@layout/layout_photographer"
         tools:itemCount="5"
 
         android:paddingHorizontal="20dp"

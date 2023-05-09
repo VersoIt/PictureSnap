@@ -127,13 +127,12 @@
     <string name="upcoming_entries">Upcoming entries</string>
     <string name="developing">In developing</string>
     <string name="not_signed">Log in or register to make it easier for you to search for photographers.</string>
-    <string name="my_entries">My entries</string>
+    <string name="my_records">My records</string>
     <string name="photographers_in_your_city">Photographers in your city</string>
     <string name="you_selected">You selected: </string>
     <string name="clients_records">Clients records</string>
     <string name="yandex_maps">Yandex Maps</string>
     <string name="photo_session_address">Photo session address</string>
-    <string name="my_records">My records</string>
     <string name="accepted">Accepted</string>
     <string name="photographer">Photographer</string>
     <string name="address_selection">Address selection</string>
@@ -162,5 +161,6 @@
     <string name="wrong_password">Wrong password</string>
     <string name="password_recover_sent">Recovery sent to your email</string>
     <string name="user_with_this_email_not_exists">User with this email does not exist</string>
+    <string name="photographers_absent">No photographers with this service</string>
 
 </resources>

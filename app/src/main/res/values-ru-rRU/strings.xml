@@ -114,13 +114,12 @@
     <string name="upcoming_entries">Ближайшие записи</string>
     <string name="developing">В разработке</string>
     <string name="not_signed">Войдите или зарегестрируйтесь, чтобы Вам было проще искать фотографов.</string>
-    <string name="my_entries">Мои записи</string>
+    <string name="my_records">Мои записи</string>
     <string name="photographers_in_your_city">Фотографы в Вашем городе</string>
     <string name="you_selected">Вы выбрали: </string>
     <string name="clients_records">Записи клиентов</string>
     <string name="yandex_maps">Яндекс Карты</string>
     <string name="photo_session_address">Адрес фотосессий</string>
-    <string name="my_records">Мои записи</string>
     <string name="accepted">Принято</string>
     <string name="photographer">Фотограф</string>
     <string name="address_selection">Выбор адреса</string>
@@ -148,4 +147,5 @@
     <string name="wrong_password">Неверный пароль</string>
     <string name="password_recover_sent">Восстановление пароля отправлено на Вашу почту</string>
     <string name="user_with_this_email_not_exists">Пользователь с таким email не существует</string>
+    <string name="photographers_absent">Фотографы с такой услугой отсутствуют</string>
 </resources>
