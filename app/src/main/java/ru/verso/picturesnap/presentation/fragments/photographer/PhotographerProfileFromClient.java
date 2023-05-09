@@ -209,7 +209,7 @@ public class PhotographerProfileFromClient extends Fragment {
     private void updateFeedbacks(NavController navController) {
 
         binding.linearLayoutFieldsContainer.textViewFeedbacks.setOnClickListener(view ->
-                navController.navigate(R.id.action_photographer_profile_from_unregistered_to_feedbackFromUnregistered));
+                navController.navigate(R.id.action_photographerProfileFromClient_to_feedbacksFromClient));
     }
 
     public void showBottomSheetDialog(int fragmentId) {

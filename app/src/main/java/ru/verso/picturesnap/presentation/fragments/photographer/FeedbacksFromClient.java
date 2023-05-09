@@ -10,26 +10,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.List;
+import java.util.Objects;
 
+import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.databinding.FragmentFeedbacksFromClientBinding;
 import ru.verso.picturesnap.databinding.FragmentFeedbacksFromUnregisteredBinding;
 import ru.verso.picturesnap.domain.models.Feedback;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographerFeedbacksAdapter;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
 
-public class FeedbacksFromUnregistered extends Fragment {
+public class FeedbacksFromClient extends Fragment {
 
-    private FragmentFeedbacksFromUnregisteredBinding binding;
+    private FragmentFeedbacksFromClientBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-        binding = FragmentFeedbacksFromUnregisteredBinding.inflate(inflater, container, false);
+        binding = FragmentFeedbacksFromClientBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -53,6 +58,19 @@ public class FeedbacksFromUnregistered extends Fragment {
                 updateProgress(feedbacks);
             }
         });
+
+        NavController navController = getNavController();
+        bindWriteNewFeedbackButton(navController);
+    }
+
+    private NavController getNavController() {
+        NavHostFragment navHostFragment = (NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView_content);
+        return Objects.requireNonNull(navHostFragment).getNavController();
+    }
+
+    private void bindWriteNewFeedbackButton(NavController navController) {
+        binding.textViewWriteFeedback.setOnClickListener(view ->
+                navController.navigate(R.id.action_feedbacksFromClient_to_sendFeedback));
     }
 
     private FeedbackViewModel getFeedbackViewModel() {

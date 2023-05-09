@@ -1,110 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary_white"
-    tools:context=".presentation.fragments.client.SendFeedback">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView_services_header"
-        style="@style/headerText.largeMargin"
-
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:text="@string/feedback"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
-
-    <View
-        style="@style/fieldSeparator.header"
-
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_services_header" />
-
-    <include
-        android:id="@+id/linearLayout_rating_selection"
-        layout="@layout/layout_stars_rating_selection"
-
-        android:layout_marginTop="@dimen/large_margin"
-
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_services_header"/>
-
-    <LinearLayout
-        android:id="@+id/linearLayout_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        android:orientation="vertical"
-
-        android:layout_marginTop="@dimen/small_margin"
-
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout_rating_selection">
+        android:background="@color/primary_white"
+        tools:context=".presentation.fragments.client.SendFeedback">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/textView_services_header"
+            style="@style/headerText.largeMargin"
+
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:layout_marginVertical="@dimen/small_margin"
+            android:text="@string/feedback"
 
-            android:text="@string/description"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
 
-        <EditText
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
 
-            android:padding="12dp"
+        <View
+            style="@style/fieldSeparator.header"
 
-            android:autoSizeTextType="uniform"
-            android:minLines="8"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
 
-            android:background="@drawable/rect_white"
-            android:hint="@string/describe_feedback"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_services_header" />
 
-            android:layout_width="match_parent"
+        <include
+            android:id="@+id/linearLayout_rating_selection"
+            layout="@layout/layout_stars_rating_selection"
+
+            android:layout_width="0dp"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/textView_services_header"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_description"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:autofillHints=""
-            android:inputType="text" />
+            android:layout_marginTop="@dimen/small_margin"
 
-    </LinearLayout>
+            android:orientation="vertical"
 
-    <include
-        android:id="@+id/appCompatButton_send"
-        layout="@layout/layout_send_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
 
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_rating_selection"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block">
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        app:layout_constraintTop_toBottomOf="@id/linearLayout_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
+                android:layout_marginVertical="@dimen/small_margin"
+
+                android:text="@string/description" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editText_feedback_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:padding="10dp"
+                android:hint="@string/describe_feedback"
+                android:background="@drawable/rect_white"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
+
+                android:lines="10"
+                android:maxLines="10"
+                android:minLines="6" />
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/appCompatButton_send"
+            layout="@layout/layout_send_button"
+
+            android:layout_marginVertical="10dp"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_description"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

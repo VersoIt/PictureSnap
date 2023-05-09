@@ -301,6 +301,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_photographerProfileFromClient_to_feedbacksFromClient"
+            app:destination="@id/feedbacksFromClient"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/clientMyRecords"
@@ -324,4 +331,22 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+    <fragment
+        android:id="@+id/feedbacksFromClient"
+        android:name="ru.verso.picturesnap.presentation.fragments.photographer.FeedbacksFromClient"
+        android:label="fragment_feedbacks_from_client"
+        tools:layout="@layout/fragment_feedbacks_from_client" >
+        <action
+            android:id="@+id/action_feedbacksFromClient_to_sendFeedback"
+            app:destination="@id/sendFeedback"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/sendFeedback"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.SendFeedback"
+        android:label="fragment_send_feedback"
+        tools:layout="@layout/fragment_send_feedback" />
 </navigation>

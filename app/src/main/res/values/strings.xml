@@ -162,5 +162,6 @@
     <string name="password_recover_sent">Recovery sent to your email</string>
     <string name="user_with_this_email_not_exists">User with this email does not exist</string>
     <string name="photographers_absent">No photographers with this service</string>
+    <string name="write_feedback"> Write feedback</string>
 
 </resources>
