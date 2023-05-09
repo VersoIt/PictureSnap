@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_white"
-    tools:context=".presentation.fragments.photograph.PortfolioImagesFragment">
+    tools:context=".presentation.fragments.photographer.PortfolioImagesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_images"

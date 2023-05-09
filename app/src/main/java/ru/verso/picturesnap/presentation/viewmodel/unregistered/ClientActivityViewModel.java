@@ -1,20 +1,15 @@
 package ru.verso.picturesnap.presentation.viewmodel.unregistered;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.util.List;
-
 import ru.verso.picturesnap.domain.models.Location;
-import ru.verso.picturesnap.domain.models.Photograph;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
-import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
-import ru.verso.picturesnap.domain.usecase.UpdatePhotographDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
+import ru.verso.picturesnap.presentation.activity.LocationKeeper;
 
-public class ClientActivityViewModel extends ViewModel {
+public class ClientActivityViewModel extends ViewModel implements LocationKeeper {
 
     private final MutableLiveData<Location> location;
 
@@ -32,11 +27,6 @@ public class ClientActivityViewModel extends ViewModel {
         location = new MutableLiveData<>(updateUserDataUseCase.getLocation());
     }
 
-    public void setUserLocation(double latitude, double longitude) {
-        updateUserDataUseCase.setLocation(latitude, longitude);
-        this.location.setValue(new Location(latitude, longitude));
-    }
-
     public boolean isFirst() {
         return getUserDataUseCase.isFirstCome();
     }
@@ -47,5 +37,11 @@ public class ClientActivityViewModel extends ViewModel {
 
     public RoleRepository.Role getCurrentRole() {
         return getUserDataUseCase.getCurrentRole();
+    }
+
+    @Override
+    public void saveLocation(double latitude, double longitude) {
+        updateUserDataUseCase.setLocation(latitude, longitude);
+        this.location.setValue(new Location(latitude, longitude));
     }
 }

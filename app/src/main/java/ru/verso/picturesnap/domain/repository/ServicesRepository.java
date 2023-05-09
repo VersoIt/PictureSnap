@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import ru.verso.picturesnap.domain.models.PhotographService;
+import ru.verso.picturesnap.domain.models.PhotographerService;
 
 public interface ServicesRepository {
 
-    LiveData<List<PhotographService>> getAllServices();
+    LiveData<List<PhotographerService>> getAllServices();
 }

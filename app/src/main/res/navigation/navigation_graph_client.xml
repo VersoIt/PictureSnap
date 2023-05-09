@@ -72,8 +72,8 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
-            android:id="@+id/action_unregistered_main_to_photograph_profile_from_unregistered"
-            app:destination="@id/photograph_profile_from_unregistered"
+            android:id="@+id/action_unregistered_main_to_photographer_profile_from_unregistered"
+            app:destination="@id/photographer_profile_from_unregistered"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -98,8 +98,8 @@
         android:label="fragment_user_selection"
         tools:layout="@layout/fragment_user_selection" >
         <action
-            android:id="@+id/action_userSelection_to_photographRegistration"
-            app:destination="@id/photographRegistration"
+            android:id="@+id/action_userSelection_to_photographerRegistration"
+            app:destination="@id/photographerRegistration"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -113,20 +113,20 @@
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
-        android:id="@+id/photographRegistration"
-        android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographRegistration"
-        android:label="fragment_photograph_registration"
-        tools:layout="@layout/fragment_photograph_registration" >
+        android:id="@+id/photographerRegistration"
+        android:name="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerRegistration"
+        android:label="fragment_photographer_registration"
+        tools:layout="@layout/fragment_photographer_registration" >
         <action
-            android:id="@+id/action_photographRegistration_to_photographPhotoSessionAddressSelection"
-            app:destination="@id/photographPhotoSessionAddressSelection"
+            android:id="@+id/action_photographerRegistration_to_photographerPhotoSessionAddressSelection"
+            app:destination="@id/photographerPhotoSessionAddressSelection"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
-            android:id="@+id/action_photographRegistration_to_photographServicesSelection"
-            app:destination="@id/photographServicesSelection"
+            android:id="@+id/action_photographerRegistration_to_photographerServicesSelection"
+            app:destination="@id/photographerServicesSelection"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -142,32 +142,32 @@
         android:name="ru.verso.picturesnap.presentation.fragments.common.PasswordRecover"
         android:label="PasswordRecover" />
     <fragment
-        android:id="@+id/photograph_profile_from_unregistered"
-        android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographProfileFromUnregistered"
-        android:label="PhotographProfileFromUnregistered" >
+        android:id="@+id/photographer_profile_from_unregistered"
+        android:name="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerProfileFromUnregistered"
+        android:label="PhotographerProfileFromUnregistered" >
         <action
-            android:id="@+id/action_photograph_profile_from_unregistered_to_photoSessionAddress"
+            android:id="@+id/action_photographer_profile_from_unregistered_to_photoSessionAddress"
             app:destination="@id/photoSessionAddress"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
-            android:id="@+id/action_photograph_profile_from_unregistered_to_aboutPhotographFromClient"
-            app:destination="@id/aboutPhotographFromClient"
+            android:id="@+id/action_photographer_profile_from_unregistered_to_aboutPhotographerFromClient"
+            app:destination="@id/aboutPhotographerFromClient"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
-            android:id="@+id/action_photograph_profile_from_unregistered_to_photographPortfolioFromUnregistered"
-            app:destination="@id/photographPortfolioFromUnregistered"
+            android:id="@+id/action_photographer_profile_from_unregistered_to_photographerPortfolioFromUnregistered"
+            app:destination="@id/photographerPortfolioFromUnregistered"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
-            android:id="@+id/action_photograph_profile_from_unregistered_to_feedbackFromUnregistered"
+            android:id="@+id/action_photographer_profile_from_unregistered_to_feedbackFromUnregistered"
             app:destination="@id/feedbackFromUnregistered"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
@@ -177,14 +177,15 @@
     <fragment
         android:id="@+id/client_main"
         android:name="ru.verso.picturesnap.presentation.fragments.client.ClientMain"
-        android:label="ClientMain" />
+        android:label="ClientMain"
+        android:layout="@layout/fragment_client_main"/>
     <fragment
         android:id="@+id/favorites_fragment"
         android:name="ru.verso.picturesnap.presentation.fragments.client.Favorites"
         android:label="Favorites" >
         <action
-            android:id="@+id/action_favorites_fragment_to_photograph_profile_from_unregistered"
-            app:destination="@id/photograph_profile_from_unregistered"
+            android:id="@+id/action_favorites_fragment_to_photographer_profile_from_unregistered"
+            app:destination="@id/photographer_profile_from_unregistered"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -212,30 +213,30 @@
         android:name="ru.verso.picturesnap.presentation.fragments.common.PhotoSessionAddress"
         android:label="PhotoSessionAddress" />
     <fragment
-        android:id="@+id/photographServicesBottomSheet"
-        android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographServicesBottomSheet"
-        android:label="fragment_photograph_services_bottom_sheet"
-        tools:layout="@layout/fragment_photograph_services_bottom_sheet" />
+        android:id="@+id/photographerServicesBottomSheet"
+        android:name="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerServicesBottomSheet"
+        android:label="fragment_photographer_services_bottom_sheet"
+        tools:layout="@layout/fragment_photographer_services_bottom_sheet" />
     <fragment
-        android:id="@+id/aboutPhotographFromClient"
-        android:name="ru.verso.picturesnap.presentation.fragments.photograph.AboutPhotographFromClient"
-        android:label="AboutPhotographFromClient" />
+        android:id="@+id/aboutPhotographerFromClient"
+        android:name="ru.verso.picturesnap.presentation.fragments.photographer.AboutPhotographerFromClient"
+        android:label="AboutPhotographerFromClient" />
     <fragment
-        android:id="@+id/photographPortfolioFromUnregistered"
-        android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographPortfolioFromClient"
-        android:label="fragment_photograph_portfolio"
-        tools:layout="@layout/fragment_photograph_portfolio_from_client" />
+        android:id="@+id/photographerPortfolioFromUnregistered"
+        android:name="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerPortfolioFromClient"
+        android:label="fragment_photographer_portfolio"
+        tools:layout="@layout/fragment_photographer_portfolio_from_client" />
     <fragment
         android:id="@+id/feedbackFromUnregistered"
-        android:name="ru.verso.picturesnap.presentation.fragments.photograph.FeedbacksFromUnregistered"
+        android:name="ru.verso.picturesnap.presentation.fragments.photographer.FeedbacksFromUnregistered"
         android:label="FeedbackFromUnregistered" />
     <fragment
-        android:id="@+id/photographPhotoSessionAddressSelection"
-        android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographPhotoSessionAddressSelection"
-        android:label="fragment_photograph_photo_session_address_selection"
-        tools:layout="@layout/fragment_photograph_photo_session_address_selection" />
+        android:id="@+id/photographerPhotoSessionAddressSelection"
+        android:name="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerPhotoSessionAddressSelection"
+        android:label="fragment_photographer_photo_session_address_selection"
+        tools:layout="@layout/fragment_photographer_photo_session_address_selection" />
     <fragment
-        android:id="@+id/photographServicesSelection"
-        android:name="ru.verso.picturesnap.presentation.fragments.photograph.PhotographServicesSelection"
-        android:label="PhotographServicesSelection" />
+        android:id="@+id/photographerServicesSelection"
+        android:name="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerServicesSelection"
+        android:label="PhotographerServicesSelection" />
 </navigation>

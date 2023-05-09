@@ -10,7 +10,7 @@ import java.util.Locale;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.LayoutServiceFromClientBinding;
-import ru.verso.picturesnap.domain.models.PhotographPresentationService;
+import ru.verso.picturesnap.domain.models.PhotographerPresentationService;
 
 public class ServiceFromClientViewHolder extends RecyclerView.ViewHolder {
 
@@ -26,13 +26,13 @@ public class ServiceFromClientViewHolder extends RecyclerView.ViewHolder {
     }
 
     @SuppressLint("DiscouragedApi")
-    public void bind(PhotographPresentationService photographService) {
+    public void bind(PhotographerPresentationService photographerService) {
         Resources resources = binding.getRoot().getResources();
         String packageName = context.getPackageName();
 
-        binding.textViewServiceName.setText(resources.getIdentifier(photographService.getName(), "string", packageName));
+        binding.textViewServiceName.setText(resources.getIdentifier(photographerService.getName(), "string", packageName));
 
-        String cost = String.format(Locale.getDefault(), "%d %s", photographService.getCost(), resources.getString(R.string.rub_per_hour));
+        String cost = String.format(Locale.getDefault(), "%d %s", photographerService.getCost(), resources.getString(R.string.rub_per_hour));
         binding.textViewCost.setText(cost);
     }
 }

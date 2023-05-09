@@ -6,14 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.UnregisteredMainViewModel;
 
 public class UnregisteredMainViewModelFactory implements ViewModelProvider.Factory {
 
-    private final GetPhotographDataUseCase getPhotographDataUseCase;
+    private final GetPhotographerDataUseCase getPhotographerDataUseCase;
 
     private final GetUserDataUseCase getUserDataUseCase;
 
@@ -22,11 +22,11 @@ public class UnregisteredMainViewModelFactory implements ViewModelProvider.Facto
     private final Application context;
 
     public UnregisteredMainViewModelFactory(Application context,
-                                            GetPhotographDataUseCase getPhotographDataUseCase,
+                                            GetPhotographerDataUseCase getPhotographerDataUseCase,
                                             GetUserDataUseCase getUserDataUseCase,
                                             UpdateUserDataUseCase updateUserDataUseCase) {
         this.context = context;
-        this.getPhotographDataUseCase = getPhotographDataUseCase;
+        this.getPhotographerDataUseCase = getPhotographerDataUseCase;
         this.getUserDataUseCase = getUserDataUseCase;
         this.updateUserDataUseCase = updateUserDataUseCase;
     }
@@ -35,6 +35,6 @@ public class UnregisteredMainViewModelFactory implements ViewModelProvider.Facto
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new UnregisteredMainViewModel(context, getPhotographDataUseCase, getUserDataUseCase, updateUserDataUseCase);
+        return (T) new UnregisteredMainViewModel(context, getPhotographerDataUseCase, getUserDataUseCase, updateUserDataUseCase);
     }
 }

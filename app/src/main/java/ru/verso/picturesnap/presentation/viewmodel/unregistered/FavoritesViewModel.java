@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
-import ru.verso.picturesnap.domain.models.Photograph;
+import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.usecase.GetFavoritesDataUseCase;
 
 public class FavoritesViewModel extends ViewModel {
@@ -16,15 +16,15 @@ public class FavoritesViewModel extends ViewModel {
         this.getFavoritesDataUseCase = getFavoritesDataUseCase;
     }
 
-    public LiveData<List<Photograph>> getAllFavorites() {
+    public LiveData<List<Photographer>> getAllFavorites() {
         return getFavoritesDataUseCase.getAllFavorites();
     }
 
-    public void addFavorite(Photograph photograph) {
-        getFavoritesDataUseCase.addFavorite(photograph);
+    public void addFavorite(Photographer photographer) {
+        getFavoritesDataUseCase.addFavorite(photographer);
     }
 
-    public void deleteFavorite(Photograph photograph) {
-        getFavoritesDataUseCase.deleteFavorite(photograph);
+    public void deleteFavorite(Photographer photographer) {
+        getFavoritesDataUseCase.deleteFavorite(photographer);
     }
 }

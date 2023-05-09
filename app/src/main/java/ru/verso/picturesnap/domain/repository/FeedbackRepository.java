@@ -8,5 +8,5 @@ import ru.verso.picturesnap.domain.models.Feedback;
 
 public interface FeedbackRepository {
 
-    LiveData<List<Feedback>> getFeedbacksOf(String photographId);
+    LiveData<List<Feedback>> getFeedbacksOf(String photographerId);
 }

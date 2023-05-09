@@ -5,24 +5,24 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
-import ru.verso.picturesnap.domain.models.PhotographPresentationService;
-import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
+import ru.verso.picturesnap.domain.models.PhotographerPresentationService;
+import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
 
 public class ServicesViewModel extends ViewModel {
 
-    private final GetPhotographDataUseCase getPhotographDataUseCase;
+    private final GetPhotographerDataUseCase getPhotographerDataUseCase;
 
-    private String photographId;
+    private String photographerId;
 
-    public ServicesViewModel(GetPhotographDataUseCase getPhotographDataUseCase) {
-        this.getPhotographDataUseCase = getPhotographDataUseCase;
+    public ServicesViewModel(GetPhotographerDataUseCase getPhotographerDataUseCase) {
+        this.getPhotographerDataUseCase = getPhotographerDataUseCase;
     }
 
-    public void putPhotographId(String photographId) {
-        this.photographId = photographId;
+    public void putPhotographerId(String photographerId) {
+        this.photographerId = photographerId;
     }
 
-    public LiveData<List<PhotographPresentationService>> getPhotographServices() {
-        return getPhotographDataUseCase.getPhotographServicesById(photographId);
+    public LiveData<List<PhotographerPresentationService>> getPhotographerServices() {
+        return getPhotographerDataUseCase.getPhotographerServicesById(photographerId);
     }
 }

@@ -13,9 +13,9 @@ import java.util.concurrent.Executors;
 
 import ru.verso.picturesnap.data.storage.room.dao.FavoritesDAO;
 import ru.verso.picturesnap.data.storage.room.entity.CreateFlag;
-import ru.verso.picturesnap.data.storage.room.entity.PhotographEntity;
+import ru.verso.picturesnap.data.storage.room.entity.PhotographerEntity;
 
-@Database(entities = {PhotographEntity.class, CreateFlag.class}, version = 1, exportSchema = false)
+@Database(entities = {PhotographerEntity.class, CreateFlag.class}, version = 1, exportSchema = false)
 
 public abstract class AppDatabase extends RoomDatabase {
 

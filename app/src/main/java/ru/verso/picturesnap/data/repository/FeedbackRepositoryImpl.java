@@ -37,11 +37,11 @@ public class FeedbackRepositoryImpl implements FeedbackRepository {
     }
 
     @Override
-    public LiveData<List<Feedback>> getFeedbacksOf(String photographId) {
-        final String PHOTOGRAPH_ID_PATH = "photographId";
+    public LiveData<List<Feedback>> getFeedbacksOf(String photographerId) {
+        final String PHOTOGRAPH_ID_PATH = "photographerId";
 
         MutableLiveData<List<Feedback>> feedbacksMutableLiveData = new MutableLiveData<>();
-        Query feedbackQuery = feedbackReference.orderByChild(PHOTOGRAPH_ID_PATH).equalTo(photographId);
+        Query feedbackQuery = feedbackReference.orderByChild(PHOTOGRAPH_ID_PATH).equalTo(photographerId);
         feedbackQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

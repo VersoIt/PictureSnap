@@ -32,7 +32,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.activity.PhotographActivity"
+            android:name=".presentation.activity.PhotographerActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

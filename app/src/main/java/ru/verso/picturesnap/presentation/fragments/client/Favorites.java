@@ -16,15 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.FavoritesRepositoryImpl;
-import ru.verso.picturesnap.data.repository.PhotographRepositoryImpl;
+import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentFavoritesBinding;
 import ru.verso.picturesnap.domain.usecase.GetFavoritesDataUseCase;
-import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
 import ru.verso.picturesnap.presentation.adapters.client.FavoritesAdapter;
 import ru.verso.picturesnap.presentation.factory.FavoritesViewModelFactory;
-import ru.verso.picturesnap.presentation.factory.PhotographProfileViewModelFactory;
+import ru.verso.picturesnap.presentation.factory.PhotographerProfileViewModelFactory;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FavoritesViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographProfileViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
 
 public class Favorites extends Fragment {
 
@@ -51,7 +51,7 @@ public class Favorites extends Fragment {
         recycler.setLayoutManager(new LinearLayoutManager(requireContext()));
         FavoritesAdapter favoritesAdapter = new FavoritesAdapter(new FavoritesAdapter.DiffUtil(),
                 getNavController(),
-                getPhotographProfileViewModel());
+                getPhotographerProfileViewModel());
         recycler.setAdapter(favoritesAdapter);
         favoritesViewModel.getAllFavorites().observe(getViewLifecycleOwner(), favoritesAdapter::submitList);
     }
@@ -72,10 +72,10 @@ public class Favorites extends Fragment {
         return navHostFragment.getNavController();
     }
 
-    private PhotographProfileViewModel getPhotographProfileViewModel() {
+    private PhotographerProfileViewModel getPhotographerProfileViewModel() {
 
-        return new ViewModelProvider(requireActivity(), new PhotographProfileViewModelFactory(new GetPhotographDataUseCase(
-                new PhotographRepositoryImpl())))
-                .get(PhotographProfileViewModel.class);
+        return new ViewModelProvider(requireActivity(), new PhotographerProfileViewModelFactory(new GetPhotographerDataUseCase(
+                new PhotographerRepositoryImpl())))
+                .get(PhotographerProfileViewModel.class);
     }
 }

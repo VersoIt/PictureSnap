@@ -90,23 +90,23 @@
                 android:visibility="gone"
 
                 tools:itemCount="2"
-                tools:listitem="@layout/layout_photograph_service" />
+                tools:listitem="@layout/layout_photographer_service" />
 
             <TextView
-                android:id="@+id/textView_photographs_in_city"
+                android:id="@+id/textView_photographers_in_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:layout_marginTop="@dimen/large_margin"
 
-                android:text="@string/photographs_in_your_city"
+                android:text="@string/photographers_in_your_city"
 
                 android:textSize="22sp"
 
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_photographs_in_city"
+                android:id="@+id/recyclerView_photographers_in_city"
                 android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
                 android:visibility="gone"
                 tools:itemCount="1"
 
-                tools:listitem="@layout/layout_photograph_in_city">
+                tools:listitem="@layout/layout_photographer_in_city">
 
             </androidx.recyclerview.widget.RecyclerView>
 

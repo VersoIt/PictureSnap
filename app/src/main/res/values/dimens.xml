@@ -11,7 +11,7 @@
     <dimen name="large_margin">35dp</dimen>
     <dimen name="middle_margin">20dp</dimen>
     <dimen name="small_margin">10dp</dimen>
-    <dimen name="photograph_registration_label_width">90dp</dimen>
+    <dimen name="photographer_registration_label_width">90dp</dimen>
     <dimen name="service_button_size">110dp</dimen>
     <dimen name="action_bar_default_height">56dp</dimen>
     <dimen name="fragment_animation_duration">260</dimen>

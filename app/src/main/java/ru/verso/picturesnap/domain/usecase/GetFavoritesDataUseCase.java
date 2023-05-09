@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import ru.verso.picturesnap.domain.models.Photograph;
+import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.repository.FavoritesRepository;
 
 public class GetFavoritesDataUseCase {
@@ -15,15 +15,15 @@ public class GetFavoritesDataUseCase {
         this.favoritesRepository = favoritesRepository;
     }
 
-    public LiveData<List<Photograph>> getAllFavorites() {
+    public LiveData<List<Photographer>> getAllFavorites() {
         return favoritesRepository.getAllFavorites();
     }
 
-    public void addFavorite(Photograph photograph) {
-        favoritesRepository.addFavorite(photograph);
+    public void addFavorite(Photographer photographer) {
+        favoritesRepository.addFavorite(photographer);
     }
 
-    public void deleteFavorite(Photograph photograph) {
-        favoritesRepository.deleteFavorite(photograph);
+    public void deleteFavorite(Photographer photographer) {
+        favoritesRepository.deleteFavorite(photographer);
     }
 }

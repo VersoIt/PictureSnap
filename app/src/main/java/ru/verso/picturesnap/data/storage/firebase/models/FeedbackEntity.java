@@ -6,7 +6,7 @@ public class FeedbackEntity {
 
     private String id;
 
-    private String photographId;
+    private String photographerId;
 
     private String ownerId;
 
@@ -18,9 +18,9 @@ public class FeedbackEntity {
 
     private FeedbackEntity() {}
 
-    public FeedbackEntity(String id, String photographId, String ownerId, String text, int rating, String date) {
+    public FeedbackEntity(String id, String photographerId, String ownerId, String text, int rating, String date) {
         this.id = id;
-        this.photographId = photographId;
+        this.photographerId = photographerId;
         this.ownerId = ownerId;
         this.text = text;
         this.rating = rating;
@@ -33,7 +33,7 @@ public class FeedbackEntity {
         feedback.setId(id);
         feedback.setText(text);
         feedback.setRating(rating);
-        feedback.setPhotographId(photographId);
+        feedback.setPhotographerId(photographerId);
         feedback.setDate(date);
 
         return feedback;
@@ -55,12 +55,12 @@ public class FeedbackEntity {
         this.id = id;
     }
 
-    public String getPhotographId() {
-        return photographId;
+    public String getPhotographerId() {
+        return photographerId;
     }
 
-    public void setPhotographId(String photographId) {
-        this.photographId = photographId;
+    public void setPhotographerId(String photographerId) {
+        this.photographerId = photographerId;
     }
 
     public String getOwnerId() {

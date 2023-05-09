@@ -8,9 +8,9 @@ import androidx.lifecycle.Transformations;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ru.verso.picturesnap.data.storage.room.entity.PhotographEntity;
+import ru.verso.picturesnap.data.storage.room.entity.PhotographerEntity;
 import ru.verso.picturesnap.data.storage.room.root.AppDatabase;
-import ru.verso.picturesnap.domain.models.Photograph;
+import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.repository.FavoritesRepository;
 
 public class FavoritesRepositoryImpl implements FavoritesRepository {
@@ -22,35 +22,35 @@ public class FavoritesRepositoryImpl implements FavoritesRepository {
     }
 
     @Override
-    public LiveData<List<Photograph>> getAllFavorites() {
-        LiveData<List<PhotographEntity>> favoritesEntity = database.favoritesDAO().getAllFavorites();
+    public LiveData<List<Photographer>> getAllFavorites() {
+        LiveData<List<PhotographerEntity>> favoritesEntity = database.favoritesDAO().getAllFavorites();
         return Transformations.map(
                 favoritesEntity,
-                values -> values.stream().map(PhotographEntity::mapToDomain).collect(Collectors.toList())
+                values -> values.stream().map(PhotographerEntity::mapToDomain).collect(Collectors.toList())
         );
     }
 
     @Override
-    public void addFavorite(Photograph photograph) {
-        AppDatabase.databaseWriteExecutor.execute(() -> database.favoritesDAO().addFavorite(mapPhotographToData(photograph)));
+    public void addFavorite(Photographer photographer) {
+        AppDatabase.databaseWriteExecutor.execute(() -> database.favoritesDAO().addFavorite(mapPhotographerToData(photographer)));
     }
 
     @Override
-    public void deleteFavorite(Photograph photograph) {
-        AppDatabase.databaseWriteExecutor.execute(() -> database.favoritesDAO().removeFavorite(mapPhotographToData(photograph)));
+    public void deleteFavorite(Photographer photographer) {
+        AppDatabase.databaseWriteExecutor.execute(() -> database.favoritesDAO().removeFavorite(mapPhotographerToData(photographer)));
     }
 
-    private PhotographEntity mapPhotographToData(Photograph photograph) {
+    private PhotographerEntity mapPhotographerToData(Photographer photographer) {
 
-        return new PhotographEntity.Builder()
-                .setName(photograph.getFirstName(), photograph.getLastName())
-                .setRating(photograph.getRating())
-                .setExperience(photograph.getExperience())
-                .setPhoneNumber(photograph.getPhoneNumber())
-                .setDescription(photograph.getDescription())
-                .setEmail(photograph.getEmail())
-                .setId(photograph.getId())
-                .setLocation(photograph.getLatitude(), photograph.getLongitude())
+        return new PhotographerEntity.Builder()
+                .setName(photographer.getFirstName(), photographer.getLastName())
+                .setRating(photographer.getRating())
+                .setExperience(photographer.getExperience())
+                .setPhoneNumber(photographer.getPhoneNumber())
+                .setDescription(photographer.getDescription())
+                .setEmail(photographer.getEmail())
+                .setId(photographer.getId())
+                .setLocation(photographer.getLatitude(), photographer.getLongitude())
                 .create();
     }
 }

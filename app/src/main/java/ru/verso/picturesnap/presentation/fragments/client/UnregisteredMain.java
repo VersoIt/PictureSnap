@@ -16,15 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
-import ru.verso.picturesnap.data.repository.PhotographRepositoryImpl;
+import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentUnregisteredMainBinding;
-import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
-import ru.verso.picturesnap.presentation.adapters.client.PhotographServicesAdapter;
-import ru.verso.picturesnap.presentation.adapters.client.PhotographsInCityAdapter;
+import ru.verso.picturesnap.presentation.adapters.client.PhotographerServicesAdapter;
+import ru.verso.picturesnap.presentation.adapters.client.PhotographersInCityAdapter;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.UnregisteredMainViewModel;
 import ru.verso.picturesnap.presentation.factory.UnregisteredMainViewModelFactory;
 
@@ -51,17 +51,17 @@ public class UnregisteredMain extends Fragment {
         NavController navController = getNavController();
 
         bindButtons(navController);
-        createPhotographServicesList(navController);
-        createPhotographsInCityList(navController);
+        createPhotographerServicesList(navController);
+        createPhotographersInCityList(navController);
 
-        viewModel.getAllPhotographs().observe(requireActivity(), photographs -> viewModel.updatePhotographsInCity(photographs));
+        viewModel.getAllPhotographers().observe(requireActivity(), photographers -> viewModel.updatePhotographersInCity(photographers));
     }
 
     private UnregisteredMainViewModel getViewModel() {
         return new ViewModelProvider(this,
                 new UnregisteredMainViewModelFactory(
                         requireActivity().getApplication(),
-                        new GetPhotographDataUseCase(new PhotographRepositoryImpl()),
+                        new GetPhotographerDataUseCase(new PhotographerRepositoryImpl()),
                         new GetUserDataUseCase(new UserLocationRepositoryImpl(this.requireActivity().getApplicationContext()),
                                 new RoleRepositoryImpl(requireActivity().getApplicationContext()),
                                 new FirstTimeWentRepositoryImpl(requireActivity().getApplicationContext())),
@@ -88,30 +88,30 @@ public class UnregisteredMain extends Fragment {
         return navHostFragment.getNavController();
     }
 
-    public void createPhotographsInCityList(NavController navController) {
-        RecyclerView recyclerView = binding.recyclerViewPhotographsInCity;
+    public void createPhotographersInCityList(NavController navController) {
+        RecyclerView recyclerView = binding.recyclerViewPhotographersInCity;
 
-        final PhotographsInCityAdapter photographsInCityAdapter = new PhotographsInCityAdapter(new PhotographsInCityAdapter.PhotographInCityDiff(),
+        final PhotographersInCityAdapter photographersInCityAdapter = new PhotographersInCityAdapter(new PhotographersInCityAdapter.PhotographerInCityDiff(),
                 navController,
                 this.requireActivity());
 
-        recyclerView.setAdapter(photographsInCityAdapter);
+        recyclerView.setAdapter(photographersInCityAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        viewModel.getPhotographsInCity().observe(getViewLifecycleOwner(), photographs -> {
-            if (photographs.size() > 0) {
-                binding.textViewPhotographsInCity.setVisibility(View.VISIBLE);
-                binding.recyclerViewPhotographsInCity.setVisibility(View.VISIBLE);
-                photographsInCityAdapter.submitList(photographs);
+        viewModel.getPhotographersInCity().observe(getViewLifecycleOwner(), photographers -> {
+            if (photographers.size() > 0) {
+                binding.textViewPhotographersInCity.setVisibility(View.VISIBLE);
+                binding.recyclerViewPhotographersInCity.setVisibility(View.VISIBLE);
+                photographersInCityAdapter.submitList(photographers);
             }
         });
     }
 
-    private void createPhotographServicesList(NavController navController) {
+    private void createPhotographerServicesList(NavController navController) {
         RecyclerView recyclerView = binding.recyclerViewServices;
 
-        final PhotographServicesAdapter adapter =
-                new PhotographServicesAdapter(new PhotographServicesAdapter.PhotographServiceDiff(), navController);
+        final PhotographerServicesAdapter adapter =
+                new PhotographerServicesAdapter(new PhotographerServicesAdapter.PhotographerServiceDiff(), navController);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 

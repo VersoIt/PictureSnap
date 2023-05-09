@@ -11,19 +11,19 @@ import ru.verso.picturesnap.domain.usecase.GetFeedbackDataUseCase;
 
 public class FeedbackViewModel extends ViewModel {
 
-    private GetFeedbackDataUseCase getFeedbackDataUseCase;
+    private final GetFeedbackDataUseCase getFeedbackDataUseCase;
 
-    private String photographId;
+    private String photographerId;
 
     public FeedbackViewModel(GetFeedbackDataUseCase getFeedbackDataUseCase) {
         this.getFeedbackDataUseCase = getFeedbackDataUseCase;
     }
 
-    public void putPhotographId(String photographId) {
-        this.photographId = photographId;
+    public void putPhotographerId(String photographerId) {
+        this.photographerId = photographerId;
     }
 
-    public LiveData<List<Feedback>> getFeedbacksOfPhotograph() {
-        return getFeedbackDataUseCase.getFeedbacksOfPhotograph(photographId);
+    public LiveData<List<Feedback>> getFeedbacksOfPhotographer() {
+        return getFeedbackDataUseCase.getFeedbacksOfPhotographer(photographerId);
     }
 }

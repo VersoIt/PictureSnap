@@ -28,6 +28,11 @@ public class UnregisteredActivityState implements ClientActivityState {
     }
 
     @Override
+    public int getStartFragmentId() {
+        return R.id.unregistered_main;
+    }
+
+    @Override
     public void createBottomNavigationMenu() {
         binding.bottomNavigationViewMenu.inflateMenu(R.menu.unregistered_bottom);
 

@@ -19,7 +19,7 @@
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
-            android:id="@+id/imageView_photograph_logo"
+            android:id="@+id/imageView_photographer_logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
 

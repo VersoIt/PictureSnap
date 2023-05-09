@@ -3,12 +3,12 @@ package ru.verso.picturesnap.domain.models;
 public class Favorite {
 
     private final int id;
-    private final int photographId;
+    private final int photographerId;
     private final int clientId;
 
-    public Favorite(int id, int photographId, int clientId) {
+    public Favorite(int id, int photographerId, int clientId) {
         this.id = id;
-        this.photographId = photographId;
+        this.photographerId = photographerId;
         this.clientId = clientId;
     }
 
@@ -16,8 +16,8 @@ public class Favorite {
         return id;
     }
 
-    public int getPhotographId() {
-        return photographId;
+    public int getPhotographerId() {
+        return photographerId;
     }
 
     public int getClientId() {

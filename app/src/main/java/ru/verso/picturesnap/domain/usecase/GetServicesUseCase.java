@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import ru.verso.picturesnap.domain.models.PhotographService;
+import ru.verso.picturesnap.domain.models.PhotographerService;
 import ru.verso.picturesnap.domain.repository.ServicesRepository;
 
 public class GetServicesUseCase {
@@ -15,7 +15,7 @@ public class GetServicesUseCase {
         this.servicesRepository = servicesRepository;
     }
 
-    public LiveData<List<PhotographService>> getAllServices() {
+    public LiveData<List<PhotographerService>> getAllServices() {
         return servicesRepository.getAllServices();
     }
 }

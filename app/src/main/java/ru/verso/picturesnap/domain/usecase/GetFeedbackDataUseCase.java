@@ -15,7 +15,7 @@ public class GetFeedbackDataUseCase {
         this.feedbackRepository = feedbackRepository;
     }
 
-    public LiveData<List<Feedback>> getFeedbacksOfPhotograph(String photographId) {
-        return feedbackRepository.getFeedbacksOf(photographId);
+    public LiveData<List<Feedback>> getFeedbacksOfPhotographer(String photographerId) {
+        return feedbackRepository.getFeedbacksOf(photographerId);
     }
 }

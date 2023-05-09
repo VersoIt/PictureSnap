@@ -4,7 +4,7 @@
     <string name="review">Overview</string>
     <string name="dev">Ruslan Lyaschenko</string>
 
-    <string name="photograph_fragment_home">Home</string>
+    <string name="photographer_fragment_home">Home</string>
     <string name="unregistered_fragment_home">Home</string>
     <string name="client_fragment_home">Home</string>
     <string name="previous">Previous</string>
@@ -32,7 +32,7 @@
     <string name="forgot_password">Forgot password?</string>
 
     <string name="i_am_client">I am client</string>
-    <string name="i_am_photograph">I am photograph</string>
+    <string name="i_am_photographer">I am photographer</string>
     <string name="keep_in_safe_place">Keep password in a safe place!</string>
 
     <string name="retry">Try again</string>
@@ -59,7 +59,7 @@
     <string name="work_days">Working days</string>
     <string name="ratings_and_feedbacks">Ratings and reviews</string>
     <string name="portfolio">Portfolio</string>
-    <string name="about_photograph">About photograph</string>
+    <string name="about_photographer">About photographer</string>
     <string name="services">Services</string>
 
     <string name="leave">Leave</string>
@@ -85,7 +85,7 @@
     <string name="feedback">Feedback</string>
     <string name="description">Description</string>
     <string name="describe_feedback">Briefly describe the quality of services of the master</string>
-    <string name="photograph_signup">Sign up - photograph</string>
+    <string name="photographer_signup">Sign up - photographer</string>
     <string name="address">Address</string>
     <string name="select_address">Choose an address on the map</string>
     <string name="phone">Phone</string>
@@ -128,14 +128,14 @@
     <string name="developing">In developing</string>
     <string name="not_signed">Log in or register to make it easier for you to search for photographers.</string>
     <string name="my_entries">My entries</string>
-    <string name="photographs_in_your_city">Photographs in your city</string>
+    <string name="photographers_in_your_city">Photographers in your city</string>
     <string name="you_selected">You selected: </string>
     <string name="clients_records">Clients records</string>
     <string name="yandex_maps">Yandex Maps</string>
     <string name="photo_session_address">Photo session address</string>
     <string name="my_records">My records</string>
     <string name="accepted">Accepted</string>
-    <string name="photograph">Photograph</string>
+    <string name="photographer">Photographer</string>
     <string name="address_selection">Address selection</string>
     <string name="search_found">Search: </string>
     <string name="settings">Settings</string>
@@ -145,9 +145,9 @@
     <string name="fill_input">Fill in the input fields</string>
     <string name="confirm_password">Confirm password</string>
     <string name="passwords_not_equals">Passwords not equals</string>
-    <string name="address_example">Москва, Проспект Вернадского, 74</string>
-    <string name="invalid_address">Неверный адрес</string>
-    <string name="select_service_prices">Выберите цены для услуг</string>
+    <string name="address_example">Moscow, Prospekt Vernadskogo, 74</string>
+    <string name="invalid_address">Invalid address</string>
+    <string name="select_service_prices">Choose prices for services</string>
     <string name="no_feedbacks">No feedbacks</string>
     <string name="nothing_here">There is nothing here yet…</string>
     <string name="wrong_data">Wrong data</string>
@@ -157,5 +157,10 @@
     <string name="short_password">Short password</string>
     <string name="invalid_first_name">Invalid first name</string>
     <string name="invalid_last_name">Invalid last name</string>
+    <string name="user_already_exists">User already exists</string>
+    <string name="user_not_found">User not found</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="password_recover_sent">Recovery sent to your email</string>
+    <string name="user_with_this_email_not_exists">User with this email does not exist</string>
 
 </resources>

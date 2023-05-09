@@ -16,7 +16,11 @@ public class PictureSnapApp extends Application {
 
     public static final String SERVICE_PROVISIONS_PATH = "service_provisions";
 
+    public static final String FIREBASE_CLIENT_PATH = "clients";
+
     public static final int PHOTOGRAPH_IN_CITY_LIST_LIMIT = 5;
+
+    public static final int PASSWORD_MIN_LENGTH = 8;
 
     @Override
     public void onCreate() {

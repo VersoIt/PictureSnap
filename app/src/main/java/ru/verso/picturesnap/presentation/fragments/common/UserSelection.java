@@ -35,7 +35,7 @@ public class UserSelection extends Fragment {
         binding.buttonClient.setOnClickListener(v ->
                 contentNavController.navigate(R.id.action_userSelection_to_clientRegistration));
 
-        binding.buttonPhotograph.setOnClickListener(v ->
-                contentNavController.navigate(R.id.action_userSelection_to_photographRegistration));
+        binding.buttonPhotographer.setOnClickListener(v ->
+                contentNavController.navigate(R.id.action_userSelection_to_photographerRegistration));
     }
 }

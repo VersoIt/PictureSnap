@@ -8,17 +8,17 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import ru.verso.picturesnap.data.storage.room.entity.PhotographEntity;
+import ru.verso.picturesnap.data.storage.room.entity.PhotographerEntity;
 
 @Dao
 public interface FavoritesDAO {
 
-    @Query("SELECT * FROM PhotographEntity")
-    LiveData<List<PhotographEntity>> getAllFavorites();
+    @Query("SELECT * FROM PhotographerEntity")
+    LiveData<List<PhotographerEntity>> getAllFavorites();
 
     @Insert
-    void addFavorite(PhotographEntity photographEntity);
+    void addFavorite(PhotographerEntity photographerEntity);
 
     @Delete
-    void removeFavorite(PhotographEntity photograph);
+    void removeFavorite(PhotographerEntity photographer);
 }

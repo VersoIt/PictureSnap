@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import ru.verso.picturesnap.domain.models.Photograph;
+import ru.verso.picturesnap.domain.models.Photographer;
 
 public interface FavoritesRepository {
 
-    LiveData<List<Photograph>> getAllFavorites();
+    LiveData<List<Photographer>> getAllFavorites();
 
-    void addFavorite(Photograph photograph);
+    void addFavorite(Photographer photographer);
 
-    void deleteFavorite(Photograph photograph);
+    void deleteFavorite(Photographer photographer);
 }

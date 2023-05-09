@@ -3,7 +3,7 @@ package ru.verso.picturesnap.domain.models;
 public class Feedback {
 
     private String id;
-    private String photographId;
+    private String photographerId;
     private String ownerName;
     private String text;
     private String imagePath;
@@ -14,9 +14,9 @@ public class Feedback {
     public Feedback() {
     }
 
-    public Feedback(String id, String photographId, String ownerName, String text, String imagePath, String date) {
+    public Feedback(String id, String photographerId, String ownerName, String text, String imagePath, String date) {
         this.id = id;
-        this.photographId = photographId;
+        this.photographerId = photographerId;
         this.ownerName = ownerName;
         this.text = text;
         this.imagePath = imagePath;
@@ -43,8 +43,8 @@ public class Feedback {
         this.id = id;
     }
 
-    public void setPhotographId(String clientId) {
-        this.photographId = clientId;
+    public void setPhotographerId(String clientId) {
+        this.photographerId = clientId;
     }
 
     public void setOwnerName(String ownerName) {
@@ -75,8 +75,8 @@ public class Feedback {
         return imagePath;
     }
 
-    public String getPhotographId() {
-        return photographId;
+    public String getPhotographerId() {
+        return photographerId;
     }
 
 }

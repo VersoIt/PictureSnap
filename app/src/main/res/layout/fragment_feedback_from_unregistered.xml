@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".presentation.fragments.photograph.FeedbacksFromUnregistered">
+        tools:context=".presentation.fragments.photographer.FeedbacksFromUnregistered">
 
         <LinearLayout
             android:id="@+id/linearLayout_header"

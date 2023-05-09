@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.presentation.activity.ClientActivity;
-import ru.verso.picturesnap.presentation.activity.PhotographActivity;
+import ru.verso.picturesnap.presentation.activity.PhotographerActivity;
 
 public class MainActivityViewModel extends ViewModel {
 
@@ -24,7 +24,7 @@ public class MainActivityViewModel extends ViewModel {
             case UNREGISTERED:
                 return ClientActivity.class;
             case PHOTOGRAPH:
-                return PhotographActivity.class;
+                return PhotographerActivity.class;
         }
 
         return ClientActivity.class;

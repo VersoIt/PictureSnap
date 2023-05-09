@@ -15,7 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.verso.picturesnap.domain.models.PhotographService;
+import ru.verso.picturesnap.domain.models.PhotographerService;
 import ru.verso.picturesnap.domain.repository.ServicesRepository;
 
 public class ServicesRepositoryImpl implements ServicesRepository {
@@ -30,19 +30,19 @@ public class ServicesRepositoryImpl implements ServicesRepository {
     }
 
     @Override
-    public LiveData<List<PhotographService>> getAllServices() {
+    public LiveData<List<PhotographerService>> getAllServices() {
 
-        MutableLiveData<List<PhotographService>> photographServices = new MutableLiveData<>(new ArrayList<>());
+        MutableLiveData<List<PhotographerService>> photographerServices = new MutableLiveData<>(new ArrayList<>());
 
         servicesReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<PhotographService> services = new ArrayList<>();
+                List<PhotographerService> services = new ArrayList<>();
                 for (DataSnapshot serviceSnapshot : snapshot.getChildren()) {
-                    PhotographService service = serviceSnapshot.getValue(PhotographService.class);
+                    PhotographerService service = serviceSnapshot.getValue(PhotographerService.class);
                     services.add(service);
                 }
-                photographServices.setValue(services);
+                photographerServices.setValue(services);
             }
 
             @Override
@@ -51,6 +51,6 @@ public class ServicesRepositoryImpl implements ServicesRepository {
             }
         });
 
-        return photographServices;
+        return photographerServices;
     }
 }

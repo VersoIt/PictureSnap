@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     }
 
     private void navigateToSelectedActivityRole() {
+
         MainActivityViewModel viewModel = new ViewModelProvider(this, new MainActivityViewModelFactory(new GetUserDataUseCase(
                 new UserLocationRepositoryImpl(this.getApplicationContext()),
                 new RoleRepositoryImpl(getApplicationContext()),

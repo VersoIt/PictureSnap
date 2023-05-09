@@ -1,40 +1,45 @@
 package ru.verso.picturesnap.presentation.fragments.common;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import java.util.Objects;
 
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
+import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
+import ru.verso.picturesnap.data.repository.SignInRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentLoginBinding;
+import ru.verso.picturesnap.domain.models.User;
+import ru.verso.picturesnap.domain.repository.SignInCallback;
+import ru.verso.picturesnap.domain.usecase.SignInUserUseCase;
+import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
+import ru.verso.picturesnap.presentation.activity.MainActivity;
+import ru.verso.picturesnap.presentation.factory.LoginViewModelFactory;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.LoginViewModel;
 
 public class Login extends Fragment {
 
     private FragmentLoginBinding binding;
 
-    private FirebaseAuth firebaseAuth;
-
-    private FirebaseDatabase database;
-
-    private DatabaseReference reference;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        firebaseAuth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance("Users");
 
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -45,34 +50,126 @@ public class Login extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         NavController contentNavController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView_content);
-
-        firebaseAuth = FirebaseAuth.getInstance();
+        LoginViewModel loginViewModel = getViewModel();
 
         binding.textViewForgetPassword.setOnClickListener(v ->
                 contentNavController.navigate(R.id.action_login_to_passwordRecover)
         );
 
-        binding.buttonLogin.buttonLogin.setOnClickListener(v ->
-                verify());
+        bindSignInButton(loginViewModel);
+
+        observeLoginViewModel(loginViewModel);
+        NavController navController = getNavController();
+
+        setOnBackPressEvent(loginViewModel, navController);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+    private void bindSignInButton(LoginViewModel loginViewModel) {
+        binding.buttonLogin.buttonLogin.setOnClickListener(v -> {
+            save(loginViewModel);
+            verify(loginViewModel);
+        });
     }
 
-    private void verify() {
-        if (!isAllFilled()) {
+    private void observeLoginViewModel(LoginViewModel loginViewModel) {
+
+        loginViewModel.getEmail().observe(getViewLifecycleOwner(), email ->
+                binding.editTextEmail.setText(email));
+
+        loginViewModel.getPassword().observe(getViewLifecycleOwner(), password ->
+                binding.editTextPassword.setText(password));
+    }
+
+    private void verify(LoginViewModel viewModel) {
+
+        if (!viewModel.isHaveAllData()) {
             Toast.makeText(requireContext(), R.string.fill_input, Toast.LENGTH_LONG).show();
             return;
         }
 
-        firebaseAuth.createUserWithEmailAndPassword(binding.editTextEmail.getText().toString(),
-                binding.editTextPassword.getText().toString());
+        if (!viewModel.isEmailMatch()) {
+            Toast.makeText(requireContext(), R.string.wrong_enter_email, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        showLoading();
+
+        viewModel.signIn(new SignInCallback<User>() {
+            @Override
+            public void onNotFoundUser() {
+                Toast.makeText(requireContext(), R.string.user_not_found, Toast.LENGTH_LONG).show();
+                hideLoading();
+            }
+
+            @Override
+            public void onWrongPassword() {
+                Toast.makeText(requireContext(), R.string.wrong_password, Toast.LENGTH_LONG).show();
+                hideLoading();
+            }
+
+            @Override
+            public void onNetworkError() {
+                Toast.makeText(requireContext(), R.string.no_internet_connection, Toast.LENGTH_LONG).show();
+                hideLoading();
+            }
+        }).observe(getViewLifecycleOwner(), user -> {
+            if (user.getRole() != null) {
+                viewModel.saveRoleInLocal(user);
+                sendToMainActivity();
+                requireActivity().finish();
+            }
+        });
     }
 
-    private boolean isAllFilled() {
-        return (!binding.editTextEmail.getText().toString().isEmpty() &&
-                !binding.editTextPassword.getText().toString().isEmpty());
+    private void sendToMainActivity() {
+        Intent intent = new Intent(requireActivity(), MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void save(LoginViewModel viewModel) {
+        viewModel.setEmail(binding.editTextEmail.getText().toString());
+        viewModel.setPassword(binding.editTextPassword.getText().toString());
+    }
+
+
+    private LoginViewModel getViewModel() {
+
+        return new ViewModelProvider(requireActivity(), new LoginViewModelFactory(new SignInUserUseCase(new SignInRepositoryImpl()),
+                new UpdateUserDataUseCase(new RoleRepositoryImpl(requireContext()),
+                        new UserLocationRepositoryImpl(requireContext()),
+                        new FirstTimeWentRepositoryImpl(requireContext()))))
+                .get(LoginViewModel.class);
+    }
+
+    private NavController getNavController() {
+
+        NavHostFragment navHostFragment = (NavHostFragment) requireActivity()
+                .getSupportFragmentManager()
+                .findFragmentById(R.id.fragmentContainerView_content);
+
+        return Objects.requireNonNull(navHostFragment).getNavController();
+    }
+
+    private void setOnBackPressEvent(LoginViewModel viewModel, NavController navController) {
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                save(viewModel);
+                navController.navigateUp();
+            }
+        });
+    }
+
+    private void showLoading() {
+        updateLoadingView(false, View.VISIBLE);
+    }
+
+    private void hideLoading() {
+        updateLoadingView(true, View.GONE);
+    }
+
+    private void updateLoadingView(boolean isActiveButton, int state) {
+        binding.buttonLogin.buttonLogin.setActivated(isActiveButton);
+        binding.progressBarLoading.setVisibility(state);
     }
 }

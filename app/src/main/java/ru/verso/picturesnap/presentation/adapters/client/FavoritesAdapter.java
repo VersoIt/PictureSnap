@@ -9,50 +9,50 @@ import androidx.recyclerview.widget.DiffUtil.ItemCallback;
 import androidx.recyclerview.widget.ListAdapter;
 
 import ru.verso.picturesnap.R;
-import ru.verso.picturesnap.databinding.LayoutFavoritePhotographBinding;
-import ru.verso.picturesnap.domain.models.Photograph;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographProfileViewModel;
+import ru.verso.picturesnap.databinding.LayoutFavoritePhotographerBinding;
+import ru.verso.picturesnap.domain.models.Photographer;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
 
-public class FavoritesAdapter extends ListAdapter<Photograph, PhotographViewHolder> {
+public class FavoritesAdapter extends ListAdapter<Photographer, PhotographerViewHolder> {
 
     private final NavController navController;
 
-    private final PhotographProfileViewModel photographProfileViewModel;
+    private final PhotographerProfileViewModel photographerProfileViewModel;
 
-    public FavoritesAdapter(@NonNull ItemCallback<Photograph> diffCallback, NavController navController, PhotographProfileViewModel photographProfileViewModel) {
+    public FavoritesAdapter(@NonNull ItemCallback<Photographer> diffCallback, NavController navController, PhotographerProfileViewModel photographerProfileViewModel) {
         super(diffCallback);
 
         this.navController = navController;
-        this.photographProfileViewModel = photographProfileViewModel;
+        this.photographerProfileViewModel = photographerProfileViewModel;
     }
 
     @NonNull
     @Override
-    public PhotographViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PhotographerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        LayoutFavoritePhotographBinding binding = LayoutFavoritePhotographBinding.inflate(layoutInflater, parent, false);
+        LayoutFavoritePhotographerBinding binding = LayoutFavoritePhotographerBinding.inflate(layoutInflater, parent, false);
 
-        return new PhotographViewHolder(binding);
+        return new PhotographerViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PhotographViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PhotographerViewHolder holder, int position) {
         holder.bind(getItem(position));
         holder.itemView.setOnClickListener(view -> {
-            photographProfileViewModel.putId(getItem(position).getId());
-            navController.navigate(R.id.action_favorites_fragment_to_photograph_profile_from_unregistered);
+            photographerProfileViewModel.putId(getItem(position).getId());
+            navController.navigate(R.id.action_favorites_fragment_to_photographer_profile_from_unregistered);
         });
     }
 
-    public static class DiffUtil extends ItemCallback<Photograph> {
+    public static class DiffUtil extends ItemCallback<Photographer> {
 
         @Override
-        public boolean areItemsTheSame(@NonNull Photograph oldItem, @NonNull Photograph newItem) {
+        public boolean areItemsTheSame(@NonNull Photographer oldItem, @NonNull Photographer newItem) {
             return oldItem == newItem;
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull Photograph oldItem, @NonNull Photograph newItem) {
+        public boolean areContentsTheSame(@NonNull Photographer oldItem, @NonNull Photographer newItem) {
             return oldItem.getId().equals(newItem.getId());
         }
     }

@@ -59,7 +59,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            tools:listitem="@layout/layout_record_to_photograph"
+            tools:listitem="@layout/layout_record_to_photographer"
             tools:itemCount="5"
 
             android:paddingHorizontal="20dp"

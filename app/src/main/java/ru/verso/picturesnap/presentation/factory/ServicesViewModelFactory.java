@@ -4,21 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import ru.verso.picturesnap.domain.usecase.GetPhotographDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.ServicesViewModel;
 
 public class ServicesViewModelFactory implements ViewModelProvider.Factory {
 
-    private final GetPhotographDataUseCase getPhotographDataUseCase;
+    private final GetPhotographerDataUseCase getPhotographerDataUseCase;
 
-    public ServicesViewModelFactory(GetPhotographDataUseCase getPhotographDataUseCase) {
-        this.getPhotographDataUseCase = getPhotographDataUseCase;
+    public ServicesViewModelFactory(GetPhotographerDataUseCase getPhotographerDataUseCase) {
+        this.getPhotographerDataUseCase = getPhotographerDataUseCase;
     }
 
     @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new ServicesViewModel(getPhotographDataUseCase);
+        return (T) new ServicesViewModel(getPhotographerDataUseCase);
     }
 }

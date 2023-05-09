@@ -45,16 +45,16 @@
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/button_photograph"
+            app:layout_constraintBottom_toTopOf="@id/button_photographer"
             app:layout_constraintTop_toBottomOf="@id/button_client" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_photograph"
+            android:id="@+id/button_photographer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
             style="@style/standardText.white.purpleBackground"
-            android:text="@string/i_am_photograph"
+            android:text="@string/i_am_photographer"
 
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
