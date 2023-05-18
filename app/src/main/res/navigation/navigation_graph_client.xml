@@ -221,6 +221,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_favorites_fragment_to_photographerProfileFromClient"
+            app:destination="@id/photographerProfileFromClient"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/settings"
@@ -349,4 +356,9 @@
         android:name="ru.verso.picturesnap.presentation.fragments.client.SendFeedback"
         android:label="fragment_send_feedback"
         tools:layout="@layout/fragment_send_feedback" />
+    <fragment
+        android:id="@+id/clientProfile"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.ClientProfile"
+        android:label="fragment_client_profile"
+        tools:layout="@layout/fragment_client_profile" />
 </navigation>

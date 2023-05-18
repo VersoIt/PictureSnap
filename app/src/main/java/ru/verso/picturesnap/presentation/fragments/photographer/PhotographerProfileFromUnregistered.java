@@ -22,13 +22,18 @@ import java.util.Objects;
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.FavoritesRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
+import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
+import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentPhotographerProfileFromUnregisteredBinding;
 import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.usecase.GetFavoritesDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetFeedbackDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
 import ru.verso.picturesnap.presentation.factory.AboutPhotographerFromClientViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.FavoritesViewModelFactory;
@@ -161,7 +166,8 @@ public class PhotographerProfileFromUnregistered extends Fragment {
 
         return new ViewModelProvider(requireActivity(), new FavoritesViewModelFactory(
                 new GetFavoritesDataUseCase(
-                        new FavoritesRepositoryImpl(requireContext()))))
+                        new FavoritesRepositoryImpl(requireContext())),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()), new RoleRepositoryImpl(requireContext()), new FirstTimeWentRepositoryImpl(requireContext()), new UserAuthDataRepositoryImpl())))
                 .get(FavoritesViewModel.class);
     }
 

@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rect_white"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView_logo"
+
+        android:layout_marginHorizontal="16dp"
+
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
+        android:contentDescription="@string/app_name"
+        android:background="@drawable/round_background"
+
+        android:scaleType="centerCrop"
+        android:layout_marginVertical="20dp"
+        android:src="@drawable/ic_person_gray"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textView_photographer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="16dp"
+
+        android:drawablePadding="4dp"
+        android:textStyle="bold"
+        app:drawableEndCompat="@drawable/ic_camera"
+        tools:text="Иванов Иван" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textView_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="16dp"
+
+        android:layout_marginBottom="16dp"
+        android:textSize="14sp"
+        tools:text="email@email.com" />
+
+    <View style="@style/fieldSeparator"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"/>
+
+</LinearLayout>

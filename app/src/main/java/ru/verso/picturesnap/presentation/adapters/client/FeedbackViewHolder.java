@@ -9,9 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.LayoutFeedbackFromClientBinding;
 import ru.verso.picturesnap.domain.models.Feedback;
+import ru.verso.picturesnap.presentation.app.PictureSnapApp;
 
 public class FeedbackViewHolder extends RecyclerView.ViewHolder {
 
@@ -26,7 +30,7 @@ public class FeedbackViewHolder extends RecyclerView.ViewHolder {
         binding.textViewOwnerName.setText(feedback.getOwnerName());
 
         binding.textViewText.setText(feedback.getText());
-        binding.textViewDate.setText(feedback.getDate());
+        binding.textViewDate.setText(new SimpleDateFormat(PictureSnapApp.STANDARD_DATE_FORMAT, Locale.getDefault()).format(feedback.getDate()));
 
         createRatingStars(feedback.getRating(), binding.linearLayoutStars);
     }

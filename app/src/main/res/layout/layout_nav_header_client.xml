@@ -2,28 +2,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="bottom"
-    android:padding="16dp"
     android:background="@drawable/rect_white"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_person"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Иванов Иван"
-        android:textStyle="bold"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="email@email.com"
-        android:textSize="14sp"
-        android:layout_marginBottom="16dp"/>
 
-    <View style="@style/fieldSeparator" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView_logo"
+
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
+        android:contentDescription="@string/app_name"
+        android:background="@drawable/round_background"
+
+        android:layout_marginVertical="20dp"
+        android:src="@drawable/ic_person_gray"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textView_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        tools:text="Иванов Иван " />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textView_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="16dp"
+        android:textSize="14sp"
+        tools:text="email@email.com" />
 
 </LinearLayout>

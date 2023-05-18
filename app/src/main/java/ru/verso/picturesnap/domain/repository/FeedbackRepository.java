@@ -7,6 +7,8 @@ import java.util.List;
 import ru.verso.picturesnap.domain.models.Feedback;
 
 public interface FeedbackRepository {
-
+    
     LiveData<List<Feedback>> getFeedbacksOf(String photographerId);
+
+    void sendFeedback(Feedback feedback);
 }

@@ -1,59 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_white"
-    tools:context=".presentation.fragments.photographer.PhotographerMain">
+    tools:context="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerMain">
 
-    <TextView
-        android:id="@+id/textView_services_header"
-        style="@style/headerText.largeMargin"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayout_header"
 
-        tools:text="Добрый вечер, Руслан!"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/base_elements_margin"
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
+            android:orientation="vertical"
 
-    <View
-        style="@style/fieldSeparator.header"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-        android:layout_width="0dp"
-        android:layout_height="1dp"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView_header"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_services_header" />
+                android:paddingHorizontal="10dp"
 
-    <TextView
-        android:id="@+id/textView_services_selection"
-        style="@style/textField.selection"
+                style="@style/headerText.largeMargin"
 
-        android:layout_width="0dp"
+                android:layout_margin="16dp"
 
-        android:background="@drawable/rect_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
+                android:text="@string/welcome"
 
-        android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp" />
 
-        android:text="@string/upcoming_entries"
-        app:drawableEndCompat="@drawable/ic_keyboard_arrow_bottom"
+            <View
+                android:id="@+id/view_line"
 
-        app:drawableStartCompat="@drawable/ic_check_mark"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/rect_grey" />
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_services_header" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:gravity="center"
+
+            android:orientation="vertical"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_header"
+
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView_my_records"
+                style="@style/textField.selection"
+
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+
+                android:layout_width="match_parent"
+                android:background="@drawable/rect_white"
+
+                android:layout_marginTop="@dimen/large_margin"
+
+                android:text="@string/clients_records"
+                app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+                app:drawableStartCompat="@drawable/ic_check_mark" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

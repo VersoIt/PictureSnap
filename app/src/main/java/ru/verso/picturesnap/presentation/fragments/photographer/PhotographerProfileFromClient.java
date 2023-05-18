@@ -20,23 +20,33 @@ import java.util.List;
 import java.util.Objects;
 
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.ClientRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FavoritesRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
+import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
+import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentPhotographerProfileFromClientBinding;
 import ru.verso.picturesnap.databinding.FragmentPhotographerProfileFromUnregisteredBinding;
 import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.models.Photographer;
+import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetFavoritesDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetFeedbackDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
+import ru.verso.picturesnap.domain.usecase.SendFeedbackUseCase;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
 import ru.verso.picturesnap.presentation.factory.AboutPhotographerFromClientViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.FavoritesViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.FeedbackViewModelFactory;
+import ru.verso.picturesnap.presentation.factory.SendFeedbackViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.ServicesViewModelFactory;
 import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
 import ru.verso.picturesnap.presentation.utils.StringConverter;
+import ru.verso.picturesnap.presentation.viewmodel.client.SendFeedbackViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.AboutPhotographerFromClientViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FavoritesViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
@@ -71,7 +81,7 @@ public class PhotographerProfileFromClient extends Fragment {
             updateServices(photographer);
             updateAboutPhotographerButton(photographer);
             updatePortfolio(navController);
-            updateFeedbacks(navController);
+            updateFeedbacks(navController, getSendFeedbackViewModel(), photographer);
             sendPhotographerIdToFeedbacksFragment(photographer.getId());
             updateFavoriteButton(photographer, getFavoritesViewModel());
             updateAvatar(photographer);
@@ -168,7 +178,8 @@ public class PhotographerProfileFromClient extends Fragment {
 
         return new ViewModelProvider(requireActivity(), new FavoritesViewModelFactory(
                 new GetFavoritesDataUseCase(
-                        new FavoritesRepositoryImpl(requireContext()))))
+                        new FavoritesRepositoryImpl(requireContext())),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()), new RoleRepositoryImpl(requireContext()), new FirstTimeWentRepositoryImpl(requireContext()), new UserAuthDataRepositoryImpl())))
                 .get(FavoritesViewModel.class);
     }
 
@@ -206,10 +217,22 @@ public class PhotographerProfileFromClient extends Fragment {
                 navController.navigate(R.id.action_photographerProfileFromClient_to_photographerPortfolioFromUnregistered));
     }
 
-    private void updateFeedbacks(NavController navController) {
+    private void updateFeedbacks(NavController navController, SendFeedbackViewModel sendFeedbackViewModel, Photographer photographer) {
 
-        binding.linearLayoutFieldsContainer.textViewFeedbacks.setOnClickListener(view ->
-                navController.navigate(R.id.action_photographerProfileFromClient_to_feedbacksFromClient));
+        binding.linearLayoutFieldsContainer.textViewFeedbacks.setOnClickListener(view -> {
+            sendFeedbackViewModel.putPhotographerDestinationId(photographer.getId());
+            navController.navigate(R.id.action_photographerProfileFromClient_to_feedbacksFromClient);
+        });
+    }
+
+    private SendFeedbackViewModel getSendFeedbackViewModel() {
+        return new ViewModelProvider(requireActivity(), new SendFeedbackViewModelFactory(new SendFeedbackUseCase(new FeedbackRepositoryImpl()),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()),
+                        new RoleRepositoryImpl(requireContext()),
+                        new FirstTimeWentRepositoryImpl(requireContext()),
+                        new UserAuthDataRepositoryImpl()),
+                new GetClientDataUseCase(new ClientRepositoryImpl()),
+                new GetPhotographerDataUseCase(new PhotographerRepositoryImpl()))).get(SendFeedbackViewModel.class);
     }
 
     public void showBottomSheetDialog(int fragmentId) {

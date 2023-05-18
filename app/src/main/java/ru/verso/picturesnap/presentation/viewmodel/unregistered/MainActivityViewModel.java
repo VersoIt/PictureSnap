@@ -31,6 +31,6 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     public RoleRepository.Role getRole() {
-        return getUserDataUseCase.getCurrentRole();
+        return getUserDataUseCase.getRole();
     }
 }

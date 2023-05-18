@@ -45,7 +45,6 @@ public class PhotographerSignUpRepositoryImpl implements PhotographerSignUpRepos
         firebaseAuth.createUserWithEmailAndPassword(photographer.getEmail(), password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-
                         Executor executor = Executors.newSingleThreadExecutor();
                         executor.execute(() -> {
                             String photographerId = Objects.requireNonNull(task.getResult().getUser()).getUid();
@@ -56,8 +55,7 @@ public class PhotographerSignUpRepositoryImpl implements PhotographerSignUpRepos
 
                             photographerMutableLiveData.postValue(photographer);
                         });
-                    }
-                    else {
+                    } else {
                         if (signUpCallback != null) {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException)
                                 signUpCallback.onUserCollision();
@@ -80,9 +78,9 @@ public class PhotographerSignUpRepositoryImpl implements PhotographerSignUpRepos
     }
 
     private void createPhotographer(Photographer photographer, String photographerId) {
-        DatabaseReference photographerReference = databaseReference.child(PictureSnapApp.FIREBASE_PHOTOGRAPH_PATH);
+        DatabaseReference photographerReference = databaseReference.child(PictureSnapApp.FIREBASE_PHOTOGRAPHER_PATH);
         photographer.setId(photographerId);
-        photographer.setAvatarPath(PictureSnapApp.FIREBASE_PHOTOGRAPH_PATH);
+        photographer.setAvatarPath(PictureSnapApp.FIREBASE_PHOTOGRAPHER_PATH);
         photographerReference.child(photographerId).setValue(photographer);
     }
 

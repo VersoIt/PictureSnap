@@ -6,14 +6,18 @@ import androidx.lifecycle.ViewModel;
 import java.util.List;
 
 import ru.verso.picturesnap.domain.models.Photographer;
+import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.usecase.GetFavoritesDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 
 public class FavoritesViewModel extends ViewModel {
 
     private final GetFavoritesDataUseCase getFavoritesDataUseCase;
+    private final GetUserDataUseCase getUserDataUseCase;
 
-    public FavoritesViewModel(GetFavoritesDataUseCase getFavoritesDataUseCase) {
+    public FavoritesViewModel(GetFavoritesDataUseCase getFavoritesDataUseCase, GetUserDataUseCase getUserDataUseCase) {
         this.getFavoritesDataUseCase = getFavoritesDataUseCase;
+        this.getUserDataUseCase = getUserDataUseCase;
     }
 
     public LiveData<List<Photographer>> getAllFavorites() {
@@ -26,5 +30,9 @@ public class FavoritesViewModel extends ViewModel {
 
     public void deleteFavorite(Photographer photographer) {
         getFavoritesDataUseCase.deleteFavorite(photographer);
+    }
+
+    public boolean isAuthorized() {
+        return getUserDataUseCase.getRole() == RoleRepository.Role.CLIENT;
     }
 }

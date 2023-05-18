@@ -6,12 +6,13 @@ import java.util.List;
 
 import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
 import ru.verso.picturesnap.domain.models.Feedback;
+import ru.verso.picturesnap.domain.repository.FeedbackRepository;
 
 public class GetFeedbackDataUseCase {
 
-    private final FeedbackRepositoryImpl feedbackRepository;
+    private final FeedbackRepository feedbackRepository;
 
-    public GetFeedbackDataUseCase(FeedbackRepositoryImpl feedbackRepository) {
+    public GetFeedbackDataUseCase(FeedbackRepository feedbackRepository) {
         this.feedbackRepository = feedbackRepository;
     }
 

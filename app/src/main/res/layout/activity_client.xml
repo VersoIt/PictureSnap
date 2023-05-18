@@ -67,7 +67,6 @@
 
             android:layout_gravity="start"
             android:background="@color/white"
-            app:headerLayout="@layout/layout_nav_header_unregistered"
             app:itemIconTint="@color/primary"
             app:itemTextColor="@color/black" />
 

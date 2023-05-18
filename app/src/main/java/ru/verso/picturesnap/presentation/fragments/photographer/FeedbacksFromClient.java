@@ -18,10 +18,23 @@ import java.util.List;
 import java.util.Objects;
 
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.ClientRepositoryImpl;
+import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
+import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
+import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
+import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentFeedbacksFromClientBinding;
-import ru.verso.picturesnap.databinding.FragmentFeedbacksFromUnregisteredBinding;
 import ru.verso.picturesnap.domain.models.Feedback;
+import ru.verso.picturesnap.domain.models.Photographer;
+import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
+import ru.verso.picturesnap.domain.usecase.SendFeedbackUseCase;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographerFeedbacksAdapter;
+import ru.verso.picturesnap.presentation.factory.SendFeedbackViewModelFactory;
+import ru.verso.picturesnap.presentation.viewmodel.client.SendFeedbackViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
 
@@ -32,7 +45,6 @@ public class FeedbacksFromClient extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
 
         binding = FragmentFeedbacksFromClientBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -49,7 +61,12 @@ public class FeedbacksFromClient extends Fragment {
         binding.recyclerViewFeedbacks.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recyclerViewFeedbacks.setAdapter(adapter);
 
-        photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer ->binding.textViewTotalRating.setText(String.valueOf(photographer.getRating())));
+        NavController navController = getNavController();
+
+        photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> {
+            binding.textViewTotalRating.setText(String.valueOf(photographer.getRating()));
+            bindWriteNewFeedbackButton(getSendFeedbackViewModel(), navController, photographer);
+        });
 
         viewModel.getFeedbacksOfPhotographer().observe(getViewLifecycleOwner(), feedbacks -> {
             if (feedbacks.size() > 0) {
@@ -58,9 +75,6 @@ public class FeedbacksFromClient extends Fragment {
                 updateProgress(feedbacks);
             }
         });
-
-        NavController navController = getNavController();
-        bindWriteNewFeedbackButton(navController);
     }
 
     private NavController getNavController() {
@@ -68,7 +82,8 @@ public class FeedbacksFromClient extends Fragment {
         return Objects.requireNonNull(navHostFragment).getNavController();
     }
 
-    private void bindWriteNewFeedbackButton(NavController navController) {
+    private void bindWriteNewFeedbackButton(SendFeedbackViewModel sendFeedbackViewModel, NavController navController, Photographer photographer) {
+        sendFeedbackViewModel.putPhotographerDestinationId(photographer.getId());
         binding.textViewWriteFeedback.setOnClickListener(view ->
                 navController.navigate(R.id.action_feedbacksFromClient_to_sendFeedback));
     }
@@ -76,6 +91,17 @@ public class FeedbacksFromClient extends Fragment {
     private FeedbackViewModel getFeedbackViewModel() {
         return new ViewModelProvider(requireActivity())
                 .get(FeedbackViewModel.class);
+    }
+
+    private SendFeedbackViewModel getSendFeedbackViewModel() {
+
+        return new ViewModelProvider(requireActivity(), new SendFeedbackViewModelFactory(new SendFeedbackUseCase(new FeedbackRepositoryImpl()),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()),
+                        new RoleRepositoryImpl(requireContext()),
+                        new FirstTimeWentRepositoryImpl(requireContext()),
+                        new UserAuthDataRepositoryImpl()),
+                new GetClientDataUseCase(new ClientRepositoryImpl()),
+                new GetPhotographerDataUseCase(new PhotographerRepositoryImpl()))).get(SendFeedbackViewModel.class);
     }
 
     private PhotographerProfileViewModel getPhotographerProfileViewModel() {
@@ -98,7 +124,7 @@ public class FeedbacksFromClient extends Fragment {
             for (int idxNum = 0; idxNum < progressBars.length; ++idxNum) {
                 final int currentStar = idxNum + 1;
                 int currentStarCount = (int) feedbacks.stream().filter(feedback -> feedback.getRating() == currentStar).count();
-                progressBars[idxNum].setProgress((int) (((float)currentStarCount / total) * 100));
+                progressBars[idxNum].setProgress((int) (((float) currentStarCount / total) * 100));
             }
         }
     }

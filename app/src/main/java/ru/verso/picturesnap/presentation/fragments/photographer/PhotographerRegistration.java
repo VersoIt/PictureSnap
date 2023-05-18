@@ -216,7 +216,7 @@ public class PhotographerRegistration extends Fragment {
             }
         }).observe(getViewLifecycleOwner(), photographer ->
                 photographerRegistrationViewModel.signInPhotograph().observe(getViewLifecycleOwner(), user -> {
-            if (user.getRole() != null) {
+            if (user.getRole() != null && photographer.getId() != null) {
                 sendToMainActivity();
                 requireActivity().finish();
             }

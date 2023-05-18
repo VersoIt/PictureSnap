@@ -1,12 +1,19 @@
 package ru.verso.picturesnap.presentation.activity.states;
 
 import android.view.Menu;
+import android.view.View;
 
 import androidx.core.view.GravityCompat;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.NavController;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.ActivityClientBinding;
+import ru.verso.picturesnap.databinding.LayoutNavHeaderClientBinding;
+import ru.verso.picturesnap.presentation.viewmodel.ClientMainViewModel;
 
 public class RegisteredActivityState implements ClientActivityState {
 
@@ -15,15 +22,21 @@ public class RegisteredActivityState implements ClientActivityState {
 
     private final Menu bottomNavigationViewMenu;
 
+    private final ClientMainViewModel clientMainViewModel;
+
     private enum RegisteredBottomMenuItems {
         HOME,
         FAVORITES,
         RECORDS
     }
 
-    public RegisteredActivityState(ActivityClientBinding binding, NavController navController) {
+    private final LifecycleOwner lifecycleOwner;
+
+    public RegisteredActivityState(LifecycleOwner lifecycleOwner, ActivityClientBinding binding, NavController navController, ClientMainViewModel clientMainViewModel) {
         this.binding = binding;
         this.navController = navController;
+        this.clientMainViewModel = clientMainViewModel;
+        this.lifecycleOwner = lifecycleOwner;
 
         bottomNavigationViewMenu = binding.bottomNavigationViewMenu.getMenu();
     }
@@ -64,14 +77,30 @@ public class RegisteredActivityState implements ClientActivityState {
         });
     }
 
+    private void observeLeftMenuToClientMainViewModel(View header) {
+
+        LayoutNavHeaderClientBinding binding = LayoutNavHeaderClientBinding.bind(header);
+
+        clientMainViewModel.getClientAvatar().observe(lifecycleOwner, path -> Glide.with(binding.imageViewLogo.getContext())
+                .load(path)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.ic_person_gray)
+                .into(binding.imageViewLogo));
+        clientMainViewModel.getClientName().observe(lifecycleOwner, binding.textViewName::setText);
+        clientMainViewModel.getClientEmail().observe(lifecycleOwner, binding.textViewEmail::setText);
+    }
+
     @Override
     public void createLeftMenu() {
 
         binding.navigationViewMenu.inflateMenu(R.menu.client_left);
+        binding.navigationViewMenu.inflateHeaderView(R.layout.layout_nav_header_client);
         binding.navigationViewMenu.getHeaderView(0).setOnClickListener(view -> {
-            navController.navigate(R.id.unregistered_profile);
+            navController.navigate(R.id.clientProfile);
             closeDrawer();
         });
+
+        observeLeftMenuToClientMainViewModel(binding.navigationViewMenu.getHeaderView(0));
 
         binding.navigationViewMenu.setNavigationItemSelectedListener(menuItem -> {
 

@@ -1,34 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:gravity="end"
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
+    android:gravity="end"
     android:background="@drawable/rect_white"
 
     android:padding="10dp"
-
     android:orientation="horizontal"
     android:baselineAligned="false">
 
-        <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_photographer_name"
+
             style="@style/standardText"
             android:layout_width="wrap_content"
-
-            android:layout_height="match_parent"
-            android:textSize="20sp"
+            android:layout_height="wrap_content"
 
             android:maxWidth="220dp"
 
-            android:gravity="center"
+            android:textSize="20sp"
 
             android:ellipsize="end"
             android:singleLine="true"
 
-            tools:text="Ковалёва Ирина" />
+            tools:text="Иванов Иван!" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView_photographer_address"
+
+            android:textColor="@color/search_hint_color"
+            android:layout_marginTop="10dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:maxWidth="220dp"
+            android:ellipsize="end"
+
+            android:textSize="20sp"
+            tools:text="Москва" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -59,4 +80,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

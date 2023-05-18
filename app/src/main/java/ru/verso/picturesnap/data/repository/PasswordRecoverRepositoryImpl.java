@@ -15,7 +15,6 @@ public class PasswordRecoverRepositoryImpl implements PasswordRecoverRepository 
         FirebaseAuth.getInstance().sendPasswordResetEmail(email).addOnCompleteListener(task -> {
            if (task.isSuccessful()) {
                callback.onSuccess();
-               Log.e("PictureSnap", "reset sent!");
            }
            else {
                if (task.getException() instanceof FirebaseAuthInvalidUserException)

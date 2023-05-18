@@ -163,5 +163,6 @@
     <string name="user_with_this_email_not_exists">User with this email does not exist</string>
     <string name="photographers_absent">No photographers with this service</string>
     <string name="write_feedback"> Write feedback</string>
+    <string name="incorrect_feedback">Incorrect feedback</string>
 
 </resources>

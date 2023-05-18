@@ -13,10 +13,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
 
-import ru.verso.picturesnap.data.storage.firebase.models.FeedbackEntity;
-import ru.verso.picturesnap.domain.models.Client;
+import ru.verso.picturesnap.data.storage.room.firebase.models.FeedbackEntity;
 import ru.verso.picturesnap.domain.models.Feedback;
 import ru.verso.picturesnap.domain.repository.FeedbackRepository;
 
@@ -24,16 +23,11 @@ public class FeedbackRepositoryImpl implements FeedbackRepository {
 
     private final DatabaseReference feedbackReference;
 
-    private final DatabaseReference clientReference;
-
     private static final String FEEDBACK_REF = "feedbacks";
-
-    private static final String CLIENT_REF = "clients";
 
     public FeedbackRepositoryImpl() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         this.feedbackReference = firebaseDatabase.getReference(FEEDBACK_REF);
-        this.clientReference = firebaseDatabase.getReference(CLIENT_REF);
     }
 
     @Override
@@ -49,32 +43,12 @@ public class FeedbackRepositoryImpl implements FeedbackRepository {
                 for (DataSnapshot feedbackSnapshot : snapshot.getChildren()) {
 
                     FeedbackEntity feedbackEntity = feedbackSnapshot.getValue(FeedbackEntity.class);
+                    if (feedbackEntity != null) {
+                        feedbacks.add(feedbackEntity.mapToDomain());
+                    }
 
-                    assert feedbackEntity != null;
-                    Query clientQuery = clientReference.orderByChild("id").equalTo(feedbackEntity.getOwnerId());
-                    String a = feedbackEntity.getOwnerId();
-                    clientQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot clientDataSnapshot) {
-                            Client client = null;
-                            for (DataSnapshot clientSnapshot : clientDataSnapshot.getChildren()) {
-                                client = clientSnapshot.getValue(Client.class);
-                                break;
-                            }
-
-                            Feedback feedback = feedbackEntity.mapToDomain();
-                            feedback.setImagePath(Objects.requireNonNull(client).getImagePath());
-                            feedback.setOwnerName(String.format("%s %s", client.getFirstName(), client.getLastName()));
-
-                            feedbacks.add(feedback);
-                            feedbacksMutableLiveData.setValue(feedbacks);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                    feedbacks = feedbacks.stream().sorted((a, b) -> -a.getDate().compareTo(b.getDate())).collect(Collectors.toList());
+                    feedbacksMutableLiveData.setValue(feedbacks);
                 }
             }
 
@@ -85,5 +59,15 @@ public class FeedbackRepositoryImpl implements FeedbackRepository {
         });
 
         return feedbacksMutableLiveData;
+    }
+
+    @Override
+    public void sendFeedback(Feedback feedback) {
+        String id = feedbackReference.push().getKey();
+
+        if (id != null) {
+            feedback.setId(id);
+            feedbackReference.child(id).setValue(feedback);
+        }
     }
 }

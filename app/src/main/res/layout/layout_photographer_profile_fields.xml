@@ -109,16 +109,6 @@
     <View style="@style/fieldSeparator" />
 
     <TextView
-        android:id="@+id/textView_link_bank_card"
-        style="@style/textField"
-
-        android:text="@string/link_card"
-        app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
-        app:drawableStartCompat="@drawable/ic_credit_card" />
-
-    <View style="@style/fieldSeparator" />
-
-    <TextView
         android:id="@+id/textView_changePassword"
         style="@style/textField"
 

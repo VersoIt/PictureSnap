@@ -120,7 +120,7 @@ public class ClientRegistration extends Fragment {
                 binding.buttonSignup.buttonSignup.setActivated(true);
             }
         }).observe(getViewLifecycleOwner(), client -> viewModel.signInClient().observe(getViewLifecycleOwner(), user -> {
-            if (user.getRole() != null) {
+            if (user.getRole() != null && client.getId() != null) {
                 sendToMainActivity();
                 requireActivity().finish();
             }

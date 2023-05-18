@@ -36,7 +36,7 @@ public class ClientActivityViewModel extends ViewModel implements LocationKeeper
     }
 
     public RoleRepository.Role getCurrentRole() {
-        return getUserDataUseCase.getCurrentRole();
+        return getUserDataUseCase.getRole();
     }
 
     @Override

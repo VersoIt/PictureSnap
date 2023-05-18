@@ -15,13 +15,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.ClientRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerPresentationServiceRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerServiceRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentClientMainBinding;
+import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerServiceByIdUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographersByServiceIdUseCase;
@@ -29,7 +32,9 @@ import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographerServicesAdapterFromRegisteredClient;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographersInCityFromRegisteredClientAdapter;
+import ru.verso.picturesnap.presentation.factory.ClientMainViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.ClientRecordsViewModelFactory;
+import ru.verso.picturesnap.presentation.viewmodel.ClientMainViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.client.ClientPhotographersOfSelectedServiceViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.UnregisteredMainViewModel;
 import ru.verso.picturesnap.presentation.factory.UnregisteredMainViewModelFactory;
@@ -52,7 +57,7 @@ public class ClientMain extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        viewModel = getViewModel();
+        viewModel = getUnregisteredMainViewModel();
 
         NavController navController = getNavController();
 
@@ -63,7 +68,7 @@ public class ClientMain extends Fragment {
         viewModel.getAllPhotographers().observe(requireActivity(), photographers -> viewModel.updatePhotographersInCity(photographers));
     }
 
-    private UnregisteredMainViewModel getViewModel() {
+    private UnregisteredMainViewModel getUnregisteredMainViewModel() {
 
         return new ViewModelProvider(this,
                 new UnregisteredMainViewModelFactory(
@@ -71,7 +76,8 @@ public class ClientMain extends Fragment {
                         new GetPhotographerDataUseCase(new PhotographerRepositoryImpl()),
                         new GetUserDataUseCase(new UserLocationRepositoryImpl(this.requireActivity().getApplicationContext()),
                                 new RoleRepositoryImpl(requireActivity().getApplicationContext()),
-                                new FirstTimeWentRepositoryImpl(requireActivity().getApplicationContext())),
+                                new FirstTimeWentRepositoryImpl(requireActivity().getApplicationContext()),
+                                new UserAuthDataRepositoryImpl()),
                         new UpdateUserDataUseCase(new RoleRepositoryImpl(requireActivity().getApplicationContext()),
                                 new UserLocationRepositoryImpl(requireContext()),
                                 new FirstTimeWentRepositoryImpl(requireContext()))))

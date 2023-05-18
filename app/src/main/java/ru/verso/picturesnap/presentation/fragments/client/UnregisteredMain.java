@@ -18,6 +18,7 @@ import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentUnregisteredMainBinding;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
@@ -65,7 +66,8 @@ public class UnregisteredMain extends Fragment {
                         new GetPhotographerDataUseCase(new PhotographerRepositoryImpl()),
                         new GetUserDataUseCase(new UserLocationRepositoryImpl(this.requireActivity().getApplicationContext()),
                                 new RoleRepositoryImpl(requireActivity().getApplicationContext()),
-                                new FirstTimeWentRepositoryImpl(requireActivity().getApplicationContext())),
+                                new FirstTimeWentRepositoryImpl(requireActivity().getApplicationContext()),
+                                new UserAuthDataRepositoryImpl()),
                         new UpdateUserDataUseCase(new RoleRepositoryImpl(requireActivity().getApplicationContext()),
                                 new UserLocationRepositoryImpl(requireContext()),
                                 new FirstTimeWentRepositoryImpl(requireContext()))))

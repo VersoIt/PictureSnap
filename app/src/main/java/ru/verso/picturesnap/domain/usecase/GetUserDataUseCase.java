@@ -3,6 +3,7 @@ package ru.verso.picturesnap.domain.usecase;
 import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.repository.FirstTimeWentRepository;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
+import ru.verso.picturesnap.domain.repository.UserAuthDataRepository;
 import ru.verso.picturesnap.domain.repository.UserLocationRepository;
 
 public class GetUserDataUseCase {
@@ -13,17 +14,21 @@ public class GetUserDataUseCase {
 
     private final RoleRepository roleRepository;
 
+    private final UserAuthDataRepository userAuthDataRepository;
+
     public GetUserDataUseCase(UserLocationRepository userLocationRepository,
                               RoleRepository roleRepository,
-                              FirstTimeWentRepository firstTimeWentRepository) {
+                              FirstTimeWentRepository firstTimeWentRepository,
+                              UserAuthDataRepository userAuthDataRepository) {
 
         this.userLocationRepository = userLocationRepository;
         this.firstTimeWentRepository = firstTimeWentRepository;
         this.roleRepository = roleRepository;
+        this.userAuthDataRepository = userAuthDataRepository;
     }
 
-    public RoleRepository.Role getCurrentRole() {
-        return roleRepository.getRole();
+    public String getUserId() {
+        return userAuthDataRepository.getId();
     }
 
     public boolean isFirstCome() {

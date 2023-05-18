@@ -21,17 +21,22 @@ import androidx.navigation.fragment.NavHostFragment;
 import java.util.Objects;
 
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.ClientRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.ActivityClientBinding;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
+import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
 import ru.verso.picturesnap.presentation.activity.states.ClientActivityState;
 import ru.verso.picturesnap.presentation.activity.states.RegisteredActivityState;
 import ru.verso.picturesnap.presentation.activity.states.UnregisteredActivityState;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
+import ru.verso.picturesnap.presentation.factory.ClientMainViewModelFactory;
+import ru.verso.picturesnap.presentation.viewmodel.ClientMainViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.ClientActivityViewModel;
 import ru.verso.picturesnap.presentation.factory.ClientActivityViewModelFactory;
 
@@ -79,7 +84,8 @@ public class ClientActivity extends AppCompatActivity {
                         new FirstTimeWentRepositoryImpl(getApplicationContext()))
                 , new GetUserDataUseCase(new UserLocationRepositoryImpl(getApplicationContext()),
                 new RoleRepositoryImpl(getApplicationContext()),
-                new FirstTimeWentRepositoryImpl(getApplicationContext()))))
+                new FirstTimeWentRepositoryImpl(getApplicationContext()),
+                new UserAuthDataRepositoryImpl())))
                 .get(ClientActivityViewModel.class);
     }
 
@@ -99,7 +105,17 @@ public class ClientActivity extends AppCompatActivity {
         if (role == RoleRepository.Role.UNREGISTERED)
             return new UnregisteredActivityState(binding, navController);
         else
-            return new RegisteredActivityState(binding, navController);
+            return new RegisteredActivityState(this, binding, navController, getClientMainViewModel());
+    }
+
+    private ClientMainViewModel getClientMainViewModel() {
+
+        return new ViewModelProvider(this, new ClientMainViewModelFactory(new GetUserDataUseCase(
+                new UserLocationRepositoryImpl(this),
+                new RoleRepositoryImpl(this),
+                new FirstTimeWentRepositoryImpl(this),
+                new UserAuthDataRepositoryImpl()),
+                new GetClientDataUseCase(new ClientRepositoryImpl()))).get(ClientMainViewModel.class);
     }
 
     private void setupToolbar() {

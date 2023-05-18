@@ -11,15 +11,14 @@ import androidx.navigation.NavController;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
-import ru.verso.picturesnap.databinding.LayoutPhotographerWithPhoneNumberBinding;
+import ru.verso.picturesnap.databinding.LayoutPhotographerBinding;
 import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
 import ru.verso.picturesnap.presentation.factory.PhotographerProfileViewModelFactory;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
 
-public class PhotographersInCityFromRegisteredClientAdapter extends ListAdapter<Photographer, PhotographerWithPhoneNumberViewHolder> {
+public class PhotographersInCityFromRegisteredClientAdapter extends ListAdapter<Photographer, PhotographerViewHolder> {
 
     private final NavController navController;
 
@@ -37,15 +36,15 @@ public class PhotographersInCityFromRegisteredClientAdapter extends ListAdapter<
 
     @NonNull
     @Override
-    public PhotographerWithPhoneNumberViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PhotographerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        LayoutPhotographerWithPhoneNumberBinding binding = LayoutPhotographerWithPhoneNumberBinding.inflate(layoutInflater, parent, false);
+        LayoutPhotographerBinding binding = LayoutPhotographerBinding.inflate(layoutInflater, parent, false);
 
-        return new PhotographerWithPhoneNumberViewHolder(binding);
+        return new PhotographerViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PhotographerWithPhoneNumberViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PhotographerViewHolder holder, int position) {
         Photographer current = getItem(position);
         PhotographerProfileViewModel photographerProfileViewModel = getPhotographerViewModel();
         holder.bind(current);

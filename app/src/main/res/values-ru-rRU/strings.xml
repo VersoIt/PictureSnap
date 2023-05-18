@@ -149,4 +149,5 @@
     <string name="user_with_this_email_not_exists">Пользователь с таким email не существует</string>
     <string name="photographers_absent">Фотографы с такой услугой отсутствуют</string>
     <string name="write_feedback"> Написать отзыв</string>
+    <string name="incorrect_feedback">Неверно введены данные для отзыва</string>
 </resources>

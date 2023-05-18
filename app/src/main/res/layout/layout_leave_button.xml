@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+
     android:textAllCaps="false"
 
     android:background="@drawable/rect_white"

@@ -1,25 +1,25 @@
 package ru.verso.picturesnap.domain.models;
 
+import java.util.Date;
+
 public class Feedback {
 
     private String id;
     private String photographerId;
     private String ownerName;
     private String text;
-    private String imagePath;
-    private String date;
+    private Date date;
 
     private int rating;
 
     public Feedback() {
     }
 
-    public Feedback(String id, String photographerId, String ownerName, String text, String imagePath, String date) {
+    public Feedback(String id, String photographerId, String ownerName, String text, Date date) {
         this.id = id;
         this.photographerId = photographerId;
         this.ownerName = ownerName;
         this.text = text;
-        this.imagePath = imagePath;
         this.date = date;
     }
 
@@ -31,11 +31,11 @@ public class Feedback {
         this.rating = rating;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -55,10 +55,6 @@ public class Feedback {
         this.text = text;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
     public String getId() {
         return id;
     }
@@ -69,10 +65,6 @@ public class Feedback {
 
     public String getText() {
         return text;
-    }
-
-    public String getImagePath() {
-        return imagePath;
     }
 
     public String getPhotographerId() {

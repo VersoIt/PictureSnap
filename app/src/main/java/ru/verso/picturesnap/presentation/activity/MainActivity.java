@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.ActivityMainBinding;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         MainActivityViewModel viewModel = new ViewModelProvider(this, new MainActivityViewModelFactory(new GetUserDataUseCase(
                 new UserLocationRepositoryImpl(this.getApplicationContext()),
                 new RoleRepositoryImpl(getApplicationContext()),
-                new FirstTimeWentRepositoryImpl(getApplicationContext()))))
+                new FirstTimeWentRepositoryImpl(getApplicationContext()),
+                new UserAuthDataRepositoryImpl())))
                 .get(MainActivityViewModel.class);
 
         Class<? extends AppCompatActivity> activityToNavigate = viewModel.getClassToNavigate();

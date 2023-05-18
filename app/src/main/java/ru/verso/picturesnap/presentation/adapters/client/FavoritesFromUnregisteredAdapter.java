@@ -13,13 +13,13 @@ import ru.verso.picturesnap.databinding.LayoutPhotographerBinding;
 import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
 
-public class FavoritesAdapter extends ListAdapter<Photographer, PhotographerViewHolder> {
+public class FavoritesFromUnregisteredAdapter extends ListAdapter<Photographer, PhotographerViewHolder> {
 
     private final NavController navController;
 
     private final PhotographerProfileViewModel photographerProfileViewModel;
 
-    public FavoritesAdapter(@NonNull ItemCallback<Photographer> diffCallback, NavController navController, PhotographerProfileViewModel photographerProfileViewModel) {
+    public FavoritesFromUnregisteredAdapter(@NonNull ItemCallback<Photographer> diffCallback, NavController navController, PhotographerProfileViewModel photographerProfileViewModel) {
         super(diffCallback);
 
         this.navController = navController;

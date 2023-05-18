@@ -44,7 +44,7 @@ public class FeedbacksFromUnregistered extends Fragment {
         binding.recyclerViewFeedbacks.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recyclerViewFeedbacks.setAdapter(adapter);
 
-        photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer ->binding.textViewTotalRating.setText(String.valueOf(photographer.getRating())));
+        photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> binding.textViewTotalRating.setText(String.valueOf(photographer.getRating())));
 
         viewModel.getFeedbacksOfPhotographer().observe(getViewLifecycleOwner(), feedbacks -> {
             if (feedbacks.size() > 0) {
@@ -80,7 +80,7 @@ public class FeedbacksFromUnregistered extends Fragment {
             for (int idxNum = 0; idxNum < progressBars.length; ++idxNum) {
                 final int currentStar = idxNum + 1;
                 int currentStarCount = (int) feedbacks.stream().filter(feedback -> feedback.getRating() == currentStar).count();
-                progressBars[idxNum].setProgress((int) (((float)currentStarCount / total) * 100));
+                progressBars[idxNum].setProgress((int) (((float) currentStarCount / total) * 100));
             }
         }
     }

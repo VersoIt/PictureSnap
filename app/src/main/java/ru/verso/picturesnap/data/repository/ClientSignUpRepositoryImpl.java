@@ -5,9 +5,11 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -46,7 +48,6 @@ public class ClientSignUpRepositoryImpl implements ClientSignUpRepository {
         firebaseAuth.createUserWithEmailAndPassword(client.getEmail(), password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-
                         Executor executor = Executors.newSingleThreadExecutor();
                         executor.execute(() -> {
                             String clientId = Objects.requireNonNull(task.getResult().getUser()).getUid();
@@ -56,8 +57,7 @@ public class ClientSignUpRepositoryImpl implements ClientSignUpRepository {
 
                             clientMutableLiveData.postValue(client);
                         });
-                    }
-                    else {
+                    } else {
                         if (signUpCallback != null) {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException)
                                 signUpCallback.onUserCollision();
@@ -66,6 +66,7 @@ public class ClientSignUpRepositoryImpl implements ClientSignUpRepository {
                         }
                     }
                 });
+
         return clientMutableLiveData;
     }
 

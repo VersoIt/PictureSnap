@@ -16,6 +16,7 @@ import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.SettingsRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentSettingsBinding;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
@@ -47,7 +48,8 @@ public class Settings extends Fragment {
                 new GetApplicationSettingsDataUseCase(new SettingsRepositoryImpl(requireContext())),
                 new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()),
                         new RoleRepositoryImpl(requireContext()),
-                        new FirstTimeWentRepositoryImpl(requireContext())),
+                        new FirstTimeWentRepositoryImpl(requireContext()),
+                        new UserAuthDataRepositoryImpl()),
                 new UpdateApplicationSettingsUseCase(new SettingsRepositoryImpl(requireContext()))
                 ))
                 .get(SettingsViewModel.class);
@@ -64,11 +66,6 @@ public class Settings extends Fragment {
         NavController toolbarNavController =
                 Navigation.findNavController(requireActivity(), R.id.fragmentContainerView_content);
 
-        binding.layoutReadyButton.buttonReady.setOnClickListener(v -> {
-            if (settingsViewModel.getUserRole() == RoleRepository.Role.CLIENT)
-                toolbarNavController.navigate(R.id.action_settings_to_client_main);
-            else if (settingsViewModel.getUserRole() == RoleRepository.Role.UNREGISTERED)
-                toolbarNavController.navigate(R.id.action_settings_to_unregistered_home);
-        });
+        binding.layoutReadyButton.buttonReady.setOnClickListener(v -> toolbarNavController.navigateUp());
     }
 }
