@@ -68,7 +68,7 @@
 
             tools:text="5/5" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView_photographer_logo"
             android:layout_width="50dp"
             android:layout_height="50dp"

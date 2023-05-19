@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_white"
-    tools:context=".presentation.fragments.common.PhotoSessionAddressFromClient">
+    tools:context=".presentation.fragments.photographer.PhotoSessionAddressFromPhotographer">
 
     <LinearLayout
         android:id="@+id/linearLayout_address_info_container"

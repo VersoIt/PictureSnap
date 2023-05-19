@@ -44,4 +44,8 @@ public class ClientActivityViewModel extends ViewModel implements LocationKeeper
         updateUserDataUseCase.setLocation(latitude, longitude);
         this.location.setValue(new Location(latitude, longitude));
     }
+
+    public void signOut() {
+        getUserDataUseCase.signOut();
+    }
 }

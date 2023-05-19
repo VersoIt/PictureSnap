@@ -28,16 +28,6 @@
     <View style="@style/fieldSeparator" />
 
     <TextView
-        android:id="@+id/textView_work_days"
-        style="@style/textField"
-
-        android:text="@string/work_days"
-        app:drawableEndCompat="@drawable/ic_keyboard_arrow_top"
-        app:drawableStartCompat="@drawable/ic_work_history" />
-
-    <View style="@style/fieldSeparator" />
-
-    <TextView
         android:id="@+id/textView_location"
         style="@style/textField"
 
@@ -84,6 +74,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/textView_feedbacks"
             style="@style/textField"
             android:layout_width="match_parent"
 

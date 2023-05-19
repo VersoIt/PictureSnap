@@ -10,26 +10,42 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.List;
+import java.util.Objects;
 
-import ru.verso.picturesnap.databinding.FragmentFeedbacksFromUnregisteredBinding;
+import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.ClientRepositoryImpl;
+import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
+import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
+import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
+import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.databinding.FragmentFeedbacksFromPhotographerBinding;
 import ru.verso.picturesnap.domain.models.Feedback;
+import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
+import ru.verso.picturesnap.domain.usecase.SendFeedbackUseCase;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographerFeedbacksAdapter;
+import ru.verso.picturesnap.presentation.factory.SendFeedbackViewModelFactory;
+import ru.verso.picturesnap.presentation.viewmodel.client.SendFeedbackViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.photographer.PhotographerProfileMainViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileFromClientViewModel;
 
-public class FeedbacksFromUnregistered extends Fragment {
+public class FeedbacksFromPhotographer extends Fragment {
 
-    private FragmentFeedbacksFromUnregisteredBinding binding;
+    private FragmentFeedbacksFromPhotographerBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-        binding = FragmentFeedbacksFromUnregisteredBinding.inflate(inflater, container, false);
+        binding = FragmentFeedbacksFromPhotographerBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -38,7 +54,7 @@ public class FeedbacksFromUnregistered extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         FeedbackViewModel viewModel = getFeedbackViewModel();
-        PhotographerProfileFromClientViewModel photographerProfileViewModel = getPhotographerProfileViewModel();
+        PhotographerProfileMainViewModel photographerProfileViewModel = getPhotographerProfileViewModel();
 
         PhotographerFeedbacksAdapter adapter = new PhotographerFeedbacksAdapter(new PhotographerFeedbacksAdapter.FeedbacksDiff());
         binding.recyclerViewFeedbacks.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -55,14 +71,31 @@ public class FeedbacksFromUnregistered extends Fragment {
         });
     }
 
+    private NavController getNavController() {
+        NavHostFragment navHostFragment = (NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView_content);
+        return Objects.requireNonNull(navHostFragment).getNavController();
+    }
+
     private FeedbackViewModel getFeedbackViewModel() {
         return new ViewModelProvider(requireActivity())
                 .get(FeedbackViewModel.class);
     }
 
-    private PhotographerProfileFromClientViewModel getPhotographerProfileViewModel() {
+    private SendFeedbackViewModel getSendFeedbackViewModel() {
+
+        return new ViewModelProvider(requireActivity(), new SendFeedbackViewModelFactory(new SendFeedbackUseCase(new FeedbackRepositoryImpl()),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()),
+                        new RoleRepositoryImpl(requireContext()),
+                        new FirstTimeWentRepositoryImpl(requireContext()),
+                        new UserAuthDataRepositoryImpl()),
+                new GetClientDataUseCase(new ClientRepositoryImpl()),
+                new GetPhotographerDataUseCase(new PhotographerRepositoryImpl()))).get(SendFeedbackViewModel.class);
+    }
+
+    private PhotographerProfileMainViewModel getPhotographerProfileViewModel() {
+
         return new ViewModelProvider(requireActivity())
-                .get(PhotographerProfileFromClientViewModel.class);
+                .get(PhotographerProfileMainViewModel.class);
     }
 
     private void updateProgress(List<Feedback> feedbacks) {

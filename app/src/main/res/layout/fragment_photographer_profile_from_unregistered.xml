@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         tools:context=".presentation.fragments.photographer.PhotographerProfileFromUnregistered">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView_avatar"
             android:layout_width="0dp"
             android:layout_height="0dp"

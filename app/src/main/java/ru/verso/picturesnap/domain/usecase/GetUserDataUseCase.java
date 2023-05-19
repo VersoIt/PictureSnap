@@ -1,5 +1,7 @@
 package ru.verso.picturesnap.domain.usecase;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.repository.FirstTimeWentRepository;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
@@ -25,6 +27,11 @@ public class GetUserDataUseCase {
         this.firstTimeWentRepository = firstTimeWentRepository;
         this.roleRepository = roleRepository;
         this.userAuthDataRepository = userAuthDataRepository;
+    }
+
+    public void signOut() {
+        roleRepository.updateRole(RoleRepository.Role.UNREGISTERED);
+        FirebaseAuth.getInstance().signOut();
     }
 
     public String getUserId() {

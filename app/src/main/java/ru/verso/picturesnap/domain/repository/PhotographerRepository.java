@@ -1,5 +1,7 @@
 package ru.verso.picturesnap.domain.repository;
 
+import android.net.Uri;
+
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
@@ -17,4 +19,6 @@ public interface PhotographerRepository {
     LiveData<Photographer> getPhotographerById(String id);
 
     LiveData<List<PhotographerPresentationService>> getPhotographerServicesById(String photographerId);
+
+    void updatePhotographerAvatar(String photographerId, Uri uri);
 }

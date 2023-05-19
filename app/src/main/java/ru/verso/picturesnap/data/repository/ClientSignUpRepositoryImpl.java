@@ -14,6 +14,7 @@ import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import ru.verso.picturesnap.data.storage.firebase.Constants;
 import ru.verso.picturesnap.domain.models.Client;
 import ru.verso.picturesnap.domain.repository.ClientSignUpRepository;
 import ru.verso.picturesnap.domain.repository.SignUpFailureCallback;
@@ -76,14 +77,13 @@ public class ClientSignUpRepositoryImpl implements ClientSignUpRepository {
     }
 
     private void createUser(String clientId) {
-        DatabaseReference userReference = databaseReference.child(PictureSnapApp.FIREBASE_USERS_PATH).child(clientId);
+        DatabaseReference userReference = databaseReference.child(Constants.FIREBASE_USERS_PATH).child(clientId);
         userReference.child(ROLE_PATH).setValue(ROLE);
     }
 
     private void createClient(Client client, String clientId) {
-        DatabaseReference clientReference = databaseReference.child(PictureSnapApp.FIREBASE_CLIENT_PATH);
+        DatabaseReference clientReference = databaseReference.child(Constants.FIREBASE_CLIENT_PATH);
         client.setId(clientId);
-        client.setImagePath(PictureSnapApp.UNSELECTED_IMAGE_CLIENT_PATH);
         clientReference.child(clientId).setValue(client);
     }
 }

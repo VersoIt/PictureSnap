@@ -29,7 +29,7 @@ import ru.verso.picturesnap.databinding.FragmentPhotoSessionAddressBinding;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotoSessionAddressViewModel;
 import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
 
-public class PhotoSessionAddress extends Fragment {
+public class PhotoSessionAddressFromClient extends Fragment {
 
     private FragmentPhotoSessionAddressBinding binding;
 

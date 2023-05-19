@@ -15,6 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
+import ru.verso.picturesnap.data.storage.firebase.Constants;
 import ru.verso.picturesnap.domain.models.User;
 import ru.verso.picturesnap.domain.repository.SignInCallback;
 import ru.verso.picturesnap.domain.repository.SignInRepository;
@@ -28,7 +29,7 @@ public class SignInRepositoryImpl implements SignInRepository {
 
     public SignInRepositoryImpl() {
         this.firebaseAuth = FirebaseAuth.getInstance();
-        userRef = FirebaseDatabase.getInstance().getReference(PictureSnapApp.FIREBASE_USERS_PATH);
+        userRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_USERS_PATH);
     }
 
     @Override

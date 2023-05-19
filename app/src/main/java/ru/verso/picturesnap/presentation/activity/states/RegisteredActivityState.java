@@ -4,6 +4,7 @@ import android.view.Menu;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.NavController;
 
@@ -13,7 +14,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.ActivityClientBinding;
 import ru.verso.picturesnap.databinding.LayoutNavHeaderClientBinding;
-import ru.verso.picturesnap.presentation.viewmodel.ClientMainViewModel;
+import ru.verso.picturesnap.presentation.dialogs.SignOutDialogFragment;
+import ru.verso.picturesnap.presentation.viewmodel.client.ClientMainViewModel;
 
 public class RegisteredActivityState implements ClientActivityState {
 
@@ -23,6 +25,9 @@ public class RegisteredActivityState implements ClientActivityState {
     private final Menu bottomNavigationViewMenu;
 
     private final ClientMainViewModel clientMainViewModel;
+    private SignOutDialogFragment signOutDialogFragment;
+
+    private FragmentManager supportFragmentManager;
 
     private enum RegisteredBottomMenuItems {
         HOME,
@@ -37,8 +42,14 @@ public class RegisteredActivityState implements ClientActivityState {
         this.navController = navController;
         this.clientMainViewModel = clientMainViewModel;
         this.lifecycleOwner = lifecycleOwner;
+        this.signOutDialogFragment = null;
 
         bottomNavigationViewMenu = binding.bottomNavigationViewMenu.getMenu();
+    }
+
+    public void setSignOutDialogAndParams(SignOutDialogFragment signOutDialogFragment, FragmentManager supportFragmentManager) {
+        this.signOutDialogFragment = signOutDialogFragment;
+        this.supportFragmentManager = supportFragmentManager;
     }
 
     @Override
@@ -130,6 +141,14 @@ public class RegisteredActivityState implements ClientActivityState {
             if (menuItem.getItemId() == R.id.nav_settings) {
                 navController.navigate(R.id.settings);
                 closeDrawer();
+
+                return true;
+            }
+
+            if (menuItem.getItemId() == R.id.nav_sign_out) {
+                if (signOutDialogFragment != null && supportFragmentManager != null) {
+                    signOutDialogFragment.show(supportFragmentManager, SignOutDialogFragment.TAG);
+                }
 
                 return true;
             }

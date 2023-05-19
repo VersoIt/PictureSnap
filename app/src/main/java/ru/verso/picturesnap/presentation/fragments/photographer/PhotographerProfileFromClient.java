@@ -29,7 +29,6 @@ import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentPhotographerProfileFromClientBinding;
-import ru.verso.picturesnap.databinding.FragmentPhotographerProfileFromUnregisteredBinding;
 import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
@@ -51,7 +50,7 @@ import ru.verso.picturesnap.presentation.viewmodel.unregistered.AboutPhotographe
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FavoritesViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotoSessionAddressViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileFromClientViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.ServicesViewModel;
 
 public class PhotographerProfileFromClient extends Fragment {
@@ -72,7 +71,7 @@ public class PhotographerProfileFromClient extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        PhotographerProfileViewModel photographerProfileViewModel = getPhotographerProfileViewModel();
+        PhotographerProfileFromClientViewModel photographerProfileViewModel = getPhotographerProfileViewModel();
         photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> {
             updatePhoneNumber(photographer);
             updateName(photographer.getFirstName(), photographer.getLastName());
@@ -99,8 +98,8 @@ public class PhotographerProfileFromClient extends Fragment {
                 .into(binding.imageViewAvatar);
     }
 
-    private PhotographerProfileViewModel getPhotographerProfileViewModel() {
-        return new ViewModelProvider(requireActivity()).get(PhotographerProfileViewModel.class);
+    private PhotographerProfileFromClientViewModel getPhotographerProfileViewModel() {
+        return new ViewModelProvider(requireActivity()).get(PhotographerProfileFromClientViewModel.class);
     }
 
     private void updateName(String firstName, String lastName) {

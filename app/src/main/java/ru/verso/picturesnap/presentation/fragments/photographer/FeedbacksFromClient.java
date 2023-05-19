@@ -36,7 +36,7 @@ import ru.verso.picturesnap.presentation.adapters.client.PhotographerFeedbacksAd
 import ru.verso.picturesnap.presentation.factory.SendFeedbackViewModelFactory;
 import ru.verso.picturesnap.presentation.viewmodel.client.SendFeedbackViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileFromClientViewModel;
 
 public class FeedbacksFromClient extends Fragment {
 
@@ -55,7 +55,7 @@ public class FeedbacksFromClient extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         FeedbackViewModel viewModel = getFeedbackViewModel();
-        PhotographerProfileViewModel photographerProfileViewModel = getPhotographerProfileViewModel();
+        PhotographerProfileFromClientViewModel photographerProfileViewModel = getPhotographerProfileViewModel();
 
         PhotographerFeedbacksAdapter adapter = new PhotographerFeedbacksAdapter(new PhotographerFeedbacksAdapter.FeedbacksDiff());
         binding.recyclerViewFeedbacks.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -104,9 +104,9 @@ public class FeedbacksFromClient extends Fragment {
                 new GetPhotographerDataUseCase(new PhotographerRepositoryImpl()))).get(SendFeedbackViewModel.class);
     }
 
-    private PhotographerProfileViewModel getPhotographerProfileViewModel() {
+    private PhotographerProfileFromClientViewModel getPhotographerProfileViewModel() {
         return new ViewModelProvider(requireActivity())
-                .get(PhotographerProfileViewModel.class);
+                .get(PhotographerProfileFromClientViewModel.class);
     }
 
     private void updateProgress(List<Feedback> feedbacks) {

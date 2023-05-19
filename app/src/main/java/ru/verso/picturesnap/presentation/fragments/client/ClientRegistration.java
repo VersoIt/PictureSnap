@@ -129,6 +129,7 @@ public class ClientRegistration extends Fragment {
 
     private void sendToMainActivity() {
         Intent intent = new Intent(requireActivity(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 

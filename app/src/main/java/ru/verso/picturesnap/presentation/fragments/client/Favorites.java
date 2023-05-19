@@ -28,9 +28,9 @@ import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.presentation.adapters.client.FavoritesFromClientAdapter;
 import ru.verso.picturesnap.presentation.adapters.client.FavoritesFromUnregisteredAdapter;
 import ru.verso.picturesnap.presentation.factory.FavoritesViewModelFactory;
-import ru.verso.picturesnap.presentation.factory.PhotographerProfileViewModelFactory;
+import ru.verso.picturesnap.presentation.factory.PhotographerProfileFromClientViewModelFactory;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FavoritesViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileFromClientViewModel;
 
 public class Favorites extends Fragment {
 
@@ -88,10 +88,10 @@ public class Favorites extends Fragment {
         return navHostFragment.getNavController();
     }
 
-    private PhotographerProfileViewModel getPhotographerProfileViewModel() {
+    private PhotographerProfileFromClientViewModel getPhotographerProfileViewModel() {
 
-        return new ViewModelProvider(requireActivity(), new PhotographerProfileViewModelFactory(new GetPhotographerDataUseCase(
+        return new ViewModelProvider(requireActivity(), new PhotographerProfileFromClientViewModelFactory(new GetPhotographerDataUseCase(
                 new PhotographerRepositoryImpl())))
-                .get(PhotographerProfileViewModel.class);
+                .get(PhotographerProfileFromClientViewModel.class);
     }
 }

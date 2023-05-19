@@ -150,4 +150,6 @@
     <string name="photographers_absent">Фотографы с такой услугой отсутствуют</string>
     <string name="write_feedback"> Написать отзыв</string>
     <string name="incorrect_feedback">Неверно введены данные для отзыва</string>
+    <string name="sign_out_confirmation">Вы действительно хотите выйти из аккаунта?</string>
+    <string name="cancel">Отмена</string>
 </resources>

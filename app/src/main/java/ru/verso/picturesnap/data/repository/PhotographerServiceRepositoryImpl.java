@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.verso.picturesnap.data.storage.firebase.Constants;
 import ru.verso.picturesnap.domain.models.PhotographerService;
 import ru.verso.picturesnap.domain.repository.PhotographerServiceRepository;
 import ru.verso.picturesnap.presentation.app.PictureSnapApp;
@@ -23,7 +24,7 @@ public class PhotographerServiceRepositoryImpl implements PhotographerServiceRep
     private final DatabaseReference databaseReference;
 
     public PhotographerServiceRepositoryImpl() {
-        databaseReference = FirebaseDatabase.getInstance().getReference(PictureSnapApp.SERVICE_PATH);
+        databaseReference = FirebaseDatabase.getInstance().getReference(Constants.SERVICE_PATH);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package ru.verso.picturesnap.data.repository;
 
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -9,7 +11,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import ru.verso.picturesnap.data.storage.firebase.Constants;
 import ru.verso.picturesnap.domain.models.Client;
 import ru.verso.picturesnap.domain.repository.ClientRepository;
 import ru.verso.picturesnap.presentation.app.PictureSnapApp;
@@ -19,7 +29,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     private final DatabaseReference databaseReference;
 
     public ClientRepositoryImpl() {
-        this.databaseReference = FirebaseDatabase.getInstance().getReference(PictureSnapApp.FIREBASE_CLIENT_PATH);
+        this.databaseReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CLIENT_PATH);
     }
 
     @Override
@@ -40,5 +50,23 @@ public class ClientRepositoryImpl implements ClientRepository {
         });
 
         return clientMutableLiveData;
+    }
+
+    private void updateClientAvatarPath(String clientId, String uri) {
+        Map<String, Object> clientDataToUpdate = new HashMap<>();
+        clientDataToUpdate.put(Constants.FIREBASE_CLIENT_AVATAR_CHILD, uri);
+
+        databaseReference.child(clientId).updateChildren(clientDataToUpdate);
+    }
+
+    @Override
+    public void updateAvatar(String clientId, Uri uri) {
+        String imageName = UUID.randomUUID().toString() + ".jpg";
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference(Constants.FIREBASE_AVATAR_CLIENT_PATH + imageName);
+        UploadTask uploadTask = storageReference.putFile(uri);
+        uploadTask.addOnSuccessListener(taskSnapshot -> {
+            String imageUri = uri.toString();
+            updateClientAvatarPath(clientId, imageUri);
+        });
     }
 }

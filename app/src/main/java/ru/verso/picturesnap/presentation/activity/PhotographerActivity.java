@@ -1,5 +1,6 @@
 package ru.verso.picturesnap.presentation.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -28,8 +29,9 @@ import ru.verso.picturesnap.databinding.ActivityPhotographerBinding;
 import ru.verso.picturesnap.databinding.LayoutNavHeaderPhotographerBinding;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
+import ru.verso.picturesnap.presentation.dialogs.SignOutDialogFragment;
 import ru.verso.picturesnap.presentation.factory.PhotographerActivityViewModelFactory;
-import ru.verso.picturesnap.presentation.viewmodel.PhotographerActivityViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.photographer.PhotographerActivityViewModel;
 
 public class PhotographerActivity extends AppCompatActivity {
 
@@ -38,6 +40,8 @@ public class PhotographerActivity extends AppCompatActivity {
     private Menu bottomNavigationViewMenu;
 
     private NavController navController;
+
+    private SignOutDialogFragment signOutDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,18 @@ public class PhotographerActivity extends AppCompatActivity {
 
         navController = getNavController();
         setUpMenus(navController, viewModel);
+
+        signOutDialogFragment = new SignOutDialogFragment((dialog, which) -> {
+            viewModel.signOut();
+            goToMainActivity();
+        });
+    }
+
+    private void goToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+        finish();
     }
 
     private PhotographerActivityViewModel getViewModel() {
@@ -152,6 +168,12 @@ public class PhotographerActivity extends AppCompatActivity {
             if (menuItem.getItemId() == R.id.nav_settings) {
                 navController.navigate(R.id.photographerSettings);
                 closeDrawer();
+
+                return true;
+            }
+
+            if (menuItem.getItemId() == R.id.nav_sign_out) {
+                signOutDialogFragment.show(getSupportFragmentManager(), SignOutDialogFragment.TAG);
 
                 return true;
             }

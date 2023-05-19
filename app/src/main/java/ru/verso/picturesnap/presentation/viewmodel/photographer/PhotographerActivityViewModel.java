@@ -1,4 +1,4 @@
-package ru.verso.picturesnap.presentation.viewmodel;
+package ru.verso.picturesnap.presentation.viewmodel.photographer;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
@@ -12,8 +12,11 @@ public class PhotographerActivityViewModel extends ViewModel {
 
     private final LiveData<Photographer> photographer;
 
+    private final GetUserDataUseCase getUserDataUseCase;
+
     public PhotographerActivityViewModel(GetPhotographerDataUseCase getPhotographerDataUseCase, GetUserDataUseCase getUserDataUseCase) {
         photographer = getPhotographerDataUseCase.getPhotographerById(getUserDataUseCase.getUserId());
+        this.getUserDataUseCase = getUserDataUseCase;
     }
 
     public LiveData<String> getPhotographerName() {
@@ -26,5 +29,9 @@ public class PhotographerActivityViewModel extends ViewModel {
 
     public LiveData<String> getPhotographerAvatar() {
         return Transformations.map(photographer, Photographer::getAvatarPath);
+    }
+
+    public void signOut() {
+        getUserDataUseCase.signOut();
     }
 }

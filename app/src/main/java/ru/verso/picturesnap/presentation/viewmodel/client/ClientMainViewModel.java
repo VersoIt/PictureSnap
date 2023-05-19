@@ -1,4 +1,4 @@
-package ru.verso.picturesnap.presentation.viewmodel;
+package ru.verso.picturesnap.presentation.viewmodel.client;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;

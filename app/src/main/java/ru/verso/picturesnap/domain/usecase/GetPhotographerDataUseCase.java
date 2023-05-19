@@ -1,5 +1,7 @@
 package ru.verso.picturesnap.domain.usecase;
 
+import android.net.Uri;
+
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
@@ -31,5 +33,9 @@ public class GetPhotographerDataUseCase {
 
     public LiveData<List<PhotographerPresentationService>> getPhotographerServicesById(String photographerId) {
         return repository.getPhotographerServicesById(photographerId);
+    }
+
+    public void updatePhotographerAvatar(String photographerId, Uri uri) {
+        repository.updatePhotographerAvatar(photographerId, uri);
     }
 }

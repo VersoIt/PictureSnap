@@ -2,6 +2,7 @@ package ru.verso.picturesnap.presentation.activity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -35,8 +36,9 @@ import ru.verso.picturesnap.presentation.activity.states.ClientActivityState;
 import ru.verso.picturesnap.presentation.activity.states.RegisteredActivityState;
 import ru.verso.picturesnap.presentation.activity.states.UnregisteredActivityState;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
+import ru.verso.picturesnap.presentation.dialogs.SignOutDialogFragment;
 import ru.verso.picturesnap.presentation.factory.ClientMainViewModelFactory;
-import ru.verso.picturesnap.presentation.viewmodel.ClientMainViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.client.ClientMainViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.ClientActivityViewModel;
 import ru.verso.picturesnap.presentation.factory.ClientActivityViewModelFactory;
 
@@ -92,7 +94,7 @@ public class ClientActivity extends AppCompatActivity {
     private void setUpMenus(NavController navController, ClientActivityViewModel viewModel) {
         RoleRepository.Role role = viewModel.getCurrentRole();
 
-        ClientActivityState clientActivityState = getActivityStateByRole(navController, role);
+        ClientActivityState clientActivityState = getActivityStateByRole(navController, role, viewModel);
         navController.navigate(clientActivityState.getStartFragmentId());
         clientActivityState.createBottomNavigationMenu();
         clientActivityState.createLeftMenu();
@@ -100,12 +102,26 @@ public class ClientActivity extends AppCompatActivity {
         setupToolbar();
     }
 
-    private ClientActivityState getActivityStateByRole(NavController navController, RoleRepository.Role role) {
+    private ClientActivityState getActivityStateByRole(NavController navController, RoleRepository.Role role, ClientActivityViewModel clientActivityViewModel) {
 
         if (role == RoleRepository.Role.UNREGISTERED)
             return new UnregisteredActivityState(binding, navController);
-        else
-            return new RegisteredActivityState(this, binding, navController, getClientMainViewModel());
+        else {
+            RegisteredActivityState registeredActivityState = new RegisteredActivityState(this, binding, navController, getClientMainViewModel());
+            registeredActivityState.setSignOutDialogAndParams(new SignOutDialogFragment((dialog, which) -> {
+                clientActivityViewModel.signOut();
+                goToMainActivity();
+            }),
+                    getSupportFragmentManager());
+            return registeredActivityState;
+        }
+    }
+
+    private void goToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+        finish();
     }
 
     private ClientMainViewModel getClientMainViewModel() {

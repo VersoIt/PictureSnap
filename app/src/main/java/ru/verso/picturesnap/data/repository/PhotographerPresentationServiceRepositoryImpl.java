@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.verso.picturesnap.data.storage.firebase.Constants;
 import ru.verso.picturesnap.domain.models.PhotographerPresentationService;
 import ru.verso.picturesnap.domain.repository.PhotographerPresentationServiceRepository;
 import ru.verso.picturesnap.presentation.app.PictureSnapApp;
@@ -29,7 +30,7 @@ public class PhotographerPresentationServiceRepositoryImpl implements Photograph
     @Override
     public LiveData<List<PhotographerPresentationService>> getAllPresentationServices() {
         MutableLiveData<List<PhotographerPresentationService>> photographerPresentationServiceLiveData = new MutableLiveData<>(new ArrayList<>());
-        firebaseDatabase.getReference(PictureSnapApp.SERVICE_PROVISIONS_PATH).addValueEventListener(new ValueEventListener() {
+        firebaseDatabase.getReference(Constants.SERVICE_PROVISIONS_PATH).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -53,7 +54,7 @@ public class PhotographerPresentationServiceRepositoryImpl implements Photograph
     @Override
     public LiveData<List<PhotographerPresentationService>> getPresentationServicesByServiceId(String id) {
         MutableLiveData<List<PhotographerPresentationService>> photographerPresentationServiceLiveData = new MutableLiveData<>(new ArrayList<>());
-        firebaseDatabase.getReference(PictureSnapApp.SERVICE_PROVISIONS_PATH).addValueEventListener(new ValueEventListener() {
+        firebaseDatabase.getReference(Constants.SERVICE_PROVISIONS_PATH).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 

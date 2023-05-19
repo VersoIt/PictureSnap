@@ -1,31 +1,233 @@
 package ru.verso.picturesnap.presentation.fragments.photographer;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import java.util.Objects;
+
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
+import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
+import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
+import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentPhotographerProfileBinding;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
+import ru.verso.picturesnap.domain.models.Location;
+import ru.verso.picturesnap.domain.models.Photographer;
+import ru.verso.picturesnap.domain.usecase.GetFeedbackDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
+import ru.verso.picturesnap.presentation.activity.MainActivity;
+import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
+import ru.verso.picturesnap.presentation.dialogs.SignOutDialogFragment;
+import ru.verso.picturesnap.presentation.factory.AboutPhotographerFromClientViewModelFactory;
+import ru.verso.picturesnap.presentation.factory.FeedbackViewModelFactory;
+import ru.verso.picturesnap.presentation.factory.PhotographerProfileMainViewModelFactory;
+import ru.verso.picturesnap.presentation.factory.ServicesViewModelFactory;
+import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
+import ru.verso.picturesnap.presentation.utils.StringConverter;
+import ru.verso.picturesnap.presentation.viewmodel.photographer.PhotographerProfileMainViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.AboutPhotographerFromClientViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotoSessionAddressViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.ServicesViewModel;
 
 public class PhotographerProfile extends Fragment {
+
+    private FragmentPhotographerProfileBinding binding;
+
+    private NavController navController;
+
+    private SignOutDialogFragment signOutDialogFragment;
+
+    private ActivityResultLauncher<String> imagePickerLauncher;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ru.verso.picturesnap.databinding.FragmentPhotographerProfileBinding binding = FragmentPhotographerProfileBinding.inflate(inflater, container, false);
-        return inflater.inflate(R.layout.fragment_photographer_profile, container, false);
+        binding = FragmentPhotographerProfileBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        PhotographerProfileMainViewModel photographerProfileViewModel = getPhotographerProfileViewModel();
+        photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> {
+            updatePhoneNumber(photographer);
+            updateName(photographer.getFirstName(), photographer.getLastName());
+            updateEmail(photographer.getEmail());
+            updateLocation(new Location(photographer.getLatitude(), photographer.getLongitude()));
+            updateServices(photographer);
+            updateAboutPhotographerButton(photographer);
+            updatePortfolio(navController);
+            sendPhotographerIdToFeedbacksFragment(photographer.getId());
+            updateAvatar(photographer);
+            updateFeedbacks(navController);
+        });
+
+        signOutDialogFragment = new SignOutDialogFragment((dialog, which) -> {
+            photographerProfileViewModel.signOut();
+            goToMainActivity();
+        });
+
+        navController = getNavController();
+        bindSignOutButton();
+
+        bindImageViewAvatar(photographerProfileViewModel);
+    }
+
+    private void bindImageViewAvatar(PhotographerProfileMainViewModel photographerProfileViewModel) {
+
+        imagePickerLauncher = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                result -> {
+                    if (result != null) {
+                        photographerProfileViewModel.loadNewImage(result);
+                    }
+                }
+        );
+
+        binding.imageViewAvatar.setOnClickListener(view -> imagePickerLauncher.launch("image/*"));
+    }
+
+    private void goToMainActivity() {
+        Intent intent = new Intent(requireActivity(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+    }
+
+    private void updateAvatar(Photographer photographer) {
+
+        Glide.with(binding.imageViewAvatar.getContext())
+                .load(photographer.getAvatarPath())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.ic_person_gray)
+                .into(binding.imageViewAvatar);
+    }
+
+    private PhotographerProfileMainViewModel getPhotographerProfileViewModel() {
+
+        return new ViewModelProvider(requireActivity(), new PhotographerProfileMainViewModelFactory(
+                new GetPhotographerDataUseCase(
+                        new PhotographerRepositoryImpl()),
+                new GetUserDataUseCase(
+                        new UserLocationRepositoryImpl(requireContext()),
+                        new RoleRepositoryImpl(requireContext()),
+                        new FirstTimeWentRepositoryImpl(requireContext()),
+                        new UserAuthDataRepositoryImpl()))).get(PhotographerProfileMainViewModel.class);
+    }
+
+    private void updateName(String firstName, String lastName) {
+        String photographerName = String.format("%s %s", firstName, lastName);
+        binding.textViewProfileName.setText(photographerName);
+    }
+
+    private void updateEmail(String email) {
+        binding.linearLayoutFieldsContainer.textViewEmail.setText(email);
+    }
+
+    private void updatePhoneNumber(Photographer photographer) {
+        binding.linearLayoutFieldsContainer.textViewPhoneNumber.setText(StringConverter.convertPhoneNumberToConvenientFormat(photographer.getPhoneNumber()));
+    }
+
+    private void updateLocation(Location location) {
+
+        binding.linearLayoutFieldsContainer.textViewLocation.setText(LocationCoordinator.getFullAddress(requireContext(), location.getLatitude(), location.getLongitude()));
+
+        binding.linearLayoutFieldsContainer.textViewLocation.setOnClickListener(view -> {
+            navController.navigate(R.id.action_photographerProfile_to_photoSessionAddressFromPhotographer);
+            sendPhotoSessionLocationToLocationFragment(location);
+        });
+    }
+
+    private void sendPhotoSessionLocationToLocationFragment(Location location) {
+
+        new ViewModelProvider(requireActivity())
+                .get(PhotoSessionAddressViewModel.class)
+                .putPhotoSessionAddress(location);
+    }
+
+    private void sendPhotographerIdToFeedbacksFragment(String id) {
+
+        new ViewModelProvider(requireActivity(),
+                new FeedbackViewModelFactory(
+                        new GetFeedbackDataUseCase(
+                                new FeedbackRepositoryImpl())))
+                .get(FeedbackViewModel.class).putPhotographerId(id);
+    }
+
+    private void updateFeedbacks(NavController navController) {
+        binding.linearLayoutFieldsContainer.textViewFeedbacks.setOnClickListener(view -> navController.navigate(R.id.action_photographerProfile_to_feedbacksFromPhotographer2));
+    }
+
+    private void updateServices(Photographer photographer) {
+        sendPhotographerIdToServicesDialog(photographer.getId());
+
+        binding.linearLayoutFieldsContainer.textViewServices.setOnClickListener(view -> showBottomSheetDialog(R.id.photographerServicesBottomSheet));
+    }
+
+    private void updateAboutPhotographerButton(Photographer photographer) {
+        binding.linearLayoutFieldsContainer.textViewAboutPhotographer.setOnClickListener(view -> {
+            sendPhotographerIdToAboutPhotographerViewModel(photographer.getId());
+            navController.navigate(R.id.action_photographerProfile_to_aboutPhotographerFromPhotographer);
+        });
+    }
+
+    private NavController getNavController() {
+        NavHostFragment navHostFragment = (NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView_content);
+        return Objects.requireNonNull(navHostFragment).getNavController();
+    }
+
+    private void sendPhotographerIdToAboutPhotographerViewModel(String photographerId) {
+        new ViewModelProvider(requireActivity(), new AboutPhotographerFromClientViewModelFactory(
+                new GetPhotographerDataUseCase(
+                        new PhotographerRepositoryImpl())))
+                .get(AboutPhotographerFromClientViewModel.class)
+                .putPhotographerId(photographerId);
+    }
+
+    private void sendPhotographerIdToServicesDialog(String photographerId) {
+
+        new ViewModelProvider(requireActivity(), new ServicesViewModelFactory(
+                new GetPhotographerDataUseCase(
+                        new PhotographerRepositoryImpl())))
+                .get(ServicesViewModel.class)
+                .putPhotographerId(photographerId);
+    }
+
+    private void bindSignOutButton() {
+        binding.appCompatButtonSignOut.appCompatButtonLeave.setOnClickListener(view -> signOutDialogFragment.show(requireActivity().getSupportFragmentManager(), SignOutDialogFragment.TAG));
+    }
+
+    private void updatePortfolio(NavController navController) {
+
+        binding.linearLayoutFieldsContainer.textViewPortfolio.setOnClickListener(view ->
+                navController.navigate(R.id.action_photographerProfile_to_photographerPortfolioFromPhotographer));
+    }
+
+    public void showBottomSheetDialog(int fragmentId) {
+        ClientBottomSheetDialogFragment clientBottomSheet = new ClientBottomSheetDialogFragment(fragmentId);
+        clientBottomSheet.show(requireActivity().getSupportFragmentManager(), ClientBottomSheetDialogFragment.TAG);
     }
 }

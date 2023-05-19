@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@color/primary_white">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView_avatar"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -50,19 +50,6 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView_avatar"
             tools:text="@string/dev" />
 
-        <TextView
-            android:id="@+id/textView_edit_name"
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-            android:textColor="@color/primary"
-
-            app:layout_constraintEnd_toEndOf="parent"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView_profile_name"
-            android:text="@string/edit_name" />
-
         <include
             android:id="@+id/linearLayout_fieldsContainer"
 
@@ -76,14 +63,14 @@
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
 
-            app:layout_constraintBottom_toTopOf="@id/appCompatButton_leave"
+            app:layout_constraintBottom_toTopOf="@id/appCompatButton_sign_out"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView_edit_name" />
+            app:layout_constraintTop_toBottomOf="@id/textView_profile_name" />
 
         <include
-            layout="@layout/layout_leave_button"
-            android:id="@+id/appCompatButton_leave"
+            layout="@layout/layout_sign_out_button"
+            android:id="@+id/appCompatButton_sign_out"
 
             android:layout_width="0dp"
             android:layout_height="wrap_content"

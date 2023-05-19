@@ -21,6 +21,7 @@
     <string name="passwords_and_notifications">Your passwords and messages are protected encryption.</string>
     <string name="notifications_moment">You will be notified at the moment events (new booking, new message from the user).</string>
 
+    <string name="sign_out_confirmation">Are you sure you want to log out of your account?</string>
     <string name="login">Login</string>
     <string name="sign_up">Sign up</string>
     <string name="authorization">Authorization</string>
@@ -164,5 +165,7 @@
     <string name="photographers_absent">No photographers with this service</string>
     <string name="write_feedback"> Write feedback</string>
     <string name="incorrect_feedback">Incorrect feedback</string>
+
+    <string name="cancel">Cancel</string>
 
 </resources>

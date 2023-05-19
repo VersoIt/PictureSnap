@@ -15,8 +15,8 @@ import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
 import ru.verso.picturesnap.databinding.LayoutPhotographerBinding;
 import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
-import ru.verso.picturesnap.presentation.factory.PhotographerProfileViewModelFactory;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
+import ru.verso.picturesnap.presentation.factory.PhotographerProfileFromClientViewModelFactory;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileFromClientViewModel;
 
 public class PhotographersInCityFromRegisteredClientAdapter extends ListAdapter<Photographer, PhotographerViewHolder> {
 
@@ -46,7 +46,7 @@ public class PhotographersInCityFromRegisteredClientAdapter extends ListAdapter<
     @Override
     public void onBindViewHolder(@NonNull PhotographerViewHolder holder, int position) {
         Photographer current = getItem(position);
-        PhotographerProfileViewModel photographerProfileViewModel = getPhotographerViewModel();
+        PhotographerProfileFromClientViewModel photographerProfileViewModel = getPhotographerViewModel();
         holder.bind(current);
 
         holder.itemView.setOnClickListener(view -> {
@@ -55,10 +55,10 @@ public class PhotographersInCityFromRegisteredClientAdapter extends ListAdapter<
         });
     }
 
-    private PhotographerProfileViewModel getPhotographerViewModel() {
-        return new ViewModelProvider(viewModelOwner, new PhotographerProfileViewModelFactory(new GetPhotographerDataUseCase(
+    private PhotographerProfileFromClientViewModel getPhotographerViewModel() {
+        return new ViewModelProvider(viewModelOwner, new PhotographerProfileFromClientViewModelFactory(new GetPhotographerDataUseCase(
                 new PhotographerRepositoryImpl())))
-                .get(PhotographerProfileViewModel.class);
+                .get(PhotographerProfileFromClientViewModel.class);
     }
 
     public static class PhotographerInCityDiff extends DiffUtil.ItemCallback<Photographer> {

@@ -44,7 +44,7 @@ import ru.verso.picturesnap.presentation.viewmodel.unregistered.AboutPhotographe
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FavoritesViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotoSessionAddressViewModel;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileFromClientViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.ServicesViewModel;
 
 public class PhotographerProfileFromUnregistered extends Fragment {
@@ -65,7 +65,7 @@ public class PhotographerProfileFromUnregistered extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        PhotographerProfileViewModel photographerProfileViewModel = getPhotographerProfileViewModel();
+        PhotographerProfileFromClientViewModel photographerProfileViewModel = getPhotographerProfileViewModel();
         photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> {
             updateName(photographer.getFirstName(), photographer.getLastName());
             updateEmail(photographer.getEmail());
@@ -91,8 +91,8 @@ public class PhotographerProfileFromUnregistered extends Fragment {
                 .into(binding.imageViewAvatar);
     }
 
-    private PhotographerProfileViewModel getPhotographerProfileViewModel() {
-        return new ViewModelProvider(requireActivity()).get(PhotographerProfileViewModel.class);
+    private PhotographerProfileFromClientViewModel getPhotographerProfileViewModel() {
+        return new ViewModelProvider(requireActivity()).get(PhotographerProfileFromClientViewModel.class);
     }
 
     private void updateName(String firstName, String lastName) {

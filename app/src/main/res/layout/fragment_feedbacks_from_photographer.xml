@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/primary_white"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragments.photographer.FeedbacksFromPhotographer">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/linearLayout_header"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/base_elements_margin"
+
+            android:orientation="vertical"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView_header"
+
+                style="@style/headerText.largeMargin"
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                android:layout_margin="16dp"
+                android:layout_marginTop="20dp"
+
+                android:layout_marginEnd="20dp"
+
+                android:layout_marginBottom="20dp"
+                android:paddingHorizontal="10dp"
+                android:text="@string/ratings_and_feedbacks" />
+
+            <View
+                android:id="@+id/view_line"
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/rect_grey" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_statistics_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/small_margin"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_header"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
+
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_total_rating"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="70sp"
+
+                    android:textStyle="bold"
+                    tools:text="4.6" />
+
+                <TextView
+                    android:id="@+id/textView_rating_limit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/out_of_5"
+
+                    android:textColor="@color/black_gray"
+
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="20dp"
+                android:layout_marginVertical="20dp"
+
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="end"
+
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="end"
+
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="end"
+
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="end"
+
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="end"
+
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+
+                        android:background="@drawable/ic_star"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="20dp"
+                android:layout_marginHorizontal="5dp"
+
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/progressBar_five_star"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+
+                    android:layout_marginVertical="5dp"
+                    android:progressTint="@color/black_gray"
+
+                    style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
+
+                <ProgressBar
+                    android:id="@+id/progressBar_four_star"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+
+                    android:progressTint="@color/black_gray"
+                    android:layout_marginVertical="4dp"
+
+                    style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
+
+                <ProgressBar
+                    android:id="@+id/progressBar_three_star"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+
+                    android:layout_marginVertical="4dp"
+                    android:progressTint="@color/black_gray"
+
+                    style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
+
+                <ProgressBar
+                    android:id="@+id/progressBar_two_star"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+
+                    android:layout_marginVertical="5dp"
+                    android:progressTint="@color/black_gray"
+
+                    style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
+
+                <ProgressBar
+                    android:id="@+id/progressBar_one_star"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+
+                    android:layout_marginVertical="4dp"
+                    android:progressTint="@color/black_gray"
+
+                    style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
+
+                <TextView
+                    android:id="@+id/textView_ratings_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="12dp"
+                    android:layout_gravity="end"
+                    android:textStyle="bold"
+
+                    android:textColor="@color/black_gray"
+
+                    tools:text="35 оценок"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView_no_feedbacks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="@color/black_gray"
+            android:text="@string/no_feedbacks"
+
+            android:textSize="30sp"
+
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_statistics_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_feedbacks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            tools:itemCount="3"
+            tools:listitem="@layout/layout_feedback_from_client"
+
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_statistics_container"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

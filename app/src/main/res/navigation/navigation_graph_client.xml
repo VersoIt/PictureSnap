@@ -247,7 +247,7 @@
     </fragment>
     <fragment
         android:id="@+id/photoSessionAddress"
-        android:name="ru.verso.picturesnap.presentation.fragments.common.PhotoSessionAddress"
+        android:name="ru.verso.picturesnap.presentation.fragments.common.PhotoSessionAddressFromClient"
         android:label="PhotoSessionAddress" />
     <fragment
         android:id="@+id/photographerServicesBottomSheet"

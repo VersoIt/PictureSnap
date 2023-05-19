@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import ru.verso.picturesnap.data.storage.firebase.Constants;
 import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.models.PhotographerPresentationService;
 import ru.verso.picturesnap.domain.repository.PhotographerSignUpRepository;
@@ -73,19 +74,19 @@ public class PhotographerSignUpRepositoryImpl implements PhotographerSignUpRepos
     }
 
     private void createUser(String photographerId) {
-        DatabaseReference userReference = databaseReference.child(PictureSnapApp.FIREBASE_USERS_PATH).child(photographerId);
+        DatabaseReference userReference = databaseReference.child(Constants.FIREBASE_USERS_PATH).child(photographerId);
         userReference.child(ROLE_PATH).setValue(ROLE);
     }
 
     private void createPhotographer(Photographer photographer, String photographerId) {
-        DatabaseReference photographerReference = databaseReference.child(PictureSnapApp.FIREBASE_PHOTOGRAPHER_PATH);
+        DatabaseReference photographerReference = databaseReference.child(Constants.FIREBASE_PHOTOGRAPHER_PATH);
         photographer.setId(photographerId);
-        photographer.setAvatarPath(PictureSnapApp.FIREBASE_PHOTOGRAPHER_PATH);
+        photographer.setAvatarPath(Constants.FIREBASE_PHOTOGRAPHER_PATH);
         photographerReference.child(photographerId).setValue(photographer);
     }
 
     private void createServices(List<PhotographerPresentationService> photographerServices, String photographerId) {
-        DatabaseReference serviceReference = databaseReference.child(PictureSnapApp.SERVICE_PROVISIONS_PATH);
+        DatabaseReference serviceReference = databaseReference.child(Constants.SERVICE_PROVISIONS_PATH);
         for (PhotographerPresentationService service : photographerServices) {
             String serviceId = serviceReference.push().getKey();
 

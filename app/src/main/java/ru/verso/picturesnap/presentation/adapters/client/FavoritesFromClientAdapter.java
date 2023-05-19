@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.ListAdapter;
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.LayoutPhotographerBinding;
 import ru.verso.picturesnap.domain.models.Photographer;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileViewModel;
+import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileFromClientViewModel;
 
 public class FavoritesFromClientAdapter extends ListAdapter<Photographer, PhotographerViewHolder> {
 
     private final NavController navController;
 
-    private final PhotographerProfileViewModel photographerProfileViewModel;
+    private final PhotographerProfileFromClientViewModel photographerProfileViewModel;
 
-    public FavoritesFromClientAdapter(@NonNull ItemCallback<Photographer> diffCallback, NavController navController, PhotographerProfileViewModel photographerProfileViewModel) {
+    public FavoritesFromClientAdapter(@NonNull ItemCallback<Photographer> diffCallback, NavController navController, PhotographerProfileFromClientViewModel photographerProfileViewModel) {
         super(diffCallback);
 
         this.navController = navController;

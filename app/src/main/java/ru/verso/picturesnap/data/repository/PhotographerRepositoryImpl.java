@@ -1,5 +1,7 @@
 package ru.verso.picturesnap.data.repository;
 
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,10 +12,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import ru.verso.picturesnap.data.storage.firebase.Constants;
 import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.models.PhotographerPresentationService;
 import ru.verso.picturesnap.domain.models.PhotographerService;
@@ -24,6 +31,7 @@ public class PhotographerRepositoryImpl implements PhotographerRepository {
     private static final String SERVICES_REF = "services";
     private static final String PHOTOGRAPHS_REF = "photographers";
     private static final String SERVICE_PROVISIONS_REF = "service_provisions";
+    private static final String JPG_EXTENSION = ".jpg";
 
     private final DatabaseReference servicesReference;
     private final DatabaseReference photographersReference;
@@ -88,7 +96,7 @@ public class PhotographerRepositoryImpl implements PhotographerRepository {
     public LiveData<Photographer> getPhotographerById(String id) {
         MutableLiveData<Photographer> photographerMutableLiveData = new MutableLiveData<>();
 
-        Query query = photographersReference.orderByChild("id").equalTo(id);
+        Query query = photographersReference.orderByChild(Constants.FIREBASE_USER_ID_CHILD).equalTo(id);
         query.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -110,9 +118,9 @@ public class PhotographerRepositoryImpl implements PhotographerRepository {
 
     @Override
     public LiveData<List<PhotographerPresentationService>> getPhotographerServicesById(String photographerId) {
-        MutableLiveData<List<PhotographerPresentationService>> photographerPresentationServiceMutableLiveData = new MutableLiveData<>();
+        MutableLiveData<List<PhotographerPresentationService>> photographPresentationServiceMutableLiveData = new MutableLiveData<>();
 
-        Query query = serviceProvisionReference.orderByChild("photographerId").equalTo(photographerId);
+        Query query = serviceProvisionReference.orderByChild(Constants.FIREBASE_PHOTOGRAPHER_ID_CHILD_IN_SERVICES).equalTo(photographerId);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -120,7 +128,7 @@ public class PhotographerRepositoryImpl implements PhotographerRepository {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     services.add(dataSnapshot.getValue(PhotographerPresentationService.class));
                 }
-                photographerPresentationServiceMutableLiveData.setValue(services);
+                photographPresentationServiceMutableLiveData.setValue(services);
             }
 
             @Override
@@ -129,6 +137,39 @@ public class PhotographerRepositoryImpl implements PhotographerRepository {
             }
         });
 
-        return photographerPresentationServiceMutableLiveData;
+        return photographPresentationServiceMutableLiveData;
+    }
+
+    private Query getPhotographerQueryById(String photographerId) {
+        final String photographerIdPath = Constants.FIREBASE_PHOTOGRAPHER_ID_CHILD_IN_SERVICES;
+        return photographersReference.orderByChild(photographerIdPath).equalTo(photographerId);
+    }
+
+    private void updatePhotographerAvatarPath(String photographerId, String url) {
+        Query query = getPhotographerQueryById(photographerId);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                DatabaseReference reference = snapshot.child(photographerId).child(Constants.FIREBASE_PHOTOGRAPHER_AVATAR_CHILD).getRef();
+                reference.setValue(url);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    @Override
+    public void updatePhotographerAvatar(String photographerId, Uri path) {
+        String imageName = UUID.randomUUID().toString() + JPG_EXTENSION;
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(Constants.FIREBASE_AVATAR_PHOTOGRAPHER_PATH + imageName);
+        UploadTask uploadTask = storageReference.putFile(path);
+
+        uploadTask.addOnSuccessListener(taskSnapshot -> storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
+            String imageUri = uri.toString();
+            updatePhotographerAvatarPath(photographerId, imageUri);
+        }));
     }
 }
