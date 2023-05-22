@@ -2,25 +2,40 @@ package ru.verso.picturesnap.domain.models;
 
 public class PortfolioImage {
 
-    private final int id;
-    private final int serviceProvisionId;
-    private final String imageURL;
+    private String id;
+    private String serviceProvisionId;
+    private String imageURL;
 
-    public PortfolioImage(int id, int provisionId, String imageURL) {
+    public PortfolioImage(String id, String provisionId, String imageURL) {
         this.id = id;
         this.serviceProvisionId = provisionId;
         this.imageURL = imageURL;
     }
 
-    public int getServiceProvisionId() {
+    public PortfolioImage() {
+    }
+
+    public String getServiceProvisionId() {
         return serviceProvisionId;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     public String getImageURL() {
         return imageURL;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setServiceProvisionId(String serviceProvisionId) {
+        this.serviceProvisionId = serviceProvisionId;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

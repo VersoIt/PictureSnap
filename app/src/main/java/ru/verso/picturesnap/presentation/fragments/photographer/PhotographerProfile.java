@@ -1,13 +1,11 @@
 package ru.verso.picturesnap.presentation.fragments.photographer;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -25,6 +23,7 @@ import java.util.Objects;
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
+import ru.verso.picturesnap.data.repository.PhotographerPortfolioPicturesRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
@@ -34,7 +33,9 @@ import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.usecase.GetFeedbackDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetPhotographerPicturesUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
+import ru.verso.picturesnap.domain.usecase.SendPhotographerPicturesUseCase;
 import ru.verso.picturesnap.presentation.activity.MainActivity;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
 import ru.verso.picturesnap.presentation.dialogs.SignOutDialogFragment;
@@ -211,7 +212,9 @@ public class PhotographerProfile extends Fragment {
 
         new ViewModelProvider(requireActivity(), new ServicesViewModelFactory(
                 new GetPhotographerDataUseCase(
-                        new PhotographerRepositoryImpl())))
+                        new PhotographerRepositoryImpl()),
+                new GetPhotographerPicturesUseCase(new PhotographerPortfolioPicturesRepositoryImpl()),
+                new SendPhotographerPicturesUseCase(new PhotographerPortfolioPicturesRepositoryImpl())))
                 .get(ServicesViewModel.class)
                 .putPhotographerId(photographerId);
     }

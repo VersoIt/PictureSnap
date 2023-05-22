@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
 
-    android:layout_width="match_parent"
+    android:id="@+id/recyclerView_images"
+
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@color/primary_white"
-    tools:context=".presentation.fragments.photographer.PortfolioImagesFragment">
+    android:layout_gravity="center_horizontal"
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_images"
+    android:orientation="vertical"
 
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-        app:spanCount="3"
+    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-</FrameLayout>
+    app:spanCount="3"
+    tools:listitem="@layout/layout_portfolio_image" />

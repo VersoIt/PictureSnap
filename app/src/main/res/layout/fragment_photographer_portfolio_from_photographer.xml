@@ -1,35 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.fragments.photographer.PhotographerPortfolioFromPhotographer">
+    tools:context=".presentation.fragments.photographer.PhotographerPortfolioFromClient">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout_tabs"
 
-        app:tabMode="scrollable"
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
 
         android:background="@color/white"
-
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-    </com.google.android.material.tabs.TabLayout>
+        app:tabMode="scrollable"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager_portfolio"
         android:layout_width="0dp"
         android:layout_height="0dp"
 
+        android:foregroundGravity="center"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tabLayout_tabs" />
+        app:layout_constraintTop_toBottomOf="@id/tabLayout_tabs">
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingButton_add_new_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/primary"
+
+        android:contentDescription="@string/portfolio"
+        android:elevation="6dp"
+
+        android:src="@drawable/ic_add"
+
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="@+id/tabLayout_tabs"
+        app:tint="@color/white" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

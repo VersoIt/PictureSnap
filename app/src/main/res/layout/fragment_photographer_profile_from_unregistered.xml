@@ -35,26 +35,30 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linearLayout_profile_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
 
             android:gravity="center"
+
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/linearLayout_fieldsContainer"
             app:layout_constraintTop_toBottomOf="@+id/imageView_avatar">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView_profile_name"
                 style="@style/headerText"
+                android:layout_weight="1"
 
                 android:textAlignment="center"
 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
-                tools:text="@string/dev" />
+                tools:text="photographer photographer" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_favorite"

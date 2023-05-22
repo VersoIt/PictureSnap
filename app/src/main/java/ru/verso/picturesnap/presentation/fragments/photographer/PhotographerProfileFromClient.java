@@ -24,6 +24,7 @@ import ru.verso.picturesnap.data.repository.ClientRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FavoritesRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
+import ru.verso.picturesnap.data.repository.PhotographerPortfolioPicturesRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
@@ -35,8 +36,10 @@ import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetFavoritesDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetFeedbackDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetPhotographerPicturesUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.SendFeedbackUseCase;
+import ru.verso.picturesnap.domain.usecase.SendPhotographerPicturesUseCase;
 import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFragment;
 import ru.verso.picturesnap.presentation.factory.AboutPhotographerFromClientViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.FavoritesViewModelFactory;
@@ -205,7 +208,9 @@ public class PhotographerProfileFromClient extends Fragment {
     private void sendPhotographerIdToServicesDialog(String photographerId) {
         new ViewModelProvider(requireActivity(), new ServicesViewModelFactory(
                 new GetPhotographerDataUseCase(
-                        new PhotographerRepositoryImpl())))
+                        new PhotographerRepositoryImpl()),
+                new GetPhotographerPicturesUseCase(new PhotographerPortfolioPicturesRepositoryImpl()),
+                new SendPhotographerPicturesUseCase(new PhotographerPortfolioPicturesRepositoryImpl())))
                 .get(ServicesViewModel.class)
                 .putPhotographerId(photographerId);
     }

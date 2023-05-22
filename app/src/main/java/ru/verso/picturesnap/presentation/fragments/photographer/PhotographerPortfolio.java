@@ -36,6 +36,8 @@ public class PhotographerPortfolio extends Fragment {
 
     private LiveData<List<PhotographerPresentationService>> photographerServiceProvisions;
 
+    private ServicesViewModel servicesViewModel;
+
     private static int synchronizeCount = 0;
     private static final int SYNCHRONIZE_END_AMOUNT = 2;
 
@@ -51,7 +53,7 @@ public class PhotographerPortfolio extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ServicesViewModel servicesViewModel = getPhotographerServicesViewModel();
+        servicesViewModel = getPhotographerServicesViewModel();
 
         photographerServices = servicesViewModel.getPhotographerServices();
         photographerServiceProvisions = servicesViewModel.getPhotographerServices();
@@ -105,7 +107,7 @@ public class PhotographerPortfolio extends Fragment {
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            return new PortfolioImagesFragment(Objects.requireNonNull(photographerServiceProvisions.getValue()).get(position).getId());
+            return new PortfolioImagesFragment(Objects.requireNonNull(photographerServiceProvisions.getValue()).get(position).getId(), servicesViewModel);
         }
     }
 
