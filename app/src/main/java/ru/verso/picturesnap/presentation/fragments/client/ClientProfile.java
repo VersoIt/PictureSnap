@@ -54,6 +54,7 @@ public class ClientProfile extends Fragment {
         SignOutDialogFragment signOutDialogFragment = new SignOutDialogFragment((dialog, which) -> {
             clientMainProfileViewModel.signOut();
             goToMainActivity();
+            requireActivity().finish();
         });
 
         bindViews(clientMainProfileViewModel, signOutDialogFragment);
@@ -73,13 +74,13 @@ public class ClientProfile extends Fragment {
 
         Location userLocation = clientMainProfileViewModel.getCityLocation();
         binding.linearLayoutFieldsContainer.textViewLocation.setText(LocationCoordinator.getCityNameByLocation(requireActivity(), userLocation.getLatitude(), userLocation.getLongitude()));
-        binding.appCompatButtonSignOut.appCompatButtonLeave.setOnClickListener(view -> {
-            clientMainProfileViewModel.signOut();
-            requireActivity().finish();
-            goToMainActivity();
-        });
 
-        binding.appCompatButtonSignOut.appCompatButtonLeave.setOnClickListener(view -> dialogFragment.show(requireActivity().getSupportFragmentManager(), SignOutDialogFragment.TAG));
+        binding.appCompatButtonSignOut.appCompatButtonLeave.setOnClickListener(view -> {
+            Fragment fragment = requireActivity().getSupportFragmentManager().findFragmentByTag(SignOutDialogFragment.TAG);
+            if (fragment == null) {
+                dialogFragment.show(requireActivity().getSupportFragmentManager(), SignOutDialogFragment.TAG);
+            }
+        });
 
         ActivityResultLauncher<String> imagePickerLauncher = registerForActivityResult(
                 new ActivityResultContracts.GetContent(),

@@ -4,6 +4,7 @@ import android.view.Menu;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.NavController;
@@ -97,6 +98,7 @@ public class RegisteredActivityState implements ClientActivityState {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.ic_person_gray)
                 .into(binding.imageViewLogo));
+
         clientMainViewModel.getClientName().observe(lifecycleOwner, binding.textViewName::setText);
         clientMainViewModel.getClientEmail().observe(lifecycleOwner, binding.textViewEmail::setText);
     }
@@ -146,9 +148,9 @@ public class RegisteredActivityState implements ClientActivityState {
             }
 
             if (menuItem.getItemId() == R.id.nav_sign_out) {
-                if (signOutDialogFragment != null && supportFragmentManager != null) {
+                Fragment fragment = supportFragmentManager.findFragmentByTag(SignOutDialogFragment.TAG);
+                if (fragment == null)
                     signOutDialogFragment.show(supportFragmentManager, SignOutDialogFragment.TAG);
-                }
 
                 return true;
             }

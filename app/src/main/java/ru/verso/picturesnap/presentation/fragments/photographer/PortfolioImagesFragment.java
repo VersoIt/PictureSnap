@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+
 import ru.verso.picturesnap.databinding.FragmentImagesBinding;
 import ru.verso.picturesnap.presentation.adapters.photographer.PortfolioImageAdapter;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.ServicesViewModel;
@@ -46,7 +48,7 @@ public class PortfolioImagesFragment extends Fragment {
     private void createImagesList() {
         RecyclerView recyclerView = binding.recyclerViewImages;
 
-        PortfolioImageAdapter adapter = new PortfolioImageAdapter(new PortfolioImageAdapter.PortfolioImageDiff());
+        PortfolioImageAdapter adapter = new PortfolioImageAdapter(new PortfolioImageAdapter.PortfolioImageDiff(), requireActivity().getSupportFragmentManager());
         recyclerView.setAdapter(adapter);
 
         Log.e("FUCKER", serviceId);

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -151,12 +152,6 @@ public class PhotographerActivity extends AppCompatActivity {
                 return true;
             }
 
-            if (menuItem.getItemId() == R.id.nav_portfolio) {
-                closeDrawer();
-
-                return true;
-            }
-
             if (menuItem.getItemId() == R.id.nav_clients_records) {
                 setFragmentMenu(R.id.clientsRecords, PhotographerMenuItems.CLIENTS_RECORDS);
                 closeDrawer();
@@ -173,7 +168,10 @@ public class PhotographerActivity extends AppCompatActivity {
             }
 
             if (menuItem.getItemId() == R.id.nav_sign_out) {
-                signOutDialogFragment.show(getSupportFragmentManager(), SignOutDialogFragment.TAG);
+                Fragment fragment = getSupportFragmentManager().findFragmentByTag(SignOutDialogFragment.TAG);
+
+                if (fragment == null)
+                    signOutDialogFragment.show(getSupportFragmentManager(), SignOutDialogFragment.TAG);
 
                 return true;
             }

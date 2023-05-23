@@ -220,7 +220,11 @@ public class PhotographerProfile extends Fragment {
     }
 
     private void bindSignOutButton() {
-        binding.appCompatButtonSignOut.appCompatButtonLeave.setOnClickListener(view -> signOutDialogFragment.show(requireActivity().getSupportFragmentManager(), SignOutDialogFragment.TAG));
+        binding.appCompatButtonSignOut.appCompatButtonLeave.setOnClickListener(view -> {
+            Fragment fragment = requireActivity().getSupportFragmentManager().findFragmentByTag(SignOutDialogFragment.TAG);
+            if (fragment == null)
+                signOutDialogFragment.show(requireActivity().getSupportFragmentManager(), SignOutDialogFragment.TAG);
+        });
     }
 
     private void updatePortfolio(NavController navController) {

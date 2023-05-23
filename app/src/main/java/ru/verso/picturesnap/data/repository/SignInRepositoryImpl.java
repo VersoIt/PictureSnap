@@ -19,7 +19,6 @@ import ru.verso.picturesnap.data.storage.firebase.Constants;
 import ru.verso.picturesnap.domain.models.User;
 import ru.verso.picturesnap.domain.repository.SignInCallback;
 import ru.verso.picturesnap.domain.repository.SignInRepository;
-import ru.verso.picturesnap.presentation.app.PictureSnapApp;
 
 public class SignInRepositoryImpl implements SignInRepository {
 

@@ -28,17 +28,16 @@ import ru.verso.picturesnap.domain.models.PhotographerPresentationService;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.ServicesViewModel;
 
 public class PhotographerPortfolioFromClient extends Fragment {
-
     private FragmentPhotographerPortfolioFromClientBinding binding;
 
     private LiveData<List<PhotographerPresentationService>> photographerServices;
 
     private LiveData<List<PhotographerPresentationService>> photographerServiceProvisions;
 
-    private ServicesViewModel servicesViewModel;
-
     private static int synchronizeCount = 0;
     private static final int SYNCHRONIZE_END_AMOUNT = 2;
+
+    private ServicesViewModel servicesViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -70,7 +69,8 @@ public class PhotographerPortfolioFromClient extends Fragment {
 
         if (synchronizeCount >= SYNCHRONIZE_END_AMOUNT) {
             ViewPager2 viewPager = binding.viewPagerPortfolio;
-            viewPager.setAdapter(new PortfolioAdapter(this.requireActivity()));
+            PortfolioAdapter adapter = new PortfolioAdapter(this.requireActivity());
+            viewPager.setAdapter(adapter);
             TabLayout tabLayout = binding.tabLayoutTabs;
 
             Resources resources = binding.getRoot().getResources();

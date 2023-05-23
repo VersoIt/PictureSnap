@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    android:gravity="end"
     android:background="@drawable/rect_white"
+    android:baselineAligned="false"
 
-    android:padding="10dp"
+    android:gravity="end"
     android:orientation="horizontal"
-    android:baselineAligned="false">
+    android:padding="10dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
@@ -25,34 +25,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:maxWidth="220dp"
-
-            android:textSize="20sp"
-
             android:ellipsize="end"
+
+            android:maxWidth="150dp"
+
             android:singleLine="true"
+            android:textSize="20sp"
 
             tools:text="Иванов Иван!" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_photographer_address"
 
-            android:textColor="@color/search_hint_color"
-            android:layout_marginTop="10dp"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:maxWidth="220dp"
+            android:layout_marginTop="10dp"
             android:ellipsize="end"
+
+            android:maxWidth="220dp"
+            android:textColor="@color/search_hint_color"
 
             android:textSize="20sp"
             tools:text="Москва" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
 
         android:layout_weight="1"
@@ -61,7 +61,7 @@
         android:orientation="horizontal"
         tools:ignore="UseCompoundDrawables">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_photographer_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,6 +78,6 @@
             android:background="@drawable/round_background"
             android:contentDescription="@string/app_name" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

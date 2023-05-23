@@ -1,19 +1,27 @@
 package ru.verso.picturesnap.presentation.adapters.photographer;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
+
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 
 import ru.verso.picturesnap.databinding.LayoutPortfolioImageBinding;
 import ru.verso.picturesnap.domain.models.PortfolioImage;
 
 public class PortfolioImageAdapter extends ListAdapter<PortfolioImage, PortfolioImageViewHolder> {
 
-    public PortfolioImageAdapter(@NonNull DiffUtil.ItemCallback<PortfolioImage> diffCallback) {
+    private final FragmentManager fragmentManager;
+
+    public PortfolioImageAdapter(@NonNull DiffUtil.ItemCallback<PortfolioImage> diffCallback, FragmentManager fragmentManager) {
         super(diffCallback);
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -27,7 +35,7 @@ public class PortfolioImageAdapter extends ListAdapter<PortfolioImage, Portfolio
 
     @Override
     public void onBindViewHolder(@NonNull PortfolioImageViewHolder holder, int position) {
-        holder.bind(getItem(position));
+        holder.bind(getItem(position), fragmentManager);
     }
 
     public static class PortfolioImageDiff extends DiffUtil.ItemCallback<PortfolioImage> {

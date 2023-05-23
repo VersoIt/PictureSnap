@@ -4,8 +4,6 @@ import android.net.Uri;
 
 import androidx.lifecycle.LiveData;
 
-import com.google.firebase.database.FirebaseDatabase;
-
 import ru.verso.picturesnap.domain.models.Client;
 import ru.verso.picturesnap.domain.repository.ClientRepository;
 

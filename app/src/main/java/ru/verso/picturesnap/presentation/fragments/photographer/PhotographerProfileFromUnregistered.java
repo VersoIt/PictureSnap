@@ -195,6 +195,7 @@ public class PhotographerProfileFromUnregistered extends Fragment {
     }
 
     private void sendPhotographerIdToServicesDialog(String photographerId) {
+
         new ViewModelProvider(requireActivity(), new ServicesViewModelFactory(
                 new GetPhotographerDataUseCase(
                         new PhotographerRepositoryImpl()),

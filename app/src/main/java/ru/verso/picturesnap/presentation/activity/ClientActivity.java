@@ -150,6 +150,7 @@ public class ClientActivity extends AppCompatActivity {
         assert navHostFragment != null;
         return navHostFragment.getNavController();
     }
+
     private void bindView() {
         binding = ActivityClientBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

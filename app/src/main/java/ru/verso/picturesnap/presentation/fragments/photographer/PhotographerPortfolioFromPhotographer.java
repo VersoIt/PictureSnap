@@ -32,7 +32,6 @@ import ru.verso.picturesnap.domain.models.PhotographerPresentationService;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.ServicesViewModel;
 
 public class PhotographerPortfolioFromPhotographer extends Fragment {
-
     private FragmentPhotographerPortfolioFromPhotographerBinding binding;
 
     private LiveData<List<PhotographerPresentationService>> photographerServices;
