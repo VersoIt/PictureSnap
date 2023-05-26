@@ -15,20 +15,29 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.ClientRepositoryImpl;
-import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
+import ru.verso.picturesnap.data.repository.FeedbacksRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.ClientFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.FeedbacksFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.PhotographerFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.FragmentFeedbacksFromClientBinding;
 import ru.verso.picturesnap.domain.models.Feedback;
 import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetFeedbacksDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.SendFeedbackUseCase;
@@ -64,11 +73,12 @@ public class FeedbacksFromClient extends Fragment {
         NavController navController = getNavController();
 
         photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> {
-            binding.textViewTotalRating.setText(String.valueOf(photographer.getRating()));
+            binding.textViewTotalRating.setText(String.format(Locale.getDefault(), "%.1f", photographer.getRating()));
             bindWriteNewFeedbackButton(getSendFeedbackViewModel(), navController, photographer);
         });
 
         viewModel.getFeedbacksOfPhotographer().observe(getViewLifecycleOwner(), feedbacks -> {
+            binding.textViewRatingsCount.setText(String.format("%s %s", feedbacks.size(), getResources().getString(R.string.ratings_count)));
             if (feedbacks.size() > 0) {
                 binding.textViewNoFeedbacks.setVisibility(View.GONE);
                 adapter.submitList(feedbacks);
@@ -95,13 +105,14 @@ public class FeedbacksFromClient extends Fragment {
 
     private SendFeedbackViewModel getSendFeedbackViewModel() {
 
-        return new ViewModelProvider(requireActivity(), new SendFeedbackViewModelFactory(new SendFeedbackUseCase(new FeedbackRepositoryImpl()),
-                new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()),
-                        new RoleRepositoryImpl(requireContext()),
-                        new FirstTimeWentRepositoryImpl(requireContext()),
-                        new UserAuthDataRepositoryImpl()),
-                new GetClientDataUseCase(new ClientRepositoryImpl()),
-                new GetPhotographerDataUseCase(new PhotographerRepositoryImpl()))).get(SendFeedbackViewModel.class);
+        return new ViewModelProvider(requireActivity(), new SendFeedbackViewModelFactory(new SendFeedbackUseCase(new FeedbacksRepositoryImpl(new FeedbacksFirebaseDataSource())),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())),
+                        new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())),
+                        new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())),
+                        new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource())),
+                new GetClientDataUseCase(new ClientRepositoryImpl(new ClientFirebaseDataSource())),
+                new GetPhotographerDataUseCase(new PhotographerRepositoryImpl(new PhotographerFirebaseDataSource())),
+                new GetFeedbacksDataUseCase(new FeedbacksRepositoryImpl(new FeedbacksFirebaseDataSource())))).get(SendFeedbackViewModel.class);
     }
 
     private PhotographerProfileFromClientViewModel getPhotographerProfileViewModel() {

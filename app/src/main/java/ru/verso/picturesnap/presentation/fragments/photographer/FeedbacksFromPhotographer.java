@@ -15,25 +15,13 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import ru.verso.picturesnap.R;
-import ru.verso.picturesnap.data.repository.ClientRepositoryImpl;
-import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
-import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
-import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
-import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
-import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
-import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.databinding.FragmentFeedbacksFromPhotographerBinding;
 import ru.verso.picturesnap.domain.models.Feedback;
-import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
-import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
-import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
-import ru.verso.picturesnap.domain.usecase.SendFeedbackUseCase;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographerFeedbacksAdapter;
-import ru.verso.picturesnap.presentation.factory.SendFeedbackViewModelFactory;
-import ru.verso.picturesnap.presentation.viewmodel.client.SendFeedbackViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.photographer.PhotographerProfileMainViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FeedbackViewModel;
 
@@ -60,9 +48,10 @@ public class FeedbacksFromPhotographer extends Fragment {
         binding.recyclerViewFeedbacks.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recyclerViewFeedbacks.setAdapter(adapter);
 
-        photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> binding.textViewTotalRating.setText(String.valueOf(photographer.getRating())));
+        photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> binding.textViewTotalRating.setText(String.format(Locale.getDefault(), "%.1f", photographer.getRating())));
 
         viewModel.getFeedbacksOfPhotographer().observe(getViewLifecycleOwner(), feedbacks -> {
+            binding.textViewRatingsCount.setText(String.format("%s %s", feedbacks.size(), getResources().getString(R.string.ratings_count)));
             if (feedbacks.size() > 0) {
                 binding.textViewNoFeedbacks.setVisibility(View.GONE);
                 adapter.submitList(feedbacks);
@@ -79,17 +68,6 @@ public class FeedbacksFromPhotographer extends Fragment {
     private FeedbackViewModel getFeedbackViewModel() {
         return new ViewModelProvider(requireActivity())
                 .get(FeedbackViewModel.class);
-    }
-
-    private SendFeedbackViewModel getSendFeedbackViewModel() {
-
-        return new ViewModelProvider(requireActivity(), new SendFeedbackViewModelFactory(new SendFeedbackUseCase(new FeedbackRepositoryImpl()),
-                new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()),
-                        new RoleRepositoryImpl(requireContext()),
-                        new FirstTimeWentRepositoryImpl(requireContext()),
-                        new UserAuthDataRepositoryImpl()),
-                new GetClientDataUseCase(new ClientRepositoryImpl()),
-                new GetPhotographerDataUseCase(new PhotographerRepositoryImpl()))).get(SendFeedbackViewModel.class);
     }
 
     private PhotographerProfileMainViewModel getPhotographerProfileViewModel() {

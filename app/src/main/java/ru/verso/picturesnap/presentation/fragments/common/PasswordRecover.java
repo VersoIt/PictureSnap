@@ -1,6 +1,10 @@
 package ru.verso.picturesnap.presentation.fragments.common;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -10,18 +14,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.PasswordRecoverRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.PasswordRecoverFirebaseDataSource;
 import ru.verso.picturesnap.databinding.FragmentPasswordRecoverBinding;
 import ru.verso.picturesnap.domain.repository.PasswordResetCallback;
 import ru.verso.picturesnap.domain.usecase.SendPasswordRecoverUseCase;
 import ru.verso.picturesnap.presentation.factory.PasswordRecoverViewModelFactory;
-import ru.verso.picturesnap.presentation.viewmodel.unregistered.ClientRegistrationViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.PasswordRecoverViewModel;
 
 public class PasswordRecover extends Fragment {
@@ -86,7 +85,7 @@ public class PasswordRecover extends Fragment {
         return new ViewModelProvider(requireActivity(),
                 new PasswordRecoverViewModelFactory(
                         new SendPasswordRecoverUseCase(
-                                new PasswordRecoverRepositoryImpl())))
+                                new PasswordRecoverRepositoryImpl(new PasswordRecoverFirebaseDataSource()))))
                 .get(PasswordRecoverViewModel.class);
     }
 
@@ -120,7 +119,7 @@ public class PasswordRecover extends Fragment {
     }
 
     private void setLoading(boolean isButtonActive, int visibleCode) {
-        binding.buttonReady.buttonReady.setActivated(isButtonActive);
+        binding.buttonReady.buttonReady.setEnabled(isButtonActive);
         binding.progressBarLoading.setVisibility(visibleCode);
     }
 

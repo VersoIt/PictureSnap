@@ -21,6 +21,12 @@ import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.PhotographerFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.FavoritesRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.FragmentFavoritesBinding;
 import ru.verso.picturesnap.domain.usecase.GetFavoritesDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
@@ -75,8 +81,8 @@ public class Favorites extends Fragment {
 
         return new ViewModelProvider(requireActivity(), new FavoritesViewModelFactory(
                 new GetFavoritesDataUseCase(
-                new FavoritesRepositoryImpl(requireContext())),
-                new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()), new RoleRepositoryImpl(requireContext()), new FirstTimeWentRepositoryImpl(requireContext()), new UserAuthDataRepositoryImpl())))
+                new FavoritesRepositoryImpl(new FavoritesRoomDataSource(requireContext()))),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())), new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())), new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())), new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource()))))
                 .get(FavoritesViewModel.class);
     }
 
@@ -91,7 +97,11 @@ public class Favorites extends Fragment {
     private PhotographerProfileFromClientViewModel getPhotographerProfileViewModel() {
 
         return new ViewModelProvider(requireActivity(), new PhotographerProfileFromClientViewModelFactory(new GetPhotographerDataUseCase(
-                new PhotographerRepositoryImpl())))
+                new PhotographerRepositoryImpl(new PhotographerFirebaseDataSource())),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())),
+                        new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())),
+                        new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())),
+                        new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource()))))
                 .get(PhotographerProfileFromClientViewModel.class);
     }
 }

@@ -18,6 +18,11 @@ import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.SettingsRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.SettingsSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.FragmentSettingsBinding;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.usecase.GetApplicationSettingsDataUseCase;
@@ -45,12 +50,12 @@ public class Settings extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         settingsViewModel = new ViewModelProvider(this, new SettingsViewModelFactory(
-                new GetApplicationSettingsDataUseCase(new SettingsRepositoryImpl(requireContext())),
-                new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()),
-                        new RoleRepositoryImpl(requireContext()),
-                        new FirstTimeWentRepositoryImpl(requireContext()),
-                        new UserAuthDataRepositoryImpl()),
-                new UpdateApplicationSettingsUseCase(new SettingsRepositoryImpl(requireContext()))
+                new GetApplicationSettingsDataUseCase(new SettingsRepositoryImpl(new SettingsSharedPrefsDataSource(requireContext()))),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())),
+                        new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())),
+                        new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())),
+                        new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource())),
+                new UpdateApplicationSettingsUseCase(new SettingsRepositoryImpl(new SettingsSharedPrefsDataSource(requireContext())))
                 ))
                 .get(SettingsViewModel.class);
 

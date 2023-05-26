@@ -84,25 +84,10 @@
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="@dimen/layout_width_percent_block"
 
-            app:layout_constraintBottom_toTopOf="@id/textView_report"
+            app:layout_constraintBottom_toTopOf="@id/appCompatButton_book"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout_profile_name" />
-
-        <TextView
-            android:id="@+id/textView_report"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:textColor="@android:color/holo_red_dark"
-
-            android:text="@string/report"
-
-            android:layout_marginVertical="10dp"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout_fieldsContainer" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/appCompatButton_book"
@@ -120,7 +105,7 @@
 
             style="@style/standardText.purple.purpleBorder"
 
-            app:layout_constraintTop_toBottomOf="@id/textView_report"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_fieldsContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

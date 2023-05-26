@@ -11,6 +11,7 @@
     <string name="previous">Предыдущий</string>
     <string name="welcome">Добро пожаловать</string>
     <string name="user_solution">В приложении возможна  регистрация как клиентов, так и  фотографов, которые могут делиться  своим творчеством.</string>
+    <string name="booking_selection">Выбор услуги, даты и времени</string>
     <string name="user_solution_title">Решение за Вами</string>
     <string name="data_view_and_notifications">Просмотр данных и уведомления</string>
     <string name="confidential_and_secure">Конфиденциально и безопасно</string>
@@ -68,8 +69,8 @@
     <string name="service_select">Выберите услугу</string>
     <string name="hours_select">Выберите количество часов</string>
     <string name="datetime_selection">Выбор даты и времени</string>
-    <string name="date_selection">Выберите дату</string>
-    <string name="time_selection">Выберите подходящее время</string>
+    <string name="date_selection">Выбор даты</string>
+    <string name="time_selection">Выбор времени</string>
     <string name="total">Итого</string>
     <string name="send">Отправить</string>
     <string name="feedback">Отзыв</string>
@@ -152,4 +153,10 @@
     <string name="incorrect_feedback">Неверно введены данные для отзыва</string>
     <string name="sign_out_confirmation">Вы действительно хотите выйти из аккаунта?</string>
     <string name="cancel">Отмена</string>
+    <string name="comment">Комментарий</string>
+    <string name="not_necessarily">Не обязательно</string>
+    <string name="date_is_not_valid">Выбрана неверная дата</string>
+    <string name="time_is_not_selected">Время не выбрано</string>
+    <string name="book_successfully">Поздравляем, вы забронировали услугу!</string>
+    <string name="ratings_count">оценок</string>
 </resources>

@@ -13,6 +13,7 @@
     <string name="home">Home</string>
     <string name="favorite">Favourite</string>
     <string name="welcome">Welcome</string>
+    <string name="booking_selection">Choice of service, date and time</string>
 
     <string name="user_solution_title">Decision for you</string>
     <string name="user_solution">In the application it is possible registration of both clients and photographers who can share with his creativity.</string>
@@ -165,9 +166,13 @@
     <string name="photographers_absent">No photographers with this service</string>
     <string name="write_feedback"> Write feedback</string>
     <string name="incorrect_feedback">Incorrect feedback</string>
+    <string name="comment">Comment</string>
+    <string name="not_necessarily">Not necessarily</string>
+    <string name="date_is_not_valid">Date is not valid</string>
 
     <string name="cancel">Cancel</string>
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="time_is_not_selected">Time is not selected</string>
+    <string name="book_successfully">Congratulations, you have booked a service!</string>
+    <string name="ratings_count">ratings</string>
 
 </resources>

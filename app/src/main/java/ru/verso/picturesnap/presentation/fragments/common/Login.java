@@ -23,6 +23,10 @@ import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.SignInRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.SignInFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.FragmentLoginBinding;
 import ru.verso.picturesnap.domain.models.User;
 import ru.verso.picturesnap.domain.repository.SignInCallback;
@@ -134,10 +138,10 @@ public class Login extends Fragment {
 
     private LoginViewModel getViewModel() {
 
-        return new ViewModelProvider(requireActivity(), new LoginViewModelFactory(new SignInUserUseCase(new SignInRepositoryImpl()),
-                new UpdateUserDataUseCase(new RoleRepositoryImpl(requireContext()),
-                        new UserLocationRepositoryImpl(requireContext()),
-                        new FirstTimeWentRepositoryImpl(requireContext()))))
+        return new ViewModelProvider(requireActivity(), new LoginViewModelFactory(new SignInUserUseCase(new SignInRepositoryImpl(new SignInFirebaseDataSource())),
+                new UpdateUserDataUseCase(new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())),
+                        new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())),
+                        new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())))))
                 .get(LoginViewModel.class);
     }
 
@@ -169,7 +173,7 @@ public class Login extends Fragment {
     }
 
     private void updateLoadingView(boolean isActiveButton, int state) {
-        binding.buttonLogin.buttonLogin.setActivated(isActiveButton);
+        binding.buttonLogin.buttonLogin.setEnabled(isActiveButton);
         binding.progressBarLoading.setVisibility(state);
     }
 }

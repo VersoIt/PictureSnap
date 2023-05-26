@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.ServicesRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.ServicesFirebaseDataSource;
 import ru.verso.picturesnap.databinding.FragmentPhotographerServicesSelectionBinding;
 import ru.verso.picturesnap.databinding.LayoutPhotographerServiceSelectionBinding;
 import ru.verso.picturesnap.domain.models.PhotographerPresentationService;
@@ -29,7 +30,7 @@ import ru.verso.picturesnap.presentation.app.PictureSnapApp;
 import ru.verso.picturesnap.presentation.factory.PhotographerServicesSelectionViewModelFactory;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerServicesSelectionViewModel;
 
-public class PhotographerServicesSelection extends Fragment {
+public class PhotographerServiceSelection extends Fragment {
 
     private FragmentPhotographerServicesSelectionBinding binding;
 
@@ -126,7 +127,7 @@ public class PhotographerServicesSelection extends Fragment {
 
         return new ViewModelProvider(requireActivity(),
                 new PhotographerServicesSelectionViewModelFactory(getViewLifecycleOwner(),
-                        new GetServicesUseCase(new ServicesRepositoryImpl())))
+                        new GetServicesUseCase(new ServicesRepositoryImpl(new ServicesFirebaseDataSource()))))
                 .get(PhotographerServicesSelectionViewModel.class);
     }
 }

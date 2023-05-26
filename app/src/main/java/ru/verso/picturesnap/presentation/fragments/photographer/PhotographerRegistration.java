@@ -25,6 +25,12 @@ import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.ServicesRepositoryImpl;
 import ru.verso.picturesnap.data.repository.SignInRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.PhotographerSignUpFirebaseDataBase;
+import ru.verso.picturesnap.data.storage.datasources.firebase.ServicesFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.SignInFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.FragmentPhotographerRegistrationBinding;
 import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.repository.SignUpFailureCallback;
@@ -199,20 +205,20 @@ public class PhotographerRegistration extends Fragment {
             return;
         }
 
-        binding.buttonRegistration.buttonSignup.setActivated(false);
+        binding.buttonRegistration.buttonSignup.setEnabled(false);
 
         photographerRegistrationViewModel.signUpPhotographer(new SignUpFailureCallback<Photographer>() {
 
             @Override
             public void onUserCollision() {
                 Toast.makeText(requireActivity(), R.string.user_already_exists, Toast.LENGTH_LONG).show();
-                binding.buttonRegistration.buttonSignup.setActivated(true);
+                binding.buttonRegistration.buttonSignup.setEnabled(true);
             }
 
             @Override
             public void onNetworkError() {
                 Toast.makeText(requireActivity(), R.string.no_internet_connection, Toast.LENGTH_LONG).show();
-                binding.buttonRegistration.buttonSignup.setActivated(true);
+                binding.buttonRegistration.buttonSignup.setEnabled(true);
             }
         }).observe(getViewLifecycleOwner(), photographer ->
                 photographerRegistrationViewModel.signInPhotograph().observe(getViewLifecycleOwner(), user -> {
@@ -252,7 +258,7 @@ public class PhotographerRegistration extends Fragment {
 
         return new ViewModelProvider(requireActivity(),
                 new PhotographerServicesSelectionViewModelFactory(getViewLifecycleOwner(),
-                        new GetServicesUseCase(new ServicesRepositoryImpl())))
+                        new GetServicesUseCase(new ServicesRepositoryImpl(new ServicesFirebaseDataSource()))))
                 .get(PhotographerServicesSelectionViewModel.class);
     }
 
@@ -260,11 +266,11 @@ public class PhotographerRegistration extends Fragment {
 
         return new ViewModelProvider(requireActivity(),
                 new PhotographerRegistrationViewModelFactory(new SignUpNewPhotographerUseCase(
-                        new PhotographerSignUpRepositoryImpl()),
-                        new SignInUserUseCase(new SignInRepositoryImpl()),
-                        new UpdateUserDataUseCase(new RoleRepositoryImpl(requireContext()),
-                                new UserLocationRepositoryImpl(requireContext()),
-                                new FirstTimeWentRepositoryImpl(requireContext()))))
+                        new PhotographerSignUpRepositoryImpl(new PhotographerSignUpFirebaseDataBase())),
+                        new SignInUserUseCase(new SignInRepositoryImpl(new SignInFirebaseDataSource())),
+                        new UpdateUserDataUseCase(new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())),
+                                new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())),
+                                new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())))))
                 .get(PhotographerRegistrationViewModel.class);
     }
 }

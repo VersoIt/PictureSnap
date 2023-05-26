@@ -274,7 +274,7 @@
         tools:layout="@layout/fragment_photographer_photo_session_address_selection" />
     <fragment
         android:id="@+id/photographerServicesSelection"
-        android:name="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerServicesSelection"
+        android:name="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerServiceSelection"
         android:label="PhotographerServicesSelection" />
     <fragment
         android:id="@+id/photographerProfileFromClient"
@@ -285,8 +285,12 @@
             android:id="@+id/action_photographerProfileFromClient_to_aboutPhotographerFromClient3"
             app:destination="@id/aboutPhotographerFromClient3" />
         <action
-            android:id="@+id/action_photographerProfileFromClient_to_photographerPortfolioFromUnregistered3"
-            app:destination="@id/photographerPortfolioFromUnregistered3" />
+            android:id="@+id/action_photographerProfileFromClient_to_photographerPortfolioFromClient"
+            app:destination="@id/photographerPortfolioFromUnregistered3"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_photographerProfileFromClient_to_photoSessionAddress"
             app:destination="@id/photoSessionAddress"
@@ -311,6 +315,13 @@
         <action
             android:id="@+id/action_photographerProfileFromClient_to_feedbacksFromClient"
             app:destination="@id/feedbacksFromClient"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_photographerProfileFromClient_to_photographerBook"
+            app:destination="@id/photographerBook"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -361,4 +372,34 @@
         android:name="ru.verso.picturesnap.presentation.fragments.client.ClientProfile"
         android:label="fragment_client_profile"
         tools:layout="@layout/fragment_client_profile" />
+    <fragment
+        android:id="@+id/photographerBook"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.PhotographerBook"
+        android:label="fragment_photographer_book"
+        tools:layout="@layout/fragment_photographer_book" >
+        <action
+            android:id="@+id/action_photographerBook_to_recordTimeSelection"
+            app:destination="@id/recordTimeSelection"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_photographerBook_to_recordDateSelection"
+            app:destination="@id/recordDateSelection"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/recordTimeSelection"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.RecordTimeSelection"
+        android:label="fragment_record_time_selection"
+        tools:layout="@layout/fragment_record_time_selection" />
+    <fragment
+        android:id="@+id/recordDateSelection"
+        android:name="ru.verso.picturesnap.presentation.fragments.client.RecordDateSelection"
+        android:label="fragment_record_date_selection"
+        tools:layout="@layout/fragment_record_date_selection" />
 </navigation>

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetFeedbacksDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.SendFeedbackUseCase;
@@ -20,17 +21,20 @@ public class SendFeedbackViewModelFactory implements ViewModelProvider.Factory {
 
     private final GetPhotographerDataUseCase getPhotographerDataUseCase;
 
-    public SendFeedbackViewModelFactory(SendFeedbackUseCase sendFeedbackUseCase, GetUserDataUseCase getUserDataUseCase, GetClientDataUseCase getClientDataUseCase, GetPhotographerDataUseCase getPhotographerDataUseCase) {
+    private final GetFeedbacksDataUseCase getFeedbacksDataUseCase;
+
+    public SendFeedbackViewModelFactory(SendFeedbackUseCase sendFeedbackUseCase, GetUserDataUseCase getUserDataUseCase, GetClientDataUseCase getClientDataUseCase, GetPhotographerDataUseCase getPhotographerDataUseCase, GetFeedbacksDataUseCase getFeedbacksDataUseCase) {
         this.sendFeedbackUseCase = sendFeedbackUseCase;
         this.getUserDataUseCase = getUserDataUseCase;
         this.getClientDataUseCase = getClientDataUseCase;
         this.getPhotographerDataUseCase = getPhotographerDataUseCase;
+        this.getFeedbacksDataUseCase = getFeedbacksDataUseCase;
     }
 
     @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new SendFeedbackViewModel(sendFeedbackUseCase, getUserDataUseCase, getClientDataUseCase, getPhotographerDataUseCase);
+        return (T) new SendFeedbackViewModel(sendFeedbackUseCase, getUserDataUseCase, getClientDataUseCase, getPhotographerDataUseCase, getFeedbacksDataUseCase);
     }
 }

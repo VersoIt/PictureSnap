@@ -11,6 +11,10 @@ import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.ActivityMainBinding;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.presentation.factory.MainActivityViewModelFactory;
@@ -36,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private void navigateToSelectedActivityRole() {
 
         MainActivityViewModel viewModel = new ViewModelProvider(this, new MainActivityViewModelFactory(new GetUserDataUseCase(
-                new UserLocationRepositoryImpl(this.getApplicationContext()),
-                new RoleRepositoryImpl(getApplicationContext()),
-                new FirstTimeWentRepositoryImpl(getApplicationContext()),
-                new UserAuthDataRepositoryImpl())))
+                new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(this)),
+                new RoleRepositoryImpl(new RoleRoomDataSource(this)),
+                new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(this)),
+                new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource()))))
                 .get(MainActivityViewModel.class);
 
         Class<? extends AppCompatActivity> activityToNavigate = viewModel.getClassToNavigate();

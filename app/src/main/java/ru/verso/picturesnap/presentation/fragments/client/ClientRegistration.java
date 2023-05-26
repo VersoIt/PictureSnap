@@ -23,6 +23,11 @@ import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.SignInRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.ClientSignUpFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.SignInFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.FragmentClientRegistrationBinding;
 import ru.verso.picturesnap.domain.models.Client;
 import ru.verso.picturesnap.domain.repository.SignUpFailureCallback;
@@ -101,7 +106,7 @@ public class ClientRegistration extends Fragment {
             return;
         }
 
-        binding.buttonSignup.buttonSignup.setActivated(false);
+        binding.buttonSignup.buttonSignup.setEnabled(false);
         binding.progressBarLoading.setVisibility(View.VISIBLE);
 
         viewModel.signUpClient(new SignUpFailureCallback<Client>() {
@@ -110,14 +115,14 @@ public class ClientRegistration extends Fragment {
             public void onUserCollision() {
                 Toast.makeText(requireActivity(), R.string.user_already_exists, Toast.LENGTH_LONG).show();
                 binding.progressBarLoading.setVisibility(View.GONE);
-                binding.buttonSignup.buttonSignup.setActivated(true);
+                binding.buttonSignup.buttonSignup.setEnabled(true);
             }
 
             @Override
             public void onNetworkError() {
                 Toast.makeText(requireActivity(), R.string.no_internet_connection, Toast.LENGTH_LONG).show();
                 binding.progressBarLoading.setVisibility(View.GONE);
-                binding.buttonSignup.buttonSignup.setActivated(true);
+                binding.buttonSignup.buttonSignup.setEnabled(true);
             }
         }).observe(getViewLifecycleOwner(), client -> viewModel.signInClient().observe(getViewLifecycleOwner(), user -> {
             if (user.getRole() != null && client.getId() != null) {
@@ -179,11 +184,11 @@ public class ClientRegistration extends Fragment {
     private ClientRegistrationViewModel getViewModel() {
 
         return new ViewModelProvider(requireActivity(), new ClientRegistrationViewModelFactory(
-                new SignUpNewClientUseCase(new ClientSignUpRepositoryImpl()),
-                new SignInUserUseCase(new SignInRepositoryImpl()),
-                new UpdateUserDataUseCase(new RoleRepositoryImpl(requireContext()),
-                        new UserLocationRepositoryImpl(requireContext()),
-                        new FirstTimeWentRepositoryImpl(requireContext()))
+                new SignUpNewClientUseCase(new ClientSignUpRepositoryImpl(new ClientSignUpFirebaseDataSource())),
+                new SignInUserUseCase(new SignInRepositoryImpl(new SignInFirebaseDataSource())),
+                new UpdateUserDataUseCase(new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())),
+                        new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())),
+                        new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())))
         )).get(ClientRegistrationViewModel.class);
     }
 }

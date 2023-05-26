@@ -53,7 +53,7 @@ public class PhotographersOfSelectedService extends Fragment {
     @SuppressLint("DiscouragedApi")
     private void createPhotographersList(ClientPhotographersOfSelectedServiceViewModel viewModel, NavController navController) {
 
-        PhotographersInCityFromRegisteredClientAdapter photographersAdapter = new PhotographersInCityFromRegisteredClientAdapter(new PhotographersInCityAdapter.PhotographerInCityDiff(),
+        PhotographersInCityFromRegisteredClientAdapter photographersAdapter = new PhotographersInCityFromRegisteredClientAdapter(getContext(), new PhotographersInCityAdapter.PhotographerInCityDiff(),
                 navController,
                 requireActivity(),
                 R.id.action_photographersOfSelectedService_to_photographerProfileFromClient);

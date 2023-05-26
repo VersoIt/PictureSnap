@@ -76,6 +76,7 @@
 
                 android:layout_width="match_parent"
                 android:background="@drawable/rect_white"
+                android:layout_marginHorizontal="0dp"
 
                 android:layout_marginTop="@dimen/large_margin"
 

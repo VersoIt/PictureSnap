@@ -20,6 +20,11 @@ import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.PhotographerFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.FragmentUnregisteredMainBinding;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
@@ -63,14 +68,14 @@ public class UnregisteredMain extends Fragment {
         return new ViewModelProvider(this,
                 new UnregisteredMainViewModelFactory(
                         requireActivity().getApplication(),
-                        new GetPhotographerDataUseCase(new PhotographerRepositoryImpl()),
-                        new GetUserDataUseCase(new UserLocationRepositoryImpl(this.requireActivity().getApplicationContext()),
-                                new RoleRepositoryImpl(requireActivity().getApplicationContext()),
-                                new FirstTimeWentRepositoryImpl(requireActivity().getApplicationContext()),
-                                new UserAuthDataRepositoryImpl()),
-                        new UpdateUserDataUseCase(new RoleRepositoryImpl(requireActivity().getApplicationContext()),
-                                new UserLocationRepositoryImpl(requireContext()),
-                                new FirstTimeWentRepositoryImpl(requireContext()))))
+                        new GetPhotographerDataUseCase(new PhotographerRepositoryImpl(new PhotographerFirebaseDataSource())),
+                        new GetUserDataUseCase(new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())),
+                                new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())),
+                                new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())),
+                                new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource())),
+                        new UpdateUserDataUseCase(new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())),
+                                new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())),
+                                new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())))))
 
                 .get(UnregisteredMainViewModel.class);
     }
@@ -94,7 +99,7 @@ public class UnregisteredMain extends Fragment {
     public void createPhotographersInCityList(NavController navController) {
         RecyclerView recyclerView = binding.recyclerViewPhotographersInCity;
 
-        final PhotographersInCityAdapter photographersInCityAdapter = new PhotographersInCityAdapter(new PhotographersInCityFromRegisteredClientAdapter.PhotographerInCityDiff(),
+        final PhotographersInCityAdapter photographersInCityAdapter = new PhotographersInCityAdapter(getContext(), new PhotographersInCityFromRegisteredClientAdapter.PhotographerInCityDiff(),
                 navController,
                 this.requireActivity());
 

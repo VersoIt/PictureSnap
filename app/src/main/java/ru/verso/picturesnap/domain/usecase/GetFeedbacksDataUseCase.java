@@ -4,15 +4,14 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
 import ru.verso.picturesnap.domain.models.Feedback;
 import ru.verso.picturesnap.domain.repository.FeedbackRepository;
 
-public class GetFeedbackDataUseCase {
+public class GetFeedbacksDataUseCase {
 
     private final FeedbackRepository feedbackRepository;
 
-    public GetFeedbackDataUseCase(FeedbackRepository feedbackRepository) {
+    public GetFeedbacksDataUseCase(FeedbackRepository feedbackRepository) {
         this.feedbackRepository = feedbackRepository;
     }
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textView_service"
+
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentTop="true"
+
+        android:layout_marginHorizontal="12dp"
+        tools:text="@string/portrait_photo_session" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textView_price"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:gravity="center_vertical"
+
+        tools:text="1000 руб/ч" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

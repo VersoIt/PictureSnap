@@ -22,19 +22,31 @@ import java.util.Objects;
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.ClientRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FavoritesRepositoryImpl;
-import ru.verso.picturesnap.data.repository.FeedbackRepositoryImpl;
+import ru.verso.picturesnap.data.repository.FeedbacksRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerPortfolioPicturesRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
+import ru.verso.picturesnap.data.repository.RecordsRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.ClientFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.FeedbacksFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.PhotographerFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.PhotographerPortfolioPicturesFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.RecordsFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.FavoritesRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.FragmentPhotographerProfileFromClientBinding;
 import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.models.Photographer;
+import ru.verso.picturesnap.domain.usecase.BookPhotographerUseCase;
 import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetFavoritesDataUseCase;
-import ru.verso.picturesnap.domain.usecase.GetFeedbackDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetFeedbacksDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerPicturesUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
@@ -44,10 +56,12 @@ import ru.verso.picturesnap.presentation.bottomsheet.ClientBottomSheetDialogFrag
 import ru.verso.picturesnap.presentation.factory.AboutPhotographerFromClientViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.FavoritesViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.FeedbackViewModelFactory;
+import ru.verso.picturesnap.presentation.factory.PhotographerBookViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.SendFeedbackViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.ServicesViewModelFactory;
 import ru.verso.picturesnap.presentation.utils.LocationCoordinator;
 import ru.verso.picturesnap.presentation.utils.StringConverter;
+import ru.verso.picturesnap.presentation.viewmodel.client.PhotographerBookViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.client.SendFeedbackViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.AboutPhotographerFromClientViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.FavoritesViewModel;
@@ -90,6 +104,24 @@ public class PhotographerProfileFromClient extends Fragment {
         });
 
         navController = getNavController();
+        bindBookButton();
+
+        sendDataToPhotographerBookViewModel(photographerProfileViewModel);
+    }
+
+    private void sendDataToPhotographerBookViewModel(PhotographerProfileFromClientViewModel photographerProfileFromClientViewModel) {
+        PhotographerBookViewModel viewModel = getPhotographerBookViewModel();
+        viewModel.putClientId(photographerProfileFromClientViewModel.getClientId());
+
+        photographerProfileFromClientViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> {
+            if (photographer != null)
+                viewModel.putPhotographerId(photographer.getId());
+        });
+    }
+
+    private void bindBookButton() {
+
+        binding.appCompatButtonBook.setOnClickListener(v -> navController.navigate(R.id.action_photographerProfileFromClient_to_photographerBook));
     }
 
     private void updateAvatar(Photographer photographer) {
@@ -165,8 +197,8 @@ public class PhotographerProfileFromClient extends Fragment {
     private void sendPhotographerIdToFeedbacksFragment(String id) {
         new ViewModelProvider(requireActivity(),
                 new FeedbackViewModelFactory(
-                        new GetFeedbackDataUseCase(
-                                new FeedbackRepositoryImpl())))
+                        new GetFeedbacksDataUseCase(
+                                new FeedbacksRepositoryImpl(new FeedbacksFirebaseDataSource()))))
                 .get(FeedbackViewModel.class).putPhotographerId(id);
     }
 
@@ -180,8 +212,8 @@ public class PhotographerProfileFromClient extends Fragment {
 
         return new ViewModelProvider(requireActivity(), new FavoritesViewModelFactory(
                 new GetFavoritesDataUseCase(
-                        new FavoritesRepositoryImpl(requireContext())),
-                new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()), new RoleRepositoryImpl(requireContext()), new FirstTimeWentRepositoryImpl(requireContext()), new UserAuthDataRepositoryImpl())))
+                        new FavoritesRepositoryImpl(new FavoritesRoomDataSource(requireContext()))),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())), new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())), new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())), new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource()))))
                 .get(FavoritesViewModel.class);
     }
 
@@ -200,7 +232,7 @@ public class PhotographerProfileFromClient extends Fragment {
     private void sendPhotographerIdToAboutPhotographerViewModel(String photographerId) {
         new ViewModelProvider(requireActivity(), new AboutPhotographerFromClientViewModelFactory(
                 new GetPhotographerDataUseCase(
-                        new PhotographerRepositoryImpl())))
+                        new PhotographerRepositoryImpl(new PhotographerFirebaseDataSource()))))
                 .get(AboutPhotographerFromClientViewModel.class)
                 .putPhotographerId(photographerId);
     }
@@ -208,9 +240,9 @@ public class PhotographerProfileFromClient extends Fragment {
     private void sendPhotographerIdToServicesDialog(String photographerId) {
         new ViewModelProvider(requireActivity(), new ServicesViewModelFactory(
                 new GetPhotographerDataUseCase(
-                        new PhotographerRepositoryImpl()),
-                new GetPhotographerPicturesUseCase(new PhotographerPortfolioPicturesRepositoryImpl()),
-                new SendPhotographerPicturesUseCase(new PhotographerPortfolioPicturesRepositoryImpl())))
+                        new PhotographerRepositoryImpl(new PhotographerFirebaseDataSource())),
+                new GetPhotographerPicturesUseCase(new PhotographerPortfolioPicturesRepositoryImpl(new PhotographerPortfolioPicturesFirebaseDataSource())),
+                new SendPhotographerPicturesUseCase(new PhotographerPortfolioPicturesRepositoryImpl(new PhotographerPortfolioPicturesFirebaseDataSource()))))
                 .get(ServicesViewModel.class)
                 .putPhotographerId(photographerId);
     }
@@ -218,7 +250,7 @@ public class PhotographerProfileFromClient extends Fragment {
     private void updatePortfolio(NavController navController) {
 
         binding.linearLayoutFieldsContainer.textViewPortfolio.setOnClickListener(view ->
-                navController.navigate(R.id.action_photographerProfileFromClient_to_photographerPortfolioFromUnregistered));
+                navController.navigate(R.id.action_photographerProfileFromClient_to_photographerPortfolioFromClient));
     }
 
     private void updateFeedbacks(NavController navController, SendFeedbackViewModel sendFeedbackViewModel, Photographer photographer) {
@@ -230,13 +262,19 @@ public class PhotographerProfileFromClient extends Fragment {
     }
 
     private SendFeedbackViewModel getSendFeedbackViewModel() {
-        return new ViewModelProvider(requireActivity(), new SendFeedbackViewModelFactory(new SendFeedbackUseCase(new FeedbackRepositoryImpl()),
-                new GetUserDataUseCase(new UserLocationRepositoryImpl(requireContext()),
-                        new RoleRepositoryImpl(requireContext()),
-                        new FirstTimeWentRepositoryImpl(requireContext()),
-                        new UserAuthDataRepositoryImpl()),
-                new GetClientDataUseCase(new ClientRepositoryImpl()),
-                new GetPhotographerDataUseCase(new PhotographerRepositoryImpl()))).get(SendFeedbackViewModel.class);
+
+        return new ViewModelProvider(requireActivity(), new SendFeedbackViewModelFactory(new SendFeedbackUseCase(new FeedbacksRepositoryImpl(new FeedbacksFirebaseDataSource())),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())),
+                        new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())),
+                        new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())),
+                        new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource())),
+                new GetClientDataUseCase(new ClientRepositoryImpl(new ClientFirebaseDataSource())),
+                new GetPhotographerDataUseCase(new PhotographerRepositoryImpl(new PhotographerFirebaseDataSource())),
+                new GetFeedbacksDataUseCase(new FeedbacksRepositoryImpl(new FeedbacksFirebaseDataSource())))).get(SendFeedbackViewModel.class);
+    }
+
+    private PhotographerBookViewModel getPhotographerBookViewModel() {
+        return new ViewModelProvider(requireActivity(), new PhotographerBookViewModelFactory(new BookPhotographerUseCase(new RecordsRepositoryImpl(new RecordsFirebaseDataSource())), new GetPhotographerDataUseCase(new PhotographerRepositoryImpl(new PhotographerFirebaseDataSource())))).get(PhotographerBookViewModel.class);
     }
 
     public void showBottomSheetDialog(int fragmentId) {

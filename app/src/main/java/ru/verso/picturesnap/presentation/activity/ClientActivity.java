@@ -27,6 +27,11 @@ import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.ClientFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.ActivityClientBinding;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
@@ -81,13 +86,13 @@ public class ClientActivity extends AppCompatActivity {
     private ClientActivityViewModel getViewModel() {
 
         return new ViewModelProvider(this, new ClientActivityViewModelFactory(
-                new UpdateUserDataUseCase(new RoleRepositoryImpl(getApplicationContext()),
-                        new UserLocationRepositoryImpl(getApplicationContext()),
-                        new FirstTimeWentRepositoryImpl(getApplicationContext()))
-                , new GetUserDataUseCase(new UserLocationRepositoryImpl(getApplicationContext()),
-                new RoleRepositoryImpl(getApplicationContext()),
-                new FirstTimeWentRepositoryImpl(getApplicationContext()),
-                new UserAuthDataRepositoryImpl())))
+                new UpdateUserDataUseCase(new RoleRepositoryImpl(new RoleRoomDataSource(this)),
+                        new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(this)),
+                        new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(this)))
+                , new GetUserDataUseCase(new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(this)),
+                new RoleRepositoryImpl(new RoleRoomDataSource(this)),
+                new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(this)),
+                new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource()))))
                 .get(ClientActivityViewModel.class);
     }
 
@@ -127,11 +132,11 @@ public class ClientActivity extends AppCompatActivity {
     private ClientMainViewModel getClientMainViewModel() {
 
         return new ViewModelProvider(this, new ClientMainViewModelFactory(new GetUserDataUseCase(
-                new UserLocationRepositoryImpl(this),
-                new RoleRepositoryImpl(this),
-                new FirstTimeWentRepositoryImpl(this),
-                new UserAuthDataRepositoryImpl()),
-                new GetClientDataUseCase(new ClientRepositoryImpl()))).get(ClientMainViewModel.class);
+                new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(this)),
+                new RoleRepositoryImpl(new RoleRoomDataSource(this)),
+                new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(this)),
+                new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource())),
+                new GetClientDataUseCase(new ClientRepositoryImpl(new ClientFirebaseDataSource())))).get(ClientMainViewModel.class);
     }
 
     private void setupToolbar() {

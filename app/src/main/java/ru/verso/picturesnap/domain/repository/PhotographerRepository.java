@@ -21,4 +21,6 @@ public interface PhotographerRepository {
     LiveData<List<PhotographerPresentationService>> getPhotographerServicesById(String photographerId);
 
     void updatePhotographerAvatar(String photographerId, Uri uri);
+
+    void updateRatingOf(String photographerId, float lastAverage, int lastCount, int newAdd);
 }

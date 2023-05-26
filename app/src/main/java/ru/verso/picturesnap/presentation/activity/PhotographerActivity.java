@@ -26,6 +26,11 @@ import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.PhotographerFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.ActivityPhotographerBinding;
 import ru.verso.picturesnap.databinding.LayoutNavHeaderPhotographerBinding;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
@@ -73,11 +78,11 @@ public class PhotographerActivity extends AppCompatActivity {
 
     private PhotographerActivityViewModel getViewModel() {
 
-        return new ViewModelProvider(this, new PhotographerActivityViewModelFactory(new GetPhotographerDataUseCase(new PhotographerRepositoryImpl()), new GetUserDataUseCase(
-                new UserLocationRepositoryImpl(this),
-                new RoleRepositoryImpl(this),
-                new FirstTimeWentRepositoryImpl(this),
-                new UserAuthDataRepositoryImpl()
+        return new ViewModelProvider(this, new PhotographerActivityViewModelFactory(new GetPhotographerDataUseCase(new PhotographerRepositoryImpl(new PhotographerFirebaseDataSource())), new GetUserDataUseCase(
+                new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(this)),
+                new RoleRepositoryImpl(new RoleRoomDataSource(this)),
+                new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(this)),
+                new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource())
         ))).get(PhotographerActivityViewModel.class);
     }
 

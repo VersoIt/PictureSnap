@@ -1,19 +1,18 @@
 package ru.verso.picturesnap.data.repository;
 
-import com.google.firebase.auth.FirebaseAuth;
-
+import ru.verso.picturesnap.data.storage.datasources.UserAuthDataSource;
 import ru.verso.picturesnap.domain.repository.UserAuthDataRepository;
 
 public class UserAuthDataRepositoryImpl implements UserAuthDataRepository {
 
-    private final FirebaseAuth firebaseAuth;
+    private final UserAuthDataSource userAuthDataSource;
 
-    public UserAuthDataRepositoryImpl() {
-        this.firebaseAuth = FirebaseAuth.getInstance();
+    public UserAuthDataRepositoryImpl(UserAuthDataSource userAuthDataSource) {
+        this.userAuthDataSource = userAuthDataSource;
     }
 
     @Override
     public String getId() {
-        return firebaseAuth.getUid();
+        return userAuthDataSource.getId();
     }
 }

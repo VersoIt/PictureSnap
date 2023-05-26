@@ -1,4 +1,4 @@
-package ru.verso.picturesnap.data.repository;
+package ru.verso.picturesnap.data.storage.datasources.firebase;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -15,19 +15,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ru.verso.picturesnap.data.storage.room.firebase.models.FeedbackEntity;
+import ru.verso.picturesnap.data.storage.datasources.FeedbacksDataSource;
+import ru.verso.picturesnap.data.storage.firebase.Constants;
 import ru.verso.picturesnap.domain.models.Feedback;
-import ru.verso.picturesnap.domain.repository.FeedbackRepository;
 
-public class FeedbackRepositoryImpl implements FeedbackRepository {
+public class FeedbacksFirebaseDataSource implements FeedbacksDataSource {
 
     private final DatabaseReference feedbackReference;
 
-    private static final String FEEDBACK_REF = "feedbacks";
-
-    public FeedbackRepositoryImpl() {
+    public FeedbacksFirebaseDataSource() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        this.feedbackReference = firebaseDatabase.getReference(FEEDBACK_REF);
+        this.feedbackReference = firebaseDatabase.getReference(Constants.FIREBASE_FEEDBACKS_PATH);
     }
 
     @Override
@@ -42,14 +40,14 @@ public class FeedbackRepositoryImpl implements FeedbackRepository {
                 List<Feedback> feedbacks = new ArrayList<>();
                 for (DataSnapshot feedbackSnapshot : snapshot.getChildren()) {
 
-                    FeedbackEntity feedbackEntity = feedbackSnapshot.getValue(FeedbackEntity.class);
+                    Feedback feedbackEntity = feedbackSnapshot.getValue(Feedback.class);
                     if (feedbackEntity != null) {
-                        feedbacks.add(feedbackEntity.mapToDomain());
+                        feedbacks.add(feedbackEntity);
                     }
 
-                    feedbacks = feedbacks.stream().sorted((a, b) -> -a.getDate().compareTo(b.getDate())).collect(Collectors.toList());
-                    feedbacksMutableLiveData.setValue(feedbacks);
                 }
+                feedbacks = feedbacks.stream().sorted((a, b) -> -a.getDate().compareTo(b.getDate())).collect(Collectors.toList());
+                feedbacksMutableLiveData.setValue(feedbacks);
             }
 
             @Override

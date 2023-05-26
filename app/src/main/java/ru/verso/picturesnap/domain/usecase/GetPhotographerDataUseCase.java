@@ -27,6 +27,10 @@ public class GetPhotographerDataUseCase {
         return repository.getAllPhotographers();
     }
 
+    public void updateRatingOf(String photographerId, float lastAverage, int lastCount, int newAdd) {
+        repository.updateRatingOf(photographerId, lastAverage, lastCount, newAdd);
+    }
+
     public LiveData<Photographer> getPhotographerById(String id) {
         return repository.getPhotographerById(id);
     }

@@ -23,6 +23,11 @@ import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.ClientFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.FragmentClientProfileBinding;
 import ru.verso.picturesnap.domain.models.Location;
 import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
@@ -102,10 +107,10 @@ public class ClientProfile extends Fragment {
     private ClientMainProfileViewModel getViewModel() {
 
         return new ViewModelProvider(requireActivity(), new ClientMainProfileViewModelFactory(new GetUserDataUseCase(
-                new UserLocationRepositoryImpl(requireContext()),
-                new RoleRepositoryImpl(requireContext()),
-                new FirstTimeWentRepositoryImpl(requireContext()),
-                new UserAuthDataRepositoryImpl()
-        ), new GetClientDataUseCase(new ClientRepositoryImpl()))).get(ClientMainProfileViewModel.class);
+                new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())),
+                new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())),
+                new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())),
+                new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource())
+        ), new GetClientDataUseCase(new ClientRepositoryImpl(new ClientFirebaseDataSource())))).get(ClientMainProfileViewModel.class);
     }
 }

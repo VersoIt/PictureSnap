@@ -1,6 +1,7 @@
 
 package ru.verso.picturesnap.presentation.adapters.client;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -12,10 +13,20 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
+import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
+import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.PhotographerFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
+import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.LayoutPhotographerBinding;
 import ru.verso.picturesnap.domain.models.Photographer;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.presentation.factory.PhotographerProfileFromClientViewModelFactory;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.PhotographerProfileFromClientViewModel;
 
@@ -25,11 +36,15 @@ public class PhotographersInCityAdapter extends ListAdapter<Photographer, Photog
 
     private final FragmentActivity viewModelOwner;
 
-    public PhotographersInCityAdapter(@NonNull DiffUtil.ItemCallback<Photographer> diffCallback, NavController navController, FragmentActivity viewModelOwner) {
+    private final Context context;
+
+    public PhotographersInCityAdapter(Context context, @NonNull DiffUtil.ItemCallback<Photographer> diffCallback, NavController navController, FragmentActivity viewModelOwner) {
         super(diffCallback);
 
         this.navController = navController;
         this.viewModelOwner = viewModelOwner;
+
+        this.context = context;
     }
 
     @NonNull
@@ -55,7 +70,11 @@ public class PhotographersInCityAdapter extends ListAdapter<Photographer, Photog
 
     private PhotographerProfileFromClientViewModel getPhotographerViewModel() {
         return new ViewModelProvider(viewModelOwner, new PhotographerProfileFromClientViewModelFactory(new GetPhotographerDataUseCase(
-                new PhotographerRepositoryImpl())))
+                new PhotographerRepositoryImpl(new PhotographerFirebaseDataSource())),
+                new GetUserDataUseCase(new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(context)),
+                        new RoleRepositoryImpl(new RoleRoomDataSource(context)),
+                        new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(context)),
+                        new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource()))))
                 .get(PhotographerProfileFromClientViewModel.class);
     }
 

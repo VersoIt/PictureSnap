@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/primary_white"
+    tools:context=".presentation.fragments.client.PhotographerBook">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayout_header"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/base_elements_margin"
+
+        android:orientation="vertical"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView_header"
+
+            android:paddingHorizontal="10dp"
+
+            style="@style/headerText.largeMargin"
+
+            android:layout_margin="16dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/booking_selection"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp" />
+
+        <View
+            android:id="@+id/view_line"
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/rect_grey" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayout_selections"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+
+        android:orientation="vertical"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_header"
+
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView_date_selection"
+            style="@style/textField.selection"
+
+            android:layout_marginHorizontal="0dp"
+
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+
+            android:layout_width="match_parent"
+            android:background="@drawable/rect_white"
+
+            android:layout_marginTop="@dimen/large_margin"
+
+            android:text="@string/date_selection"
+            app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+            app:drawableStartCompat="@drawable/ic_date" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView_time_selection"
+            style="@style/textField.selection"
+
+            android:layout_marginHorizontal="0dp"
+
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+
+            android:layout_width="match_parent"
+            android:background="@drawable/rect_white"
+
+            android:layout_marginTop="@dimen/small_margin"
+
+            android:text="@string/time_selection"
+            app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+            app:drawableStartCompat="@drawable/ic_time" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/rect_white"
+
+            android:layout_marginTop="@dimen/small_margin"
+            android:elevation="0dp"
+
+            android:paddingEnd="10dp"
+            android:paddingStart="0dp">
+
+            <Spinner
+                android:id="@+id/spinner_selected_service"
+
+                style="@style/textField.input"
+
+                android:dropDownVerticalOffset="40dp"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayout_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/small_margin"
+
+            android:orientation="vertical"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_rating_selection"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="@dimen/layout_width_percent_block">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="@dimen/small_margin"
+
+                android:text="@string/comment" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editText_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:padding="10dp"
+                android:hint="@string/not_necessarily"
+                android:background="@drawable/rect_white"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
+
+                android:lines="7"
+                android:maxLines="7"
+                android:minLines="6" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <include
+        android:id="@+id/appCompatButton_send"
+        layout="@layout/layout_send_button"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginVertical="10dp"
+
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_selections"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="@dimen/layout_width_percent_block" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

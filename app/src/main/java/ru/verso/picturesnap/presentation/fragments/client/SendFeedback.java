@@ -1,11 +1,9 @@
 package ru.verso.picturesnap.presentation.fragments.client;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,8 +44,14 @@ public class SendFeedback extends Fragment {
         binding.appCompatButtonSend.buttonSend.setOnClickListener(v -> {
             if (!sendFeedbackViewModel.isEmpty(Objects.requireNonNull(binding.editTextFeedbackText.getText()).toString()))
             {
-                sendFeedbackViewModel.sendFeedback(Objects.requireNonNull(binding.editTextFeedbackText.getText()).toString());
-                navController.navigateUp();
+                binding.appCompatButtonSend.buttonSend.setEnabled(false);
+                sendFeedbackViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> sendFeedbackViewModel.getAllFeedbacks().observe(getViewLifecycleOwner(), feedbacks -> {
+                    sendFeedbackViewModel.getFeedbackToSend(Objects.requireNonNull(binding.editTextFeedbackText.getText()).toString()).observe(getViewLifecycleOwner(), feedback -> {
+                        sendFeedbackViewModel.sendFeedback(feedback, photographer.getRating(), feedbacks.size());
+                        navController.navigateUp();
+                    });
+                }));
+
                 return;
             }
 

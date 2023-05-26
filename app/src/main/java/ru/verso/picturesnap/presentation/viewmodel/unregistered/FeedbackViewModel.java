@@ -1,21 +1,20 @@
 package ru.verso.picturesnap.presentation.viewmodel.unregistered;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
 import ru.verso.picturesnap.domain.models.Feedback;
-import ru.verso.picturesnap.domain.usecase.GetFeedbackDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetFeedbacksDataUseCase;
 
 public class FeedbackViewModel extends ViewModel {
 
-    private final GetFeedbackDataUseCase getFeedbackDataUseCase;
+    private final GetFeedbacksDataUseCase getFeedbackDataUseCase;
 
     private String photographerId;
 
-    public FeedbackViewModel(GetFeedbackDataUseCase getFeedbackDataUseCase) {
+    public FeedbackViewModel(GetFeedbacksDataUseCase getFeedbackDataUseCase) {
         this.getFeedbackDataUseCase = getFeedbackDataUseCase;
     }
 

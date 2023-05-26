@@ -95,6 +95,7 @@ public class ExperienceSpinnerAdapter implements SpinnerAdapter {
     }
 
     private String convertToStringExperience(Context context, int year) {
+
         int[] experienceResources = {
                 R.string.one_year,
                 R.string.two_years,

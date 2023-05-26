@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         tools:context=".presentation.fragments.photographer.PhotographerRegistration">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linearLayout_input_fields_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -377,7 +377,7 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <TextView
             android:id="@+id/textView_caption_text"

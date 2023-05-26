@@ -1,5 +1,7 @@
 package ru.verso.picturesnap.domain.models;
 
+import java.util.Objects;
+
 public class PhotographerPresentationService {
 
     private String id;
@@ -58,5 +60,28 @@ public class PhotographerPresentationService {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, photographerId, serviceId, cost, name);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+
+        if (other instanceof PhotographerPresentationService) {
+            PhotographerPresentationService object = (PhotographerPresentationService) other;
+
+            return id.equals(object.id) &&
+                    photographerId.equals(object.photographerId) &&
+                    serviceId.equals(object.serviceId) &&
+                    cost == object.cost &&
+                    name.equals(object.name);
+        }
+
+        return false;
     }
 }
