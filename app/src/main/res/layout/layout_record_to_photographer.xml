@@ -18,7 +18,7 @@
         android:orientation="horizontal"
         tools:ignore="UseCompoundDrawables">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView_photographer_logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -69,32 +69,37 @@
         tools:text="@string/portrait_photo_session"/>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textView_photo_session_time"
+        android:id="@+id/textView_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:textStyle="bold"
 
         android:textSize="22sp"
 
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
 
-        tools:text="С 10:00 - 12:00"/>
+        tools:text="12 мая, 12:00"/>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textView_photo_session_day"
+        android:id="@+id/textView_photo_session_cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginHorizontal="20dp"
 
-        tools:text="6 апреля"/>
+        android:textSize="16sp"
+
+        android:layout_marginTop="4dp"
+
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/rect_grey"
+        android:padding="6dp"
+
+        tools:text="1000 руб/ч"/>
 
     <View
         android:id="@+id/view_line"
 
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@drawable/rect_grey" />

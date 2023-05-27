@@ -1,12 +1,14 @@
 package ru.verso.picturesnap.presentation.fragments.client;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import java.util.Locale;
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.FragmentPhotographerBookBinding;
 import ru.verso.picturesnap.domain.models.PhotographerPresentationService;
+import ru.verso.picturesnap.presentation.activity.MainActivity;
 import ru.verso.picturesnap.presentation.adapters.client.ServicesBookingSpinnerAdapter;
 import ru.verso.picturesnap.presentation.viewmodel.client.PhotographerBookViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.client.RecordDateSelectionViewModel;
@@ -81,10 +84,10 @@ public class PhotographerBook extends Fragment {
         });
 
         bindSpinnerAdapter(viewModel);
-        bindSendButton(navController, viewModel, dateSelectionViewModel, timeSelectionViewModel);
+        bindSendButton(viewModel, dateSelectionViewModel, timeSelectionViewModel);
     }
 
-    private void bindSendButton(NavController navController, PhotographerBookViewModel viewModel, RecordDateSelectionViewModel dateSelectionViewModel, RecordTimeSelectionViewModel timeSelectionViewModel) {
+    private void bindSendButton(PhotographerBookViewModel viewModel, RecordDateSelectionViewModel dateSelectionViewModel, RecordTimeSelectionViewModel timeSelectionViewModel) {
         binding.appCompatButtonSend.buttonSend.setOnClickListener(view -> {
             if (!dateSelectionViewModel.isValid() || !dateSelectionViewModel.isChanged()) {
                 Toast.makeText(requireContext(), R.string.date_is_not_valid, Toast.LENGTH_LONG).show();
@@ -105,33 +108,39 @@ public class PhotographerBook extends Fragment {
                     return;
                 }
                 Toast.makeText(requireContext(), R.string.book_successfully, Toast.LENGTH_LONG).show();
-                navController.popBackStack();
-                navController.navigate(R.id.client_main);
+                goToMainActivity();
             }
         });
     }
 
+    private void goToMainActivity() {
+        Intent intent = new Intent(requireContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        requireActivity().finish();
+    }
+
     private void bindSpinnerAdapter(PhotographerBookViewModel viewModel) {
+
+        binding.spinnerSelectedService.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                viewModel.updateSelectedServicePosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         viewModel.getServicesOfPhotographer().observe(getViewLifecycleOwner(), services -> {
             if (services != null && services.size() > 0) {
                 ServicesBookingSpinnerAdapter spinnerAdapter = new ServicesBookingSpinnerAdapter(requireContext(), services);
                 binding.spinnerSelectedService.setAdapter(spinnerAdapter);
             }
-        });
-
-        viewModel.getService().observe(getViewLifecycleOwner(), service -> {
-            if (service != null) {
-                SpinnerAdapter adapter = binding.spinnerSelectedService.getAdapter();
-                if (adapter != null) {
-                    for (int idxNum = 0; idxNum < binding.spinnerSelectedService.getAdapter().getCount(); ++idxNum) {
-                        if (service.hashCode() == adapter.getItem(idxNum).hashCode() && service.equals(adapter.getItem(idxNum))) {
-                            binding.spinnerSelectedService.setSelection(idxNum);
-                            return;
-                        }
-                    }
-                }
-            }
+            viewModel.getSelectedServicePosition().observe(getViewLifecycleOwner(), position ->
+                    binding.spinnerSelectedService.setSelection(position));
         });
     }
 
@@ -160,11 +169,5 @@ public class PhotographerBook extends Fragment {
 
         assert navHostFragment != null;
         return navHostFragment.getNavController();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.e("FUCKER", "ON_DESTROY");
     }
 }

@@ -5,8 +5,9 @@ import java.util.Date;
 public class Record {
 
     public enum Status {
+        PENDING,
         ACCEPTED,
-        NOT_ACCEPTED
+        DENIED
     }
 
     private String serviceId;

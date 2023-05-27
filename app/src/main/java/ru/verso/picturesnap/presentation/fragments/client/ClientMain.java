@@ -15,21 +15,27 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ru.verso.picturesnap.R;
+import ru.verso.picturesnap.data.repository.ClientRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerPresentationServiceRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerRepositoryImpl;
 import ru.verso.picturesnap.data.repository.PhotographerServiceRepositoryImpl;
+import ru.verso.picturesnap.data.repository.RecordsRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
+import ru.verso.picturesnap.data.storage.datasources.firebase.ClientFirebaseDataSource;
 import ru.verso.picturesnap.data.storage.datasources.firebase.PhotographerFirebaseDataSource;
 import ru.verso.picturesnap.data.storage.datasources.firebase.PhotographerPresentationServiceFirebaseDataSource;
 import ru.verso.picturesnap.data.storage.datasources.firebase.PhotographerServiceFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.RecordsFirebaseDataSource;
 import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDataSource;
 import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
 import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
 import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
 import ru.verso.picturesnap.databinding.FragmentClientMainBinding;
+import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetClientRecordsUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerDataUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographerServiceByIdUseCase;
 import ru.verso.picturesnap.domain.usecase.GetPhotographersByServiceIdUseCase;
@@ -37,7 +43,9 @@ import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographerServicesAdapterFromRegisteredClient;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographersInCityFromRegisteredClientAdapter;
+import ru.verso.picturesnap.presentation.factory.ClientMainViewModelFactory;
 import ru.verso.picturesnap.presentation.factory.ClientRecordsViewModelFactory;
+import ru.verso.picturesnap.presentation.viewmodel.client.ClientMainViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.client.ClientPhotographersOfSelectedServiceViewModel;
 import ru.verso.picturesnap.presentation.viewmodel.unregistered.UnregisteredMainViewModel;
 import ru.verso.picturesnap.presentation.factory.UnregisteredMainViewModelFactory;
@@ -60,15 +68,27 @@ public class ClientMain extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        viewModel = getUnregisteredMainViewModel();
-
         NavController navController = getNavController();
 
+        binding.textViewMyRecords.setEnabled(true);
         bindRecordsButton(navController);
+
+        viewModel = getUnregisteredMainViewModel();
+
         createPhotographerServicesList(navController);
         createPhotographersInCityList(navController);
 
         viewModel.getAllPhotographers().observe(requireActivity(), photographers -> viewModel.updatePhotographersInCity(photographers));
+        initAmountOfRecords(getClientMainViewModel());
+    }
+
+    private void initAmountOfRecords(ClientMainViewModel clientMainViewModel) {
+        clientMainViewModel.getClientId().observe(getViewLifecycleOwner(), id -> clientMainViewModel.getClientRecords(id, records -> {
+            if (records.size() > 0) {
+                binding.textViewRecordCount.setVisibility(View.VISIBLE);
+                binding.textViewRecordCount.setText(String.valueOf(records.size()));
+            }
+        }));
     }
 
     private UnregisteredMainViewModel getUnregisteredMainViewModel() {
@@ -136,11 +156,23 @@ public class ClientMain extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         viewModel.getServices().observe(getViewLifecycleOwner(), services -> {
+            binding.textViewMyRecords.setEnabled(true);
             if (services != null && services.size() > 0) {
                 binding.progressBar.setVisibility(View.GONE);
                 binding.recyclerViewServices.setVisibility(View.VISIBLE);
                 adapter.submitList(services);
             }
         });
+    }
+
+    private ClientMainViewModel getClientMainViewModel() {
+
+        return new ViewModelProvider(this, new ClientMainViewModelFactory(new GetUserDataUseCase(
+                new UserLocationRepositoryImpl(new UserLocationSharedPrefsDataSource(requireContext())),
+                new RoleRepositoryImpl(new RoleRoomDataSource(requireContext())),
+                new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(requireContext())),
+                new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource())),
+                new GetClientDataUseCase(new ClientRepositoryImpl(new ClientFirebaseDataSource())),
+                new GetClientRecordsUseCase(new RecordsRepositoryImpl(new RecordsFirebaseDataSource())))).get(ClientMainViewModel.class);
     }
 }

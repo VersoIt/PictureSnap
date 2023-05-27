@@ -183,4 +183,22 @@ public class PhotographerFirebaseDataSource implements PhotographerDataSource {
         float prevSum = lastAverage * lastCount;
         photographersReference.child(photographerId).child(Constants.FIREBASE_PHOTOGRAPHER_RATING_PATH).setValue((prevSum + newAdd) / (lastCount + 1));
     }
+
+    @Override
+    public LiveData<PhotographerPresentationService> getServiceById(String id) {
+        MutableLiveData<PhotographerPresentationService> serviceLiveData = new MutableLiveData<>();
+        serviceProvisionReference.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                serviceLiveData.setValue(snapshot.getValue(PhotographerPresentationService.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return serviceLiveData;
+    }
 }

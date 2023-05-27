@@ -5,6 +5,9 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginVertical="10dp"
+    android:padding="10dp"
+
+    android:background="@drawable/rect_white"
 
     android:orientation="vertical"
     android:baselineAligned="false">
@@ -18,8 +21,8 @@
         android:orientation="horizontal"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
-            android:id="@+id/imageView_photographer_logo"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView_client_logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
 
@@ -68,7 +71,7 @@
         tools:text="@string/portrait_photo_session"/>
 
     <TextView
-        android:id="@+id/textView_photo_session_time"
+        android:id="@+id/textView_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -77,21 +80,29 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
 
-        tools:text="С 10:00 - 12:00"/>
+        tools:text="12 мая, 12:30"/>
 
-    <TextView
-        android:id="@+id/textView_photo_session_day"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textView_photo_session_cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginHorizontal="20dp"
+        android:textSize="16sp"
 
-        tools:text="6 апреля"/>
+        android:layout_marginTop="4dp"
+
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/rect_grey"
+        android:padding="6dp"
+
+        tools:text="1000 руб/ч"/>
 
     <TextView
         android:id="@+id/textView_comment"
         style="@style/additionText"
         android:layout_width="wrap_content"
+
+        android:visibility="gone"
 
         android:layout_height="wrap_content"
         android:textAlignment="textStart"
@@ -99,13 +110,75 @@
         android:layout_marginHorizontal="20dp"
         tools:text="Комментарий: Здравствуйте, я задержусь на 15 минут." />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <View
+        android:id="@+id/view_line"
+
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/rect_grey" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textView_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        tools:text="Принять"
+        android:visibility="gone"
 
-        android:layout_marginVertical="20dp"
-        style="@style/standardText.white.purpleBackground"/>
+        android:textColor="@color/primary"
+        android:textSize="26sp"
+
+        android:gravity="center"
+
+        tools:text="@string/accepted"
+
+        android:layout_marginVertical="10dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout_status_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:layout_gravity="center">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton_accept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+
+            android:text="@string/accept"
+            android:paddingHorizontal="20dp"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginBottom="6dp"
+
+            android:layout_marginTop="16dp"
+            style="@style/standardText.white.purpleBackground"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/appCompatButton_dismiss"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="6dp"
+
+            android:paddingHorizontal="20dp"
+            android:layout_marginHorizontal="4dp"
+
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+
+            android:textAllCaps="false"
+
+            android:background="@drawable/rect_white"
+            android:textColor="@android:color/holo_red_dark"
+
+            android:text="@string/dismiss" />
+
+    </LinearLayout>
 
 </LinearLayout>

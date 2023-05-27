@@ -8,30 +8,59 @@ import java.util.Objects;
 public class Record {
 
     public enum Status {
+        PENDING,
         ACCEPTED,
-        NOT_ACCEPTED
+        DENIED
     }
 
     private String serviceId;
 
     private String clientId;
 
+    private String id;
+
     private Date date;
 
     private Status status;
 
+    private String photographerId;
+
     private String comment;
 
-    public Record(String serviceId, String clientId, Date date, Status status, String comment) {
+    private boolean isHiddenForPhotographer;
+
+    private boolean isHiddenForClient;
+
+    public Record(String serviceId, String clientId, String photographerId, Date date, Status status, String comment) {
         this.serviceId = serviceId;
         this.clientId = clientId;
         this.date = date;
         this.status = status;
         this.comment = comment;
+        this.photographerId = photographerId;
+
+        isHiddenForClient = false;
+        isHiddenForPhotographer = false;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getComment() {
         return comment;
+    }
+
+    public String getPhotographerId() {
+        return photographerId;
+    }
+
+    public void setPhotographerId(String photographerId) {
+        this.photographerId = photographerId;
     }
 
     public void setComment(String comment) {
@@ -39,6 +68,24 @@ public class Record {
     }
 
     public Record() {
+        isHiddenForClient = false;
+        isHiddenForPhotographer = false;
+    }
+
+    public boolean isHiddenForPhotographer() {
+        return isHiddenForPhotographer;
+    }
+
+    public void setHiddenForPhotographer(boolean hiddenForPhotographer) {
+        isHiddenForPhotographer = hiddenForPhotographer;
+    }
+
+    public boolean isHiddenForClient() {
+        return isHiddenForClient;
+    }
+
+    public void setHiddenForClient(boolean hiddenForClient) {
+        isHiddenForClient = hiddenForClient;
     }
 
     public Status getStatus() {

@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         Class<? extends AppCompatActivity> activityToNavigate = viewModel.getClassToNavigate();
 
         Intent intent = new Intent(this, activityToNavigate);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 }

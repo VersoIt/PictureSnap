@@ -100,8 +100,9 @@ public class ClientProfile extends Fragment {
 
     private void goToMainActivity() {
         Intent intent = new Intent(this.getContext(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        requireActivity().finish();
     }
 
     private ClientMainProfileViewModel getViewModel() {

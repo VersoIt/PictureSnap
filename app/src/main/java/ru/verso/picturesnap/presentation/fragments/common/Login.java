@@ -126,8 +126,9 @@ public class Login extends Fragment {
 
     private void sendToMainActivity() {
         Intent intent = new Intent(requireActivity(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        requireActivity().finish();
     }
 
     private void save(LoginViewModel viewModel) {

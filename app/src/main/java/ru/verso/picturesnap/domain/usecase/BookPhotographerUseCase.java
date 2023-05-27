@@ -13,8 +13,8 @@ public class BookPhotographerUseCase {
         this.recordsRepository = recordsRepository;
     }
 
-    public void book(String serviceId, String clientId, Date date, String comment) {
-        Record record = new Record(serviceId, clientId, date, Record.Status.NOT_ACCEPTED, comment);
+    public void book(String serviceId, String clientId, String photographerId, Date date, String comment) {
+        Record record = new Record(serviceId, clientId, photographerId, date, Record.Status.PENDING, comment);
         recordsRepository.insertNewRecord(record);
     }
 }

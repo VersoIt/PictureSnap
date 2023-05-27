@@ -61,12 +61,14 @@ public class Favorites extends Fragment {
     private void createFavoritesRecycler(FavoritesViewModel favoritesViewModel) {
         RecyclerView recycler = binding.recyclerViewFavorites;
         recycler.setLayoutManager(new LinearLayoutManager(requireContext()));
+
         if (favoritesViewModel.isAuthorized()) {
             FavoritesFromClientAdapter favoritesAdapter = new FavoritesFromClientAdapter(new FavoritesFromClientAdapter.DiffUtil(),
                     getNavController(),
                     getPhotographerProfileViewModel());
             recycler.setAdapter(favoritesAdapter);
-            favoritesViewModel.getAllFavorites().observe(getViewLifecycleOwner(), favoritesAdapter::submitList);
+            favoritesViewModel.getAllFavorites().observe(getViewLifecycleOwner(),
+                    favoritesAdapter::submitList);
         }
         else {
             FavoritesFromUnregisteredAdapter favoritesAdapter = new FavoritesFromUnregisteredAdapter(new FavoritesFromUnregisteredAdapter.DiffUtil(),

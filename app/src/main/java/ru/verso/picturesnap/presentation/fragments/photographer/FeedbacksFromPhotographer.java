@@ -58,11 +58,15 @@ public class FeedbacksFromPhotographer extends Fragment {
                 updateProgress(feedbacks);
             }
         });
-    }
 
-    private NavController getNavController() {
-        NavHostFragment navHostFragment = (NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView_content);
-        return Objects.requireNonNull(navHostFragment).getNavController();
+        viewModel.getFeedbacksOfPhotographer().observe(getViewLifecycleOwner(), feedbacks -> {
+            binding.textViewRatingsCount.setText(String.format("%s %s", feedbacks.size(), getResources().getString(R.string.ratings_count)));
+            if (feedbacks.size() > 0) {
+                binding.textViewNoFeedbacks.setVisibility(View.GONE);
+                adapter.submitList(feedbacks);
+                updateProgress(feedbacks);
+            }
+        });
     }
 
     private FeedbackViewModel getFeedbackViewModel() {

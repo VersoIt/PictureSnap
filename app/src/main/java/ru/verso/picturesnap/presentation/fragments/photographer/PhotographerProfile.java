@@ -2,6 +2,7 @@ package ru.verso.picturesnap.presentation.fragments.photographer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,8 @@ public class PhotographerProfile extends Fragment {
 
     private ActivityResultLauncher<String> imagePickerLauncher;
 
+    private final Handler handler = new Handler();
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -121,8 +124,9 @@ public class PhotographerProfile extends Fragment {
 
     private void goToMainActivity() {
         Intent intent = new Intent(requireActivity(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        requireActivity().finish();
     }
 
     private void updateAvatar(Photographer photographer) {
@@ -161,7 +165,7 @@ public class PhotographerProfile extends Fragment {
 
     private void updateLocation(Location location) {
 
-        binding.linearLayoutFieldsContainer.textViewLocation.setText(LocationCoordinator.getFullAddress(requireContext(), location.getLatitude(), location.getLongitude()));
+        showLocation(location);
 
         binding.linearLayoutFieldsContainer.textViewLocation.setOnClickListener(view -> {
             navController.navigate(R.id.action_photographerProfile_to_photoSessionAddressFromPhotographer);
@@ -243,5 +247,13 @@ public class PhotographerProfile extends Fragment {
     public void showBottomSheetDialog(int fragmentId) {
         ClientBottomSheetDialogFragment clientBottomSheet = new ClientBottomSheetDialogFragment(fragmentId);
         clientBottomSheet.show(requireActivity().getSupportFragmentManager(), ClientBottomSheetDialogFragment.TAG);
+    }
+
+    private void showLocation(Location photographerLocation) {
+
+        new Thread(() -> {
+            String location = LocationCoordinator.getFullAddress(binding.getRoot().getContext(), photographerLocation.getLatitude(), photographerLocation.getLongitude());
+            handler.post(() -> binding.linearLayoutFieldsContainer.textViewLocation.setText(location));
+        }).start();
     }
 }

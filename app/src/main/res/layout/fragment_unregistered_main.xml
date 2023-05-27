@@ -138,6 +138,8 @@
                 android:id="@+id/linearLayout_auth_buttons"
                 layout="@layout/layout_auth_buttons"
 
+                android:enabled="false"
+
                 android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"

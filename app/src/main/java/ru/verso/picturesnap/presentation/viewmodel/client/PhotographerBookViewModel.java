@@ -26,10 +26,22 @@ public class PhotographerBookViewModel extends ViewModel {
 
     private String photographerId;
 
+    private final MutableLiveData<Integer> selectedServicePosition;
+
     public PhotographerBookViewModel(BookPhotographerUseCase bookPhotographerUseCase, GetPhotographerDataUseCase getPhotographerDataUseCase) {
         this.bookPhotographerUseCase = bookPhotographerUseCase;
         this.getPhotographerDataUseCase = getPhotographerDataUseCase;
         this.service = new MutableLiveData<>();
+
+        selectedServicePosition = new MutableLiveData<>(0);
+    }
+
+    public void updateSelectedServicePosition(int position) {
+        selectedServicePosition.setValue(position);
+    }
+
+    public LiveData<Integer> getSelectedServicePosition() {
+        return selectedServicePosition;
     }
 
     public void putPhotographerId(String photographerId) {
@@ -42,10 +54,6 @@ public class PhotographerBookViewModel extends ViewModel {
 
     public void setService(PhotographerPresentationService service) {
         this.service.setValue(service);
-    }
-
-    public LiveData<PhotographerPresentationService> getService() {
-        return service;
     }
 
     public boolean book(Date selectedDay, LocalTime selectedTime, String comment) {
@@ -61,7 +69,7 @@ public class PhotographerBookViewModel extends ViewModel {
             return false;
 
         if (service.getValue() != null) {
-            bookPhotographerUseCase.book(service.getValue().getId(), clientId, calendar.getTime(), comment);
+            bookPhotographerUseCase.book(service.getValue().getId(), clientId, photographerId, calendar.getTime(), comment);
         }
 
         return true;

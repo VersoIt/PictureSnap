@@ -8,7 +8,15 @@
         android:id="@+id/photographerMain"
         android:name="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerMain"
         android:label="fragment_photographer_main"
-        tools:layout="@layout/fragment_photographer_main" />
+        tools:layout="@layout/fragment_photographer_main" >
+        <action
+            android:id="@+id/action_photographerMain_to_photographerRecords"
+            app:destination="@id/photographerRecords"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
     <fragment
         android:id="@+id/photographerProfile"
         android:name="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerProfile"
@@ -72,4 +80,9 @@
         android:name="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerPortfolioFromPhotographer"
         android:label="fragment_photographer_portfolio_from_photographer"
         tools:layout="@layout/fragment_photographer_portfolio_from_photographer" />
+    <fragment
+        android:id="@+id/photographerRecords"
+        android:name="ru.verso.picturesnap.presentation.fragments.photographer.PhotographerRecords"
+        android:label="fragment_photographer_clients_records"
+        tools:layout="@layout/fragment_photographer_clients_records" />
 </navigation>

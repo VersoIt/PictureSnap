@@ -42,4 +42,8 @@ public class GetPhotographerDataUseCase {
     public void updatePhotographerAvatar(String photographerId, Uri uri) {
         repository.updatePhotographerAvatar(photographerId, uri);
     }
+
+    public LiveData<PhotographerPresentationService> getServiceById(String id) {
+        return repository.getServiceById(id);
+    }
 }

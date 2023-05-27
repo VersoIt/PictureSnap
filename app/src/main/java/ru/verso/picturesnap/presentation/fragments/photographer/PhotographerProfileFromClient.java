@@ -1,6 +1,7 @@
 package ru.verso.picturesnap.presentation.fragments.photographer;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import ru.verso.picturesnap.R;
@@ -76,6 +78,8 @@ public class PhotographerProfileFromClient extends Fragment {
 
     private NavController navController;
 
+    private final Handler handler = new Handler();
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -101,6 +105,7 @@ public class PhotographerProfileFromClient extends Fragment {
             sendPhotographerIdToFeedbacksFragment(photographer.getId());
             updateFavoriteButton(photographer, getFavoritesViewModel());
             updateAvatar(photographer);
+            updateRating(photographer);
         });
 
         navController = getNavController();
@@ -173,13 +178,17 @@ public class PhotographerProfileFromClient extends Fragment {
         });
     }
 
+    private void updateRating(Photographer photographer) {
+        binding.linearLayoutFieldsContainer.textViewRating.setText(String.format(Locale.getDefault(), "%.1f/5", photographer.getRating()));
+    }
+
     private boolean isFavorite(Photographer photographer, List<Photographer> photographers) {
         return photographers.stream().anyMatch(p -> p.getId().equals(photographer.getId()));
     }
 
     private void updateLocation(Location location) {
 
-        binding.linearLayoutFieldsContainer.textViewLocation.setText(LocationCoordinator.getFullAddress(requireContext(), location.getLatitude(), location.getLongitude()));
+        showLocation(location);
 
         binding.linearLayoutFieldsContainer.textViewLocation.setOnClickListener(view -> {
             navController.navigate(R.id.action_photographerProfileFromClient_to_photoSessionAddress);
@@ -280,5 +289,13 @@ public class PhotographerProfileFromClient extends Fragment {
     public void showBottomSheetDialog(int fragmentId) {
         ClientBottomSheetDialogFragment clientBottomSheet = new ClientBottomSheetDialogFragment(fragmentId);
         clientBottomSheet.show(requireActivity().getSupportFragmentManager(), ClientBottomSheetDialogFragment.TAG);
+    }
+
+    private void showLocation(Location photographerLocation) {
+
+        new Thread(() -> {
+            String location = LocationCoordinator.getFullAddress(binding.getRoot().getContext(), photographerLocation.getLatitude(), photographerLocation.getLongitude());
+            handler.post(() -> binding.linearLayoutFieldsContainer.textViewLocation.setText(location));
+        }).start();
     }
 }

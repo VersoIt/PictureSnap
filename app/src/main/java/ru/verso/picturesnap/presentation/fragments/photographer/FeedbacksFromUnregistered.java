@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.List;
 
+import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.FragmentFeedbacksFromUnregisteredBinding;
 import ru.verso.picturesnap.domain.models.Feedback;
 import ru.verso.picturesnap.presentation.adapters.client.PhotographerFeedbacksAdapter;
@@ -47,6 +48,15 @@ public class FeedbacksFromUnregistered extends Fragment {
         photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> binding.textViewTotalRating.setText(String.valueOf(photographer.getRating())));
 
         viewModel.getFeedbacksOfPhotographer().observe(getViewLifecycleOwner(), feedbacks -> {
+            if (feedbacks.size() > 0) {
+                binding.textViewNoFeedbacks.setVisibility(View.GONE);
+                adapter.submitList(feedbacks);
+                updateProgress(feedbacks);
+            }
+        });
+
+        viewModel.getFeedbacksOfPhotographer().observe(getViewLifecycleOwner(), feedbacks -> {
+            binding.textViewRatingsCount.setText(String.format("%s %s", feedbacks.size(), getResources().getString(R.string.ratings_count)));
             if (feedbacks.size() > 0) {
                 binding.textViewNoFeedbacks.setVisibility(View.GONE);
                 adapter.submitList(feedbacks);

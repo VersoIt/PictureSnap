@@ -48,4 +48,9 @@ public class PhotographerRepositoryImpl implements PhotographerRepository {
     public void updateRatingOf(String photographerId, float lastAverage, int lastCount, int newAdd) {
         photographerDataSource.updateRatingOf(photographerId, lastAverage, lastCount, newAdd);
     }
+
+    @Override
+    public LiveData<PhotographerPresentationService> getServiceById(String id) {
+        return photographerDataSource.getServiceById(id);
+    }
 }

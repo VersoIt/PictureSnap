@@ -107,6 +107,7 @@ public class UnregisteredMain extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         viewModel.getPhotographersInCity().observe(getViewLifecycleOwner(), photographers -> {
+            binding.linearLayoutAuthButtons.getRoot().setEnabled(true);
             if (photographers != null && photographers.size() > 0) {
                 binding.textViewPhotographersInCity.setVisibility(View.VISIBLE);
                 binding.recyclerViewPhotographersInCity.setVisibility(View.VISIBLE);

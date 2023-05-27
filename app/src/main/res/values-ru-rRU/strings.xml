@@ -9,7 +9,7 @@
     <string name="unregistered_fragment_home">Домой</string>
     <string name="client_fragment_home">Домой</string>
     <string name="previous">Предыдущий</string>
-    <string name="welcome">Добро пожаловать</string>
+    <string name="welcome">Добро пожаловать!</string>
     <string name="user_solution">В приложении возможна  регистрация как клиентов, так и  фотографов, которые могут делиться  своим творчеством.</string>
     <string name="booking_selection">Выбор услуги, даты и времени</string>
     <string name="user_solution_title">Решение за Вами</string>
@@ -61,7 +61,7 @@
     <string name="login_account">Войдите в аккаунт, чтобы забронировать фотосессию</string>
     <string name="menu">Меню</string>
     <string name="client_registration">Регистрация - клиент</string>
-    <string name="contract">Нажимая на кнопку \"Зарегистрироваться\" вы соглашаетесь на обработку персональных данных.</string>
+    <string name="contract">Нажимая на кнопку \"Зарегистрироваться\", вы соглашаетесь на обработку персональных данных.</string>
     <string name="city">Город</string>
     <string name="first_name">Имя</string>
     <string name="last_name">Фамилия</string>
@@ -159,4 +159,8 @@
     <string name="time_is_not_selected">Время не выбрано</string>
     <string name="book_successfully">Поздравляем, вы забронировали услугу!</string>
     <string name="ratings_count">оценок</string>
+    <string name="pending">В ожидании</string>
+    <string name="denied">Отказано</string>
+    <string name="accept">Принять</string>
+    <string name="dismiss">Отказаться</string>
 </resources>

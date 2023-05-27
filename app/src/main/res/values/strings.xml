@@ -12,7 +12,7 @@
     <string name="profile">Profile</string>
     <string name="home">Home</string>
     <string name="favorite">Favourite</string>
-    <string name="welcome">Welcome</string>
+    <string name="welcome">Welcome!</string>
     <string name="booking_selection">Choice of service, date and time</string>
 
     <string name="user_solution_title">Decision for you</string>
@@ -136,6 +136,8 @@
     <string name="yandex_maps">Yandex Maps</string>
     <string name="photo_session_address">Photo session address</string>
     <string name="accepted">Accepted</string>
+    <string name="pending">Pending</string>
+    <string name="denied">Denied</string>
     <string name="photographer">Photographer</string>
     <string name="address_selection">Address selection</string>
     <string name="search_found">Search: </string>
@@ -174,5 +176,7 @@
     <string name="time_is_not_selected">Time is not selected</string>
     <string name="book_successfully">Congratulations, you have booked a service!</string>
     <string name="ratings_count">ratings</string>
+    <string name="accept">Accept</string>
+    <string name="dismiss">Dismiss</string>
 
 </resources>

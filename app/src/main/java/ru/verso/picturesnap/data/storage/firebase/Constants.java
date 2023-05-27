@@ -22,4 +22,12 @@ public class Constants {
     public static final String FIREBASE_PHOTOGRAPHER_RATING_PATH = "rating";
 
     public static final String FIREBASE_RECORDS_PATH = "records_to_photographers";
+
+    public static final String FIREBASE_CLIENT_ID_CHILD_PATH = "clientId";
+
+    public static final String FIREBASE_PHOTOGRAPHER_ID_CHILD_PATH = "photographerId";
+
+    public static final String FIREBASE_SERVICE_ID_CHILD_PATH = "serviceId";
+
+    public static final String FIREBASE_STATUS_CHILD_PATH = "status";
 }

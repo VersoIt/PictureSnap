@@ -77,6 +77,8 @@
                     android:id="@+id/textView_my_records"
                     style="@style/textField.selection"
 
+                    android:enabled="false"
+
                     android:layout_width="match_parent"
 
                     android:layout_marginHorizontal="0dp"

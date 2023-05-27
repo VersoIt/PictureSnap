@@ -21,6 +21,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+
             style="@style/standardText.purple.purpleBorder"
 
             android:text="@string/i_am_client"
@@ -52,6 +54,8 @@
             android:id="@+id/button_photographer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+
+            android:foreground="?attr/selectableItemBackgroundBorderless"
 
             style="@style/standardText.white.purpleBackground"
             android:text="@string/i_am_photographer"

@@ -23,4 +23,6 @@ public interface PhotographerDataSource {
     void updatePhotographerAvatar(String photographerId, Uri path);
 
     void updateRatingOf(String photographerId, float lastAverage, int lastCount, int newAdd);
+
+    LiveData<PhotographerPresentationService> getServiceById(String id);
 }

@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.Objects;
@@ -24,10 +25,12 @@ import java.util.Objects;
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.data.repository.ClientRepositoryImpl;
 import ru.verso.picturesnap.data.repository.FirstTimeWentRepositoryImpl;
+import ru.verso.picturesnap.data.repository.RecordsRepositoryImpl;
 import ru.verso.picturesnap.data.repository.RoleRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserAuthDataRepositoryImpl;
 import ru.verso.picturesnap.data.repository.UserLocationRepositoryImpl;
 import ru.verso.picturesnap.data.storage.datasources.firebase.ClientFirebaseDataSource;
+import ru.verso.picturesnap.data.storage.datasources.firebase.RecordsFirebaseDataSource;
 import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDataSource;
 import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
 import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
@@ -35,6 +38,7 @@ import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSha
 import ru.verso.picturesnap.databinding.ActivityClientBinding;
 import ru.verso.picturesnap.domain.repository.RoleRepository;
 import ru.verso.picturesnap.domain.usecase.GetClientDataUseCase;
+import ru.verso.picturesnap.domain.usecase.GetClientRecordsUseCase;
 import ru.verso.picturesnap.domain.usecase.GetUserDataUseCase;
 import ru.verso.picturesnap.domain.usecase.UpdateUserDataUseCase;
 import ru.verso.picturesnap.presentation.activity.states.ClientActivityState;
@@ -59,6 +63,8 @@ public class ClientActivity extends AppCompatActivity {
 
     private ClientActivityLocationListener locationListener;
 
+    private NavController navController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +85,7 @@ public class ClientActivity extends AppCompatActivity {
             viewModel.setVisited();
         }
 
-        NavController navController = getNavController();
+        navController = getNavController();
         setUpMenus(navController, viewModel);
     }
 
@@ -114,9 +120,9 @@ public class ClientActivity extends AppCompatActivity {
         else {
             RegisteredActivityState registeredActivityState = new RegisteredActivityState(this, binding, navController, getClientMainViewModel());
             registeredActivityState.setSignOutDialogAndParams(new SignOutDialogFragment((dialog, which) -> {
-                clientActivityViewModel.signOut();
-                goToMainActivity();
-            }),
+                        clientActivityViewModel.signOut();
+                        goToMainActivity();
+                    }),
                     getSupportFragmentManager());
             return registeredActivityState;
         }
@@ -124,7 +130,7 @@ public class ClientActivity extends AppCompatActivity {
 
     private void goToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
@@ -136,7 +142,8 @@ public class ClientActivity extends AppCompatActivity {
                 new RoleRepositoryImpl(new RoleRoomDataSource(this)),
                 new FirstTimeWentRepositoryImpl(new FirstTimeWentSharedPrefsDataSource(this)),
                 new UserAuthDataRepositoryImpl(new UserAuthFirebaseDataSource())),
-                new GetClientDataUseCase(new ClientRepositoryImpl(new ClientFirebaseDataSource())))).get(ClientMainViewModel.class);
+                new GetClientDataUseCase(new ClientRepositoryImpl(new ClientFirebaseDataSource())),
+                new GetClientRecordsUseCase(new RecordsRepositoryImpl(new RecordsFirebaseDataSource())))).get(ClientMainViewModel.class);
     }
 
     private void setupToolbar() {
@@ -192,5 +199,16 @@ public class ClientActivity extends AppCompatActivity {
     public void showBottomSheetDialog() {
         ClientBottomSheetDialogFragment clientBottomSheet = new ClientBottomSheetDialogFragment(R.id.unregistered_welcome);
         clientBottomSheet.show(getSupportFragmentManager(), ClientBottomSheetDialogFragment.TAG);
+    }
+
+    @Override
+    public void onBackPressed() {
+        NavDestination navDestination = navController.getCurrentDestination();
+        if (navDestination != null && (navDestination.getId() == R.id.client_main || navDestination.getId() == R.id.unregistered_main)) {
+            finish();
+            return;
+        }
+
+        super.onBackPressed();
     }
 }
