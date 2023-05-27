@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
@@ -18,9 +19,12 @@ public class RecordsFromClientAdapter extends ListAdapter<RecordsFromClientAdapt
 
     private final RecordViewHolder.RecordStatusChanger statusChanger;
 
-    public RecordsFromClientAdapter(@NonNull DiffUtil.ItemCallback<RecordBundle> diffCallback, RecordViewHolder.RecordStatusChanger statusChanger) {
+    private final FragmentActivity parent;
+
+    public RecordsFromClientAdapter(@NonNull DiffUtil.ItemCallback<RecordBundle> diffCallback, RecordViewHolder.RecordStatusChanger statusChanger, FragmentActivity parent) {
         super(diffCallback);
         this.statusChanger = statusChanger;
+        this.parent = parent;
     }
 
     @NonNull
@@ -28,7 +32,7 @@ public class RecordsFromClientAdapter extends ListAdapter<RecordsFromClientAdapt
     public RecordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
-        return new RecordViewHolder(inflater.inflate(R.layout.layout_client_record, parent, false), statusChanger);
+        return new RecordViewHolder(inflater.inflate(R.layout.layout_client_record, parent, false), statusChanger, this.parent);
     }
 
     @Override

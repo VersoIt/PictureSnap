@@ -24,7 +24,7 @@
 
         app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
         app:drawableStartCompat="@drawable/ic_location_on"
-        tools:text="Москва, Проспект Вернадского 86, строение 1" />
+        android:text="@string/loading" />
 
     <View style="@style/fieldSeparator" />
 

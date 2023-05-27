@@ -85,6 +85,7 @@
     <string name="time_selection">Select time</string>
     <string name="send">Send</string>
     <string name="feedback">Feedback</string>
+    <string name="Ok">OK</string>
     <string name="description">Description</string>
     <string name="describe_feedback">Briefly describe the quality of services of the master</string>
     <string name="photographer_signup">Sign up - photographer</string>
@@ -178,5 +179,11 @@
     <string name="ratings_count">ratings</string>
     <string name="accept">Accept</string>
     <string name="dismiss">Dismiss</string>
+    <string name="confirm_action">Confirm action</string>
+
+    <string name="accept_record">Accept entry</string>
+
+    <string name="cancel_photo_session">Are you sure you want to cancel your photo session?</string>
+    <string name="loading">Loading…</string>
 
 </resources>

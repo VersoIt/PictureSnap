@@ -63,7 +63,7 @@ public class PhotographerRecords extends Fragment {
     }
 
     private void initRecordsRecyclerView(PhotographerRecordsViewModel photographerRecordsViewModel) {
-        RecordsFromClientAdapter adapter = new RecordsFromClientAdapter(new RecordsFromClientAdapter.RecordsDiff(), photographerRecordsViewModel);
+        RecordsFromClientAdapter adapter = new RecordsFromClientAdapter(new RecordsFromClientAdapter.RecordsDiff(), photographerRecordsViewModel, requireActivity());
         binding.recyclerViewRecords.setAdapter(adapter);
         binding.recyclerViewRecords.setLayoutManager(new LinearLayoutManager(requireContext()));
 

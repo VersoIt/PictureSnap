@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.view.View;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -17,17 +19,27 @@ import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.LayoutClientRecordBinding;
 import ru.verso.picturesnap.domain.models.Record;
 import ru.verso.picturesnap.presentation.app.PictureSnapApp;
+import ru.verso.picturesnap.presentation.dialogs.AcceptRecordDialog;
+import ru.verso.picturesnap.presentation.dialogs.DismissRecordDialog;
 
 public class RecordViewHolder extends RecyclerView.ViewHolder {
 
     private final LayoutClientRecordBinding binding;
 
-    private final RecordStatusChanger statusChanger;
+    private final AcceptRecordDialog acceptRecordDialog;
 
-    public RecordViewHolder(View view, RecordStatusChanger statusChanger) {
+    private final DismissRecordDialog dismissRecordDialog;
+
+    private final FragmentActivity parent;
+
+    public RecordViewHolder(View view, RecordStatusChanger statusChanger, FragmentActivity parent) {
         super(view);
         binding = LayoutClientRecordBinding.bind(view);
-        this.statusChanger = statusChanger;
+
+        acceptRecordDialog = new AcceptRecordDialog(statusChanger);
+        dismissRecordDialog = new DismissRecordDialog(statusChanger);
+
+        this.parent = parent;
     }
 
     public void bind(RecordsFromClientAdapter.RecordBundle recordBundle) {
@@ -49,12 +61,22 @@ public class RecordViewHolder extends RecyclerView.ViewHolder {
     private void initStatusButtons(String recordId) {
 
         binding.appCompatButtonDismiss.setOnClickListener(view -> {
-            statusChanger.changeRecordStatusTo(recordId, Record.Status.DENIED);
+            Fragment fragment = parent.getSupportFragmentManager().findFragmentByTag(AcceptRecordDialog.TAG);
+            if (fragment == null) {
+                dismissRecordDialog.setRecordId(recordId);
+                dismissRecordDialog.show(parent.getSupportFragmentManager(), AcceptRecordDialog.TAG);
+            }
+            
             binding.linearLayoutStatusButtons.setEnabled(false);
         });
 
         binding.appCompatButtonAccept.setOnClickListener(view -> {
-            statusChanger.changeRecordStatusTo(recordId, Record.Status.ACCEPTED);
+            Fragment fragment = parent.getSupportFragmentManager().findFragmentByTag(AcceptRecordDialog.TAG);
+            if (fragment == null) {
+                acceptRecordDialog.setRecordId(recordId);
+                acceptRecordDialog.show(parent.getSupportFragmentManager(), AcceptRecordDialog.TAG);
+            }
+            
             binding.linearLayoutStatusButtons.setEnabled(false);
         });
     }
@@ -76,9 +98,8 @@ public class RecordViewHolder extends RecyclerView.ViewHolder {
 
         Record.Status status = recordBundle.getRecord().getStatus();
 
-        if (status == Record.Status.ACCEPTED || status == Record.Status.DENIED) {
+        if (status == Record.Status.ACCEPTED || status == Record.Status.DENIED)
             showStatusText(status);
-        }
     }
 
     private void showStatusText(Record.Status status) {
