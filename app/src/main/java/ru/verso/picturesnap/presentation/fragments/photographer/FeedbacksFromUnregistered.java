@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.List;
+import java.util.Locale;
 
 import ru.verso.picturesnap.R;
 import ru.verso.picturesnap.databinding.FragmentFeedbacksFromUnregisteredBinding;
@@ -45,7 +46,7 @@ public class FeedbacksFromUnregistered extends Fragment {
         binding.recyclerViewFeedbacks.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recyclerViewFeedbacks.setAdapter(adapter);
 
-        photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> binding.textViewTotalRating.setText(String.valueOf(photographer.getRating())));
+        photographerProfileViewModel.getPhotographer().observe(getViewLifecycleOwner(), photographer -> binding.textViewTotalRating.setText(String.format(Locale.getDefault(), "%.1f",photographer.getRating())));
 
         viewModel.getFeedbacksOfPhotographer().observe(getViewLifecycleOwner(), feedbacks -> {
             if (feedbacks.size() > 0) {
