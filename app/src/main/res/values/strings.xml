@@ -183,7 +183,7 @@
 
     <string name="accept_record">Are you sure you want to accept your photo session?</string>
 
-    <string name="cancel_photo_session">Are you sure you want to cancel your photo session?</string>
+    <string name="cancel_photo_session">Are you sure you want to cancel your record?</string>
     <string name="loading">Loading…</string>
 
 </resources>

@@ -164,7 +164,7 @@
     <string name="accept">Принять</string>
     <string name="dismiss">Отказаться</string>
     <string name="confirm_action">Подтвердите действие</string>
-    <string name="cancel_photo_session">Вы уверены, что хотите отменить фотосессию?</string>
+    <string name="cancel_photo_session">Вы уверены, что хотите отменить запись?</string>
     <string name="Ok">Ок</string>
     <string name="accept_record">Вы уверены, что хотите принять запись?</string>
     <string name="loading">Загрузка…</string>
