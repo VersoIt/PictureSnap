@@ -68,21 +68,52 @@
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="@dimen/layout_width_percent_block">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textView_my_records"
-                style="@style/textField.selection"
-
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:background="@drawable/rect_white"
-                android:layout_marginHorizontal="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_margin">
 
-                android:layout_marginTop="@dimen/large_margin"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView_my_records"
+                    style="@style/textField.selection"
 
-                android:text="@string/clients_records"
-                app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
-                app:drawableStartCompat="@drawable/ic_check_mark" />
+                    android:layout_width="match_parent"
+
+                    android:layout_marginHorizontal="0dp"
+
+                    android:background="@drawable/rect_white"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+
+                    android:text="@string/clients_records"
+                    app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+                    app:drawableStartCompat="@drawable/ic_check_mark"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                    android:id="@+id/textView_record_count"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+
+                    android:visibility="gone"
+
+                    android:gravity="center"
+
+                    android:textColor="@color/white"
+
+                    android:background="@drawable/round_red_background"
+
+                    android:textSize="12sp"
+                    android:layout_marginEnd="45dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

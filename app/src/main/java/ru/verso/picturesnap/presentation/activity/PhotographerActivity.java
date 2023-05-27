@@ -114,7 +114,7 @@ public class PhotographerActivity extends AppCompatActivity {
             }
 
             if (menuItem.getItemId() == R.id.records) {
-                setFragmentMenu(R.id.clientsRecords, PhotographerMenuItems.CLIENTS_RECORDS);
+                setFragmentMenu(R.id.photographerRecords, PhotographerMenuItems.CLIENTS_RECORDS);
                 closeDrawer();
 
                 return true;
@@ -158,7 +158,7 @@ public class PhotographerActivity extends AppCompatActivity {
             }
 
             if (menuItem.getItemId() == R.id.nav_clients_records) {
-                setFragmentMenu(R.id.clientsRecords, PhotographerMenuItems.CLIENTS_RECORDS);
+                setFragmentMenu(R.id.photographerRecords, PhotographerMenuItems.CLIENTS_RECORDS);
                 closeDrawer();
 
                 return true;

@@ -30,7 +30,7 @@ import ru.verso.picturesnap.data.storage.datasources.firebase.UserAuthFirebaseDa
 import ru.verso.picturesnap.data.storage.datasources.room.RoleRoomDataSource;
 import ru.verso.picturesnap.data.storage.datasources.sharedprefs.FirstTimeWentSharedPrefsDataSource;
 import ru.verso.picturesnap.data.storage.datasources.sharedprefs.UserLocationSharedPrefsDataSource;
-import ru.verso.picturesnap.databinding.FragmentClientMyRecordsBinding;
+import ru.verso.picturesnap.databinding.FragmentPhotographerClientsRecordsBinding;
 import ru.verso.picturesnap.domain.models.Client;
 import ru.verso.picturesnap.domain.models.PhotographerPresentationService;
 import ru.verso.picturesnap.domain.models.Record;
@@ -45,13 +45,13 @@ import ru.verso.picturesnap.presentation.viewmodel.photographer.PhotographerReco
 
 public class PhotographerRecords extends Fragment {
 
-    FragmentClientMyRecordsBinding binding;
+    FragmentPhotographerClientsRecordsBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FragmentClientMyRecordsBinding.inflate(inflater, container, false);
+        binding = FragmentPhotographerClientsRecordsBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

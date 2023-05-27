@@ -51,11 +51,6 @@
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
-        android:id="@+id/clientsRecords"
-        android:name="ru.verso.picturesnap.presentation.fragments.photographer.ClientsRecords"
-        android:label="fragment_clients_records"
-        tools:layout="@layout/fragment_clients_records" />
-    <fragment
         android:id="@+id/photographerSettings"
         android:name="ru.verso.picturesnap.presentation.fragments.common.Settings"
         android:label="fragment_settings"
